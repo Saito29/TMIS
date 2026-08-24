@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/07e0cde7ae44d7e3cdc61a55fe9af110?family=Blanka"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../src/auth.css" />
+    <link
+      rel="shortcut icon"
+      href="../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
+      type="image/x-icon"
+    />
+    <title>TMIS-Login</title>
+  </head>
+  <body>
+    <div class="container-fluid authenticator-container">
+      <div class="row">
+        <!-- Left side -->
+        <div class="col authenticator-left">
+          <div class="authenticator-left-content-logo">
+            <img
+              src="../../assets/logo/DA SAAD LOGO FULL - WHITE TEXT.png"
+              alt="DA-SAAD Logo"
+              class="authenticator-left-logo"
+            />
+            <span class="authenticator-system-name">TMIS</span>
+          </div>
+          <div class="authenticator-left-content-tagline">
+            <h3 class="authenticator-tagline">
+              Building Competence Through Smarter Training Management.
+            </h3>
+          </div>
+          <div class="authenticator-left-content-DA">
+            <span class="authenticator-left-content-DA-name"
+              >Department of Agriculture 4A - SAAD</span
+            >
+          </div>
+        </div>
+        <!-- Right side -->
+        <div class="col authenticator-right card">
+          <div class="card-body">
+            <!-- Header -->
+            <div class="authenticator-right-card-form card-title">
+              <h3 class="authenticator-right-card-header">Welcome Back!</h3>
+              <p class="authenticator-right-card-header2">
+                Sign in to continue to your account
+              </p>
+            </div>
+            <!-- Form box -->
+            <div class="authenticator-right-card-form-box">
+              <form
+                action="#"
+                id="authenticator_form"
+                class="row gx-2 gy-3"
+                enctype="application/x-www-form-urlencoded"
+                autocomplete="on"
+              >
+                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
+                  <label for="email-input" class="form-label text-form-label"
+                    >Email Address</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-envelope-at-fill"></i
+                    ></span>
+                    <input
+                      type="email"
+                      name="email_address"
+                      id="email-input"
+                      class="form-control text-form"
+                      placeholder="your@emailaddress"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
+                  <label for="password_input" class="form-label text-form-label"
+                    >Password</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-lock-fill"></i
+                    ></span>
+                    <input
+                      type="password"
+                      name="password_auth"
+                      id="password_input"
+                      class="form-control text-form"
+                      placeholder="Enter your password"
+                      required
+                    />
+                    <button type="button" class="password-toggle" id="toggle-password" aria-label="Show password">
+                      <i class="bi bi-eye-fill" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
+                  <input type="submit" value="Login" class="btn btn-outline-success form-control form-submit">
+                </div>
+              </form>
+            </div>
+            <!-- Other sign up  -->
+            <div class="authenticator-right-card-form-others">
+              <a href="#" class="authenticator-right-card-form-forgetpassword">Forgot Password?</a>
+              <p class="authenticator-right-card-form-sign-up">Don't have an account? <a href="#" class="sign-up-text">Sign up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const passwordInput = document.getElementById("password_input");
+      const passwordToggle = document.getElementById("toggle-password");
+
+      function setPasswordVisibility(isVisible) {
+        passwordInput.type = isVisible ? "text" : "password";
+        passwordToggle.setAttribute("aria-label", isVisible ? "Hide password" : "Show password");
+        passwordToggle.innerHTML = `<i class="bi bi-eye${isVisible ? "-slash" : ""}-fill" aria-hidden="true"></i>`;
+      }
+
+      passwordToggle.addEventListener("click", () => {
+        setPasswordVisibility(passwordInput.type === "password");
+      });
+    </script>
+  </body>
+</html>

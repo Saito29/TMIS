@@ -60,27 +60,79 @@
           <div class="card-body">
             <!-- Header -->
             <div class="authenticator-right-card-form card-title">
-              <h3 class="authenticator-right-card-header">Welcome Back!</h3>
-              <p class="authenticator-right-card-header2">
-                Sign in to continue to your account
-              </p>
+              <h3 class="authenticator-right-card-header">Register</h3>
+              <p class="authenticator-right-card-header2">Create an account</p>
             </div>
             <!-- Form box -->
             <div class="authenticator-right-card-form-box">
               <form
                 action="#"
                 id="authenticator_form"
-                class="row gx-2 gy-3"
+                class="row gx-3 gy-3"
                 enctype="application/x-www-form-urlencoded"
                 autocomplete="on"
               >
-                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label for="first_name" class="form-label text-form-label"
+                    >First Name</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      class="form-control text-form"
+                      id="first_name"
+                      name="first_name"
+                      placeholder="Enter your first name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label for="middle_name" class="form-label text-form-label"
+                    >Middle Name</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      name="middle_name"
+                      class="form-control text-form"
+                      id="middle_name"
+                      placeholder="Enter your middle name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label for="last_name" class="form-label text-form-label"
+                    >Last Name</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      class="form-control text-form"
+                      id="last_name"
+                      name="last_name"
+                      placeholder="Enter your last name"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
                   <label for="email-input" class="form-label text-form-label"
                     >Email Address</label
                   >
                   <div class="input-group form-group">
                     <span class="input-group-text"
-                      ><i class="bi bi-envelope-at-fill"></i
+                      ><i class="bi bi-circle"></i
                     ></span>
                     <input
                       type="email"
@@ -92,13 +144,13 @@
                     />
                   </div>
                 </div>
-                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
                   <label for="password_input" class="form-label text-form-label"
                     >Password</label
                   >
                   <div class="input-group form-group">
                     <span class="input-group-text"
-                      ><i class="bi bi-lock-fill"></i
+                      ><i class="bi bi-circle"></i
                     ></span>
                     <input
                       type="password"
@@ -108,20 +160,47 @@
                       placeholder="Enter your password"
                       required
                     />
-                    <button type="button" class="password-toggle" id="toggle-password" aria-label="Show password">
-                      <i class="bi bi-eye-fill" aria-hidden="true"></i>
-                    </button>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label
+                    for="confirm_password"
+                    class="form-label text-form-label"
+                    >Confirm Password</label
+                  >
+                  <div class="input-group form-group">
+                    <span class="input-group-text"
+                      ><i class="bi bi-circle"></i
+                    ></span>
+                    <input
+                      type="text"
+                      class="form-control text-form"
+                      id="confirm_password"
+                      name="confirm_password"
+                      placeholder="Enter your password"
+                      required
+                    />
                   </div>
                 </div>
                 <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
-                  <input type="submit" value="Login" class="btn btn-outline-success form-control form-submit">
+                    <input type="checkbox" name="show_password" id="show_password" class="form-check-input">
+                    <label for="show_password" class="form-label">Show password</label>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
+                  <input
+                    type="submit"
+                    value="Register"
+                    class="btn btn-outline-success form-control form-submit"
+                  />
                 </div>
               </form>
             </div>
             <!-- Other sign up  -->
-            <div class="authenticator-right-card-form-others">
-              <a href="#" class="authenticator-right-card-form-forgetpassword">Forgot Password?</a>
-              <p class="authenticator-right-card-form-sign-up">Don't have an account? <a href="/app/authentication/register.html" class="sign-up-text">Sign up</a></p>
+            <div class="authenticator-right-card-form-other">
+              <p class="authenticator-right-card-form-login">
+                Already have an account?
+                <a href="/app/authentication/login.html" class="login-text">Login</a>
+              </p>
             </div>
           </div>
         </div>
@@ -140,7 +219,10 @@
 
       function setPasswordVisibility(isVisible) {
         passwordInput.type = isVisible ? "text" : "password";
-        passwordToggle.setAttribute("aria-label", isVisible ? "Hide password" : "Show password");
+        passwordToggle.setAttribute(
+          "aria-label",
+          isVisible ? "Hide password" : "Show password",
+        );
         passwordToggle.innerHTML = `<i class="bi bi-eye${isVisible ? "-slash" : ""}-fill" aria-hidden="true"></i>`;
       }
 

@@ -8,6 +8,7 @@ body {
   font-family: "inter";
   font-size: 14px;
   font-weight: 400;
+  overflow-x: hidden;
   background-color: #f7f9f7;
 }
 
@@ -27,6 +28,7 @@ a {
 .authenticator-container {
   min-height: 100vh;
   width: 100%;
+  padding: 0;
   /* background-color: #f5f5f5; */
   background-image: url("../assets/img/ricefield_with_farmer-Picsart-AiImageEnhancer.png");
   background-repeat: no-repeat;
@@ -35,10 +37,16 @@ a {
   background-position: -240px;
 }
 
+.authenticator-container > .row {
+  min-height: 100vh;
+  margin: 0;
+}
+
 /* Left side container */
 .col.authenticator-left {
-  height: 100vh;
-  width: 100%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  min-height: 100vh;
 }
 
 .col.authenticator-left .authenticator-left-content-logo {
@@ -98,6 +106,8 @@ a {
 
 /* Right side container */
 .col.authenticator-right {
+  flex: 0 0 50%;
+  max-width: 50%;
   min-height: 100vh;
   width: 100%;
   margin: 0;
@@ -207,6 +217,38 @@ a {
   border-color: #2e7d32;
 }
 
+.password-requirements-column {
+  margin-top: -8px;
+}
+
+.password-requirements {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  color: rgba(38, 50, 56, 0.65);
+  font-family: "poppins";
+  font-size: 12px;
+  list-style: none;
+}
+
+.password-requirements li {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.password-requirements i {
+  flex: 0 0 auto;
+  color: rgba(38, 50, 56, 0.5);
+}
+
+.password-requirements li.is-valid,
+.password-requirements li.is-valid i {
+  color: #2e7d32;
+}
+
 .col.authenticator-right .authenticator-right-card-form-others{
   width: min(100%, 560px);
   margin: 0 auto;
@@ -233,6 +275,29 @@ a {
   text-decoration: none;
 }
 
+.col.authenticator-right .authenticator-right-card-form-other{
+  width: min(100%, 560px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -40px auto;
+  padding: 20px clamp(16px, 4vw, 40px);
+  font-family: 'poppins';
+  font-size: 16px;
+}
+
+.col.authenticator-right .authenticator-right-card-form-other .authenticator-right-card-form-login{
+  margin-bottom: 0;
+  color: #263238;
+  font-weight: 500;
+}
+
+.col.authenticator-right .authenticator-right-card-form-other .authenticator-right-card-form-login .login-text{
+  color: #2e7d32;
+  font-weight: 700;
+  text-decoration: none;
+}
+
 @media (max-width: 767.98px) {
   .authenticator-container {
     background-position: center;
@@ -244,6 +309,8 @@ a {
   }
 
   .col.authenticator-right {
+    flex: 0 0 100%;
+    max-width: 100%;
     min-height: 100vh;
     border-radius: 0;
   }
@@ -254,5 +321,9 @@ a {
 
   .col.authenticator-right .authenticator-right-card-form-box {
     margin-top: 12px;
+  }
+
+  .password-requirements {
+    grid-template-columns: 1fr;
   }
 }

@@ -110,7 +110,7 @@ function App() {
                 Forgot Password?
               </a>
               <p className="authenticator-right-card-form-sign-up">
-                Don&apos;t have an account? <a href="#" className="sign-up-text">Sign up</a>
+                Don&apos;t have an account? <a href="" className="sign-up-text">Sign up</a>
               </p>
             </div>
           </div>

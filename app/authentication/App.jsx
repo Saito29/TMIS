@@ -121,7 +121,7 @@ function LoginPage() {
         </form>
       </div>
       <div className="authenticator-right-card-form-others">
-        <a href="#" className="authenticator-right-card-form-forgetpassword">Forgot Password?</a>
+        <a href="/forget-password" className="authenticator-right-card-form-forgetpassword">Forgot Password?</a>
         <p className="authenticator-right-card-form-sign-up">
           Don&apos;t have an account? <a href="/register" className="sign-up-text">Sign up</a>
         </p>

@@ -766,3 +766,157 @@ body {
 .app-mobile-menu .offcanvas-body .mobile-nav .mobile-list-navigation .mobile-submenu .mobile-subnav-panel-navigation .nav-link[data-bs-toggle="collapse"][aria-expanded="true"] .bi-chevron-down {
   transform: rotate(180deg);
 }
+
+/* Header Navigation Collapse Styles */
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item {
+  position: relative;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link .bi-chevron-down {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link[aria-expanded="true"] .bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid rgba(38, 50, 56, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(38, 50, 56, 0.12);
+  padding: 8px;
+  min-width: 200px;
+  margin-top: 8px;
+  z-index: 1000;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse.collapsing {
+  display: block !important;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse.collapse:not(.show) {
+  display: none;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse.collapse.show {
+  display: block;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  color: #263238;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item i:first-child {
+  font-size: 16px;
+  color: #263238;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item span {
+  flex: 1;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item .bi-chevron-down {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item[aria-expanded="true"] .bi-chevron-down {
+  transform: rotate(180deg);
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:hover,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:focus {
+  background-color: #e8f5e9;
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:hover i:first-child,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:focus i:first-child {
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:hover span,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-collapse-item:focus span {
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: 12px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: #263238;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item i {
+  font-size: 16px;
+  color: #263238;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item span {
+  flex: 1;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:hover,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:focus {
+  background-color: #e8f5e9;
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:hover i,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:focus i {
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:hover span,
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-item:focus span {
+  color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-menu .collapse:not(.show) {
+  display: none;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-menu .collapse.show {
+  display: flex;
+}

@@ -94,459 +94,440 @@
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a href="dashboardv2.html" class="nav-link active-page">
-                  <i class="bi bi-columns-gap active-icon"></i>
+                  <i class="bi bi-columns-gap"></i>
                   <span class="text-icon-active">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-item dropdown-center">
+              <li class="nav-item">
                 <a
-                  href="#participants"
-                  class="nav-link dropdown-toggle"
+                  href="#"
+                  class="nav-link"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#participantHeaderCollapse"
                   aria-expanded="false"
+                  aria-controls="participantHeaderCollapse"
                 >
                   <i class="bi bi-people-fill"></i>
                   <span class="text-icon">Participants</span>
+                  <i class="bi bi-chevron-down ms-2"></i>
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-submenu dropend">
+                <div class="collapse header-collapse" id="participantHeaderCollapse">
+                  <div class="header-collapse-menu">
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#createParticipantHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-plus-circle"></i>
                       <span>Create</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#register" class="dropdown-item">
+                    <div class="collapse" id="createParticipantHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#register" class="header-sub-collapse-item">
                           <i class="bi bi-person-fill-add"></i>
                           <span>Register</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#updateParticipantHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-arrow-repeat"></i>
                       <span>Update</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#forReview" class="dropdown-item">
+                    <div class="collapse" id="updateParticipantHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#forReview" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Review</span>
                           <span class="badge badge-review">34</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#forApproval" class="dropdown-item">
+                        <a href="#forApproval" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Approval</span>
                           <span class="badge badge-approval">23</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
-                      data-bs-toggle="dropdown"
+                      class="header-collapse-item"
                       role="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#detailsParticipantHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-file-earmark-text"></i>
                       <span>Details</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#allStatus" class="dropdown-item">
-                          <i class="bi bi-people-fill"></i>
+                    <div class="collapse" id="detailsParticipantHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#allStatus" class="header-sub-collapse-item">
+                          <i class="bi bi-list-check"></i>
                           <span>All Status</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#approvedAccepted" class="dropdown-item">
+                        <a href="#approvedAccepted" class="header-sub-collapse-item">
                           <i class="bi bi-check2-circle"></i>
                           <span>Approved & Accepted</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#incomplete" class="dropdown-item">
+                        <a href="#incomplete" class="header-sub-collapse-item">
                           <i class="bi bi-person-x-fill"></i>
                           <span>Incomplete</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#inactive" class="dropdown-item">
+                        <a href="#inactive" class="header-sub-collapse-item">
                           <i class="bi bi-person-walking"></i>
                           <span>Inactive</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
-              <li class="nav-item dropdown-center">
+              <li class="nav-item">
                 <a
-                  href="#training"
-                  class="nav-link dropdown-toggle"
+                  href="#"
+                  class="nav-link"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#trainingHeaderCollapse"
                   aria-expanded="false"
+                  aria-controls="trainingHeaderCollapse"
                 >
-                  <i class="bi bi-mortarboard-fill"></i>
+                  <i class="bi bi-book-fill"></i>
                   <span class="text-icon">Training</span>
+                  <i class="bi bi-chevron-down ms-2"></i>
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-submenu dropend">
+                <div class="collapse header-collapse" id="trainingHeaderCollapse">
+                  <div class="header-collapse-menu">
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#createTrainingHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-plus-circle"></i>
                       <span>Create</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#register" class="dropdown-item">
+                    <div class="collapse" id="createTrainingHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#register" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard-plus-fill"></i>
                           <span>Register</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#updateTrainingHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-arrow-repeat"></i>
                       <span>Update</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#forReview" class="dropdown-item">
+                    <div class="collapse" id="updateTrainingHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#forReview" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Review</span>
                           <span class="badge badge-review">34</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#forApproval" class="dropdown-item">
+                        <a href="#forApproval" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Approval</span>
                           <span class="badge badge-approval">23</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#detailsTrainingHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-file-earmark-text"></i>
                       <span>Details</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#allTrainingStatus" class="dropdown-item">
+                    <div class="collapse" id="detailsTrainingHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#allTrainingStatus" class="header-sub-collapse-item">
                           <i class="bi bi-person-video3"></i>
                           <span>All Status</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#approvedTraining" class="dropdown-item">
+                        <a href="#approvedTraining" class="header-sub-collapse-item">
                           <i class="bi bi-person-workspace"></i>
                           <span>Approved & Accepted</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#incompleteTraining" class="dropdown-item">
+                        <a href="#incompleteTraining" class="header-sub-collapse-item">
                           <i class="bi bi-person-fill-gear"></i>
                           <span>Incomplete</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#inactiveTraining" class="dropdown-item">
+                        <a href="#inactiveTraining" class="header-sub-collapse-item">
                           <i class="bi bi-envelope-exclamation-fill"></i>
                           <span>Inactive</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
-              <li class="nav-item dropdown-center">
+              <li class="nav-item">
                 <a
-                  href="#evaluation"
-                  class="nav-link dropdown-toggle"
+                  href="#"
+                  class="nav-link"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#evaluationHeaderCollapse"
                   aria-expanded="false"
+                  aria-controls="evaluationHeaderCollapse"
                 >
-                  <i class="bi bi-clipboard-check-fill"></i>
+                  <i class="bi bi-file-earmark-check"></i>
                   <span class="text-icon">Evaluation</span>
+                  <i class="bi bi-chevron-down ms-2"></i>
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-submenu dropdend">
+                <div class="collapse header-collapse" id="evaluationHeaderCollapse">
+                  <div class="header-collapse-menu">
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#createEvaluationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-plus-circle"></i>
                       <span>Create</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="createEvaluationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-text"></i>
                           <span>Pre-test Questionaire</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-text"></i>
                           <span>Post-test Questionaire</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-text"></i>
                           <span>Training Evaluation</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-text"></i>
                           <span>Resource Person Evaluation</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropdend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#encodeEvaluationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-code-slash"></i>
                       <span>Encode</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="encodeEvaluationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-ruled"></i>
                           <span>Pre-test Evaluation</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-ruled"></i>
                           <span>Post-test Evaluation</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-ruled"></i>
                           <span>Training Evaluation</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-file-earmark-ruled"></i>
                           <span>Resource Person Evaluation</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropdend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#updateEvaluationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-arrow-repeat"></i>
                       <span>Update</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="updateEvaluationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-send-exclamation-fill"></i>
                           <span>For review</span>
-                          <span class="badge rounded-pill badge-review"
-                            >34</span
-                          >
+                          <span class="badge rounded-pill badge-review">34</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-send-check-fill"></i>
                           <span>For approval</span>
-                          <span class="badge rounded-pill badge-approval"
-                            >23</span
-                          >
+                          <span class="badge rounded-pill badge-approval">23</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropdend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#detailsEvaluationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-file-earmark-text"></i>
                       <span>Details</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="detailsEvaluationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-journal-text"></i>
                           <span>All status</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-journal-check"></i>
                           <span>Approved & accepted</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-journal-code"></i>
                           <span>Incomplete</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-journal-x"></i>
                           <span>Inactive</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
-              <li class="nav-item dropdown-center">
+              <li class="nav-item">
                 <a
-                  href="#administration"
-                  class="nav-link dropdown-toggle"
+                  href="#"
+                  class="nav-link"
                   role="button"
-                  data-bs-toggle="dropdown"
-                  data-bs-auto-close="outside"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#administrationHeaderCollapse"
                   aria-expanded="false"
+                  aria-controls="administrationHeaderCollapse"
                 >
-                  <i class="bi bi-gear-fill"></i>
+                  <i class="bi bi-sliders"></i>
                   <span class="text-icon">Administration</span>
+                  <i class="bi bi-chevron-down ms-2"></i>
                 </a>
-                <ul class="dropdown-menu">
-                  <li class="dropdown-submenu dropend">
+                <div class="collapse header-collapse" id="administrationHeaderCollapse">
+                  <div class="header-collapse-menu">
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#createAdministrationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-plus-circle"></i>
                       <span>Create</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="createAdministrationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-person-add"></i>
                           <span>Register</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#updateAdministrationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-arrow-repeat"></i>
                       <span>Update</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="updateAdministrationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-person-check"></i>
                           <span>For approval</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="dropdown-submenu dropend">
+                      </div>
+                    </div>
+
                     <a
                       href="#"
-                      class="dropdown-item dropdown-toggle"
+                      class="header-collapse-item"
                       role="button"
-                      data-bs-toggle="dropdown"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#detailsAdministrationHeaderCollapse"
                       aria-expanded="false"
                     >
                       <i class="bi bi-file-earmark-text"></i>
                       <span>Details</span>
+                      <i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a href="#" class="dropdown-item">
+                    <div class="collapse" id="detailsAdministrationHeaderCollapse">
+                      <div class="header-sub-collapse-menu">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-person-arms-up"></i>
                           <span>All status</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-person-hearts"></i>
                           <span>Approved & accepted</span>
                         </a>
-                      </li>
-                      <li>
-                        <a href="#" class="dropdown-item">
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-person-fill-gear"></i>
                           <span>Inactive</span>
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -1105,8 +1086,8 @@
     <!-- Auto close navigation collapse script -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        // Main navigation collapse IDs with their nested collapse mapping
-        const mainCollapses = {
+        // Mobile navigation collapse configuration
+        const mobileMainCollapses = {
           'participantMobile': [
             'createParticipantMobile',
             'updateParticipantMobile',
@@ -1130,6 +1111,31 @@
           ]
         };
 
+        // Header navigation collapse configuration
+        const headerMainCollapses = {
+          'participantHeaderCollapse': [
+            'createParticipantHeaderCollapse',
+            'updateParticipantHeaderCollapse',
+            'detailsParticipantHeaderCollapse'
+          ],
+          'trainingHeaderCollapse': [
+            'createTrainingHeaderCollapse',
+            'updateTrainingHeaderCollapse',
+            'detailsTrainingHeaderCollapse'
+          ],
+          'evaluationHeaderCollapse': [
+            'createEvaluationHeaderCollapse',
+            'encodeEvaluationHeaderCollapse',
+            'updateEvaluationHeaderCollapse',
+            'detailsEvaluationHeaderCollapse'
+          ],
+          'administrationHeaderCollapse': [
+            'createAdministrationHeaderCollapse',
+            'updateAdministrationHeaderCollapse',
+            'detailsAdministrationHeaderCollapse'
+          ]
+        };
+
         // Function to close all nested collapses for a parent
         function closeAllNestedCollapses(nestedIds) {
           nestedIds.forEach(id => {
@@ -1143,13 +1149,13 @@
           });
         }
 
-        // Listen for main collapse show events
-        Object.entries(mainCollapses).forEach(([mainId, nestedIds]) => {
+        // Setup MOBILE navigation
+        Object.entries(mobileMainCollapses).forEach(([mainId, nestedIds]) => {
           const mainElement = document.getElementById(mainId);
           if (mainElement) {
             mainElement.addEventListener('show.bs.collapse', function() {
               // Close all other main collapses and their nested items
-              Object.entries(mainCollapses).forEach(([otherId, otherNestedIds]) => {
+              Object.entries(mobileMainCollapses).forEach(([otherId, otherNestedIds]) => {
                 if (otherId !== mainId) {
                   const otherElement = document.getElementById(otherId);
                   if (otherElement && otherElement.classList.contains('show')) {
@@ -1158,7 +1164,49 @@
                     });
                     bsCollapse.hide();
                   }
-                  // Also close nested items of other main sections
+                  closeAllNestedCollapses(otherNestedIds);
+                }
+              });
+            });
+          }
+
+          // Listen for nested collapse show events
+          nestedIds.forEach(nestedId => {
+            const nestedElement = document.getElementById(nestedId);
+            if (nestedElement) {
+              nestedElement.addEventListener('show.bs.collapse', function() {
+                // Close all sibling nested collapses
+                nestedIds.forEach(otherId => {
+                  if (otherId !== nestedId) {
+                    const otherElement = document.getElementById(otherId);
+                    if (otherElement && otherElement.classList.contains('show')) {
+                      const bsCollapse = new bootstrap.Collapse(otherElement, {
+                        toggle: false
+                      });
+                      bsCollapse.hide();
+                    }
+                  }
+                });
+              });
+            }
+          });
+        });
+
+        // Setup HEADER navigation
+        Object.entries(headerMainCollapses).forEach(([mainId, nestedIds]) => {
+          const mainElement = document.getElementById(mainId);
+          if (mainElement) {
+            mainElement.addEventListener('show.bs.collapse', function() {
+              // Close all other main collapses and their nested items
+              Object.entries(headerMainCollapses).forEach(([otherId, otherNestedIds]) => {
+                if (otherId !== mainId) {
+                  const otherElement = document.getElementById(otherId);
+                  if (otherElement && otherElement.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(otherElement, {
+                      toggle: false
+                    });
+                    bsCollapse.hide();
+                  }
                   closeAllNestedCollapses(otherNestedIds);
                 }
               });

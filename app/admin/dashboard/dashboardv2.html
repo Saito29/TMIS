@@ -1,0 +1,1192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/07e0cde7ae44d7e3cdc61a55fe9af110?family=Blanka"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
+      type="image/x-icon"
+    />
+    <!-- Box icons -->
+    <!-- Basic Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Filled Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css"
+      rel="stylesheet"
+    />
+    <!-- Brand Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css"
+      rel="stylesheet"
+    />
+    <!-- AdminLTE 4 Template -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte.min.css"
+    />
+    <link rel="stylesheet" href="../../../src/appv2.css" />
+    <title>Document</title>
+  </head>
+  <body class="layout-fixed">
+    <div class="app-wrapper">
+      <nav class="app-header navbar navbar-expand">
+        <div class="app-header-main d-flex justify-content-between align-items-center">
+          <!-- logo and TMIS -->
+          <div class="app-header-left d-flex align-items-center justify-content-start">
+            <!-- Hide in large size -->
+            <button
+              class="btn app-mobile-toggle d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNavMenu"
+              aria-controls="mobileNavMenu"
+            >
+              <i class="bi bi-list"></i>
+            </button>
+            <div class="app-logo d-flex align-items-center justify-content-start">
+              <a href="dashboardv2.html" class="text-decoration-none">
+                <img
+                  src="../../../assets/logo/DA SAAD LOGO FULL - GREEN TEXT.png"
+                  alt="App_logo"
+                  class="image-logo"
+                />
+              </a>
+              <div
+                class="app-logo-text d-flex align-items-center justify-content-start"
+              >
+                <h3 class="app-name">TMIS</h3>
+                <!-- <span class="text-logo-name">Training Management Information System</span> -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Bar -->
+          <div class="app-navigation-bar d-none d-lg-flex justify-content-center">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="dashboardv2.html" class="nav-link active-page">
+                  <i class="bi bi-columns-gap active-icon"></i>
+                  <span class="text-icon-active">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-item dropdown-center">
+                <a
+                  href="#participants"
+                  class="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-people-fill"></i>
+                  <span class="text-icon">Participants</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#register" class="dropdown-item">
+                          <i class="bi bi-person-fill-add"></i>
+                          <span>Register</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#forReview" class="dropdown-item">
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Review</span>
+                          <span class="badge badge-review">34</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#forApproval" class="dropdown-item">
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Approval</span>
+                          <span class="badge badge-approval">23</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      role="button"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#allStatus" class="dropdown-item">
+                          <i class="bi bi-people-fill"></i>
+                          <span>All Status</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#approvedAccepted" class="dropdown-item">
+                          <i class="bi bi-check2-circle"></i>
+                          <span>Approved & Accepted</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#incomplete" class="dropdown-item">
+                          <i class="bi bi-person-x-fill"></i>
+                          <span>Incomplete</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#inactive" class="dropdown-item">
+                          <i class="bi bi-person-walking"></i>
+                          <span>Inactive</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown-center">
+                <a
+                  href="#training"
+                  class="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-mortarboard-fill"></i>
+                  <span class="text-icon">Training</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#register" class="dropdown-item">
+                          <i class="bi bi-clipboard-plus-fill"></i>
+                          <span>Register</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#forReview" class="dropdown-item">
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Review</span>
+                          <span class="badge badge-review">34</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#forApproval" class="dropdown-item">
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Approval</span>
+                          <span class="badge badge-approval">23</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#allTrainingStatus" class="dropdown-item">
+                          <i class="bi bi-person-video3"></i>
+                          <span>All Status</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#approvedTraining" class="dropdown-item">
+                          <i class="bi bi-person-workspace"></i>
+                          <span>Approved & Accepted</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#incompleteTraining" class="dropdown-item">
+                          <i class="bi bi-person-fill-gear"></i>
+                          <span>Incomplete</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#inactiveTraining" class="dropdown-item">
+                          <i class="bi bi-envelope-exclamation-fill"></i>
+                          <span>Inactive</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown-center">
+                <a
+                  href="#evaluation"
+                  class="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-clipboard-check-fill"></i>
+                  <span class="text-icon">Evaluation</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropdend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-text"></i>
+                          <span>Pre-test Questionaire</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-text"></i>
+                          <span>Post-test Questionaire</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-text"></i>
+                          <span>Training Evaluation</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-text"></i>
+                          <span>Resource Person Evaluation</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropdend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-code-slash"></i>
+                      <span>Encode</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-ruled"></i>
+                          <span>Pre-test Evaluation</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-ruled"></i>
+                          <span>Post-test Evaluation</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-ruled"></i>
+                          <span>Training Evaluation</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-file-earmark-ruled"></i>
+                          <span>Resource Person Evaluation</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropdend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-send-exclamation-fill"></i>
+                          <span>For review</span>
+                          <span class="badge rounded-pill badge-review"
+                            >34</span
+                          >
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-send-check-fill"></i>
+                          <span>For approval</span>
+                          <span class="badge rounded-pill badge-approval"
+                            >23</span
+                          >
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropdend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-journal-text"></i>
+                          <span>All status</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-journal-check"></i>
+                          <span>Approved & accepted</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-journal-code"></i>
+                          <span>Incomplete</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-journal-x"></i>
+                          <span>Inactive</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown-center">
+                <a
+                  href="#administration"
+                  class="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  data-bs-auto-close="outside"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-gear-fill"></i>
+                  <span class="text-icon">Administration</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-person-add"></i>
+                          <span>Register</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-person-check"></i>
+                          <span>For approval</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu dropend">
+                    <a
+                      href="#"
+                      class="dropdown-item dropdown-toggle"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-person-arms-up"></i>
+                          <span>All status</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-person-hearts"></i>
+                          <span>Approved & accepted</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="dropdown-item">
+                          <i class="bi bi-person-fill-gear"></i>
+                          <span>Inactive</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Notification & User profile -->
+          <div class="app-noti-profile d-flex align-items-center">
+            <!-- notification -->
+            <div class="app-notification">
+              <button
+                class="notification-btn position-relative"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#notificationModal"
+              >
+                <i class="bi bi-bell-fill"></i>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification-count"
+                  >99+</span
+                >
+              </button>
+            </div>
+
+            <!-- User profile and role -->
+            <div class="app-profile dropdown-center">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle profile-button"
+                role="button"
+                data-bs-auto-close="outside"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <!-- User profile -->
+                <span class="user-avatar-wrap">
+                  <img
+                    src="../../../assets/user_profile/user_profile.jpg"
+                    alt="User_profile"
+                    class="user-profile"
+                  />
+                  <span class="user-status-dot"></span>
+                </span>
+
+                <!-- User name -->
+                <div class="profile-meta">
+                  <span class="profile-name">Mark Kinnedy V. Anda</span>
+                  <small class="profile-role">System Administrator</small>
+                </div>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end user-menu">
+                <li>
+                  <h6 class="dropdown-header user-menu-header">Mark Kinnedy V. Anda</h6>
+                </li>
+                <li>
+                  <span class="dropdown-item-text">System Administrator</span>
+                </li>
+                <li>
+                  <hr class="dropdown-divider"></hr>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="bi bi-person-fill-gear"></i>
+                    <span>Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="bi bi-substack"></i>
+                    <span>Logs</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item">
+                    <i class="bi bi-gear-wide"></i>
+                    <span>Settings</span>
+                  </a>
+                </li>
+                <li>
+                  <hr class="dropdown-divider"></hr>
+                </li>
+                <li>
+                  <a href="#" class="dropdown-item sign-out-item">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Sign out</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Offcanvas side navigation bar in mobile -->
+    <div class="offcanvas offcanvas-start app-mobile-menu" tabindex="-1" id="mobileNavMenu" aria-labelledby="mobileNavMenuLabel">
+      <!-- header -->
+      <div class="offcanvas-header">
+        <!-- Image logo and title -->
+        <div class="offcanvas-brand">
+          <img src="../../../assets/logo/DA SAAD LOGO FULL - GREEN TEXT.png" alt="DA-logo" class="image-logo">
+          <div class="title-wrapper">
+            <h5 class="offcanvas-title" id="mobileNavMenuLabel">TMIS</h5>
+            <small>Training Management Information System</small>
+          </div>
+        </div>
+        <button type="button" class="btn offcanvas-close-btn" data-bs-dismiss="offcanvas" aria-label="Close">
+          <i class="bi bi-x-octagon-fill"></i>
+          <span class="close-btn">Close</span>
+        </button>
+      </div>
+      <!-- Offcanvas body -->
+      <div class="offcanvas-body">
+        <div class="mobile-user-panel">
+          <img src="../../../assets/user_profile/user_profile.jpg" alt="User_profile" class="user-profile">
+          <div class="mobile-user-name-role">
+            <strong class="user-name">Mark Kinnedy V. Anda</strong>
+            <small class="user-role">System Administrator</small>
+          </div>
+        </div>
+        <!-- User list navigation bar -->
+        <ul class="mobile-nav">
+          <li class="mobile-list-navigation">
+            <a href="dashboardv2.html" class="nav-link">
+              <i class="bi bi-columns-gap"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#" class="nav-link" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#participantMobile" 
+              aria-controls="participantMobile"
+              aria-expanded="false">
+              <i class="bi bi-people-fill"></i>
+              <span>Participants</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="participantMobile">
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#createParticipantMobile" 
+                  aria-controls="createParticipantMobile" 
+                  aria-expanded="false"
+                > 
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createParticipantMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-add"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li> 
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#updateParticipantMobile"
+                  aria-controls="updateParticipantMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateParticipantMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For review</span> 
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" 
+                  data-bs-toggle="collapse"
+                  data-bs-target="#detailsParticipantMobile"
+                  aria-controls="detailsParticipantMobile"
+                  aria-expanded="false">
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="detailsParticipantMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span> 
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-exclamation-circle-fill"></i>
+                      <span>Incomplete</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#trainingMobile" aria-controls="trainingMobile" aria-expanded="false">
+              <i class="bi bi-book-fill"></i>
+              <span>Training</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="trainingMobile">
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" 
+                  data-bs-toggle="collapse"
+                  data-bs-target="#createTrainingMobile"
+                  aria-controls="createTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" 
+                  data-bs-toggle="collapse"
+                  data-bs-target="#updateTrainingMobile"
+                  aria-controls="updateTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For review</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#detailsTrainingMobile"
+                  aria-controls="detailsTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="detailsTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-exclamation-circle-fill"></i>
+                      <span>Incomplete</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#" class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#evaluationMobile"
+              aria-controls="evaluationMobile"
+              aria-expanded="false"
+            >
+              <i class="bi bi-file-earmark-check"></i>
+              <span>Evaluation</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="evaluationMobile">
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#createEvaluationMobile" aria-controls="createEvaluationMobile" aria-expanded="false">
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Pre-test Questionaire</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Post-test Questionaire</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-check"></i>
+                      <span>Training Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-star-fill"></i>
+                      <span>Resource Person Evaluation</span>
+                    </a>
+                  </li>                  
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#encodeEvaluationMobile" aria-controls="encodeEvaluationMobile" aria-expanded="false">
+                  <i class="bi bi-pencil-square"></i>
+                  <span>Encode</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="encodeEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Pre-test Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Post-test Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Training Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Resource Person Evaluation</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#updateEvaluationMobile" aria-controls="updateEvaluationMobile" aria-expanded="false">
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For review</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#detailsEvaluationMobile" aria-controls="detailsEvaluationMobile" aria-expanded="false">
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="detailsEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-exclamation-circle-fill"></i>
+                      <span>Incomplete</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#administrationMobile" aria-controls="administrationMobile" aria-expanded="false">
+              <i class="bi bi-sliders"></i>
+              <span>Administration</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="administrationMobile">
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#createAdministrationMobile" aria-controls="createAdministrationMobile" aria-expanded="false">
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createAdministrationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#updateAdministrationMobile" aria-controls="updateAdministrationMobile" aria-expanded="false">
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateAdministrationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#detailsAdministrationMobile" aria-controls="detailsAdministrationMobile" aria-expanded="false">
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="detailsAdministrationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#my-profile" class="nav-link">
+              <i class="bi bi-person-circle"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#my-logs" class="nav-link">
+              <i class="bi bi-journal-text"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#settings" class="nav-link">
+              <i class="bi bi-gear"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#signout" class="nav-link sign-out-item">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>    
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- AdminLTE 4 Template -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/js/adminlte.min.js"></script>
+
+    <!-- Auto close navigation collapse script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Main navigation collapse IDs with their nested collapse mapping
+        const mainCollapses = {
+          'participantMobile': [
+            'createParticipantMobile',
+            'updateParticipantMobile',
+            'detailsParticipantMobile'
+          ],
+          'trainingMobile': [
+            'createTrainingMobile',
+            'updateTrainingMobile',
+            'detailsTrainingMobile'
+          ],
+          'evaluationMobile': [
+            'createEvaluationMobile',
+            'encodeEvaluationMobile',
+            'updateEvaluationMobile',
+            'detailsEvaluationMobile'
+          ],
+          'administrationMobile': [
+            'createAdministrationMobile',
+            'updateAdministrationMobile',
+            'detailsAdministrationMobile'
+          ]
+        };
+
+        // Function to close all nested collapses for a parent
+        function closeAllNestedCollapses(nestedIds) {
+          nestedIds.forEach(id => {
+            const element = document.getElementById(id);
+            if (element && element.classList.contains('show')) {
+              const bsCollapse = new bootstrap.Collapse(element, {
+                toggle: false
+              });
+              bsCollapse.hide();
+            }
+          });
+        }
+
+        // Listen for main collapse show events
+        Object.entries(mainCollapses).forEach(([mainId, nestedIds]) => {
+          const mainElement = document.getElementById(mainId);
+          if (mainElement) {
+            mainElement.addEventListener('show.bs.collapse', function() {
+              // Close all other main collapses and their nested items
+              Object.entries(mainCollapses).forEach(([otherId, otherNestedIds]) => {
+                if (otherId !== mainId) {
+                  const otherElement = document.getElementById(otherId);
+                  if (otherElement && otherElement.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(otherElement, {
+                      toggle: false
+                    });
+                    bsCollapse.hide();
+                  }
+                  // Also close nested items of other main sections
+                  closeAllNestedCollapses(otherNestedIds);
+                }
+              });
+            });
+          }
+
+          // Listen for nested collapse show events
+          nestedIds.forEach(nestedId => {
+            const nestedElement = document.getElementById(nestedId);
+            if (nestedElement) {
+              nestedElement.addEventListener('show.bs.collapse', function() {
+                // Close all sibling nested collapses
+                nestedIds.forEach(otherId => {
+                  if (otherId !== nestedId) {
+                    const otherElement = document.getElementById(otherId);
+                    if (otherElement && otherElement.classList.contains('show')) {
+                      const bsCollapse = new bootstrap.Collapse(otherElement, {
+                        toggle: false
+                      });
+                      bsCollapse.hide();
+                    }
+                  }
+                });
+              });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

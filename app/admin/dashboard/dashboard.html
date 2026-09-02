@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://db.onlinewebfonts.com/c/07e0cde7ae44d7e3cdc61a55fe9af110?family=Blanka"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
+      type="image/x-icon"
+    />
+    <!-- Box icons -->
+    <!-- Basic Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- Filled Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css"
+      rel="stylesheet"
+    />
+    <!-- Brand Icons -->
+    <link
+      href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css"
+      rel="stylesheet"
+    />
+    <!-- AdminLTE 4 Template -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte.min.css"
+    />
+    <link rel="stylesheet" href="../../../src/app.css" />
+    <title>Dashboard</title>
+  </head>
+  <body class="layout-fixed">
+    <div class="app-wrapper">
+      <nav class="app-header navbar navbar-expand-lg">
+        <div class="app-header-main">
+          <div class="app-header-left">
+            <button
+              class="btn app-mobile-toggle d-lg-none"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#mobileNavMenu"
+              aria-controls="mobileNavMenu"
+              aria-label="Toggle navigation"
+            >
+              <i class="bi bi-list"></i>
+            </button>
+
+            <div class="app-logo">
+              <img
+                src="../../../assets/logo/DA SAAD LOGO FULL - GREEN TEXT.png"
+                alt="DA-Logo"
+                class="image-logo"
+              />
+              <div class="app-logo-text">
+                <h3 class="app-name">TMIS</h3>
+                <span class="text-logo-name">Training Management Information System</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="app-navigation-bar d-none d-lg-flex">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="#dashboard" class="nav-link active-page" aria-current="page">
+                  <i class="bi bi-columns-gap active-icon"></i>
+                  <span class="text-icon-active">Dashboard</span>
+                </a>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a href="#participants" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-people-fill"></i>
+                  <span class="text-icon">Participants</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Register</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> For Review</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check2-circle"></i> For Approval</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-list-ul"></i> All Status</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle"></i> Approved &amp; Accepted</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-hourglass-split"></i> Incomplete</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-slash-circle"></i> Inactive</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a href="#training" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-mortarboard-fill"></i>
+                  <span class="text-icon">Training</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Register</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> For Review</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check2-circle"></i> For Approval</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-list-ul"></i> All Status</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle"></i> Approved &amp; Accepted</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-hourglass-split"></i> Incomplete</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-slash-circle"></i> Inactive</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a href="#evaluation" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-clipboard-check-fill"></i>
+                  <span class="text-icon">Evaluation</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Pre-test</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Post-test</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> For Review</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check2-circle"></i> For Approval</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-list-ul"></i> All Status</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle"></i> Approved &amp; Accepted</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-hourglass-split"></i> Incomplete</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-slash-circle"></i> Inactive</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a href="#administration" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-gear-fill"></i>
+                  <span class="text-icon">Administration</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-plus-circle"></i>
+                      <span>Create</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Register</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-arrow-repeat"></i>
+                      <span>Update</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-eye"></i> For Review</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check2-circle"></i> For Approval</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle dropend" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Details</span>
+                    </a>
+                    <ul class="dropdown-menu submenu-menu">
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-list-ul"></i> All Status</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-check-circle"></i> Approved &amp; Accepted</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-hourglass-split"></i> Incomplete</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-slash-circle"></i> Inactive</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+          <div class="app-noti-profile">
+            <div class="app-notification">
+              <button
+                class="btn notification-btn"
+                type="button"
+                data-bs-toggle="modal"
+                data-bs-target="#notificationModal"
+                aria-label="Notifications"
+              >
+                <i class="bi bi-bell-fill"></i>
+                <span class="notification-badge">5</span>
+              </button>
+            </div>
+
+            <div class="app-profile dropdown">
+              <button
+                class="btn profile-button dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                aria-label="User profile"
+              >
+                <span class="user-avatar-wrap">
+                  <img src="../../../assets/user_profile/user_profile.jpg" class="user-profile" alt="User profile" />
+                  <span class="user-status-dot"></span>
+                </span>
+                <div class="profile-meta">
+                  <span class="profile-name">Mark Kinnedy V. Anda</span>
+                  <small class="profile-role">Program Administrator</small>
+                </div>
+              </button>
+
+              <ul class="dropdown-menu dropdown-menu-end user-menu">
+                <li><h6 class="dropdown-header user-menu-header">Mark Kinnedy V. Anda</h6></li>
+                <li><span class="dropdown-item-text">Program Administrator</span></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="#my-profile"><i class="bi bi-person-circle"></i> My Profile</a></li>
+                <li><a class="dropdown-item" href="#my-logs"><i class="bi bi-journal-text"></i> My Logs</a></li>
+                <li><a class="dropdown-item" href="#settings"><i class="bi bi-gear"></i> Settings</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item sign-out-item" href="#signout"><i class="bi bi-box-arrow-right"></i> Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="offcanvas offcanvas-start app-mobile-menu" tabindex="-1" id="mobileNavMenu" aria-labelledby="mobileNavMenuLabel">
+      <div class="offcanvas-header">
+        <div class="offcanvas-brand">
+          <img src="../../../assets/logo/DA SAAD LOGO FULL - GREEN TEXT.png" alt="DA-Logo" class="image-logo" />
+          <div>
+            <h5 class="offcanvas-title" id="mobileNavMenuLabel">TMIS</h5>
+            <small>Training Management Information System</small>
+          </div>
+        </div>
+        <button type="button" class="btn offcanvas-close-btn" data-bs-dismiss="offcanvas" aria-label="Close menu">
+          <i class="bi bi-x-lg"></i>
+          <span>Close</span>
+        </button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="mobile-user-panel">
+          <img src="../../../assets/user_profile/user_profile.jpg" class="user-profile" alt="User profile" />
+          <div>
+            <strong>Juan Dela Cruz</strong>
+            <small>Training Officer</small>
+          </div>
+        </div>
+
+        <ul class="mobile-nav">
+          <li><a href="#dashboard" class="nav-link active-page"><i class="bi bi-columns-gap active-icon"></i><span>Dashboard</span></a></li>
+          <li class="mobile-dropdown">
+            <a href="#participants" class="nav-link" data-bs-toggle="collapse" data-bs-target="#participantsMobile" aria-expanded="false">
+              <i class="bi bi-people-fill"></i><span>Participants</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="participantsMobile">
+              <li><a href="#participants-create">Create</a></li>
+              <li><a href="#participants-update">Update</a></li>
+              <li><a href="#participants-details">Details</a></li>
+            </ul>
+          </li>
+          <li class="mobile-dropdown">
+            <a href="#training" class="nav-link" data-bs-toggle="collapse" data-bs-target="#trainingMobile" aria-expanded="false">
+              <i class="bi bi-mortarboard-fill"></i><span>Training</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="trainingMobile">
+              <li><a href="#training-create">Create</a></li>
+              <li><a href="#training-update">Update</a></li>
+              <li><a href="#training-details">Details</a></li>
+            </ul>
+          </li>
+          <li class="mobile-dropdown">
+            <a href="#evaluation" class="nav-link" data-bs-toggle="collapse" data-bs-target="#evaluationMobile" aria-expanded="false">
+              <i class="bi bi-clipboard-check-fill"></i><span>Evaluation</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="evaluationMobile">
+              <li><a href="#evaluation-create">Create</a></li>
+              <li><a href="#evaluation-update">Update</a></li>
+              <li><a href="#evaluation-details">Details</a></li>
+            </ul>
+          </li>
+          <li class="mobile-dropdown">
+            <a href="#administration" class="nav-link" data-bs-toggle="collapse" data-bs-target="#administrationMobile" aria-expanded="false">
+              <i class="bi bi-gear-fill"></i><span>Administration</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="administrationMobile">
+              <li><a href="#administration-create">Create</a></li>
+              <li><a href="#administration-update">Update</a></li>
+              <li><a href="#administration-details">Details</a></li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="mobile-utility-links">
+          <a href="#my-profile"><i class="bi bi-person-circle"></i> Profile</a>
+          <a href="#my-logs"><i class="bi bi-journal-text"></i> Logs</a>
+          <a href="#settings"><i class="bi bi-gear"></i> Settings</a>
+          <a href="#signout" class="signout-link"><i class="bi bi-box-arrow-right"></i> Sign Out</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content notification-modal-content">
+          <div class="modal-header notification-modal-header">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-bell-fill"></i>
+              <h5 class="modal-title" id="notificationModalLabel">Notification</h5>
+            </div>
+            <div class="notification-modal-actions">
+              <a href="#view-all" class="view-all-link">View all</a>
+              <button type="button" class="btn btn-link clear-notifications" data-bs-dismiss="modal">Clear</button>
+            </div>
+          </div>
+          <div class="modal-body notification-modal-body">
+            <div class="notification-card notification-card-approval">
+              <div class="notification-top-row">
+                <span class="notification-type">For Approval</span>
+                <span class="notification-time">Aug 29, 2026 • 08:30 AM</span>
+              </div>
+              <h6 class="notification-title">Training Proposal Review Needed</h6>
+              <p class="notification-content">The training proposal for Community Based Agriculture was submitted and is waiting for final approval.</p>
+              <span class="notification-status pending">Pending Approval</span>
+            </div>
+
+            <div class="notification-card notification-card-review">
+              <div class="notification-top-row">
+                <span class="notification-type">For Review</span>
+                <span class="notification-time">Aug 29, 2026 • 07:10 AM</span>
+              </div>
+              <h6 class="notification-title">New Participant Registration</h6>
+              <p class="notification-content">Two participant records were added and require completeness and validation review before processing.</p>
+              <span class="notification-status review">Needs Review</span>
+            </div>
+
+            <div class="notification-card notification-card-update">
+              <div class="notification-top-row">
+                <span class="notification-type">System Update</span>
+                <span class="notification-time">Aug 28, 2026 • 05:45 PM</span>
+              </div>
+              <h6 class="notification-title">Evaluation Portal Update</h6>
+              <p class="notification-content">The latest assessment update has been deployed with improved reporting and status tracking features.</p>
+              <span class="notification-status success">Updated</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- AdminLTE 4 Template -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/js/adminlte.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const nestedDrops = document.querySelectorAll('.dropdown-submenu > .dropdown-item.dropdown-toggle');
+
+        nestedDrops.forEach((toggle) => {
+          toggle.removeAttribute('data-bs-toggle');
+          toggle.addEventListener('click', (event) => {
+            const parent = toggle.closest('.dropdown-submenu');
+            const submenu = parent ? parent.children[1] : null;
+
+            if (!submenu || !submenu.classList.contains('dropdown-menu')) return;
+
+            const shouldOpen = !parent.classList.contains('show');
+
+            document.querySelectorAll('.dropdown-submenu.show').forEach((item) => {
+              if (item !== parent) {
+                item.classList.remove('show');
+                const otherMenu = item.children[1];
+                if (otherMenu && otherMenu.classList.contains('dropdown-menu')) {
+                  otherMenu.classList.remove('show');
+                }
+              }
+            });
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            parent.classList.toggle('show', shouldOpen);
+            submenu.classList.toggle('show', shouldOpen);
+          });
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!event.target.closest('.dropdown-submenu')) {
+            document.querySelectorAll('.dropdown-submenu.show').forEach((item) => {
+              item.classList.remove('show');
+              const menu = item.children[1];
+              if (menu && menu.classList.contains('dropdown-menu')) {
+                menu.classList.remove('show');
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

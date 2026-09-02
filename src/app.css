@@ -1,0 +1,782 @@
+body {
+    font-family: 'inter';
+    font-size: 14px;
+    font-weight: 400;
+    background: #f7f5f7;
+    overflow-x: hidden;
+    color: #263238;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+a {
+    transition: all 0.2s ease;
+}
+
+/* ======== Navbar =========== */
+.app-wrapper {
+    width: 100%;
+}
+
+.app-wrapper .app-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(38, 50, 56, 0.08);
+    box-shadow: 0 4px 16px rgba(38, 50, 56, 0.06);
+    padding: 0;
+}
+
+.app-wrapper .app-header .app-header-main {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+}
+
+.app-wrapper .app-header .app-header-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+    flex: 1;
+}
+
+.app-wrapper .app-header .app-logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.app-wrapper .app-header .app-logo .image-logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+.app-wrapper .app-header .app-logo-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.app-wrapper .app-header .app-logo .app-name {
+    font-family: 'blanka';
+    color: #185E20;
+    margin: 0;
+    font-size: 1.9rem;
+    line-height: 1;
+}
+
+.app-wrapper .app-header .app-logo .text-logo-name {
+    font-family: 'inter';
+    font-size: 14px;
+    color: #263238;
+    text-wrap: wrap;
+    font-weight: 700;
+    max-width: 210px;
+    line-height: 1.25;
+}
+
+.app-wrapper .app-header .app-navigation-bar {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item {
+    position: relative;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link {
+    color: #263238;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 12px;
+    padding: 10px 12px;
+    white-space: nowrap;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link i {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link .text-icon {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page {
+    color: #2e7032;
+    background-color: #E8F5E9;
+    display: flex;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 6px;
+    border-radius: 12px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link .active-icon {
+    font-size: 24px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link .text-icon-active {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid rgba(38, 50, 56, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(38, 50, 56, 0.12);
+    padding: 8px;
+    min-width: 220px;
+    margin-top: 10px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #263238;
+    font-size: 14px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-item.dropend::after {
+    margin-left: auto;
+    border-left: 0.3em solid currentColor;
+    border-top: 0.3em solid transparent;
+    border-bottom: 0.3em solid transparent;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-item:hover,
+.app-wrapper .app-header .app-navigation-bar .dropdown-item:focus {
+    background: #E8F5E9;
+    color: #2e7032;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu {
+    position: relative;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu > .dropdown-menu,
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu .dropdown-menu {
+    display: none;
+    position: absolute !important;
+    top: 0 !important;
+    left: calc(100% + 8px) !important;
+    margin-top: 0 !important;
+    min-width: 190px;
+    z-index: 1060;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu.show > .dropdown-menu,
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu:hover > .dropdown-menu,
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu:focus-within > .dropdown-menu,
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu .dropdown-menu.show {
+    display: block !important;
+}
+
+.app-wrapper .app-header .app-navigation-bar .submenu-menu {
+    min-width: 190px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu > .dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-submenu > .dropdown-item > span {
+    flex: 1;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-item i {
+    font-size: 14px;
+    margin-right: 8px;
+}
+
+.app-wrapper .app-header .app-navigation-bar .dropdown-toggle::after {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Notification and Profile */
+.app-wrapper .app-header .app-noti-profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+    flex-shrink: 0;
+}
+
+.app-wrapper .app-header .app-noti-profile .notification-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    border: none;
+    background: #ffffff;
+    color: #263238;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: none;
+}
+
+.app-wrapper .app-header .app-noti-profile .notification-btn i {
+    font-size: 26px;
+}
+
+.app-wrapper .app-header .app-noti-profile .notification-btn .notification-badge {
+    position: absolute;
+    top: 1px;
+    right: 2px;
+    background: #2e7032;
+    color: #ffffff;
+    min-width: 22px;
+    height: 22px;
+    font-size: 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(46, 112, 50, 0.25);
+}
+
+.app-wrapper .app-header .app-noti-profile .app-profile {
+    display: flex;
+    align-items: center;
+}
+
+.app-wrapper .app-header .app-noti-profile .app-profile .profile-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: #263238;
+    padding: 0;
+}
+
+.app-wrapper .app-header .app-noti-profile .app-profile .profile-button::after {
+    margin-left: 4px;
+    color: #263238;
+    border-top-width: 0.35em;
+    border-right-width: 0.35em;
+    border-left-width: 0.35em;
+    vertical-align: middle;
+}
+
+.user-avatar-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.app-wrapper .app-header .app-noti-profile .app-profile .user-profile {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 2px 2px 4px rgba(38, 50, 56, 0.25);
+    outline: 1px solid #e0e0e0;
+    background: #f4f4f4;
+}
+
+.user-status-dot {
+    position: absolute;
+    right: 2px;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    background: #2e7032;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(46, 112, 50, 0.15);
+}
+
+.profile-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.15;
+    background: transparent;
+    padding: 0;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #263238;
+    line-height: 1.25;
+    background: transparent;
+}
+
+.profile-role {
+    font-size: 12px;
+    color: #4b5563;
+    font-weight: 400;
+    background: transparent;
+}
+
+.user-menu {
+    background-color: #fff;
+    min-width: 220px;
+    padding: 10px 8px;
+    border-radius: 14px;
+    border: 1px solid rgba(38, 50, 56, 0.08);
+    box-shadow: 0 16px 36px rgba(38, 50, 56, 0.12);
+}
+
+.user-menu .user-menu-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: #263238;
+    padding: 8px 12px 4px;
+    margin: 0;
+    text-align: center;
+}
+
+.user-menu .dropdown-item-text {
+    display: block;
+    color: #667085;
+    font-size: 12px;
+    padding: 0 12px 8px;
+    text-align: center;
+}
+
+.user-menu .dropdown-item {
+    border-radius: 8px;
+    color: #263238;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+}
+
+.user-menu .dropdown-item i {
+    font-size: 16px;
+}
+
+.user-menu .dropdown-item:hover,
+.user-menu .dropdown-item:focus {
+    background: #f2f7f2;
+    color: #263238;
+}
+
+.user-menu .sign-out-item {
+    color: #e53935;
+}
+
+.user-menu .sign-out-item:hover,
+.user-menu .sign-out-item:focus {
+    background: rgba(229, 57, 53, 0.08);
+    color: #e53935;
+}
+
+.app-mobile-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 12px;
+    background: #f7f5f7;
+    color: #263238;
+    border: 1px solid rgba(38, 50, 56, 0.08);
+    margin-right: 12px;
+}
+
+.app-mobile-toggle i {
+    font-size: 20px;
+}
+
+.app-mobile-menu {
+    width: min(82vw, 340px);
+    background: #ffffff;
+}
+
+.offcanvas-header {
+    padding: 1rem 1rem 0.5rem;
+    border-bottom: 1px solid rgba(38, 50, 56, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.offcanvas-close-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    color: #263238;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.offcanvas-close-btn:hover,
+.offcanvas-close-btn:focus,
+.offcanvas-close-btn:active {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    color: #2e7032;
+}
+
+.offcanvas-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.offcanvas-brand .image-logo {
+    width: 42px;
+    height: 42px;
+}
+
+.offcanvas-title {
+    margin: 0;
+    font-family: 'blanka';
+    font-weight: 700;
+    color: #185E20;
+}
+
+.offcanvas-brand small {
+    font-size: 11px;
+    color: #667085;
+}
+
+.mobile-user-panel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 8px;
+    border: 1px solid rgba(38, 50, 56, 0.08);
+    border-radius: 12px;
+    background: rgba(247, 245, 247, 0.92);
+    margin-bottom: 18px;
+}
+
+.mobile-user-panel .user-profile {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.mobile-user-panel strong,
+.mobile-user-panel small {
+    display: block;
+}
+
+.mobile-user-panel strong {
+    color: #263238;
+    font-weight: 700;
+}
+
+.mobile-user-panel small {
+    color: #475467;
+}
+
+.mobile-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav .nav-link,
+.mobile-subnav a,
+.mobile-utility-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    color: #263238;
+    text-decoration: none;
+    padding: 10px 8px;
+    border-radius: 10px;
+}
+
+.mobile-nav .nav-link.active-page {
+    color: #2e7032;
+    background-color: #E8F5E9;
+}
+
+.mobile-dropdown .nav-link {
+    justify-content: flex-start;
+}
+
+.mobile-nav .nav-link .ms-auto {
+    margin-left: auto;
+}
+
+.mobile-subnav {
+    list-style: none;
+    padding-left: 24px;
+    margin: 4px 0 8px;
+}
+
+.mobile-subnav a {
+    color: #475467;
+    padding: 8px 10px;
+}
+
+.mobile-subnav a:hover,
+.mobile-utility-links a:hover,
+.mobile-nav .nav-link:hover {
+    background: #f2f7f2;
+}
+
+.mobile-utility-links {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(38, 50, 56, 0.08);
+}
+
+.mobile-utility-links .signout-link {
+    color: #e53935;
+}
+
+.notification-modal-content {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px rgba(38, 50, 56, 0.18);
+}
+
+.notification-modal-header {
+    padding: 1rem 1.2rem 0.75rem;
+    border-bottom: 1px solid rgba(38, 50, 56, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.notification-modal-header i {
+    color: #2e7032;
+    font-size: 18px;
+}
+
+.notification-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-all-link {
+    color: #2e7032;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.clear-notifications {
+    color: #3d4b57;
+    text-decoration: none;
+    padding: 0;
+}
+
+.notification-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 1rem 1.2rem 1.2rem;
+    background: #f8faf8;
+}
+
+.notification-card {
+    background: #ffffff;
+    border: 1px solid rgba(38, 50, 56, 0.08);
+    border-left: 4px solid #2e7032;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.notification-card-review {
+    border-left-color: #f59e0b;
+}
+
+.notification-card-update {
+    border-left-color: #3b82f6;
+}
+
+.notification-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 12px;
+    color: #667085;
+    margin-bottom: 8px;
+}
+
+.notification-type {
+    font-weight: 700;
+    color: #2e7032;
+}
+
+.notification-card-review .notification-type {
+    color: #b7791f;
+}
+
+.notification-card-update .notification-type {
+    color: #2563eb;
+}
+
+.notification-title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #263238;
+}
+
+.notification-content {
+    margin: 0 0 10px;
+    color: #475467;
+    line-height: 1.5;
+}
+
+.notification-status {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 5px 10px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.notification-status.pending {
+    background: rgba(46, 112, 50, 0.12);
+    color: #2e7032;
+}
+
+.notification-status.review {
+    background: rgba(245, 158, 11, 0.16);
+    color: #b7791f;
+}
+
+.notification-status.success {
+    background: rgba(37, 99, 235, 0.12);
+    color: #2563eb;
+}
+
+@media (max-width: 1199.98px) {
+    .app-wrapper .app-header .app-header-main {
+        padding: 10px 16px;
+    }
+
+    .app-wrapper .app-header .app-navigation-bar {
+        display: none;
+    }
+
+    .app-mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-wrapper .app-header .app-header-left {
+        flex: 1 1 auto;
+    }
+
+    .app-wrapper .app-header .app-noti-profile {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .app-wrapper .app-header .app-logo-text {
+        gap: 6px;
+    }
+
+    .app-wrapper .app-header .app-logo .app-name {
+        font-size: 1.5rem;
+    }
+
+    .app-wrapper .app-header .app-logo .text-logo-name {
+        display: none;
+    }
+
+    .profile-meta {
+        display: none;
+    }
+
+    .app-wrapper .app-header .app-noti-profile .app-profile .profile-button {
+        gap: 0;
+    }
+
+    .notification-modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .notification-top-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .app-wrapper .app-header .app-noti-profile {
+        gap: 8px;
+    }
+
+    .app-wrapper .app-header .app-noti-profile .notification-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .app-wrapper .app-header .app-noti-profile .app-profile .user-profile {
+        width: 34px;
+        height: 34px;
+    }
+
+    .app-mobile-menu {
+        width: 86vw;
+    }
+}

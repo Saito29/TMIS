@@ -618,6 +618,35 @@
           </div>
         </div>
       </nav>
+
+      <!-- Main Body page  -->
+      <main class="app-main">
+        <div class="app-main-body">
+          <!-- first row -->
+          <div class="row first-row">
+            <div class="col-md-4 col-lg-4">
+              <div class="app-left-main-content-body">
+                <!-- User intro left -->
+                <div class="app-left-main-content-user-intro">
+                  <h5 class="app-left-main-content-user-hello">Hello,</h5>
+                  <h5 class="app-left-main-content-user-name">Mark Kinnedy V. Anda!👋</h5>
+                  <small class="app-left-main-content-user-details">Here's what's happening with your training programs today.</small>
+                </div>
+                <div class="app-left-main-content-date">
+                  <i class="bi bi-calendar3"></i>
+                  <span class="app-left-content-date">July 14, 2026</span>
+                  <span class="app-left-content-divider"></span>
+                  <span class="app-left-content-day">Tuesday</span> 
+                </div>
+                <div class="app-left-main-content-training">
+                  <h6 class="app-left-main-content-title">"Specialized Swine Production Training in Brgy. Villa Manzano Norte."</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-lg-8"></div>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Offcanvas side navigation bar in mobile -->
@@ -1070,6 +1099,39 @@
         </ul>
       </div>
     </div>    
+
+    <!-- Notification modal -->
+    <div class="modal fade" id="notificationModal" aria-labelledby="notificationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content notification-modal-content">
+          <!-- modal header -->
+          <div class="modal-header notification-modal-header">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-bell-fill"></i>
+              <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+            </div>
+            <div class="notification-modal-actions">
+              <a href="#" class="view-all-link">View all</a>
+              <button type="button" class="btn btn-link clear-notifications" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- modal body -->
+          <div class="modal-body notification-modal-body">
+            <div class="notification-card notification-card-apporval">
+              <div class="notification-card notification-card-approval">
+                <div class="notification-row">
+                  <span class="notification-type">Approval</span>
+                  <div class="notification-time">August 29, 2026 * 09:20 pm</div>
+                </div>
+                <h6 class="notification-title">Training proposal review needed</h6>
+                <p class="notification-content">Please review the training proposal for "Advanced Data Analysis" submitted by John Doe. Your feedback is required for further processing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
     <!-- Scripts -->
     <script

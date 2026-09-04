@@ -920,3 +920,108 @@ body {
 .app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item .header-sub-collapse-menu .collapse.show {
   display: flex;
 }
+
+/* App main body page content */
+.app-main .app-main-body{
+  width: 100%;
+  margin: 0 80px;
+}
+
+.app-main .app-main-body .first-row{
+  margin: 40px auto;
+}
+
+/* main body content first row left content*/
+.app-main .app-main-body .app-left-main-content-body{
+  height: 400px;
+  width: 100%;
+  background: url('../assets/img/ricefield_with_farmer-Picsart-AiImageEnhancer.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: -100px;
+  outline: 1px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.25);  
+  filter:
+    saturate(1.3)
+    contrast(1.2)
+    brightness(0.9);
+}
+
+/* App main body content intro */
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-user-intro{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  color: #f7f9f7;
+  max-width: 21rem;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-user-intro .app-left-main-content-user-hello{
+  margin-top: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1.05;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-user-intro .app-left-main-content-user-name{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-user-intro .app-left-main-content-user-details{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* app main body content first row left date */
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-date{
+  color: #f7f9f7;
+  padding: 0 20px;
+  height: 40px;
+  max-width: 220px;
+  margin: 0 40px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(247, 249, 247, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 8px;
+  outline: 1px solid #e0e0e0;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-date i{
+  font-size: 18px;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-date .app-left-content-date{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-date .app-left-content-divider{
+  width: 1px;
+  height: 50%;
+  background-color: #f7f9f7;
+}
+
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-date .app-left-content-day{
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* App left main content training */
+.app-main .app-main-body .app-left-main-content-body .app-left-main-content-training{
+  color: #f7f9f7;
+  height: auto;
+  background-color: rgba(24, 94, 32, 0.40);
+  margin-top: 20px;
+  padding: 23px 40px;
+  border-radius: 0 0 12px 12px;
+  gap: 10px;
+  line-height: 1.2;
+}

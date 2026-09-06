@@ -1766,3 +1766,24 @@ body {
   font-weight: 700;
 }
 
+/* Hover popover anchored to the cursor when over a year-band label. */
+.apexcharts-year-tooltip {
+  position: absolute;
+  display: none;
+  padding: 2px 8px;
+  color: #fff;
+  background-color: var(--tooltip-series-color, #2e7d32);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 8px));
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.apexcharts-year-tooltip.is-visible {
+  display: block;
+}
+

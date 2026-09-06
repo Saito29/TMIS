@@ -152,28 +152,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const municipalityDisplayLimit = 10;
   const displayedMunicipalityNames = municipalityNames.slice(
     0,
-    municipalityDisplayLimit,
+    municipalityDisplayLimit
   );
   const otherMunicipalityNames = municipalityNames.slice(
-    municipalityDisplayLimit,
+    municipalityDisplayLimit
   );
 
   // Shows up to 10 named municipalities, then combines the remaining data.
   function buildMunicipalityRows(data, year, monthIndex) {
     const rows = displayedMunicipalityNames.map(
       (municipality) =>
-        `<div class="apexcharts-tooltip-row"><span>${municipality}</span><strong>${data[municipality][year][monthIndex]}</strong></div>`,
+        `<div class="apexcharts-tooltip-row"><span>${municipality}</span><strong>${data[municipality][year][monthIndex]}</strong></div>`
     );
 
     if (otherMunicipalityNames.length) {
       const otherTotal = otherMunicipalityNames.reduce(
-        (total, municipality) =>
-          total + data[municipality][year][monthIndex],
-        0,
+        (total, municipality) => total + data[municipality][year][monthIndex],
+        0
       );
 
       rows.push(
-        `<div class="apexcharts-tooltip-row apexcharts-tooltip-other"><span>Other municipalities (${otherMunicipalityNames.length})</span><strong>${otherTotal}</strong></div>`,
+        `<div class="apexcharts-tooltip-row apexcharts-tooltip-other"><span>Other municipalities (${otherMunicipalityNames.length})</span><strong>${otherTotal}</strong></div>`
       );
     }
 
@@ -190,9 +189,9 @@ document.addEventListener('DOMContentLoaded', function () {
         municipalityNames.reduce(
           (total, municipality) =>
             total + trainingByMunicipality[municipality][year][monthIndex],
-          0,
-        ),
-      ),
+          0
+        )
+      )
     );
 
     // ============================================================
@@ -259,11 +258,17 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       legend: {
         // Year labels shown above the chart.
-        position: 'top',
+        position: 'bottom',
         horizontalAlign: 'right',
         labels: { colors: '#263238' },
         markers: { width: 8, height: 8, radius: 8 },
         itemMargin: { horizontal: 8 },
+        onItemClick: {
+          toggleDataSeries: true,
+        },
+        onItemHover: {
+          highlightDataSeries: true,
+        },
       },
       tooltip: {
         // Track the nearest month without requiring an exact point intersection.
@@ -274,13 +279,14 @@ document.addEventListener('DOMContentLoaded', function () {
           const seriesColor = w.globals.colors[seriesIndex];
           const totalTrainings = municipalityNames.reduce(
             (total, municipality) =>
-              total + trainingByMunicipality[municipality][year][dataPointIndex],
-            0,
+              total +
+              trainingByMunicipality[municipality][year][dataPointIndex],
+            0
           );
           const municipalityRows = buildMunicipalityRows(
             trainingByMunicipality,
             year,
-            dataPointIndex,
+            dataPointIndex
           );
 
           return `<div class="apexcharts-tooltip-custom" style="--tooltip-series-color: ${seriesColor};"><div class="apexcharts-tooltip-heading"><strong>${trainingMonths[dataPointIndex]} ${year}</strong></div><div class="apexcharts-tooltip-total"><span>Total trainings</span><strong>${totalTrainings}</strong></div><div class="apexcharts-tooltip-section-title">Municipality details</div>${municipalityRows}</div>`;
@@ -293,13 +299,13 @@ document.addEventListener('DOMContentLoaded', function () {
           options: {
             chart: { height: 220 },
             legend: { position: 'bottom' },
-                  xaxis: {
-                    labels: { rotate: -45, style: { fontSize: '10px' } },
-                  },
-                  yaxis: {
-                    labels: { show: false },
-                    title: { text: undefined },
-                  },
+            xaxis: {
+              labels: { rotate: -45, style: { fontSize: '10px' } },
+            },
+            yaxis: {
+              labels: { show: false },
+              title: { text: undefined },
+            },
           },
         },
       ],
@@ -315,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // as the training chart, with zoom and reset controls enabled.
   // ============================================================
   const totalParticipantsChart = document.querySelector(
-    '#totalParticipantsChart',
+    '#totalParticipantsChart'
   );
 
   if (totalParticipantsChart && typeof ApexCharts !== 'undefined') {
@@ -323,11 +329,10 @@ document.addEventListener('DOMContentLoaded', function () {
       trainingMonths.map((month, monthIndex) =>
         municipalityNames.reduce(
           (total, municipality) =>
-            total +
-            participantsByMunicipality[municipality][year][monthIndex],
-          0,
-        ),
-      ),
+            total + participantsByMunicipality[municipality][year][monthIndex],
+          0
+        )
+      )
     );
 
     const participantChart = new ApexCharts(totalParticipantsChart, {
@@ -385,11 +390,17 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
       legend: {
-        position: 'top',
+        position: 'bottom',
         horizontalAlign: 'right',
         labels: { colors: '#263238' },
         markers: { width: 8, height: 8, radius: 8 },
         itemMargin: { horizontal: 8 },
+        onItemClick: {
+          toggleDataSeries: true,
+        },
+        onItemHover: {
+          highlightDataSeries: true,
+        },
       },
       tooltip: {
         shared: false,
@@ -401,12 +412,12 @@ document.addEventListener('DOMContentLoaded', function () {
             (total, municipality) =>
               total +
               participantsByMunicipality[municipality][year][dataPointIndex],
-            0,
+            0
           );
           const municipalityRows = buildMunicipalityRows(
             participantsByMunicipality,
             year,
-            dataPointIndex,
+            dataPointIndex
           );
 
           return `<div class="apexcharts-tooltip-custom" style="--tooltip-series-color: ${seriesColor};"><div class="apexcharts-tooltip-heading"><strong>${trainingMonths[dataPointIndex]} ${year}</strong></div><div class="apexcharts-tooltip-total"><span>Total participants</span><strong>${totalParticipants}</strong></div><div class="apexcharts-tooltip-section-title">Municipality details</div>${municipalityRows}</div>`;
@@ -470,7 +481,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }
               closeAllNestedCollapses(otherNestedIds);
             }
-          },
+          }
         );
       });
     }
@@ -517,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
               }
               closeAllNestedCollapses(otherNestedIds);
             }
-          },
+          }
         );
       });
     }

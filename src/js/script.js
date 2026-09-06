@@ -108,8 +108,77 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   };
 
+  // ============================================================
+  // TOTAL PARTICIPANTS CHART DATA
+  // Sample participant counts per municipality for each month.
+  // ============================================================
+  const participantsByMunicipality = {
+    Tingloy: {
+      2026: [42, 48, 45, 56, 52, 64, 60, 72, 68, 78, 74, 86],
+      2025: [35, 40, 38, 47, 44, 53, 50, 60, 56, 66, 62, 73],
+    },
+    Pakil: {
+      2026: [55, 62, 58, 70, 66, 78, 74, 86, 82, 94, 90, 102],
+      2025: [46, 52, 49, 60, 56, 67, 63, 74, 70, 81, 77, 89],
+    },
+    'Rizal (Laguna)': {
+      2026: [30, 36, 40, 44, 50, 54, 60, 64, 70, 74, 80, 86],
+      2025: [25, 30, 34, 38, 43, 47, 52, 56, 61, 65, 70, 75],
+    },
+    Alabat: {
+      2026: [64, 58, 72, 68, 82, 76, 90, 84, 98, 92, 106, 100],
+      2025: [54, 49, 61, 58, 70, 65, 77, 72, 84, 79, 91, 86],
+    },
+    Perez: {
+      2026: [38, 34, 46, 42, 54, 50, 62, 58, 70, 66, 78, 74],
+      2025: [32, 29, 39, 36, 46, 43, 53, 49, 60, 56, 67, 63],
+    },
+    'Quezon (Quezon)': {
+      2026: [78, 86, 70, 94, 88, 104, 98, 114, 108, 124, 118, 136],
+      2025: [66, 73, 60, 80, 75, 88, 83, 97, 91, 105, 100, 115],
+    },
+    Patnanungan: {
+      2026: [28, 34, 30, 42, 38, 50, 46, 58, 54, 66, 62, 74],
+      2025: [23, 28, 25, 35, 32, 42, 39, 49, 45, 56, 52, 62],
+    },
+    Jomalig: {
+      2026: [18, 24, 20, 30, 26, 36, 32, 42, 38, 48, 44, 54],
+      2025: [15, 20, 17, 25, 22, 30, 27, 36, 32, 41, 37, 46],
+    },
+  };
+
   // Municipality names are used to calculate totals and build the tooltip.
   const municipalityNames = Object.keys(trainingByMunicipality);
+  const municipalityDisplayLimit = 10;
+  const displayedMunicipalityNames = municipalityNames.slice(
+    0,
+    municipalityDisplayLimit,
+  );
+  const otherMunicipalityNames = municipalityNames.slice(
+    municipalityDisplayLimit,
+  );
+
+  // Shows up to 10 named municipalities, then combines the remaining data.
+  function buildMunicipalityRows(data, year, monthIndex) {
+    const rows = displayedMunicipalityNames.map(
+      (municipality) =>
+        `<div class="apexcharts-tooltip-row"><span>${municipality}</span><strong>${data[municipality][year][monthIndex]}</strong></div>`,
+    );
+
+    if (otherMunicipalityNames.length) {
+      const otherTotal = otherMunicipalityNames.reduce(
+        (total, municipality) =>
+          total + data[municipality][year][monthIndex],
+        0,
+      );
+
+      rows.push(
+        `<div class="apexcharts-tooltip-row apexcharts-tooltip-other"><span>Other municipalities (${otherMunicipalityNames.length})</span><strong>${otherTotal}</strong></div>`,
+      );
+    }
+
+    return rows.join('');
+  }
 
   // Chart mount element from dashboardv2.html.
   const totalTrainingChart = document.querySelector('#totalTrainingChart');
@@ -135,8 +204,8 @@ document.addEventListener('DOMContentLoaded', function () {
         type: 'area',
         height: 270,
         width: '100%',
-        toolbar: { show: false },
-        zoom: { enabled: false },
+        toolbar: { show: true, tools: { download: false } },
+        zoom: { enabled: true },
         parentHeightOffset: 0,
         redrawOnParentResize: true,
         fontFamily: 'Inter, sans-serif',
@@ -184,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
           formatter: (value) => Math.round(value),
         },
         title: {
-          text: 'Sessions',
+          text: 'Trainings',
           style: { color: '#607068', fontSize: '11px', fontWeight: 500 },
         },
       },
@@ -208,12 +277,11 @@ document.addEventListener('DOMContentLoaded', function () {
               total + trainingByMunicipality[municipality][year][dataPointIndex],
             0,
           );
-          const municipalityRows = municipalityNames
-            .map(
-              (municipality) =>
-                `<div class="apexcharts-tooltip-row"><span>${municipality}</span><strong>${trainingByMunicipality[municipality][year][dataPointIndex]}</strong></div>`,
-            )
-            .join('');
+          const municipalityRows = buildMunicipalityRows(
+            trainingByMunicipality,
+            year,
+            dataPointIndex,
+          );
 
           return `<div class="apexcharts-tooltip-custom" style="--tooltip-series-color: ${seriesColor};"><div class="apexcharts-tooltip-heading"><strong>${trainingMonths[dataPointIndex]} ${year}</strong></div><div class="apexcharts-tooltip-total"><span>Total trainings</span><strong>${totalTrainings}</strong></div><div class="apexcharts-tooltip-section-title">Municipality details</div>${municipalityRows}</div>`;
         },
@@ -239,6 +307,131 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Render the chart inside #totalTrainingChart.
     chart.render();
+  }
+
+  // ============================================================
+  // APEXCHARTS CONFIGURATION: TOTAL PARTICIPANTS
+  // This chart uses the same month, municipality, and year structure
+  // as the training chart, with zoom and reset controls enabled.
+  // ============================================================
+  const totalParticipantsChart = document.querySelector(
+    '#totalParticipantsChart',
+  );
+
+  if (totalParticipantsChart && typeof ApexCharts !== 'undefined') {
+    const participantTotals = [2026, 2025].map((year) =>
+      trainingMonths.map((month, monthIndex) =>
+        municipalityNames.reduce(
+          (total, municipality) =>
+            total +
+            participantsByMunicipality[municipality][year][monthIndex],
+          0,
+        ),
+      ),
+    );
+
+    const participantChart = new ApexCharts(totalParticipantsChart, {
+      chart: {
+        type: 'area',
+        height: 270,
+        width: '100%',
+        toolbar: { show: true, tools: { download: false } },
+        zoom: { enabled: true },
+        parentHeightOffset: 0,
+        redrawOnParentResize: true,
+        fontFamily: 'Inter, sans-serif',
+      },
+      series: [
+        { name: '2026', data: participantTotals[0] },
+        { name: '2025', data: participantTotals[1] },
+      ],
+      colors: ['#F88C00', '#8E24AA'],
+      stroke: { curve: 'smooth', width: 3 },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.35,
+          opacityTo: 0.05,
+          stops: [0, 100],
+        },
+      },
+      dataLabels: { enabled: false },
+      markers: { size: 3, strokeWidth: 0, hover: { size: 5 } },
+      grid: {
+        borderColor: '#e0e0e0',
+        strokeDashArray: 4,
+        padding: { top: 4, right: 8, bottom: 0, left: 8 },
+      },
+      xaxis: {
+        categories: trainingMonths,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          trim: false,
+        },
+        axisBorder: { color: '#e0e0e0' },
+        axisTicks: { color: '#e0e0e0' },
+      },
+      yaxis: {
+        min: 0,
+        forceNiceScale: true,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          formatter: (value) => Math.round(value),
+        },
+        title: {
+          text: 'Participants',
+          style: { color: '#607068', fontSize: '11px', fontWeight: 500 },
+        },
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'right',
+        labels: { colors: '#263238' },
+        markers: { width: 8, height: 8, radius: 8 },
+        itemMargin: { horizontal: 8 },
+      },
+      tooltip: {
+        shared: false,
+        intersect: false,
+        custom: ({ seriesIndex, dataPointIndex, w }) => {
+          const year = Number(w.config.series[seriesIndex].name);
+          const seriesColor = w.globals.colors[seriesIndex];
+          const totalParticipants = municipalityNames.reduce(
+            (total, municipality) =>
+              total +
+              participantsByMunicipality[municipality][year][dataPointIndex],
+            0,
+          );
+          const municipalityRows = buildMunicipalityRows(
+            participantsByMunicipality,
+            year,
+            dataPointIndex,
+          );
+
+          return `<div class="apexcharts-tooltip-custom" style="--tooltip-series-color: ${seriesColor};"><div class="apexcharts-tooltip-heading"><strong>${trainingMonths[dataPointIndex]} ${year}</strong></div><div class="apexcharts-tooltip-total"><span>Total participants</span><strong>${totalParticipants}</strong></div><div class="apexcharts-tooltip-section-title">Municipality details</div>${municipalityRows}</div>`;
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 576,
+          options: {
+            chart: { height: 220 },
+            legend: { position: 'bottom' },
+            xaxis: {
+              labels: { rotate: -45, style: { fontSize: '10px' } },
+            },
+            yaxis: {
+              labels: { show: false },
+              title: { text: undefined },
+            },
+          },
+        },
+      ],
+    });
+
+    // Render the chart inside #totalParticipantsChart.
+    participantChart.render();
   }
 
   // ============================================================

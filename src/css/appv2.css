@@ -1503,6 +1503,15 @@ body {
   font-size: 17px;
 }
 
+/* For total participants icon */
+.app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.participants-icon{
+  background-color: rgba(25, 118, 210, 0.3);
+  padding: 11px 13px;
+  border-radius: 12px;
+  color: #1976D2;
+  font-size: 17px;
+}
+
 .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-title{
   display: flex;
   flex-direction: column;
@@ -1746,5 +1755,14 @@ body {
 
 .apexcharts-tooltip-row strong {
   color: #263238;
+}
+
+/* Aggregated tooltip row for municipalities beyond the first 10. */
+.apexcharts-tooltip-other {
+  margin-top: 4px;
+  padding-top: 4px;
+  color: #607068;
+  border-top: 1px dashed #e0e0e0;
+  font-weight: 700;
 }
 

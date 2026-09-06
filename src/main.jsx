@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import Login from "../app/authentication/App.jsx";
 import Register from "../app/authentication/Register.jsx";
 import ForgetPassword from "../app/authentication/ForgetPassword.jsx";
-import "./auth.css";
+import "./css/auth.css";
 
 const routes = {
   "/": Login,

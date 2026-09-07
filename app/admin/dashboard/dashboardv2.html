@@ -728,7 +728,7 @@
                             aria-label="Summary view"
                             title="Summary view"
                             data-bs-toggle="modal"
-                            data-bs-target="totalTrainingModal"
+                            data-bs-target="totalParticipantsModal"
                           >
                             <i class="bi bi-filter-right"></i>
                           </button>
@@ -794,7 +794,7 @@
                             aria-label="Summary view"
                             title="Summary view"
                             data-bs-toggle="modal"
-                            data-bs-target="totalTrainingModal"
+                            data-bs-target="totalFAModal"
                           >
                             <i class="bi bi-filter-right"></i>
                           </button>
@@ -831,16 +831,135 @@
                     </div>
                     <div class="card-footer">
                       <span class="card-footer-context"
-                        >Total participants across all
-                        municipalities.</span
+                        >Total participants across all municipalities.</span
                       >
                     </div>
                   </div>
                 </div>
-                <!-- Farmer Associations -->
-                <div class="col-md-6 col-lg-6"></div>
-                <!--  -->
-                <div class="col-md-6 col-lg-6"></div>
+              </div>
+            </div>
+          </div>
+          <!-- second row -->
+          <div class="row second-row">
+            <!-- Total FCA     -->
+            <div class="col-md-6 col-lg-6">
+              <!-- Card wrapper -->
+              <div class="card card-app-right-main-content h-100">
+                <div class="card-header">
+                  <div class="card-header-wrapper px-3 py-2 px-md-3 py-md-2">
+                    <div class="card-header-icon fca-icon">
+                      <i class="bi bi-diagram-3-fill"></i>
+                    </div>
+                    <div class="card-header-title">
+                      <h5 class="card-header-text">Total FCA</h5>
+                      <span class="card-header-context">37</span>
+                    </div>
+                    <div class="card-tools">
+                      <!-- card-tools -->
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        aria-label="Summary view"
+                        title="Summary view"
+                        data-bs-toggle="modal"
+                        data-bs-target="totalTrainingModal"
+                      >
+                        <i class="bi bi-filter-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-3 px-md-3 pt-0 pb-3">
+                  <div
+                    class="card-summary-row d-flex flex-column flex-sm-row align-items-start align-items-sm-center"
+                  >
+                    <div class="card-chart-label">
+                      <span class="card-chart-eyebrow">FCA Uploaded</span>
+                      <span class="card-chart-period">January - December</span>
+                    </div>
+                    <div
+                      class="card-vs-year align-self-stretch align-self-sm-end"
+                    >
+                      <div class="card-vs-year-percentage">
+                        <i class="bi bi-arrow-up-short"></i>
+                        <span class="card-data-text-vs-year">12%</span>
+                      </div>
+                      <span class="card-data-vs-year">vs Last year</span>
+                    </div>
+                  </div>
+                  <div class="card-chart-helper">
+                    <i class="bi bi-cursor-fill"></i>
+                    <span>Hover a month to see municipality details</span>
+                  </div>
+                  <div class="card-chart" id="totalFAChart"></div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-footer-context"
+                    >Total Farmer Association uploaded across all
+                    municipalities.</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Per District  -->
+            <div class="col-md-6 col-lg-6">
+              <!-- Card wrapper -->
+              <div class="card card-app-right-main-content h-100">
+                <div class="card-header">
+                  <div class="card-header-wrapper px-3 py-2 px-md-3 py-md-2">
+                    <div class="card-header-icon district-icon">
+                      <i class="bi bi-geo"></i>
+                    </div>
+                    <div class="card-header-title">
+                      <h5 class="card-header-text">
+                        Total amount per district
+                      </h5>
+                      <span class="card-header-context">44</span>
+                    </div>
+                    <div class="card-tools">
+                      <!-- card-tools -->
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        aria-label="Summary view"
+                        title="Summary view"
+                        data-bs-toggle="modal"
+                        data-bs-target="perDistrictModal"
+                      >
+                        <i class="bi bi-filter-right"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-3 px-md-3 pt-0 pb-3">
+                  <div
+                    class="card-summary-row d-flex flex-column flex-sm-row align-items-start align-items-sm-center"
+                  >
+                    <div class="card-chart-label">
+                      <span class="card-chart-eyebrow"
+                        >Per District Amount</span
+                      >
+                      <span class="card-chart-period">January - December</span>
+                    </div>
+                    <div
+                      class="card-vs-year align-self-stretch align-self-sm-end"
+                    >
+                      <div class="card-vs-year-percentage">
+                        <i class="bi bi-arrow-up-short"></i>
+                        <span class="card-data-text-vs-year">12%</span>
+                      </div>
+                      <span class="card-data-vs-year">vs Last year</span>
+                    </div>
+                  </div>
+                  <div class="card-chart-helper">
+                    <i class="bi bi-cursor-fill"></i>
+                    <span>Hover a month to see district details</span>
+                  </div>
+                  <div class="card-chart" id="totalFAChart"></div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-footer-context">Total training amount conducted across all district.</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1382,7 +1501,6 @@
                     </a>
                   </li>
                   <li class="mobile-subnav-panel-navigation">
-                  
                     <a href="#" class="nav-link">
                       <i class="bi bi-x-circle-fill"></i>
                       <span>Inactive</span>

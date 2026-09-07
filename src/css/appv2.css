@@ -1500,7 +1500,7 @@ body {
   padding: 11px 13px;
   border-radius: 12px;
   color: #43a047;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 /* For total participants icon */
@@ -1509,7 +1509,24 @@ body {
   padding: 11px 13px;
   border-radius: 12px;
   color: #1976D2;
-  font-size: 17px;
+  font-size: 16px;
+}
+
+/* For FCA icon */
+.app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.fca-icon{
+  background-color: rgba(248, 140, 0, 0.3);
+  padding: 11px 13px;
+  border-radius: 12px;
+  color: #f88c00;
+  font-size: 16px;
+}
+
+.app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.district-icon{
+  background-color: rgba(142, 36, 170, 0.3);
+  padding: 11px 13px;
+  border-radius: 12px;
+  color: #8e24aa;
+  font-size: 16px;
 }
 
 .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-title{

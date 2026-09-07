@@ -147,6 +147,46 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   };
 
+  // ============================================================
+  // TOTAL FA CHART DATA
+  // Sample FA counts per municipality for each month.
+  // ============================================================
+
+  const fabyMunicipality ={
+    Tingloy: {
+      2026: [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    Pakil: {
+      2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    'Rizal (Laguna)': {
+      2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0],      
+    },
+    Patnanungan: {
+      2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
+    },
+    Jomalig: {
+      2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
+    },
+    Alabat: {
+      2026: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    Perez: {
+      2026: [0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+    'Quezon (Quezon)': {
+      2026: [0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
+      2025: [0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0],
+    },
+  };
+
   // Municipality names are used to calculate totals and build the tooltip.
   const municipalityNames = Object.keys(trainingByMunicipality);
   const municipalityDisplayLimit = 10;
@@ -444,6 +484,137 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render the chart inside #totalParticipantsChart.
     participantChart.render();
   }
+
+    // ============================================================
+  // APEXCHARTS CONFIGURATION: TOTAL FA
+  // This chart uses the same month, municipality, and year structure
+  // as the training chart, with zoom and reset controls enabled.
+  // ============================================================
+const totalFAChart = document.querySelector(
+    '#totalFAChart'
+  );
+
+  if (totalFAChart && typeof ApexCharts !== 'undefined') {
+    const faTotals = [2026, 2025].map((year) =>
+      trainingMonths.map((month, monthIndex) =>
+        municipalityNames.reduce(
+          (total, municipality) =>
+            total + fabyMunicipality[municipality][year][monthIndex],
+          0
+        )
+      )
+    );
+
+    const faChart = new ApexCharts(totalFAChart, {
+      chart: {
+        type: 'area',
+        height: 270,
+        width: '100%',
+        toolbar: { show: true, tools: { download: false } },
+        zoom: { enabled: true },
+        parentHeightOffset: 0,
+        redrawOnParentResize: true,
+        fontFamily: 'Inter, sans-serif',
+      },
+      series: [
+        { name: '2026', data: faTotals[0] },
+        { name: '2025', data: faTotals[1] },
+      ],
+      colors: ['#2e7d32', '#1976D2'],
+      stroke: { curve: 'smooth', width: 3 },
+      fill: {
+        type: 'gradient',
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.35,
+          opacityTo: 0.05,
+          stops: [0, 100],
+        },
+      },
+      dataLabels: { enabled: false },
+      markers: { size: 3, strokeWidth: 0, hover: { size: 5 } },
+      grid: {
+        borderColor: '#e0e0e0',
+        strokeDashArray: 4,
+        padding: { top: 4, right: 8, bottom: 0, left: 8 },
+      },
+      xaxis: {
+        categories: trainingMonths,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          trim: false,
+        },
+        axisBorder: { color: '#e0e0e0' },
+        axisTicks: { color: '#e0e0e0' },
+      },
+      yaxis: {
+        min: 0,
+        forceNiceScale: true,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          formatter: (value) => Math.round(value),
+        },
+        title: {
+          text: 'Farmer Association',
+          style: { color: '#607068', fontSize: '11px', fontWeight: 500 },
+        },
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'right',
+        labels: { colors: '#263238' },
+        markers: { width: 8, height: 8, radius: 8 },
+        itemMargin: { horizontal: 8 },
+        onItemClick: {
+          toggleDataSeries: true,
+        },
+        onItemHover: {
+          highlightDataSeries: true,
+        },
+      },
+      tooltip: {
+        shared: false,
+        intersect: false,
+        custom: ({ seriesIndex, dataPointIndex, w }) => {
+          const year = Number(w.config.series[seriesIndex].name);
+          const seriesColor = w.globals.colors[seriesIndex];
+          const totalFA = municipalityNames.reduce(
+            (total, municipality) =>
+              total +
+              fabyMunicipality[municipality][year][dataPointIndex],
+            0
+          );
+          const municipalityRows = buildMunicipalityRows(
+            fabyMunicipality,
+            year,
+            dataPointIndex
+          );
+
+          return `<div class="apexcharts-tooltip-custom" style="--tooltip-series-color: ${seriesColor};"><div class="apexcharts-tooltip-heading"><strong>${trainingMonths[dataPointIndex]} ${year}</strong></div><div class="apexcharts-tooltip-total"><span>Total FA</span><strong>${totalFA}</strong></div><div class="apexcharts-tooltip-section-title">Municipality details</div>${municipalityRows}</div>`;
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 576,
+          options: {
+            chart: { height: 220 },
+            legend: { position: 'bottom' },
+            xaxis: {
+              labels: { rotate: -45, style: { fontSize: '10px' } },
+            },
+            yaxis: {
+              labels: { show: false },
+              title: { text: undefined },
+            },
+          },
+        },
+      ],
+    });
+
+    // Render the chart inside #totalFAChart.
+    faChart.render();
+  }
+
 
   // ============================================================
   // SHARED NAVIGATION COLLAPSE HELPER

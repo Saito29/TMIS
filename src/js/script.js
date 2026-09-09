@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Sample FA counts per municipality for each month.
   // ============================================================
 
-  const fabyMunicipality ={
+  const fabyMunicipality = {
     Tingloy: {
       2026: [0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       2025: [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     'Rizal (Laguna)': {
       2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-      2025: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0],      
+      2025: [0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0],
     },
     Patnanungan: {
       2026: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -485,14 +485,12 @@ document.addEventListener('DOMContentLoaded', function () {
     participantChart.render();
   }
 
-    // ============================================================
+  // ============================================================
   // APEXCHARTS CONFIGURATION: TOTAL FA
   // This chart uses the same month, municipality, and year structure
   // as the training chart, with zoom and reset controls enabled.
   // ============================================================
-const totalFAChart = document.querySelector(
-    '#totalFAChart'
-  );
+  const totalFAChart = document.querySelector('#totalFAChart');
 
   if (totalFAChart && typeof ApexCharts !== 'undefined') {
     const faTotals = [2026, 2025].map((year) =>
@@ -580,8 +578,7 @@ const totalFAChart = document.querySelector(
           const seriesColor = w.globals.colors[seriesIndex];
           const totalFA = municipalityNames.reduce(
             (total, municipality) =>
-              total +
-              fabyMunicipality[municipality][year][dataPointIndex],
+              total + fabyMunicipality[municipality][year][dataPointIndex],
             0
           );
           const municipalityRows = buildMunicipalityRows(
@@ -614,7 +611,6 @@ const totalFAChart = document.querySelector(
     // Render the chart inside #totalFAChart.
     faChart.render();
   }
-
 
   // ============================================================
   // SHARED NAVIGATION COLLAPSE HELPER
@@ -725,4 +721,14 @@ const totalFAChart = document.querySelector(
       }
     });
   });
+
+  // ======================================================
+  // Tooltip for information in card
+  // =====================================================
+  const tooltipTriggerList = document.querySelectorAll(
+    '[data-bs-toggle="tooltip"]'
+  );
+  const tooltipList = [...tooltipTriggerList].map(
+    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+  );
 });

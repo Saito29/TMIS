@@ -1310,7 +1310,7 @@ body {
   ============================================================ */
 .app-main .app-main-body {
   width: 100%;
-  padding: 0 20px;
+  /* Horizontal padding is supplied by Bootstrap's px-3 px-md-4 utilities. */
 }
 
 /* Main content row layout */
@@ -1611,6 +1611,17 @@ body {
   align-items: flex-start;
   gap: 2px;
 }
+
+.app-main
+  .app-main-body
+  .card-app-right-main-content
+  .card-header
+  .card-header-wrapper
+  .card-header-title
+  .card-header-text{
+    text-wrap: wrap;
+    width: 15.625rem;
+  }
 
 .app-main
   .app-main-body
@@ -2044,12 +2055,14 @@ body {
 
 /* card-body */
 .app-main .app-main-body .card-upcoming-training .card-body .card-wrapper {
+  /* Each training item is a Bootstrap col-12, so it always fills its row. */
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
   gap: 10px;
   margin: 0;
   padding: 0 10px;
+  width: 100%;
 }
 
 /* card date */
@@ -2105,7 +2118,10 @@ body {
   justify-content: flex-start;
   flex-direction: column;
   font-family: 'inter';
-  width: 18rem;
+  /* Let this text area use remaining Bootstrap column space without overflow. */
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
   text-wrap: wrap;
   line-height: 1.2;
 }
@@ -2185,9 +2201,11 @@ body {
   .card-upcoming-training
   .card-button-view-all
   .btn-view-all {
+  /* Fill the responsive card column instead of using a fixed desktop width. */
   background-color: #f7f9f7;
   outline: 1px solid #e0e0e0;
-  width: 26.25rem;
+  width: 100%;
+  max-width: 100%;
   height: 40px;
   display: flex;
   justify-content: center;

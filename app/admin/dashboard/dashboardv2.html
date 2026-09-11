@@ -89,7 +89,8 @@
               <div
                 class="app-logo-text d-flex align-items-center justify-content-start"
               >
-                <h3 class="app-name">TMIS</h3>
+                <!-- Bootstrap hides the TMIS wordmark below sm (576px), preserving space for mobile navigation. -->
+                <h3 class="app-name d-none d-sm-block">TMIS</h3>
                 <!-- <span class="text-logo-name">Training Management Information System</span> -->
               </div>
             </div>
@@ -671,11 +672,13 @@
 
       <!-- Main Body page  -->
       <main class="app-main">
-        <div class="app-main-body">
+        <!-- Bootstrap container and grid keep dashboard cards fluid on every viewport. -->
+        <div class="app-main-body container-fluid px-3 px-md-4">
           <!-- first row -->
-          <div class="row first-row">
+          <!-- Responsive grid: cards stack on phones, then use the dashboard split from lg screens. -->
+          <div class="row first-row g-4">
             <!-- App left main content first row -->
-            <div class="col-md-4 col-lg-4 mb-4">
+            <div class="col-12 col-lg-4">
               <div class="app-left-main-content-body h-100">
                 <!-- User intro left -->
                 <div class="app-left-main-content-user-intro">
@@ -703,10 +706,10 @@
               </div>
             </div>
             <!-- app right main content first row -->
-            <div class="col-md-8 col-lg-8">
-              <div class="row first-row-right">
+            <div class="col-12 col-lg-8">
+              <div class="row first-row-right g-4">
                 <!-- Trainings -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-12 col-md-6">
                   <!-- Card wrapper -->
                   <div class="card card-app-right-main-content h-100">
                     <div class="card-header">
@@ -717,7 +720,7 @@
                           <i class="bi bi-tv"></i>
                         </div>
                         <div class="card-header-title">
-                          <h5 class="card-header-text">Total Trainings</h5>
+                          <h5 class="card-header-text">Total Capacity-Building Activities Conducted</h5>
                           <span class="card-header-context">32</span>
                         </div>
                         <div class="card-tools">
@@ -772,7 +775,7 @@
                   </div>
                 </div>
                 <!-- Total Participants -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-12 col-md-6">
                   <!-- Card wrapper -->
                   <div class="card card-app-right-main-content h-100">
                     <div class="card-header">
@@ -783,7 +786,7 @@
                           <i class="bi bi-people"></i>
                         </div>
                         <div class="card-header-title">
-                          <h5 class="card-header-text">Total Participants</h5>
+                          <h5 class="card-header-text">Farmers Trained</h5>
                           <span class="card-header-context">120</span>
                         </div>
                         <div class="card-tools">
@@ -840,9 +843,10 @@
             </div>
           </div>
           <!-- second row -->
-          <div class="row second-row">
+          <!-- Responsive chart cards: one column on small screens, two columns from lg upward. -->
+          <div class="row second-row g-4">
             <!-- Total FCA     -->
-            <div class="col-md-6 col-lg-6">
+            <div class="col-12 col-lg-6">
               <!-- Card wrapper -->
               <div class="card card-app-right-main-content h-100">
                 <div class="card-header">
@@ -902,7 +906,7 @@
               </div>
             </div>
             <!-- Per District  -->
-            <div class="col-md-6 col-lg-6">
+            <div class="col-12 col-lg-6">
               <!-- Card wrapper -->
               <div class="card card-app-right-main-content h-100">
                 <div class="card-header">
@@ -912,7 +916,7 @@
                     </div>
                     <div class="card-header-title">
                       <h5 class="card-header-text">
-                        Total amount per district
+                        Alloted Budget/ District
                       </h5>
                       <span class="card-header-context">44</span>
                     </div>
@@ -966,11 +970,10 @@
             </div>
           </div>
           <!-- third row -->
-          <div class="row third-row">
-            <div class="col-md-8 col-lg-8">
-              <div class="row">
+          <!-- Beneficiary card grows from full width to a compact dashboard column. -->
+          <div class="row third-row g-4">
                 <!-- Total Gender per youth, adult, senior -->
-                <div class="col-md-6 col-lg-6">
+                <div class="col-12 col-md-4 col-lg-4">
                   <div class="card card-beneficiary">
                     <div class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0">
                       <div class="card-title-group">
@@ -989,22 +992,19 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4 col-lg-4"></div>
-              </div>
-            </div>
-            <div class="col-md-4 col-lg-4"></div>
           </div>
           <!-- fourth row -->
-          <div class="row fourth-row">
-            <div class="col-md-4 col-lg-4">
-              <div class="card card-upcoming-training">
+          <!-- Supporting cards stack on smaller devices and become a 4/8 split at xl. -->
+          <div class="row fourth-row g-4">
+            <div class="col-12 col-xl-4">
+              <div class="card card-upcoming-training h-100">
                 <div class="card-header">
                   <h5 class="card-header-text">Upcoming Training</h5>
                 </div>
                 <div class="card-body">
                   <div class="row">
                     <!-- card-wrapper -->
-                    <div class="card-wrapper mb-3">
+                    <div class="card-wrapper col-12 mb-3">
                       <!-- date -->
                       <div class="card-date">
                         <span class="card-month">July</span>
@@ -1036,12 +1036,12 @@
                       </div>
                       <!-- training slot -->
                       <div class="card-slot">
-                        <span class="slot-text">Slot</span>
+                        <span class="slot-text">Packs</span>
                         <span class="slot-number">35</span>
                       </div>
                     </div>
                     <!-- card-wrapper -->
-                    <div class="card-wrapper mb-3">
+                    <div class="card-wrapper col-12 mb-3">
                       <!-- date -->
                       <div class="card-date">
                         <span class="card-month">July</span>
@@ -1073,12 +1073,12 @@
                       </div>
                       <!-- training slot -->
                       <div class="card-slot">
-                        <span class="slot-text">Slot</span>
+                        <span class="slot-text">Packs</span>
                         <span class="slot-number">35</span>
                       </div>
                     </div>
                     <!-- card-wrapper -->
-                    <div class="card-wrapper mb-3">
+                    <div class="card-wrapper col-12 mb-3">
                       <!-- date -->
                       <div class="card-date">
                         <span class="card-month">July</span>
@@ -1110,12 +1110,12 @@
                       </div>
                       <!-- training slot -->
                       <div class="card-slot">
-                        <span class="slot-text">Slot</span>
+                        <span class="slot-text">Packs</span>
                         <span class="slot-number">35</span>
                       </div>
                     </div>
                     <!-- card-wrapper -->
-                    <div class="card-wrapper mb-3">
+                    <div class="card-wrapper col-12 mb-3">
                       <!-- date -->
                       <div class="card-date">
                         <span class="card-month">July</span>
@@ -1147,12 +1147,12 @@
                       </div>
                       <!-- training slot -->
                       <div class="card-slot">
-                        <span class="slot-text">Slot</span>
+                        <span class="slot-text">Packs</span>
                         <span class="slot-number">35</span>
                       </div>
                     </div>
                     <!-- card-wrapper -->
-                    <div class="card-wrapper mb-3">
+                    <div class="card-wrapper col-12 mb-3">
                       <!-- date -->
                       <div class="card-date">
                         <span class="card-month">July</span>
@@ -1184,7 +1184,7 @@
                       </div>
                       <!-- training slot -->
                       <div class="card-slot">
-                        <span class="slot-text">Slot</span>
+                        <span class="slot-text">Packs</span>
                         <span class="slot-number">35</span>
                       </div>
                     </div>
@@ -1199,12 +1199,12 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-8 col-lg-8">
-              <div class="row gap-3">
+            <div class="col-12 col-xl-8">
+              <div class="row g-4">
                 <!-- top card -->
-                <div class="col-md-8-col-lg-8">
+                <div class="col-12">
                   <!-- card training trend -->
-                  <div class="card card-training-trends">
+                  <div class="card card-training-trends h-100">
                     <div class="card-header">
                       <div class="card-wrapper-trends">
                         <div class="card-details-title">
@@ -1239,9 +1239,9 @@
                   </div>
                 </div>
                 <!-- bottom card -->
-                <div class="col-md-8-col-lg-8">
+                <div class="col-12">
                   <!-- card training trend -->
-                  <div class="card card-training-trends">
+                  <div class="card card-training-trends h-100">
                     <div class="card-header">
                       <div class="card-wrapper-trends">
                         <div class="card-details-title">
@@ -1279,14 +1279,15 @@
             </div>
           </div>  
           <!-- fifth row -->
-          <div class="row fifth-row">
-            <div class="col-md-12 col-lg-12">
+          <!-- Evaluation metrics: 1 column on phones, 2 on small screens, 4 on xl screens. -->
+          <div class="row fifth-row g-4">
+            <div class="col-12">
               <!--card result -->
               <div class="card card-evaluation-result">
                 <div class="card-body">
                   <div class="row">
                     <!-- Pre-test Average -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-6 col-xl-3 mb-3 mb-xl-0">
                       <div class="card-wrapper-evaluation">
                         <!-- card icon -->
                         <div class="card-icon-evaluation">
@@ -1304,7 +1305,7 @@
                       </div>
                     </div>
                     <!-- Post-test average -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-6 col-xl-3 mb-3 mb-xl-0">
                       <div class="card-wrapper-evaluation">
                         <!-- card icon -->
                         <div class="card-icon-evaluation">
@@ -1322,7 +1323,7 @@
                       </div>
                     </div>
                     <!-- Satisfaction rate -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-6 col-xl-3 mb-3 mb-xl-0">
                       <div class="card-wrapper-evaluation">
                         <!-- card icon -->
                         <div class="card-icon-evaluation">
@@ -1340,7 +1341,7 @@
                       </div>
                     </div>
                     <!--  -->
-                    <div class="col-md-3 col-lg-3">
+                    <div class="col-12 col-sm-6 col-xl-3">
                       <div class="card-wrapper-evaluation">
                         <!-- card icon -->
                         <div class="card-icon-evaluation">

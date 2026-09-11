@@ -794,6 +794,103 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ============================================================
+  // BENEFICIARY GROUPS
+  // Purpose: compares the total beneficiaries classified as PWD,
+  // 4Ps, and Indigenous People (IP). Replace sample counts with DB totals.
+  // ============================================================
+  const beneficiaryGroupChart = document.getElementById(
+    'beneficiaryGroupChart'
+  );
+
+  if (beneficiaryGroupChart && typeof ApexCharts !== 'undefined') {
+    const groupChart = new ApexCharts(beneficiaryGroupChart, {
+      chart: {
+        type: 'bar',
+        height: 280,
+        toolbar: { show: false },
+        parentHeightOffset: 0,
+        redrawOnParentResize: true,
+        fontFamily: 'Inter, sans-serif',
+      },
+      // Separate series provide an accurate, clickable legend for each group.
+      series: [
+        { name: 'PWD', data: [42, null, null] },
+        { name: '4Ps', data: [null, 186, null] },
+        { name: 'IP', data: [null, null, 74] },
+      ],
+      // High-contrast blue, green, and orange are distinct and readable together.
+      colors: ['#1565C0', '#2E7D32', '#EF6C00'],
+      title: {
+        text: 'Beneficiary Groups',
+        align: 'left',
+        style: { color: '#263238', fontSize: '13px', fontWeight: 600 },
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 6,
+          columnWidth: '56%',
+          dataLabels: { position: 'center' },
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        // White value labels are centered inside their matching colored bar.
+        formatter: (value) => (value === null || value === 0 ? '' : value),
+        offsetY: 0,
+        style: { colors: ['#fff'], fontSize: '11px', fontWeight: 600 },
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'right',
+        fontSize: '11px',
+        fontWeight: 500,
+        labels: { colors: '#455A64' },
+        markers: { width: 8, height: 8, radius: 8 },
+        itemMargin: { horizontal: 6 },
+      },
+      grid: {
+        borderColor: '#e8edf0',
+        strokeDashArray: 4,
+        padding: { top: 6, right: 4, bottom: 0, left: 4 },
+      },
+      xaxis: {
+        categories: ['PWD', '4Ps', 'IP'],
+        labels: { style: { colors: '#607068', fontSize: '11px' } },
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      yaxis: {
+        min: 0,
+        forceNiceScale: true,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          formatter: (value) => Math.round(value),
+        },
+      },
+      tooltip: {
+        // Show only the group directly hovered by the user.
+        shared: false,
+        intersect: true,
+        hideEmptySeries: true,
+        y: { formatter: (value) => `${value} beneficiaries` },
+      },
+      responsive: [
+        {
+          breakpoint: 576,
+          options: {
+            chart: { height: 250 },
+            title: { style: { fontSize: '12px' } },
+            // Center the legend when a narrow Bootstrap card wraps its items.
+            legend: { horizontalAlign: 'center' },
+          },
+        },
+      ],
+    });
+
+    groupChart.render();
+  }
+
+  // ============================================================
   // SHARED NAVIGATION COLLAPSE HELPER
   // ============================================================
   // Closes nested menu items when another menu is opened.
@@ -915,11 +1012,5 @@ document.addEventListener('DOMContentLoaded', function () {
   const tooltipList = [...tooltipTriggerList].map(
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
   );
-
-
-  // ======================================================
-  // Training Trends card chart
-  // =====================================================
-  
 
 });

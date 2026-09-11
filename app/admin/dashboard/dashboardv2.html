@@ -1012,9 +1012,7 @@
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
                 >
                   <div class="card-title-group">
-                    <h6 class="card-title-gender">
-                      Beneficiaries by sex
-                    </h6>
+                    <h6 class="card-title-gender">Beneficiaries by sex</h6>
                     <p class="card-beneficiary-description">
                       Distribution of beneficiaries across by sex
                     </p>
@@ -1033,6 +1031,37 @@
                   <div
                     class="card-chart-beneficiary"
                     id="beneficiarySexChart"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <!-- Total PWD, 4ps, IP -->
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="card card-beneficiary">
+                <div
+                  class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
+                >
+                  <div class="card-title-group">
+                    <h6 class="card-title-gender">Beneficiary Groups</h6>
+                    <p class="card-beneficiary-description">
+                      Distribution of beneficiaries across by group
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-modal position-absolute top-0 end-0 m-3"
+                    title="View beneficiary summary"
+                    aria-label="View beneficiary summary"
+                  >
+                    <i class="bi bi-filter-right"></i>
+                  </button>
+                </div>
+                <!-- beneficiary data of age / sex -->
+                <div class="card-body px-2 px-sm-3 pt-0 pb-3">
+                  <!-- Bootstrap w-100 keeps this chart fluid within every grid column. -->
+                  <div
+                    class="card-chart-beneficiary w-100"
+                    id="beneficiaryGroupChart"
                   ></div>
                 </div>
               </div>

@@ -821,7 +821,7 @@ document.addEventListener('DOMContentLoaded', function () {
       // High-contrast blue, green, and orange are distinct and readable together.
       colors: ['#1565C0', '#2E7D32', '#EF6C00'],
       title: {
-        text: 'Beneficiary Groups',
+        text: '',
         align: 'left',
         style: { color: '#263238', fontSize: '13px', fontWeight: 600 },
       },

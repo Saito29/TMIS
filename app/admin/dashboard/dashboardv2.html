@@ -1176,35 +1176,165 @@
               </div>
             </div>
             <div class="col-md-8 col-lg-8">
-              <div class="row">
+              <div class="row gap-3">
                 <!-- top card -->
                 <div class="col-md-8-col-lg-8">
                   <!-- card training trend -->
                   <div class="card card-training-trends">
                     <div class="card-header">
-                      <div class="card-training-trends-wrapper">
-                        <div class="card-header-title-trends">
-                          <div class="card-title-trends">
-                            <h5 class="title-trends">Training Trends</h5>
-                            <a
-                              role="tooltip"
-                              class="btn btn-tooltips-details"
-                              data-bs-toggle="tooltip"
-                              data-bs-placement="right"
-                              data-bs-title="This contains information of training conducted from the current year"
-                            >
-                              <i class="bi bi-info-circle"></i>
-                            </a>
-                          </div>
-                          <div class="card-context-trends"></div>
+                      <div class="card-wrapper-trends">
+                        <div class="card-details-title">
+                          <h5 class="card-title-trends">Training Trends</h5>
+                          <a
+                            href="#"
+                            class="btn-toggle-info"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="right"
+                            title="This contains information of training conducted all the time"
+                            ><i class="bi bi-info-circle"></i
+                          ></a>
                         </div>
-                        <div class="card-header-btn"></div>
+                        <span class="trends-context"
+                          >Training conducted over time</span
+                        >
                       </div>
+                      <div class="card-btn-summary">
+                        <a
+                          href="#"
+                          class="btn-summary"
+                          role="button"
+                          data-bs-toggle="modal"
+                          title="Summary view"
+                          ><i class="bi bi-filter-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-chart" id="traingTrendsChart"></div>
                     </div>
                   </div>
                 </div>
                 <!-- bottom card -->
-                <div class="col-md-8-col-lg-8"></div>
+                <div class="col-md-8-col-lg-8">
+                  <!-- card training trend -->
+                  <div class="card card-training-trends">
+                    <div class="card-header">
+                      <div class="card-wrapper-trends">
+                        <div class="card-details-title">
+                          <h5 class="card-title-trends">Training Trends</h5>
+                          <a
+                            href="#"
+                            class="btn-toggle-info"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="right"
+                            title="This contains information of training conducted all the time"
+                            ><i class="bi bi-info-circle"></i
+                          ></a>
+                        </div>
+                        <span class="trends-context"
+                          >Training conducted over time</span
+                        >
+                      </div>
+                      <div class="card-btn-summary">
+                        <a
+                          href="#"
+                          class="btn-summary"
+                          role="button"
+                          data-bs-toggle="modal"
+                          title="Summary view"
+                          ><i class="bi bi-filter-right"></i
+                        ></a>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="card-chart" id="traingTrendsChart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- fifth row -->
+          <div class="row fifth-row">
+            <div class="col-md-12 col-lg-12">
+              <!--card result -->
+              <div class="card card-evaluation-result">
+                <div class="card-body">
+                  <div class="row">
+                    <!-- Pre-test Average -->
+                    <div class="col-md-3 col-lg-3">
+                      <div class="card-wrapper-evaluation">
+                        <!-- card icon -->
+                        <div class="card-icon-evaluation">
+                          <i class="bi bi-card-checklist"></i>
+                        </div>
+                        <!-- card details -->
+                        <div class="card-details-evaluation">
+                          <span class="text-header">Pre-Test Average</span>
+                          <span class="text-number">68.54%</span>
+                          <span class="text-vs-percentage"
+                            ><i class="bi bi-arrow-up-short"></i> 12.5%
+                            <span class="text-dsb">vs last year</span></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Post-test average -->
+                    <div class="col-md-3 col-lg-3">
+                      <div class="card-wrapper-evaluation">
+                        <!-- card icon -->
+                        <div class="card-icon-evaluation">
+                          <i class="bi bi-card-checklist"></i>
+                        </div>
+                        <!-- card details -->
+                        <div class="card-details-evaluation">
+                          <span class="text-header">Post-Test Average</span>
+                          <span class="text-number">68.54%</span>
+                          <span class="text-vs-percentage"
+                            ><i class="bi bi-arrow-up-short"></i> 12.5%
+                            <span class="text-dsb">vs last year</span></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Satisfaction rate -->
+                    <div class="col-md-3 col-lg-3">
+                      <div class="card-wrapper-evaluation">
+                        <!-- card icon -->
+                        <div class="card-icon-evaluation">
+                          <i class="bi bi-emoji-laughing-fill"></i>
+                        </div>
+                        <!-- card details -->
+                        <div class="card-details-evaluation">
+                          <span class="text-header">Satisfaction Rate</span>
+                          <span class="text-number">68.54%</span>
+                          <span class="text-vs-percentage"
+                            ><i class="bi bi-arrow-up-short"></i> 12.5%
+                            <span class="text-dsb">vs last year</span></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <!--  -->
+                    <div class="col-md-3 col-lg-3">
+                      <div class="card-wrapper-evaluation">
+                        <!-- card icon -->
+                        <div class="card-icon-evaluation">
+                          <i class="bi bi-person-fill"></i>
+                        </div>
+                        <!-- card details -->
+                        <div class="card-details-evaluation">
+                          <span class="text-header">Training Evaluation Rate</span>
+                          <span class="text-number">68.54%</span>
+                          <span class="text-vs-percentage"
+                            ><i class="bi bi-arrow-up-short"></i> 12.5%
+                            <span class="text-dsb">vs last year</span></span
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

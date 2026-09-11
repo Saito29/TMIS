@@ -1323,11 +1323,15 @@ body {
   margin: 20px auto;
 }
 
-/* .app-main .app-main-body .third-row{
+.app-main .app-main-body .third-row{
   margin: 10px auto;
-} */
+} 
 
 .app-main .app-main-body .fourth-row {
+  margin: 20px auto;
+}
+
+.app-main .app-main-body .fifth-row {
   margin: 20px auto;
 }
 
@@ -1655,8 +1659,9 @@ body {
   .card-header-wrapper
   .card-tools
   .btn-modal:hover {
-  color: #185e20;
-  background-color: #e8f5e9;
+  color: #f7f9f7;
+  background-color: #43a047;
+  box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.12);
 }
 
 /* Chart card body and summary area. */
@@ -2057,10 +2062,10 @@ body {
   .card-wrapper
   .card-training-wrapper
   .card-training-title
-  .card-text-title:hover{
-    color: #43a047;
-    transition: transform 0.5s ease-in-out;
-  }
+  .card-text-title:hover {
+  color: #43a047;
+  transition: transform 0.5s ease-in-out;
+}
 
 /* Card date range and location */
 .app-main
@@ -2132,4 +2137,204 @@ body {
   box-shadow: 0 4px 28px rgba(38, 50, 56, 0.25);
   overflow: visible;
   transition: transform 0.5s ease-in-out;
+}
+
+/* ============================================== */
+/* Card training trends and other UI */
+/* =============================================== */
+.app-main .app-main-body .card-training-trends {
+  height: 220px;
+  width: 100%;
+  background-color: #fff;
+  outline: 1px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.06);
+  color: #263238;
+  overflow: visible;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* when hovering */
+.app-main .app-main-body .card-training-trends:hover {
+  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
+  transform: translateY(-2px);
+}
+
+/* card header training trends */
+.app-main .app-main-body .card-training-trends .card-header {
+  display: flex;
+  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
+  transform: translateY(-2px);
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  margin: 0;
+}
+
+/* card header title and info */
+.app-main .app-main-body .card-training-trends .card-wrapper-trends {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  line-height: 1.05;
+}
+
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-wrapper-trends
+  .card-details-title {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+}
+
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-wrapper-trends
+  .card-details-title
+  .card-title-trends {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-wrapper-trends
+  .card-details-title
+  .btn-toggle-info {
+  color: #8d8d8d;
+  font-size: 20px;
+}
+
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-wrapper-trends
+  .card-details-title
+  .btn-toggle-info:hover {
+  color: #43a047;
+}
+
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-wrapper-trends
+  .trends-context {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Card summary view training trends */
+.app-main .app-main-body .card-training-trends .card-btn-summary {
+  position: absolute;
+  right: 20px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-main .app-main-body .card-training-trends .card-btn-summary .btn-summary {
+  background-color: #f7f9f7;
+  outline: 1px solid #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 12%;
+  color: #263238;
+}
+
+/* when hovering */
+.app-main
+  .app-main-body
+  .card-training-trends
+  .card-btn-summary
+  .btn-summary:hover {
+  background-color: #43a047;
+  color: #f7f9f7;
+  box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.25);
+}
+
+/* ================================================= */
+/* Card Evalutation Result */
+/* ================================================ */
+.app-main .app-main-body .card-evaluation-result {
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  outline: 1px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.06);
+  color: #263238;
+  overflow: visible;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* When hovering the card evaluation result */
+.app-main .app-main-body .card-evaluation-result:hover {
+  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
+  transform: translateY(-2px);
+}
+
+/* card evaluation body wrapper */
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+/* card icon */
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-icon-evaluation{
+  background-color: #e8f5e9;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  width: 72px;
+}
+
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-icon-evaluation i{
+  font-size: 32px;
+  color: #185e20;
+}
+
+/* card details */
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-details-evaluation{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.30;
+  color: #263238;
+}
+
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-details-evaluation .text-header{
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-details-evaluation .text-number{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-details-evaluation .text-vs-percentage{
+  color: #43a047;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-details-evaluation .text-vs-percentage .text-dsb{
+  color: #808080;
 }

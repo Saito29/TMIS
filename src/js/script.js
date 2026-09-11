@@ -724,6 +724,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ======================================================
   // Tooltip for information in card
+  // APEXCHARTS CONFIGURATION: Trainng Trend
+  // This chart uses the same month, municipality, and year structure
+  // as the training chart, with zoom and reset controls enabled.
   // =====================================================
   const tooltipTriggerList = document.querySelectorAll(
     '[data-bs-toggle="tooltip"]'
@@ -731,4 +734,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const tooltipList = [...tooltipTriggerList].map(
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
   );
+
+
+  // ======================================================
+  // Training Trends card chart
+  // =====================================================
+  
+
 });

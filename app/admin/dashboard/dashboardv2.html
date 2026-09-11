@@ -676,7 +676,7 @@
         <div class="app-main-body container-fluid px-3 px-md-4">
           <!-- first row -->
           <!-- Responsive grid: cards stack on phones, then use the dashboard split from lg screens. -->
-          <div class="row first-row g-2">
+          <div class="row first-row g-4">
             <!-- App left main content first row -->
             <div class="col-12 col-lg-4">
               <div class="app-left-main-content-body h-100">
@@ -720,7 +720,9 @@
                           <i class="bi bi-tv"></i>
                         </div>
                         <div class="card-header-title">
-                          <h5 class="card-header-text">Total Capacity-Building Activities Conducted</h5>
+                          <h5 class="card-header-text">
+                            Total Capacity-Building Activities Conducted
+                          </h5>
                           <span class="card-header-context">32</span>
                         </div>
                         <div class="card-tools">
@@ -844,7 +846,7 @@
           </div>
           <!-- second row -->
           <!-- Responsive chart cards: one column on small screens, two columns from lg upward. -->
-          <div class="row second-row g-2">
+          <div class="row second-row g-4">
             <!-- Total FCA     -->
             <div class="col-12 col-lg-6">
               <!-- Card wrapper -->
@@ -915,9 +917,7 @@
                       <i class="bi bi-geo"></i>
                     </div>
                     <div class="card-header-title">
-                      <h5 class="card-header-text">
-                        Alloted Budget/ District
-                      </h5>
+                      <h5 class="card-header-text">Alloted Budget/ District</h5>
                       <span class="card-header-context">44</span>
                     </div>
                     <div class="card-tools">
@@ -971,27 +971,72 @@
           </div>
           <!-- third row -->
           <!-- Beneficiary card grows from full width to a compact dashboard column. -->
-          <div class="row third-row g-2">
-                <!-- Total Gender per youth, adult, senior -->
-                <div class="col-12 col-md-4 col-lg-4">
-                  <div class="card card-beneficiary">
-                    <div class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0">
-                      <div class="card-title-group">
-                        <h6 class="card-title-gender">Beneficiaries by Age &amp; Sex</h6>
-                        <p class="card-beneficiary-description">
-                          Distribution of beneficiaries across age groups, separated by sex.
-                        </p>
-                      </div>
-                      <button type="button" class="btn btn-modal position-absolute top-0 end-0 m-3" title="View beneficiary summary" aria-label="View beneficiary summary">
-                        <i class="bi bi-filter-right"></i>
-                      </button>
-                    </div>
-                    <!-- beneficiary data of age / sex -->
-                    <div class="card-body px-2 px-sm-3 pt-0 pb-3">
-                      <div class="card-chart-beneficiary" id="beneficiaryAgeSexChart"></div>
-                    </div>
+          <div class="row third-row g-4">
+            <!-- Total Gender per youth, adult, senior -->
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="card card-beneficiary">
+                <div
+                  class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
+                >
+                  <div class="card-title-group">
+                    <h6 class="card-title-gender">
+                      Beneficiaries by Age &amp; Sex
+                    </h6>
+                    <p class="card-beneficiary-description">
+                      Distribution of beneficiaries across age groups, separated
+                      by sex.
+                    </p>
                   </div>
+                  <button
+                    type="button"
+                    class="btn btn-modal position-absolute top-0 end-0 m-3"
+                    title="View beneficiary summary"
+                    aria-label="View beneficiary summary"
+                  >
+                    <i class="bi bi-filter-right"></i>
+                  </button>
                 </div>
+                <!-- beneficiary data of age / sex -->
+                <div class="card-body px-2 px-sm-3 pt-0 pb-3">
+                  <div
+                    class="card-chart-beneficiary"
+                    id="beneficiaryAgeSexChart"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <!-- Total Gender per male and female -->
+            <div class="col-12 col-md-4 col-lg-4">
+              <div class="card card-beneficiary">
+                <div
+                  class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
+                >
+                  <div class="card-title-group">
+                    <h6 class="card-title-gender">
+                      Beneficiaries by sex
+                    </h6>
+                    <p class="card-beneficiary-description">
+                      Distribution of beneficiaries across by sex
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-modal position-absolute top-0 end-0 m-3"
+                    title="View beneficiary summary"
+                    aria-label="View beneficiary summary"
+                  >
+                    <i class="bi bi-filter-right"></i>
+                  </button>
+                </div>
+                <!-- beneficiary data of age / sex -->
+                <div class="card-body px-2 px-sm-3 pt-0 pb-3">
+                  <div
+                    class="card-chart-beneficiary"
+                    id="beneficiarySexChart"
+                  ></div>
+                </div>
+              </div>
+            </div>
           </div>
           <!-- fourth row -->
           <!-- Supporting cards stack on smaller devices and become a 4/8 split at xl. -->
@@ -1277,7 +1322,7 @@
                 </div>
               </div>
             </div>
-          </div>  
+          </div>
           <!-- fifth row -->
           <!-- Evaluation metrics: 1 column on phones, 2 on small screens, 4 on xl screens. -->
           <div class="row fifth-row g-4">
@@ -1349,7 +1394,9 @@
                         </div>
                         <!-- card details -->
                         <div class="card-details-evaluation">
-                          <span class="text-header">Training Evaluation Rate</span>
+                          <span class="text-header"
+                            >Training Evaluation Rate</span
+                          >
                           <span class="text-number">68.54%</span>
                           <span class="text-vs-percentage"
                             ><i class="bi bi-arrow-up-short"></i> 12.5%

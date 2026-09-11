@@ -706,6 +706,94 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ============================================================
+  // BENEFICIARIES BY SEX
+  // Purpose: the rounded donut shows each sex's share of all
+  // beneficiaries, with the combined total displayed at its center.
+  // Replace these sample values with totals from the database when
+  // beneficiary reporting data is available.
+  // ============================================================
+  const beneficiarySexChart = document.getElementById(
+    'beneficiarySexChart'
+  );
+
+  if (beneficiarySexChart && typeof ApexCharts !== 'undefined') {
+    const beneficiaryChart = new ApexCharts(beneficiarySexChart, {
+      chart: {
+        type: 'donut',
+        height: 280,
+        toolbar: { show: false },
+        parentHeightOffset: 0,
+        redrawOnParentResize: true,
+        fontFamily: 'Inter, sans-serif',
+      },
+      series: [221, 258],
+      labels: ['Male', 'Female'],
+      colors: ['#1976D2', '#8e24aa'],
+      // A thick white stroke creates distinct, rounded-looking donut segments.
+      stroke: { show: true, width: 5, colors: ['#fff'] },
+      plotOptions: {
+        pie: {
+          donut: {
+            size: '68%',
+            labels: {
+              show: true,
+              name: {
+                show: true,
+                color: '#607068',
+                fontSize: '12px',
+                offsetY: -4,
+              },
+              value: {
+                show: true,
+                color: '#263238',
+                fontSize: '22px',
+                fontWeight: 700,
+                offsetY: 4,
+                formatter: (value) => Math.round(value),
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: 'Total',
+                color: '#607068',
+                fontSize: '12px',
+                formatter: (chart) =>
+                  chart.globals.seriesTotals.reduce((total, value) => total + value, 0),
+              },
+            },
+          },
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'center',
+        fontSize: '12px',
+        fontWeight: 500,
+        labels: { colors: '#455a64' },
+        markers: { width: 9, height: 9, radius: 9 },
+        itemMargin: { horizontal: 8 },
+      },
+      tooltip: {
+        y: { formatter: (value) => `${value} beneficiaries` },
+      },
+      responsive: [
+        {
+          breakpoint: 576,
+          options: {
+            chart: { height: 250 },
+            legend: { horizontalAlign: 'center' },
+          },
+        },
+      ],
+    });
+
+    beneficiaryChart.render();
+  }
+
+  // ============================================================
   // SHARED NAVIGATION COLLAPSE HELPER
   // ============================================================
   // Closes nested menu items when another menu is opened.

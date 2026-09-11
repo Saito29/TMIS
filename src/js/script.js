@@ -613,6 +613,99 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ============================================================
+  // BENEFICIARIES BY AGE AND SEX
+  // Purpose: compares the number of male and female beneficiaries
+  // in the Youth, Adult, and Senior age groups on the dashboard card.
+  // Replace these sample values with totals from the database when
+  // beneficiary reporting data is available.
+  // ============================================================
+  const beneficiaryAgeSexChart = document.getElementById(
+    'beneficiaryAgeSexChart'
+  );
+
+  if (beneficiaryAgeSexChart && typeof ApexCharts !== 'undefined') {
+    const beneficiaryChart = new ApexCharts(beneficiaryAgeSexChart, {
+      chart: {
+        type: 'bar',
+        height: 280,
+        stacked: true,
+        toolbar: { show: false },
+        parentHeightOffset: 0,
+        redrawOnParentResize: true,
+        fontFamily: 'Inter, sans-serif',
+      },
+      series: [
+        { name: 'Male', data: [148, 221, 74] },
+        { name: 'Female', data: [176, 258, 96] },
+      ],
+      colors: ['#1976D2', '#8e24aa'],
+      plotOptions: {
+        bar: {
+          horizontal: true,
+          barHeight: '54%',
+          borderRadius: 5,
+          borderRadiusApplication: 'end',
+        },
+      },
+      dataLabels: {
+        enabled: true,
+        formatter: (value) => (value > 0 ? value : ''),
+        style: { fontSize: '11px', fontWeight: 600, colors: ['#fff'] },
+        dropShadow: { enabled: true },
+      },
+      stroke: { show: true, width: 2, colors: ['#fff'] },
+      xaxis: {
+        categories: ['Youth (15–30)', 'Adults (31–59)', 'Senior (60+)'],
+        min: 0,
+        labels: {
+          style: { colors: '#607068', fontSize: '11px' },
+          formatter: (value) => Math.round(value),
+        },
+        axisBorder: { show: true },
+        axisTicks: { show: true },
+      },
+      yaxis: {
+        labels: {
+          style: { colors: '#263238', fontSize: '12px', fontWeight: 500 },
+          maxWidth: 105,
+        },
+      },
+      grid: {
+        borderColor: '#e8edf0',
+        strokeDashArray: 4,
+        padding: { top: -8, right: 8, bottom: -4, left: 8 },
+      },
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'right',
+        fontSize: '12px',
+        fontWeight: 500,
+        labels: { colors: '#455a64' },
+        markers: { width: 9, height: 9, radius: 9 },
+        itemMargin: { horizontal: 8 },
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        y: { formatter: (value) => `${value}` },
+      },
+      responsive: [
+        {
+          breakpoint: 576,
+          options: {
+            chart: { height: 250 },
+            dataLabels: { enabled: true },
+            legend: { horizontalAlign: 'left' },
+            yaxis: { labels: { style: { fontSize: '11px' }, maxWidth: 90 } },
+          },
+        },
+      ],
+    });
+
+    beneficiaryChart.render();
+  }
+
+  // ============================================================
   // SHARED NAVIGATION COLLAPSE HELPER
   // ============================================================
   // Closes nested menu items when another menu is opened.

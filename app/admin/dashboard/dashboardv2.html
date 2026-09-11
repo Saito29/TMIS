@@ -967,8 +967,32 @@
           </div>
           <!-- third row -->
           <div class="row third-row">
+            <div class="col-md-8 col-lg-8">
+              <div class="row">
+                <!-- Total Gender per youth, adult, senior -->
+                <div class="col-md-6 col-lg-6">
+                  <div class="card card-beneficiary">
+                    <div class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0">
+                      <div class="card-title-group">
+                        <h6 class="card-title-gender">Beneficiaries by Age &amp; Sex</h6>
+                        <p class="card-beneficiary-description">
+                          Distribution of beneficiaries across age groups, separated by sex.
+                        </p>
+                      </div>
+                      <button type="button" class="btn btn-modal position-absolute top-0 end-0 m-3" title="View beneficiary summary" aria-label="View beneficiary summary">
+                        <i class="bi bi-filter-right"></i>
+                      </button>
+                    </div>
+                    <!-- beneficiary data of age / sex -->
+                    <div class="card-body px-2 px-sm-3 pt-0 pb-3">
+                      <div class="card-chart-beneficiary" id="beneficiaryAgeSexChart"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-lg-4"></div>
+              </div>
+            </div>
             <div class="col-md-4 col-lg-4"></div>
-            <div class="col-md-8 col-lg-8"></div>
           </div>
           <!-- fourth row -->
           <div class="row fourth-row">

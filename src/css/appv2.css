@@ -1381,12 +1381,16 @@ body {
   flex-direction: column;
   position: relative;
   gap: 0;
-  overflow: hidden;
+  overflow: visible;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .app-main .app-main-body .app-left-main-content-body:hover {
   box-shadow: 0 8px 24px rgba(38, 50, 56, 0.5);
   filter: saturate(1.9) contrast(1.3) brightness(1);
+  transform: translateY(-2px);
 }
 
 /* Welcome text: positioned around the left-center of the panel. */

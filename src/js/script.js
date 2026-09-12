@@ -187,6 +187,99 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   };
 
+  // ============================================================
+  // ALLOCATED TRAINING BUDGET BY DISTRICT
+  // Sample total allocation per beneficiary district (not monthly data).
+  // Replace these amounts with totals returned by the database.
+  // ============================================================
+  const allocatedBudgetByDistrict = [
+    { district: 'Jomalig', amount: 210500 },
+    { district: 'Patnanungan', amount: 260020 },
+    { district: 'Rizal, Laguna', amount: 340400 },
+    { district: 'Pakil, Laguna', amount: 385010 },
+    { district: 'Alabat', amount: 450310 },
+    { district: 'Perez', amount: 290310 },
+    { district: 'Quezon', amount: 525012 },
+    { district: 'Tingloy, Batangas', amount: 315013 },
+  ];
+
+  const formatPeso = (amount) =>
+    new Intl.NumberFormat('en-PH', {
+      style: 'currency',
+      currency: 'PHP',
+      maximumFractionDigits: 0,
+    }).format(amount);
+
+  const formatCompactPeso = (amount) =>
+    `₱${amount >= 1000000 ? `${(amount / 1000000).toFixed(2)}M` : `${Math.round(amount / 1000)}K`}`;
+
+  const totalAllocatedDistrictChart = document.querySelector(
+    '#totalAllocatedDistrictChart'
+  );
+
+  if (totalAllocatedDistrictChart && typeof ApexCharts !== 'undefined') {
+    const allocatedDistrictChart = new ApexCharts(
+      totalAllocatedDistrictChart,
+      {
+        chart: {
+          type: 'bar',
+          height: 310,
+          width: '100%',
+          toolbar: { show: false },
+          parentHeightOffset: 0,
+          redrawOnParentResize: true,
+          fontFamily: 'Inter, sans-serif',
+        },
+        series: [
+          {
+            name: 'Allocated budget',
+            data: allocatedBudgetByDistrict.map(({ amount }) => amount),
+          },
+        ],
+        colors: ['#2e7d32'],
+        plotOptions: {
+          bar: {
+            horizontal: true,
+            borderRadius: 5,
+            barHeight: '58%',
+            dataLabels: { position: 'center' },
+          },
+        },
+        dataLabels: {
+          enabled: true,
+          formatter: (value) => formatPeso(value),
+          style: { colors: ['#fff'], fontSize: '10px', fontWeight: 600 },
+        },
+        grid: {
+          borderColor: '#e0e0e0',
+          strokeDashArray: 4,
+          padding: { top: -4, right: 36, bottom: -4, left: 4 },
+        },
+        xaxis: {
+          categories: allocatedBudgetByDistrict.map(({ district }) => district),
+          labels: {
+            formatter: (value) => formatCompactPeso(Number(value)),
+            style: { colors: '#607088', fontSize: '10px' },
+          },
+          axisBorder: { color: '#e0e0e0' },
+          axisTicks: { color: '#e0e0e0' },
+        },
+        yaxis: {
+          labels: { style: { colors: '#263238', fontSize: '11px' } },
+        },
+        legend: { show: false },
+        tooltip: {
+          y: {
+            formatter: (value) => formatPeso(value),
+            title: { formatter: () => 'Allocated budget' },
+          },
+        },
+      }
+    );
+
+    allocatedDistrictChart.render();
+  }
+
   // Municipality names are used to calculate totals and build the tooltip.
   const municipalityNames = Object.keys(trainingByMunicipality);
   const municipalityDisplayLimit = 10;
@@ -721,7 +814,7 @@ document.addEventListener('DOMContentLoaded', function () {
       chart: {
         type: 'donut',
         height: 280,
-        toolbar: { show: false },
+        toolbar: { show: true },
         parentHeightOffset: 0,
         redrawOnParentResize: true,
         fontFamily: 'Inter, sans-serif',
@@ -734,7 +827,7 @@ document.addEventListener('DOMContentLoaded', function () {
       plotOptions: {
         pie: {
           donut: {
-            size: '68%',
+            size: '100%',
             labels: {
               show: true,
               name: {
@@ -765,11 +858,11 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       legend: {
         position: 'bottom',
-        horizontalAlign: 'center',
+        horizontalAlign: 'right',
         fontSize: '12px',
         fontWeight: 500,
         labels: { colors: '#455a64' },
@@ -784,7 +877,7 @@ document.addEventListener('DOMContentLoaded', function () {
           breakpoint: 576,
           options: {
             chart: { height: 250 },
-            legend: { horizontalAlign: 'center' },
+            legend: { horizontalAlign: 'right' },
           },
         },
       ],
@@ -807,6 +900,7 @@ document.addEventListener('DOMContentLoaded', function () {
       chart: {
         type: 'bar',
         height: 280,
+        width: '100%',
         toolbar: { show: false },
         parentHeightOffset: 0,
         redrawOnParentResize: true,
@@ -828,7 +922,8 @@ document.addEventListener('DOMContentLoaded', function () {
       plotOptions: {
         bar: {
           borderRadius: 6,
-          columnWidth: '56%',
+          // Leave consistent space between category bars for easier comparison.
+          columnWidth: '100 %',
           dataLabels: { position: 'center' },
         },
       },

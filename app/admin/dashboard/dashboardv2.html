@@ -584,19 +584,97 @@
           <!-- Notification & User profile -->
           <div class="app-noti-profile d-flex align-items-center">
             <!-- notification -->
-            <div class="app-notification">
+            <div class="app-notification dropdown">
               <button
                 class="notification-btn position-relative"
                 type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#notificationModal"
+                id="notificationDropdown"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+                aria-label="Open notifications"
               >
                 <i class="bi bi-bell-fill"></i>
                 <span
                   class="position-absolute top-0 start-100 translate-middle badge rounded-pill notification-count"
-                  >99+</span
+                  >3</span
                 >
               </button>
+              <div
+                class="dropdown-menu dropdown-menu-end notification-menu"
+                aria-labelledby="notificationDropdown"
+              >
+                <div class="notification-menu-header">
+                  <div>
+                    <span class="notification-menu-title">Notifications</span>
+                    <span class="notification-menu-subtitle">3 unread updates</span>
+                  </div>
+                  <div class="notification-menu-actions">
+                    <button type="button" class="notification-mark-read">Mark all read</button>
+                    <button type="button" class="notification-clear-all">Clear all</button>
+                  </div>
+                </div>
+                <div class="notification-menu-list">
+                  <button
+                    type="button"
+                    class="notification-menu-item is-unread"
+                    data-bs-toggle="modal"
+                    data-bs-target="#notificationDetailModal"
+                    data-notification-type="Approval required"
+                    data-notification-time="Today, 9:20 PM"
+                    data-notification-title="Training proposal review needed"
+                    data-notification-description="The Advanced Data Analysis training proposal submitted by John Doe is ready for your review. Your feedback is required before it can proceed to approval."
+                    data-notification-action="Review proposal"
+                  >
+                    <span class="notification-item-icon notification-item-icon--approval"><i class="bi bi-clipboard2-check"></i></span>
+                    <span class="notification-item-copy">
+                      <span class="notification-item-title">Training proposal review needed</span>
+                      <span class="notification-item-summary">Advanced Data Analysis needs your feedback.</span>
+                      <span class="notification-item-time">Today, 9:20 PM</span>
+                    </span>
+                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                  </button>
+                  <button
+                    type="button"
+                    class="notification-menu-item is-unread"
+                    data-bs-toggle="modal"
+                    data-bs-target="#notificationDetailModal"
+                    data-notification-type="Budget update"
+                    data-notification-time="Today, 2:45 PM"
+                    data-notification-title="District allocation records updated"
+                    data-notification-description="The beneficiary district allocation records have been updated. Open this notification to review the updated district entries."
+                    data-notification-action="View allocation records"
+                  >
+                    <span class="notification-item-icon notification-item-icon--budget"><i class="bi bi-wallet2"></i></span>
+                    <span class="notification-item-copy">
+                      <span class="notification-item-title">District allocation records updated</span>
+                      <span class="notification-item-summary">Beneficiary district entries are ready to review.</span>
+                      <span class="notification-item-time">Today, 2:45 PM</span>
+                    </span>
+                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                  </button>
+                  <button
+                    type="button"
+                    class="notification-menu-item is-unread"
+                    data-bs-toggle="modal"
+                    data-bs-target="#notificationDetailModal"
+                    data-notification-type="Participant update"
+                    data-notification-time="Yesterday, 4:10 PM"
+                    data-notification-title="Participant registration approved"
+                    data-notification-description="A participant registration has been approved and is now included in the beneficiary record for its assigned district."
+                    data-notification-action="View participant"
+                  >
+                    <span class="notification-item-icon notification-item-icon--participant"><i class="bi bi-person-check"></i></span>
+                    <span class="notification-item-copy">
+                      <span class="notification-item-title">Participant registration approved</span>
+                      <span class="notification-item-summary">A new beneficiary record is now active.</span>
+                      <span class="notification-item-time">Yesterday, 4:10 PM</span>
+                    </span>
+                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                  </button>
+                </div>
+                <button type="button" class="notification-view-all">View all notifications <i class="bi bi-arrow-right"></i></button>
+              </div>
             </div>
 
             <!-- User profile and role -->
@@ -2004,54 +2082,30 @@
       </div>
     </div>
 
-    <!-- Notification modal -->
+    <!-- Notification detail modal -->
     <div
       class="modal fade"
-      id="notificationModal"
-      aria-labelledby="notificationModalLabel"
+      id="notificationDetailModal"
+      aria-labelledby="notificationDetailModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content notification-modal-content">
-          <!-- modal header -->
-          <div class="modal-header notification-modal-header">
-            <div class="d-flex align-items-center gap-2">
-              <i class="bi bi-bell-fill"></i>
-              <h5 class="modal-title" id="notificationModalLabel">
-                Notifications
-              </h5>
-            </div>
-            <div class="notification-modal-actions">
-              <a href="#" class="view-all-link">View all</a>
-              <button
-                type="button"
-                class="btn btn-link clear-notifications"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
+      <div class="modal-dialog modal-dialog-centered notification-detail-dialog">
+        <div class="modal-content notification-detail-modal">
+          <div class="modal-header notification-detail-header">
+            <span class="notification-detail-icon"><i class="bi bi-bell-fill"></i></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <!-- modal body -->
-          <div class="modal-body notification-modal-body">
-            <div class="notification-card notification-card-apporval">
-              <div class="notification-card notification-card-approval">
-                <div class="notification-row">
-                  <span class="notification-type">Approval</span>
-                  <div class="notification-time">
-                    August 29, 2026 * 09:20 pm
-                  </div>
-                </div>
-                <h6 class="notification-title">
-                  Training proposal review needed
-                </h6>
-                <p class="notification-content">
-                  Please review the training proposal for "Advanced Data
-                  Analysis" submitted by John Doe. Your feedback is required for
-                  further processing.
-                </p>
-              </div>
+          <div class="modal-body notification-detail-body">
+            <div class="notification-detail-meta">
+              <span id="notificationDetailType">Approval required</span>
+              <time id="notificationDetailTime">Today, 9:20 PM</time>
             </div>
+            <h5 id="notificationDetailModalLabel">Training proposal review needed</h5>
+            <p id="notificationDetailDescription"></p>
+          </div>
+          <div class="modal-footer notification-detail-footer">
+            <button type="button" class="btn notification-detail-dismiss" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn notification-detail-action" id="notificationDetailAction">Review proposal</button>
           </div>
         </div>
       </div>

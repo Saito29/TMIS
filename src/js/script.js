@@ -54,6 +54,79 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   // ============================================================
+  // NOTIFICATION DROPDOWN AND DETAIL MODAL
+  // Each dropdown item supplies its own content through data attributes.
+  // ============================================================
+  const notificationDetailModal = document.getElementById(
+    'notificationDetailModal'
+  );
+  const updateUnreadNotificationCount = () => {
+    const unreadCount = document.querySelectorAll(
+      '.notification-menu-item.is-unread'
+    ).length;
+    const notificationCount = document.querySelector('.notification-count');
+    const notificationSubtitle = document.querySelector(
+      '.notification-menu-subtitle'
+    );
+
+    if (notificationCount) {
+      notificationCount.textContent = unreadCount;
+      notificationCount.hidden = unreadCount === 0;
+    }
+
+    if (notificationSubtitle) {
+      notificationSubtitle.textContent = `${unreadCount} unread update${unreadCount === 1 ? '' : 's'}`;
+    }
+  };
+
+  document.querySelectorAll('.notification-menu-item').forEach((item) => {
+    item.addEventListener('click', () => {
+      const { notificationType, notificationTime, notificationTitle, notificationDescription, notificationAction } = item.dataset;
+
+      document.getElementById('notificationDetailType').textContent = notificationType;
+      document.getElementById('notificationDetailTime').textContent = notificationTime;
+      document.getElementById('notificationDetailModalLabel').textContent = notificationTitle;
+      document.getElementById('notificationDetailDescription').textContent = notificationDescription;
+      document.getElementById('notificationDetailAction').textContent = notificationAction;
+      item.classList.remove('is-unread');
+      updateUnreadNotificationCount();
+    });
+  });
+
+  document
+    .querySelector('.notification-mark-read')
+    ?.addEventListener('click', () => {
+      document
+        .querySelectorAll('.notification-menu-item.is-unread')
+        .forEach((item) => item.classList.remove('is-unread'));
+      updateUnreadNotificationCount();
+    });
+
+  document.querySelector('.notification-clear-all')?.addEventListener('click', () => {
+    const notificationMenuList = document.querySelector('.notification-menu-list');
+
+    if (!notificationMenuList) return;
+
+    notificationMenuList.replaceChildren();
+    const emptyState = document.createElement('p');
+    emptyState.className = 'notification-empty-state';
+    emptyState.textContent = 'You have no notifications.';
+    notificationMenuList.append(emptyState);
+    updateUnreadNotificationCount();
+  });
+
+  if (notificationDetailModal) {
+    notificationDetailModal.addEventListener('show.bs.modal', () => {
+      document.body.classList.add('notification-modal-open');
+    });
+
+    notificationDetailModal.addEventListener('hidden.bs.modal', () => {
+      document.body.classList.remove('notification-modal-open');
+      document.querySelector('.notification-btn')?.focus();
+    });
+  }
+
+  // ============================================================
   // TOTAL TRAININGS CHART DATA
   // Change the values below when connecting the chart to the database.
   // Each array follows the month order from January through December.
@@ -827,7 +900,8 @@ document.addEventListener('DOMContentLoaded', function () {
       plotOptions: {
         pie: {
           donut: {
-            size: '100%',
+            // Keep a visible ring for the Male and Female segment colors.
+            size: '65%',
             labels: {
               show: true,
               name: {

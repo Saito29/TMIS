@@ -2993,17 +2993,14 @@ body::-webkit-scrollbar-thumb:hover,
 }
 
 .card-allocation-chart {
-  min-height: 220px;
+  min-height: 280px;
   margin-top: 8px;
 }
 
-/* Three province bars need less vertical space than the municipality report. */
-.app-main .app-main-body .province-allocation-card {
-  height: 380px !important;
-}
-
-.province-allocation-card .card-allocation-chart {
-  min-height: 200px;
+/* Keep the two side-by-side allocation reports aligned on desktop. */
+.app-main .app-main-body .province-allocation-card,
+.app-main .app-main-body .municipality-allocation-card {
+  height: 455px !important;
 }
 
 .card-allocation-breakdown .btn-toggle-info {
@@ -3026,54 +3023,6 @@ body::-webkit-scrollbar-thumb:hover,
 .card-allocation-header > .btn-modal {
   flex: 0 0 auto;
   margin-left: auto;
-}
-
-/* The municipality title is longer, so reserve space for its right-side action. */
-.municipality-allocation-card .card-header {
-  position: relative;
-}
-
-.municipality-allocation-card .card-header-wrapper {
-  align-items: flex-start !important;
-  padding-right: 64px !important;
-}
-
-.municipality-allocation-card .card-header-title {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-.municipality-allocation-card .card-header-text {
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  width: auto !important;
-  max-width: none;
-  line-height: 1.3;
-}
-
-.municipality-allocation-card .card-header-text .btn-toggle-info {
-  flex: 0 0 auto;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #808080;
-  font-size: 15px;
-  line-height: 1;
-}
-
-.municipality-allocation-card .card-header-text .btn-toggle-info:hover,
-.municipality-allocation-card .card-header-text .btn-toggle-info:focus-visible {
-  color: #43a047;
-}
-
-.municipality-allocation-card .card-tools {
-  top: 14px;
-  right: 16px;
-}
-
-.app-main .app-main-body .municipality-allocation-card {
-  height: 455px;
 }
 
 @media (max-width: 575.98px) {
@@ -3137,26 +3086,9 @@ body::-webkit-scrollbar-thumb:hover,
     min-height: 210px;
   }
 
-  .app-main .app-main-body .province-allocation-card {
-    height: auto !important;
-  }
-
-  .municipality-allocation-card .card-header-wrapper {
-    gap: 10px !important;
-    padding-right: 54px !important;
-  }
-
-  .municipality-allocation-card .card-header-text {
-    font-size: 14px !important;
-  }
-
-  .municipality-allocation-card .card-tools {
-    top: 12px;
-    right: 12px;
-  }
-
+  .app-main .app-main-body .province-allocation-card,
   .app-main .app-main-body .municipality-allocation-card {
-    height: auto;
+    height: auto !important;
   }
 }
 
@@ -3378,8 +3310,9 @@ body::-webkit-scrollbar-thumb:hover,
   color: #fff !important;
 }
 
-/* Pagination controls use the same compact treatment as dashboard modal buttons. */
-.dashboard-report-modal .dt-paging button.dt-paging-button {
+/* Reuse the allocation-report pagination buttons in every modal DataTable. */
+.modal .dt-paging button.dt-paging-button,
+.modal .dataTables_paginate .paginate_button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3397,15 +3330,18 @@ body::-webkit-scrollbar-thumb:hover,
   transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.dashboard-report-modal .dt-paging button.dt-paging-button:hover,
-.dashboard-report-modal .dt-paging button.dt-paging-button.current {
+.modal .dt-paging button.dt-paging-button:hover,
+.modal .dt-paging button.dt-paging-button.current,
+.modal .dataTables_paginate .paginate_button:hover,
+.modal .dataTables_paginate .paginate_button.current {
   border-color: #43a047 !important;
   background: #43a047 !important;
   color: #f7f9f7 !important;
   box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.12) !important;
 }
 
-.dashboard-report-modal .dt-paging button.dt-paging-button.disabled {
+.modal .dt-paging button.dt-paging-button.disabled,
+.modal .dataTables_paginate .paginate_button.disabled {
   opacity: 0.5;
   pointer-events: none;
 }
@@ -3627,7 +3563,8 @@ body::-webkit-scrollbar-thumb:hover,
 
   .dashboard-report-modal .dt-length,
   .dashboard-report-modal .dt-info,
-  .dashboard-report-modal .dt-paging {
+  .modal .dt-paging,
+  .modal .dataTables_paginate {
     font-size: 11px;
   }
 
@@ -3651,7 +3588,8 @@ body::-webkit-scrollbar-thumb:hover,
     gap: 2px;
   }
 
-  .dashboard-report-modal .dt-paging-button {
+  .modal .dt-paging-button,
+  .modal .dataTables_paginate .paginate_button {
     min-width: 30px;
     min-height: 30px;
     margin: 0 !important;
@@ -3737,14 +3675,16 @@ body::-webkit-scrollbar-thumb:hover,
     margin-bottom: 10px;
   }
 
-  .dashboard-report-modal .dt-paging {
+  .modal .dt-paging,
+  .modal .dataTables_paginate {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 2px;
   }
 
-  .dashboard-report-modal .dt-paging button.dt-paging-button {
+  .modal .dt-paging button.dt-paging-button,
+  .modal .dataTables_paginate .paginate_button {
     min-width: 32px;
     height: 32px;
     margin: 0 !important;

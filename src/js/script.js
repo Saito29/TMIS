@@ -610,7 +610,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const allocatedProvinceChart = document.getElementById('allocatedProvinceChart');
   if (allocatedProvinceChart && typeof ApexCharts !== 'undefined') {
     new ApexCharts(allocatedProvinceChart, {
-      chart: { type: 'bar', height: 200, toolbar: { show: false }, parentHeightOffset: 0, redrawOnParentResize: true, fontFamily: 'Inter, sans-serif' },
+      chart: { type: 'bar', height: 280, toolbar: { show: false }, parentHeightOffset: 0, redrawOnParentResize: true, fontFamily: 'Inter, sans-serif' },
       series: [{ name: 'Total allocated funds', data: allocatedBudgetByProvince.map(({ amount }) => amount) }],
       colors: ['#2e7d32'],
       plotOptions: { bar: { horizontal: true, borderRadius: 5, barHeight: '58%', dataLabels: { position: 'center' } } },

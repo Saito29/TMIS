@@ -3238,8 +3238,8 @@ body::-webkit-scrollbar-thumb:hover,
   max-height: 64dvh;
   padding: 22px 28px;
   background: #fff;
-  overflow-x: auto;
-  overflow-y: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #9ab79c #eef3ee;
 }
@@ -3299,6 +3299,46 @@ body::-webkit-scrollbar-thumb:hover,
 .dashboard-report-table-wrap {
   overflow-x: auto;
   padding-bottom: 20px;
+}
+
+/* Every modal DataTable keeps its controls in the modal while its records scroll both ways. */
+.modal .dt-container,
+.modal .dataTables_wrapper {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.modal .dt-scroll-body,
+.modal .dataTables_scrollBody {
+  max-width: 100%;
+  overflow: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #9ab79c #eef3ee;
+}
+
+.modal .dt-scroll-body::-webkit-scrollbar,
+.modal .dataTables_scrollBody::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.modal .dt-scroll-body::-webkit-scrollbar-track,
+.modal .dataTables_scrollBody::-webkit-scrollbar-track {
+  background: #eef3ee;
+  border-radius: 999px;
+}
+
+.modal .dt-scroll-body::-webkit-scrollbar-thumb,
+.modal .dataTables_scrollBody::-webkit-scrollbar-thumb {
+  background: #9ab79c;
+  border: 3px solid #eef3ee;
+  border-radius: 999px;
+}
+
+.modal .dt-scroll-body::-webkit-scrollbar-thumb:hover,
+.modal .dataTables_scrollBody::-webkit-scrollbar-thumb:hover {
+  background: #4f8a54;
 }
 
 .dashboard-report-modal .dt-container {

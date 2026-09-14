@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const dashboardReports = {
     activities: {
       title: 'Total Capacity-Building Activities Conducted',
+      exportName: 'Capacity-Building-Activities',
       description: 'Detailed capacity-building activities conducted from January to December.',
       icon: 'bi-mortarboard-fill',
       total: '32 activities',
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     participants: {
       title: 'Total Participants',
+      exportName: 'Total-Participants',
       description: 'Farmer participants trained across all capacity-building activities.',
       icon: 'bi-people-fill',
       total: '120 participants',
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     fca: {
       title: 'Total FCA',
+      exportName: 'Total-FCA',
       description: 'Farmer Cooperative and Association records uploaded across municipalities.',
       icon: 'bi-diagram-3-fill',
       total: '37 FCA records',
@@ -111,9 +114,10 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     budget: {
       title: 'Allocated Budget by District',
-      description: 'Training budget allocation by beneficiary district.',
+      exportName: 'Allocated-Budget-by-District',
+      description: 'Total training funds allocated to each beneficiary district.',
       icon: 'bi-cash-coin',
-      total: '8 districts',
+      total: '₱950,000 allocated',
       headers: ['District', 'Allocated Budget', 'Released', 'Balance', 'Activities', 'Utilization'],
       rows: [
         ['District I', '₱180,000', '₱125,000', '₱55,000', '5', '69%'],
@@ -126,8 +130,39 @@ document.addEventListener('DOMContentLoaded', function () {
         ['District VIII', '₱65,000', '₱20,000', '₱45,000', '1', '31%'],
       ],
     },
+    provinceBudget: {
+      title: 'Allocated Training Funds by Province',
+      exportName: 'Allocated-Training-Funds-by-Province',
+      description: 'Training fund allocation across Quezon, Laguna, and Batangas.',
+      icon: 'bi-map-fill',
+      total: '₱2.78M allocated',
+      headers: ['Province', 'Allocated Funds', 'Municipalities Covered', 'Activities', 'Utilization'],
+      rows: [
+        ['Quezon', '₱1,736,142', '4', '14', '68%'],
+        ['Laguna', '₱725,410', '2', '7', '63%'],
+        ['Batangas', '₱315,013', '1', '3', '57%'],
+      ],
+    },
+    municipalityBudget: {
+      title: 'Allocated Training Funds by Municipality',
+      exportName: 'Allocated-Training-Funds-by-Municipality',
+      description: 'Training fund allocation for every covered beneficiary municipality.',
+      icon: 'bi-geo-alt-fill',
+      total: '₱2.78M allocated',
+      headers: ['Municipality', 'Province', 'Allocated Funds', 'Activities', 'Utilization'],
+      rows: [
+        ['Quezon', 'Quezon', '₱525,012', '5', '72%'],
+        ['Alabat', 'Quezon', '₱450,310', '4', '65%'],
+        ['Perez', 'Quezon', '₱290,310', '3', '61%'],
+        ['Jomalig', 'Quezon', '₱210,500', '2', '55%'],
+        ['Pakil', 'Laguna', '₱385,010', '4', '69%'],
+        ['Rizal', 'Laguna', '₱340,400', '3', '58%'],
+        ['Tingloy', 'Batangas', '₱315,013', '3', '57%'],
+      ],
+    },
     ageSex: {
       title: 'Beneficiaries by Age and Sex',
+      exportName: 'Beneficiaries-by-Age-and-Sex',
       description: 'Beneficiary distribution by age group and sex.',
       icon: 'bi-bar-chart-fill',
       total: '120 beneficiaries',
@@ -140,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     sex: {
       title: 'Beneficiaries by Sex',
+      exportName: 'Beneficiaries-by-Sex',
       description: 'Beneficiary distribution by sex across all districts.',
       icon: 'bi-pie-chart-fill',
       total: '120 beneficiaries',
@@ -151,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     groups: {
       title: 'Beneficiary Groups',
+      exportName: 'Beneficiary-Groups',
       description: 'Beneficiary distribution across priority groups.',
       icon: 'bi-people-fill',
       total: '120 beneficiaries',
@@ -213,6 +250,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 text: '<i class="bi bi-file-earmark-excel-fill" aria-hidden="true"></i><span>Export Excel</span>',
                 titleAttr: 'Export this report to Excel',
                 className: 'dashboard-report-excel',
+                filename: report.exportName,
+                title: report.title,
+                sheetName: report.exportName,
               },
             ],
           },
@@ -466,18 +506,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ============================================================
   // ALLOCATED TRAINING BUDGET BY DISTRICT
-  // Sample total allocation per beneficiary district (not monthly data).
+  // Sample total training funds allocated per beneficiary district (not monthly data).
   // Replace these amounts with totals returned by the database.
   // ============================================================
   const allocatedBudgetByDistrict = [
-    { district: 'Jomalig', amount: 210500 },
-    { district: 'Patnanungan', amount: 260020 },
-    { district: 'Rizal, Laguna', amount: 340400 },
-    { district: 'Pakil, Laguna', amount: 385010 },
-    { district: 'Alabat', amount: 450310 },
-    { district: 'Perez', amount: 290310 },
-    { district: 'Quezon', amount: 525012 },
-    { district: 'Tingloy, Batangas', amount: 315013 },
+    { district: 'District I', amount: 180000 },
+    { district: 'District II', amount: 155000 },
+    { district: 'District III', amount: 140000 },
+    { district: 'District IV', amount: 125000 },
+    { district: 'District V', amount: 110000 },
+    { district: 'District VI', amount: 95000 },
+    { district: 'District VII', amount: 80000 },
+    { district: 'District VIII', amount: 65000 },
   ];
 
   const formatPeso = (amount) =>
@@ -509,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         series: [
           {
-            name: 'Allocated budget',
+            name: 'Total allocated funds',
             data: allocatedBudgetByDistrict.map(({ amount }) => amount),
           },
         ],
@@ -548,13 +588,63 @@ document.addEventListener('DOMContentLoaded', function () {
         tooltip: {
           y: {
             formatter: (value) => formatPeso(value),
-            title: { formatter: () => 'Allocated budget' },
+            title: { formatter: () => 'Total allocated funds' },
           },
         },
       }
     );
 
     allocatedDistrictChart.render();
+  }
+
+  // ============================================================
+  // ALLOCATED TRAINING FUNDS BY PROVINCE AND MUNICIPALITY
+  // Sample allocation figures; replace with totals returned by the database.
+  // ============================================================
+  const allocatedBudgetByProvince = [
+    { province: 'Quezon', amount: 1736142 },
+    { province: 'Laguna', amount: 725410 },
+    { province: 'Batangas', amount: 315013 },
+  ];
+
+  const allocatedProvinceChart = document.getElementById('allocatedProvinceChart');
+  if (allocatedProvinceChart && typeof ApexCharts !== 'undefined') {
+    new ApexCharts(allocatedProvinceChart, {
+      chart: { type: 'bar', height: 200, toolbar: { show: false }, parentHeightOffset: 0, redrawOnParentResize: true, fontFamily: 'Inter, sans-serif' },
+      series: [{ name: 'Total allocated funds', data: allocatedBudgetByProvince.map(({ amount }) => amount) }],
+      colors: ['#2e7d32'],
+      plotOptions: { bar: { horizontal: true, borderRadius: 5, barHeight: '58%', dataLabels: { position: 'center' } } },
+      dataLabels: { enabled: true, formatter: (value) => formatPeso(value), style: { colors: ['#fff'], fontSize: '10px', fontWeight: 600 } },
+      grid: { borderColor: '#e0e0e0', strokeDashArray: 4, padding: { top: -4, right: 36, bottom: -4, left: 4 } },
+      xaxis: { categories: allocatedBudgetByProvince.map(({ province }) => province), labels: { formatter: (value) => formatCompactPeso(Number(value)), style: { colors: '#607088', fontSize: '10px' } }, axisBorder: { color: '#e0e0e0' }, axisTicks: { color: '#e0e0e0' } },
+      yaxis: { labels: { style: { colors: '#263238', fontSize: '11px' } } },
+      legend: { show: false },
+      tooltip: { y: { formatter: (value) => formatPeso(value), title: { formatter: () => 'Total allocated funds' } } },
+    }).render();
+  }
+
+  const allocatedMunicipalityChart = document.getElementById('allocatedMunicipalityChart');
+  if (allocatedMunicipalityChart && typeof ApexCharts !== 'undefined') {
+    const municipalityAllocation = [
+      { municipality: 'Quezon', amount: 525012 }, { municipality: 'Alabat', amount: 450310 },
+      { municipality: 'Pakil', amount: 385010 }, { municipality: 'Rizal', amount: 340400 },
+      { municipality: 'Tingloy', amount: 315013 }, { municipality: 'Perez', amount: 290310 },
+      { municipality: 'Patnanungan', amount: 260020 }, { municipality: 'Jomalig', amount: 210500 },
+    ];
+    new ApexCharts(allocatedMunicipalityChart, {
+      chart: { type: 'bar', height: 280, toolbar: { show: false }, parentHeightOffset: 0, redrawOnParentResize: true, fontFamily: 'Inter, sans-serif' },
+      series: [{ name: 'Total allocated funds', data: municipalityAllocation.map(({ amount }) => amount) }],
+      colors: ['#43a047'],
+      plotOptions: { bar: { horizontal: true, borderRadius: 5, barHeight: '58%', dataLabels: { position: 'center' } } },
+      dataLabels: { enabled: true, formatter: (value) => formatPeso(value), style: { colors: ['#fff'], fontSize: '10px', fontWeight: 600 } },
+      grid: { borderColor: '#e0e0e0', strokeDashArray: 4, padding: { top: -4, right: 36, bottom: -4, left: 4 } },
+      xaxis: {
+        categories: municipalityAllocation.map(({ municipality }) => municipality),
+        labels: { formatter: (value) => formatCompactPeso(Number(value)), style: { colors: '#607088', fontSize: '10px' } },
+      },
+      yaxis: { labels: { style: { colors: '#263238', fontSize: '11px' } } },
+      tooltip: { y: { formatter: (value) => formatPeso(value), title: { formatter: () => 'Total allocated funds' } } },
+    }).render();
   }
 
   // Municipality names are used to calculate totals and build the tooltip.

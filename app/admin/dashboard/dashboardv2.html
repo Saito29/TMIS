@@ -1075,7 +1075,7 @@
                   >
                     <div class="card-chart-label">
                       <span class="card-chart-eyebrow"
-                        >Beneficiary budget by district</span
+                        >Total allocated training funds by district</span
                       >
                       <span class="card-chart-period"
                         >8 beneficiary districts</span
@@ -1095,7 +1095,7 @@
                 </div>
                 <div class="card-footer">
                   <span class="card-footer-context"
-                    >Training budget allocation for beneficiary districts.</span
+                    >Total training funds allocated across the eight beneficiary districts.</span
                   >
                 </div>
               </div>
@@ -1212,7 +1212,7 @@
           <!-- Supporting cards stack on smaller devices and become a 4/8 split at xl. -->
           <div class="row fourth-row g-4">
             <div class="col-12 col-xl-4">
-              <div class="card card-upcoming-training h-100">
+              <div class="card card-upcoming-training">
                 <div class="card-header">
                   <h5 class="card-header-text">Upcoming Training</h5>
                 </div>
@@ -1416,77 +1416,81 @@
             </div>
             <div class="col-12 col-xl-8">
               <div class="row g-4">
-                <!-- top card -->
+                <!-- Allocated training funds by province -->
                 <div class="col-12">
-                  <!-- card training trend -->
-                  <div class="card card-training-trends h-100">
-                    <div class="card-header">
-                      <div class="card-wrapper-trends">
-                        <div class="card-details-title">
-                          <h5 class="card-title-trends">Training Trends</h5>
-                          <a
-                            href="#"
-                            class="btn-toggle-info"
+                  <div class="card card-app-right-main-content card-allocation-breakdown province-allocation-card h-100">
+                    <div class="card-header card-allocation-header">
+                      <div class="card-allocation-title-group">
+                        <div class="card-allocation-title-row">
+                          <span class="card-allocation-icon"><i class="bi bi-map-fill"></i></span>
+                          <h5>Allocated Training Funds by Province</h5>
+                          <button
+                            type="button"
+                            class="btn btn-toggle-info"
                             data-bs-toggle="tooltip"
-                            data-bs-placement="right"
-                            title="This contains information of training conducted all the time"
-                            ><i class="bi bi-info-circle"></i
-                          ></a>
+                            data-bs-placement="top"
+                            title="Shows the total training funds allocated to each province."
+                            aria-label="About allocated training funds by province"
+                          ><i class="bi bi-exclamation-circle"></i></button>
                         </div>
-                        <span class="trends-context"
-                          >Training conducted over time</span
-                        >
+                        <span>Provincial allocation overview for the current reporting period.</span>
                       </div>
-                      <div class="card-btn-summary">
-                        <a
-                          href="#"
-                          class="btn-summary"
-                          role="button"
-                          data-bs-toggle="modal"
-                          title="Summary view"
-                          ><i class="bi bi-filter-right"></i
-                        ></a>
-                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dashboardReportModal"
+                        data-report-key="provinceBudget"
+                        title="View province allocation details"
+                        aria-label="View province allocation details"
+                      ><i class="bi bi-filter-right"></i></button>
                     </div>
-                    <div class="card-body">
-                      <div class="card-chart" id="traingTrendsChart"></div>
+                    <div class="card-body card-allocation-body">
+                      <div class="card-allocation-summary">
+                        <div><span>Total allocated</span><strong>₱2.78M</strong></div>
+                        <div><span>Highest allocation</span><strong>Quezon</strong></div>
+                        <div><span>Provinces covered</span><strong>3</strong></div>
+                      </div>
+                      <div class="card-allocation-chart" id="allocatedProvinceChart"></div>
                     </div>
                   </div>
                 </div>
-                <!-- bottom card -->
-                <div class="col-12">
-                  <!-- card training trend -->
-                  <div class="card card-training-trends h-100">
-                    <div class="card-header">
-                      <div class="card-wrapper-trends">
-                        <div class="card-details-title">
-                          <h5 class="card-title-trends">Training Trends</h5>
-                          <a
-                            href="#"
-                            class="btn-toggle-info"
+                <!-- Moved to the full-width sixth dashboard row. -->
+                <div class="d-none">
+                  <div class="card card-app-right-main-content card-allocation-breakdown h-100">
+                    <div class="card-header card-allocation-header">
+                      <div class="card-allocation-title-group">
+                        <div class="card-allocation-title-row">
+                          <span class="card-allocation-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                          <h5>Allocated Training Funds by Municipality</h5>
+                          <button
+                            type="button"
+                            class="btn btn-toggle-info"
                             data-bs-toggle="tooltip"
-                            data-bs-placement="right"
-                            title="This contains information of training conducted all the time"
-                            ><i class="bi bi-info-circle"></i
-                          ></a>
+                            data-bs-placement="top"
+                            title="Shows the total training funds allocated to each beneficiary municipality."
+                            aria-label="About allocated training funds by municipality"
+                          ><i class="bi bi-exclamation-circle"></i></button>
                         </div>
-                        <span class="trends-context"
-                          >Training conducted over time</span
-                        >
+                        <span>Municipality allocation comparison across the covered provinces.</span>
                       </div>
-                      <div class="card-btn-summary">
-                        <a
-                          href="#"
-                          class="btn-summary"
-                          role="button"
-                          data-bs-toggle="modal"
-                          title="Summary view"
-                          ><i class="bi bi-filter-right"></i
-                        ></a>
-                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dashboardReportModal"
+                        data-report-key="municipalityBudget"
+                        title="View municipality allocation details"
+                        aria-label="View municipality allocation details"
+                      ><i class="bi bi-filter-right"></i></button>
                     </div>
-                    <div class="card-body">
-                      <div class="card-chart" id="traingTrendsChart"></div>
+                    <div class="card-body card-allocation-body">
+                      <div class="card-allocation-summary">
+                        <div><span>Total allocated</span><strong>₱2.78M</strong></div>
+                        <div><span>Top municipality</span><strong>Quezon</strong></div>
+                        <div><span>Municipalities covered</span><strong>8</strong></div>
+                      </div>
+                      <div class="card-allocation-chart" id="allocatedMunicipalityChartLegacy"></div>
                     </div>
                   </div>
                 </div>
@@ -1494,8 +1498,63 @@
             </div>
           </div>
           <!-- fifth row -->
-          <!-- Evaluation metrics: 1 column on phones, 2 on small screens, 4 on xl screens. -->
+          <!-- full-width municipality allocation report -->
           <div class="row fifth-row g-4">
+            <div class="col-12">
+              <div class="card card-app-right-main-content municipality-allocation-card">
+                <div class="card-header">
+                  <div class="card-header-wrapper px-3 py-2 px-md-3 py-md-2">
+                    <div class="card-header-icon district-icon">
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="card-header-title">
+                      <h5 class="card-header-text">
+                        Allocated Training Funds by Municipality
+                        <button
+                          type="button"
+                          class="btn btn-toggle-info"
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title="Shows the total training funds allocated to each beneficiary municipality."
+                          aria-label="About allocated training funds by municipality"
+                        ><i class="bi bi-exclamation-circle"></i></button>
+                      </h5>
+                      <span class="card-header-context">₱2.78M</span>
+                    </div>
+                    <div class="card-tools">
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dashboardReportModal"
+                        data-report-key="municipalityBudget"
+                        title="View municipality allocation details"
+                        aria-label="View municipality allocation details"
+                      ><i class="bi bi-filter-right"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-3 px-md-3 pt-0 pb-3">
+                  <div class="card-summary-row d-flex flex-column flex-sm-row align-items-start align-items-sm-center">
+                    <div class="card-chart-label">
+                      <span class="card-chart-eyebrow">Total allocation by municipality</span>
+                      <span class="card-chart-period">8 beneficiary municipalities covered</span>
+                    </div>
+                  </div>
+                  <div class="card-chart-helper">
+                    <i class="bi bi-cursor-fill"></i>
+                    <span>Hover a municipality to see its total allocated fund</span>
+                  </div>
+                  <div class="card-chart municipality-allocation-chart" id="allocatedMunicipalityChart"></div>
+                </div>
+                <div class="card-footer">
+                  <span class="card-footer-context">Quezon municipality has the largest allocated training fund.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- sixth row: Evaluation metrics: 1 column on phones, 2 on small screens, 4 on xl screens. -->
+          <div class="row sixth-row g-4">
             <div class="col-12">
               <!--card result -->
               <div class="card card-evaluation-result">

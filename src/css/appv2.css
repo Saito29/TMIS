@@ -1718,6 +1718,10 @@ body::-webkit-scrollbar-thumb:hover,
   margin: 10px auto;
 }
 
+.app-main .app-main-body .sixth-row {
+  margin: 10px auto;
+}
+
 /* ====================================================
   Button modal
   Controls the design and interaction of the class button modal
@@ -2583,6 +2587,19 @@ body::-webkit-scrollbar-thumb:hover,
   margin-top: 10px;
 }
 
+/* Keep the upcoming list compact beside the two allocation dashboards. */
+.app-main .app-main-body .card-upcoming-training {
+  height: auto;
+  max-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main .app-main-body .card-upcoming-training .card-body {
+  min-height: 0;
+  overflow-y: auto;
+}
+
 .app-main
   .app-main-body
   .card-upcoming-training
@@ -2859,6 +2876,290 @@ body::-webkit-scrollbar-thumb:hover,
   color: #808080;
 }
 
+/* Provincial and municipal training-fund allocation cards. */
+.app-main .app-main-body .card-allocation-breakdown {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.app-main .app-main-body .card-allocation-breakdown:hover {
+  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
+  transform: translateY(-2px);
+}
+
+.app-main .app-main-body .card-allocation-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px 12px;
+  border: 0;
+  background-color: #fff;
+}
+
+.card-allocation-title-group {
+  min-width: 0;
+}
+
+.card-allocation-title-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.card-allocation-icon {
+  display: inline-flex;
+  flex: 0 0 34px;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 16px;
+}
+
+.card-allocation-title-row h5 {
+  margin: 0;
+  color: #263238;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card-allocation-title-group > span {
+  display: block;
+  margin: 7px 0 0 43px;
+  color: #607088;
+  font-size: 12px;
+}
+
+.card-allocation-header .btn-toggle-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #808080;
+  font-size: 16px;
+}
+
+.card-allocation-header .btn-toggle-info:hover,
+.card-allocation-header .btn-toggle-info:focus-visible {
+  color: #2e7d32;
+}
+
+.card-allocation-body {
+  padding: 0 20px 18px;
+}
+
+.card-allocation-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  background-color: #f7f9f7;
+}
+
+.card-allocation-summary div + div {
+  padding-left: 10px;
+  border-left: 1px solid #e0e0e0;
+}
+
+.card-allocation-summary span,
+.card-allocation-summary strong {
+  display: block;
+}
+
+.card-allocation-summary span {
+  color: #607088;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card-allocation-summary strong {
+  margin-top: 4px;
+  color: #185e20;
+  font-size: 15px;
+}
+
+.card-allocation-chart {
+  min-height: 220px;
+  margin-top: 8px;
+}
+
+/* Three province bars need less vertical space than the municipality report. */
+.app-main .app-main-body .province-allocation-card {
+  height: 380px !important;
+}
+
+.province-allocation-card .card-allocation-chart {
+  min-height: 200px;
+}
+
+.card-allocation-breakdown .btn-toggle-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #808080;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+.card-allocation-breakdown .btn-toggle-info:hover,
+.card-allocation-breakdown .btn-toggle-info:focus-visible {
+  color: #43a047;
+}
+
+.card-allocation-header > .btn-modal {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+/* The municipality title is longer, so reserve space for its right-side action. */
+.municipality-allocation-card .card-header {
+  position: relative;
+}
+
+.municipality-allocation-card .card-header-wrapper {
+  align-items: flex-start !important;
+  padding-right: 64px !important;
+}
+
+.municipality-allocation-card .card-header-title {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.municipality-allocation-card .card-header-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  width: auto !important;
+  max-width: none;
+  line-height: 1.3;
+}
+
+.municipality-allocation-card .card-header-text .btn-toggle-info {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #808080;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.municipality-allocation-card .card-header-text .btn-toggle-info:hover,
+.municipality-allocation-card .card-header-text .btn-toggle-info:focus-visible {
+  color: #43a047;
+}
+
+.municipality-allocation-card .card-tools {
+  top: 14px;
+  right: 16px;
+}
+
+.app-main .app-main-body .municipality-allocation-card {
+  height: 455px;
+}
+
+@media (max-width: 575.98px) {
+  .app-main .app-main-body .card-upcoming-training {
+    max-height: none;
+  }
+
+  .app-main .app-main-body .card-upcoming-training .card-body {
+    overflow-y: visible;
+  }
+
+  .app-main .app-main-body .card-allocation-header {
+    gap: 10px;
+    padding: 14px 14px 10px;
+  }
+
+  .card-allocation-title-row {
+    align-items: flex-start;
+    gap: 7px;
+  }
+
+  .card-allocation-icon {
+    flex-basis: 30px;
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .card-allocation-title-row h5 {
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .card-allocation-title-group > span {
+    margin-left: 37px;
+    font-size: 11px;
+  }
+
+  .card-allocation-body {
+    padding: 0 14px 14px;
+  }
+
+  .card-allocation-summary {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .card-allocation-summary div + div {
+    padding-left: 8px;
+  }
+
+  .card-allocation-summary span {
+    font-size: 9px;
+  }
+
+  .card-allocation-summary strong {
+    font-size: 12px;
+  }
+
+  .card-allocation-chart {
+    min-height: 210px;
+  }
+
+  .app-main .app-main-body .province-allocation-card {
+    height: auto !important;
+  }
+
+  .municipality-allocation-card .card-header-wrapper {
+    gap: 10px !important;
+    padding-right: 54px !important;
+  }
+
+  .municipality-allocation-card .card-header-text {
+    font-size: 14px !important;
+  }
+
+  .municipality-allocation-card .card-tools {
+    top: 12px;
+    right: 12px;
+  }
+
+  .app-main .app-main-body .municipality-allocation-card {
+    height: auto;
+  }
+}
+
 /* Dashboard detail reports */
 .dashboard-report-dialog {
   max-width: min(1180px, calc(100vw - 32px));
@@ -3075,6 +3376,38 @@ body::-webkit-scrollbar-thumb:hover,
 .dashboard-report-modal .dt-button:hover {
   background: #2e7d32 !important;
   color: #fff !important;
+}
+
+/* Pagination controls use the same compact treatment as dashboard modal buttons. */
+.dashboard-report-modal .dt-paging button.dt-paging-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  margin: 0 2px !important;
+  padding: 0 8px !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 10px !important;
+  background: #f7f9f7 !important;
+  color: #607068 !important;
+  box-shadow: none !important;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dashboard-report-modal .dt-paging button.dt-paging-button:hover,
+.dashboard-report-modal .dt-paging button.dt-paging-button.current {
+  border-color: #43a047 !important;
+  background: #43a047 !important;
+  color: #f7f9f7 !important;
+  box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.12) !important;
+}
+
+.dashboard-report-modal .dt-paging button.dt-paging-button.disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .dashboard-report-modal .dashboard-report-excel {
@@ -3333,5 +3666,94 @@ body::-webkit-scrollbar-thumb:hover,
 
   .dashboard-report-footer > span {
     display: none;
+  }
+}
+
+/* Compact tablets and large phones need the mobile report controls through 684px. */
+@media (min-width: 576px) and (max-width: 684px) {
+  .dashboard-report-dialog {
+    width: calc(100vw - 24px);
+    max-width: none;
+    max-height: calc(100dvh - 24px);
+    margin: 12px auto;
+  }
+
+  .dashboard-report-modal {
+    max-height: calc(100dvh - 24px);
+  }
+
+  .dashboard-report-header,
+  .dashboard-report-body,
+  .dashboard-report-footer {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .dashboard-report-header {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .dashboard-report-heading h5 {
+    font-size: 17px;
+  }
+
+  .dashboard-report-heading p {
+    font-size: 11px;
+  }
+
+  .dashboard-report-body,
+  .modal-dialog-scrollable .dashboard-report-body {
+    max-height: none;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .dashboard-report-summary {
+    gap: 12px;
+  }
+
+  .dashboard-report-modal .dt-layout-row:has(.dashboard-report-length-top) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .dashboard-report-modal .dt-layout-row:has(.dashboard-report-length-top) .dt-layout-cell:has(.dt-buttons),
+  .dashboard-report-modal .dt-layout-row:has(.dashboard-report-length-top) .dt-layout-cell:has(.dashboard-report-length-top),
+  .dashboard-report-modal .dt-layout-row:has(.dashboard-report-length-top) .dt-layout-cell:has(.dt-search) {
+    justify-self: stretch;
+  }
+
+  .dashboard-report-modal .dt-search,
+  .dashboard-report-modal .dt-search .dt-input {
+    width: 100%;
+  }
+
+  .dashboard-report-modal .dt-scroll-body {
+    max-height: 30dvh !important;
+  }
+
+  .dashboard-report-modal .dt-layout-row {
+    margin-bottom: 10px;
+  }
+
+  .dashboard-report-modal .dt-paging {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 2px;
+  }
+
+  .dashboard-report-modal .dt-paging button.dt-paging-button {
+    min-width: 32px;
+    height: 32px;
+    margin: 0 !important;
+    padding: 0 6px !important;
+  }
+
+  .dashboard-report-footer {
+    min-height: 56px;
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 }

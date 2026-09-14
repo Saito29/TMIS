@@ -1802,7 +1802,7 @@ body::-webkit-scrollbar-thumb:hover,
   height: 100%;
   min-height: 430px;
   width: 100%;
-  background: url('../../assets/img/ricefield_with_farmer-Picsart-AiImageEnhancer.png');
+  background: url('../../../assets/img/ricefield_with_farmer-Picsart-AiImageEnhancer.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center 38%;

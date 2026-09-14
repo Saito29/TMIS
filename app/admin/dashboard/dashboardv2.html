@@ -1095,15 +1095,200 @@
                 </div>
                 <div class="card-footer">
                   <span class="card-footer-context"
-                    >Total training funds allocated across the eight beneficiary districts.</span
+                    >Total training funds allocated across the eight beneficiary
+                    districts.</span
                   >
                 </div>
               </div>
             </div>
           </div>
           <!-- third row -->
-          <!-- Beneficiary card grows from full width to a compact dashboard column. -->
+          <!-- Province and municipality allocation report. -->
           <div class="row third-row g-4">
+            <div class="col-12 col-xl-6">
+              <div class="row g-4">
+                <!-- Allocated training funds by province -->
+                <div class="col-12">
+                  <div
+                    class="card card-app-right-main-content card-allocation-breakdown province-allocation-card h-100"
+                  >
+                    <div class="card-header card-allocation-header">
+                      <div class="card-allocation-title-group">
+                        <div class="card-allocation-title-row">
+                          <span class="card-allocation-icon"
+                            ><i class="bi bi-map-fill"></i
+                          ></span>
+                          <h5>Allocated Training Funds by Province</h5>
+                          <button
+                            type="button"
+                            class="btn btn-toggle-info"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Shows the total training funds allocated to each province."
+                            aria-label="About allocated training funds by province"
+                          >
+                            <i class="bi bi-exclamation-circle"></i>
+                          </button>
+                        </div>
+                        <span
+                          >Provincial allocation overview for the current
+                          reporting period.</span
+                        >
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dashboardReportModal"
+                        data-report-key="provinceBudget"
+                        title="View province allocation details"
+                        aria-label="View province allocation details"
+                      >
+                        <i class="bi bi-filter-right"></i>
+                      </button>
+                    </div>
+                    <div class="card-body card-allocation-body">
+                      <div class="card-allocation-summary">
+                        <div>
+                          <span>Total allocated</span><strong>₱2.78M</strong>
+                        </div>
+                        <div>
+                          <span>Highest allocation</span><strong>Quezon</strong>
+                        </div>
+                        <div>
+                          <span>Provinces covered</span><strong>3</strong>
+                        </div>
+                      </div>
+                      <div
+                        class="card-allocation-chart"
+                        id="allocatedProvinceChart"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Moved to the full-width sixth dashboard row. -->
+                <div class="d-none">
+                  <div
+                    class="card card-app-right-main-content card-allocation-breakdown h-100"
+                  >
+                    <div class="card-header card-allocation-header">
+                      <div class="card-allocation-title-group">
+                        <div class="card-allocation-title-row">
+                          <span class="card-allocation-icon"
+                            ><i class="bi bi-geo-alt-fill"></i
+                          ></span>
+                          <h5>Allocated Training Funds by Municipality</h5>
+                          <button
+                            type="button"
+                            class="btn btn-toggle-info"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            title="Shows the total training funds allocated to each beneficiary municipality."
+                            aria-label="About allocated training funds by municipality"
+                          >
+                            <i class="bi bi-exclamation-circle"></i>
+                          </button>
+                        </div>
+                        <span
+                          >Municipality allocation comparison across the covered
+                          provinces.</span
+                        >
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-modal"
+                        data-bs-toggle="modal"
+                        data-bs-target="#dashboardReportModal"
+                        data-report-key="municipalityBudget"
+                        title="View municipality allocation details"
+                        aria-label="View municipality allocation details"
+                      >
+                        <i class="bi bi-filter-right"></i>
+                      </button>
+                    </div>
+                    <div class="card-body card-allocation-body">
+                      <div class="card-allocation-summary">
+                        <div>
+                          <span>Total allocated</span><strong>₱2.78M</strong>
+                        </div>
+                        <div>
+                          <span>Top municipality</span><strong>Quezon</strong>
+                        </div>
+                        <div>
+                          <span>Municipalities covered</span><strong>8</strong>
+                        </div>
+                      </div>
+                      <div
+                        class="card-allocation-chart"
+                        id="allocatedMunicipalityChartLegacy"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-6">
+              <div
+                class="card card-app-right-main-content card-allocation-breakdown municipality-allocation-card h-100"
+              >
+                <div class="card-header card-allocation-header">
+                  <div class="card-allocation-title-group">
+                    <div class="card-allocation-title-row">
+                      <span class="card-allocation-icon"
+                        ><i class="bi bi-geo-alt-fill"></i
+                      ></span>
+                      <h5>Allocated Training Funds by Municipality</h5>
+                      <button
+                        type="button"
+                        class="btn btn-toggle-info"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Shows the total training funds allocated to each beneficiary municipality."
+                        aria-label="About allocated training funds by municipality"
+                      >
+                        <i class="bi bi-exclamation-circle"></i>
+                      </button>
+                    </div>
+                    <span
+                      >Municipality allocation comparison across the covered
+                      provinces.</span
+                    >
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-modal"
+                    data-bs-toggle="modal"
+                    data-bs-target="#dashboardReportModal"
+                    data-report-key="municipalityBudget"
+                    title="View municipality allocation details"
+                    aria-label="View municipality allocation details"
+                  >
+                    <i class="bi bi-filter-right"></i>
+                  </button>
+                </div>
+                <div class="card-body card-allocation-body">
+                  <div class="card-allocation-summary">
+                    <div>
+                      <span>Total allocated</span><strong>₱2.78M</strong>
+                    </div>
+                    <div>
+                      <span>Top municipality</span><strong>Quezon</strong>
+                    </div>
+                    <div>
+                      <span>Municipalities covered</span><strong>8</strong>
+                    </div>
+                  </div>
+                  <div
+                    class="card-allocation-chart"
+                    id="allocatedMunicipalityChart"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- fourth row -->
+          <!-- Beneficiary card grows from full width to a compact dashboard column. -->
+          <div class="row fourth-row g-4">
             <!-- Total Gender per youth, adult, senior -->
             <div class="col-12 col-md-4 col-lg-4">
               <div class="card card-beneficiary">
@@ -1204,130 +1389,6 @@
                     class="card-chart-beneficiary w-100"
                     id="beneficiaryGroupChart"
                   ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- fourth row -->
-          <!-- Province and municipality allocation report. -->
-          <div class="row fourth-row g-4">
-            <div class="col-12 col-xl-6">
-              <div class="row g-4">
-                <!-- Allocated training funds by province -->
-                <div class="col-12">
-                  <div class="card card-app-right-main-content card-allocation-breakdown province-allocation-card h-100">
-                    <div class="card-header card-allocation-header">
-                      <div class="card-allocation-title-group">
-                        <div class="card-allocation-title-row">
-                          <span class="card-allocation-icon"><i class="bi bi-map-fill"></i></span>
-                          <h5>Allocated Training Funds by Province</h5>
-                          <button
-                            type="button"
-                            class="btn btn-toggle-info"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Shows the total training funds allocated to each province."
-                            aria-label="About allocated training funds by province"
-                          ><i class="bi bi-exclamation-circle"></i></button>
-                        </div>
-                        <span>Provincial allocation overview for the current reporting period.</span>
-                      </div>
-                      <button
-                        type="button"
-                        class="btn btn-modal"
-                        data-bs-toggle="modal"
-                        data-bs-target="#dashboardReportModal"
-                        data-report-key="provinceBudget"
-                        title="View province allocation details"
-                        aria-label="View province allocation details"
-                      ><i class="bi bi-filter-right"></i></button>
-                    </div>
-                    <div class="card-body card-allocation-body">
-                      <div class="card-allocation-summary">
-                        <div><span>Total allocated</span><strong>₱2.78M</strong></div>
-                        <div><span>Highest allocation</span><strong>Quezon</strong></div>
-                        <div><span>Provinces covered</span><strong>3</strong></div>
-                      </div>
-                      <div class="card-allocation-chart" id="allocatedProvinceChart"></div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Moved to the full-width sixth dashboard row. -->
-                <div class="d-none">
-                  <div class="card card-app-right-main-content card-allocation-breakdown h-100">
-                    <div class="card-header card-allocation-header">
-                      <div class="card-allocation-title-group">
-                        <div class="card-allocation-title-row">
-                          <span class="card-allocation-icon"><i class="bi bi-geo-alt-fill"></i></span>
-                          <h5>Allocated Training Funds by Municipality</h5>
-                          <button
-                            type="button"
-                            class="btn btn-toggle-info"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Shows the total training funds allocated to each beneficiary municipality."
-                            aria-label="About allocated training funds by municipality"
-                          ><i class="bi bi-exclamation-circle"></i></button>
-                        </div>
-                        <span>Municipality allocation comparison across the covered provinces.</span>
-                      </div>
-                      <button
-                        type="button"
-                        class="btn btn-modal"
-                        data-bs-toggle="modal"
-                        data-bs-target="#dashboardReportModal"
-                        data-report-key="municipalityBudget"
-                        title="View municipality allocation details"
-                        aria-label="View municipality allocation details"
-                      ><i class="bi bi-filter-right"></i></button>
-                    </div>
-                    <div class="card-body card-allocation-body">
-                      <div class="card-allocation-summary">
-                        <div><span>Total allocated</span><strong>₱2.78M</strong></div>
-                        <div><span>Top municipality</span><strong>Quezon</strong></div>
-                        <div><span>Municipalities covered</span><strong>8</strong></div>
-                      </div>
-                      <div class="card-allocation-chart" id="allocatedMunicipalityChartLegacy"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-xl-6">
-              <div class="card card-app-right-main-content card-allocation-breakdown municipality-allocation-card h-100">
-                <div class="card-header card-allocation-header">
-                  <div class="card-allocation-title-group">
-                    <div class="card-allocation-title-row">
-                      <span class="card-allocation-icon"><i class="bi bi-geo-alt-fill"></i></span>
-                      <h5>Allocated Training Funds by Municipality</h5>
-                      <button
-                        type="button"
-                        class="btn btn-toggle-info"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        title="Shows the total training funds allocated to each beneficiary municipality."
-                        aria-label="About allocated training funds by municipality"
-                      ><i class="bi bi-exclamation-circle"></i></button>
-                    </div>
-                    <span>Municipality allocation comparison across the covered provinces.</span>
-                  </div>
-                  <button
-                    type="button"
-                    class="btn btn-modal"
-                    data-bs-toggle="modal"
-                    data-bs-target="#dashboardReportModal"
-                    data-report-key="municipalityBudget"
-                    title="View municipality allocation details"
-                    aria-label="View municipality allocation details"
-                  ><i class="bi bi-filter-right"></i></button>
-                </div>
-                <div class="card-body card-allocation-body">
-                  <div class="card-allocation-summary">
-                    <div><span>Total allocated</span><strong>₱2.78M</strong></div>
-                    <div><span>Top municipality</span><strong>Quezon</strong></div>
-                    <div><span>Municipalities covered</span><strong>8</strong></div>
-                  </div>
-                  <div class="card-allocation-chart" id="allocatedMunicipalityChart"></div>
                 </div>
               </div>
             </div>
@@ -1542,35 +1603,123 @@
               <div class="card training-insights-card h-100">
                 <div class="card-header training-insights-header">
                   <div class="training-insights-heading">
-                    <span class="training-insights-icon"><i class="bi bi-stars"></i></span>
+                    <span class="training-insights-icon"
+                      ><i class="bi bi-stars"></i
+                    ></span>
                     <div>
-                      <span class="training-insights-eyebrow">Community feedback</span>
+                      <span class="training-insights-eyebrow"
+                        >Community feedback</span
+                      >
                       <h5>Training Highlights &amp; Farmer Recommendations</h5>
-                      <p>Key takeaways and requests gathered from the latest farmer training sessions.</p>
+                      <p>
+                        Key takeaways and requests gathered from the latest
+                        farmer training sessions.
+                      </p>
                     </div>
                   </div>
                 </div>
                 <div class="card-body training-insights-body">
                   <div class="training-insights-grid">
                     <section class="training-insights-section">
-                      <div class="training-insights-section-title"><i class="bi bi-lightning-charge-fill"></i><h6>Highlights</h6></div>
+                      <div class="training-insights-section-title">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <h6>Highlights</h6>
+                      </div>
                       <ul class="training-insights-list">
-                        <li><span class="insight-bullet insight-bullet-success"></span><div><strong>Practical sessions encouraged sharing</strong><p>Participants exchanged farm experiences and local solutions during group activities.</p></div></li>
-                        <li><span class="insight-bullet insight-bullet-info"></span><div><strong>Demonstrations made lessons clearer</strong><p>Live examples on feeding, budgeting, and record keeping were easier for farmers to follow.</p></div></li>
-                        <li><span class="insight-bullet insight-bullet-warning"></span><div><strong>Farm planning was a priority topic</strong><p>Many participants asked how to plan expenses, monitor production, and prepare for seasonal needs.</p></div></li>
+                        <li>
+                          <span
+                            class="insight-bullet insight-bullet-success"
+                          ></span>
+                          <div>
+                            <strong
+                              >Practical sessions encouraged sharing</strong
+                            >
+                            <p>
+                              Participants exchanged farm experiences and local
+                              solutions during group activities.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <span
+                            class="insight-bullet insight-bullet-info"
+                          ></span>
+                          <div>
+                            <strong>Demonstrations made lessons clearer</strong>
+                            <p>
+                              Live examples on feeding, budgeting, and record
+                              keeping were easier for farmers to follow.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <span
+                            class="insight-bullet insight-bullet-warning"
+                          ></span>
+                          <div>
+                            <strong>Farm planning was a priority topic</strong>
+                            <p>
+                              Many participants asked how to plan expenses,
+                              monitor production, and prepare for seasonal
+                              needs.
+                            </p>
+                          </div>
+                        </li>
                       </ul>
                     </section>
-                    <section class="training-insights-section training-recommendations-section">
-                      <div class="training-insights-section-title"><i class="bi bi-chat-heart-fill"></i><h6>Farmer Recommendations</h6></div>
+                    <section
+                      class="training-insights-section training-recommendations-section"
+                    >
+                      <div class="training-insights-section-title">
+                        <i class="bi bi-chat-heart-fill"></i>
+                        <h6>Farmer Recommendations</h6>
+                      </div>
                       <ul class="training-insights-list">
-                        <li><span class="recommendation-number">1</span><div><strong>Extend practical activities</strong><p>Farmers requested more time for hands-on exercises, especially on feed preparation and farm records.</p></div></li>
-                        <li><span class="recommendation-number">2</span><div><strong>Share simple reference materials</strong><p>Provide easy-to-read guides, sample forms, and checklists that can be used at home or on the farm.</p></div></li>
-                        <li><span class="recommendation-number">3</span><div><strong>Hold barangay-level follow-ups</strong><p>Conduct short follow-up meetings so farmers can raise concerns after applying the training lessons.</p></div></li>
+                        <li>
+                          <span class="recommendation-number">1</span>
+                          <div>
+                            <strong>Extend practical activities</strong>
+                            <p>
+                              Farmers requested more time for hands-on
+                              exercises, especially on feed preparation and farm
+                              records.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <span class="recommendation-number">2</span>
+                          <div>
+                            <strong>Share simple reference materials</strong>
+                            <p>
+                              Provide easy-to-read guides, sample forms, and
+                              checklists that can be used at home or on the
+                              farm.
+                            </p>
+                          </div>
+                        </li>
+                        <li>
+                          <span class="recommendation-number">3</span>
+                          <div>
+                            <strong>Hold barangay-level follow-ups</strong>
+                            <p>
+                              Conduct short follow-up meetings so farmers can
+                              raise concerns after applying the training
+                              lessons.
+                            </p>
+                          </div>
+                        </li>
                       </ul>
                     </section>
                   </div>
                 </div>
-                <div class="card-footer training-insights-footer"><span><i class="bi bi-clock-history"></i> Updated from the latest training feedback</span><a href="#" class="training-insights-link">Read all feedback <i class="bi bi-arrow-right"></i></a></div>
+                <div class="card-footer training-insights-footer">
+                  <span
+                    ><i class="bi bi-clock-history"></i> Updated from the latest
+                    training feedback</span
+                  ><a href="#" class="training-insights-link"
+                    >Read all feedback <i class="bi bi-arrow-right"></i
+                  ></a>
+                </div>
               </div>
             </div>
           </div>

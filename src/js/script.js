@@ -60,6 +60,210 @@ document.addEventListener('DOMContentLoaded', function () {
   const notificationDetailModal = document.getElementById(
     'notificationDetailModal'
   );
+
+  // ============================================================
+  // DASHBOARD REPORT MODAL
+  // One reusable DataTable is populated from the summary control selected.
+  // Replace these sample rows with reporting data from the database as needed.
+  // ============================================================
+  const dashboardReports = {
+    activities: {
+      title: 'Total Capacity-Building Activities Conducted',
+      description: 'Detailed capacity-building activities conducted from January to December.',
+      icon: 'bi-mortarboard-fill',
+      total: '32 activities',
+      headers: ['Activity', 'District', 'Municipality', 'Schedule', 'Participants', 'Status'],
+      rows: [
+        ['Sustainable Rice Production', 'District I', 'Santa Maria', '15 Jan 2026', '28', 'Completed'],
+        ['Organic Vegetable Farming', 'District II', 'San Isidro', '12 Feb 2026', '24', 'Completed'],
+        ['Livestock Health Management', 'District III', 'San Miguel', '18 Mar 2026', '20', 'Completed'],
+        ['Post-Harvest Handling', 'District IV', 'San Rafael', '22 Apr 2026', '26', 'Completed'],
+        ['Farm Enterprise Planning', 'District V', 'San Jose', '09 May 2026', '22', 'Completed'],
+      ],
+    },
+    participants: {
+      title: 'Total Participants',
+      description: 'Farmer participants trained across all capacity-building activities.',
+      icon: 'bi-people-fill',
+      total: '120 participants',
+      headers: ['Participant', 'Sex', 'Age Group', 'District', 'Activity', 'Attendance'],
+      rows: [
+        ['Maria Santos', 'Female', 'Adult', 'District I', 'Sustainable Rice Production', 'Present'],
+        ['Juan Dela Cruz', 'Male', 'Adult', 'District II', 'Organic Vegetable Farming', 'Present'],
+        ['Ana Reyes', 'Female', 'Youth', 'District III', 'Livestock Health Management', 'Present'],
+        ['Pedro Garcia', 'Male', 'Senior', 'District IV', 'Post-Harvest Handling', 'Present'],
+        ['Liza Mendoza', 'Female', 'Adult', 'District V', 'Farm Enterprise Planning', 'Present'],
+      ],
+    },
+    fca: {
+      title: 'Total FCA',
+      description: 'Farmer Cooperative and Association records uploaded across municipalities.',
+      icon: 'bi-diagram-3-fill',
+      total: '37 FCA records',
+      headers: ['FCA Name', 'District', 'Municipality', 'Members', 'Commodity', 'Record Status'],
+      rows: [
+        ['Santa Maria Farmers Association', 'District I', 'Santa Maria', '42', 'Rice', 'Verified'],
+        ['San Isidro Growers Cooperative', 'District II', 'San Isidro', '38', 'Vegetables', 'Verified'],
+        ['San Miguel Livestock Raisers', 'District III', 'San Miguel', '31', 'Livestock', 'Pending review'],
+        ['San Rafael Agri Producers', 'District IV', 'San Rafael', '47', 'Corn', 'Verified'],
+        ['San Jose Organic Farmers', 'District V', 'San Jose', '29', 'Organic crops', 'Verified'],
+      ],
+    },
+    budget: {
+      title: 'Allocated Budget by District',
+      description: 'Training budget allocation by beneficiary district.',
+      icon: 'bi-cash-coin',
+      total: '8 districts',
+      headers: ['District', 'Allocated Budget', 'Released', 'Balance', 'Activities', 'Utilization'],
+      rows: [
+        ['District I', '₱180,000', '₱125,000', '₱55,000', '5', '69%'],
+        ['District II', '₱155,000', '₱110,000', '₱45,000', '4', '71%'],
+        ['District III', '₱140,000', '₱84,000', '₱56,000', '4', '60%'],
+        ['District IV', '₱125,000', '₱88,000', '₱37,000', '3', '70%'],
+        ['District V', '₱110,000', '₱66,000', '₱44,000', '3', '60%'],
+        ['District VI', '₱95,000', '₱51,000', '₱44,000', '2', '54%'],
+        ['District VII', '₱80,000', '₱40,000', '₱40,000', '2', '50%'],
+        ['District VIII', '₱65,000', '₱20,000', '₱45,000', '1', '31%'],
+      ],
+    },
+    ageSex: {
+      title: 'Beneficiaries by Age and Sex',
+      description: 'Beneficiary distribution by age group and sex.',
+      icon: 'bi-bar-chart-fill',
+      total: '120 beneficiaries',
+      headers: ['Age Group', 'Male', 'Female', 'Total', 'Share'],
+      rows: [
+        ['Youth (18–30)', '18', '22', '40', '33%'],
+        ['Adult (31–59)', '35', '31', '66', '55%'],
+        ['Senior (60+)', '12', '2', '14', '12%'],
+      ],
+    },
+    sex: {
+      title: 'Beneficiaries by Sex',
+      description: 'Beneficiary distribution by sex across all districts.',
+      icon: 'bi-pie-chart-fill',
+      total: '120 beneficiaries',
+      headers: ['Sex', 'Beneficiaries', 'Share', 'Primary District', 'Trend'],
+      rows: [
+        ['Male', '65', '54%', 'District II', 'Increasing'],
+        ['Female', '55', '46%', 'District I', 'Increasing'],
+      ],
+    },
+    groups: {
+      title: 'Beneficiary Groups',
+      description: 'Beneficiary distribution across priority groups.',
+      icon: 'bi-people-fill',
+      total: '120 beneficiaries',
+      headers: ['Beneficiary Group', 'Beneficiaries', 'Share', 'District Coverage', 'Support Focus'],
+      rows: [
+        ['4Ps', '48', '40%', '8 districts', 'Livelihood'],
+        ['Indigenous Peoples', '30', '25%', '5 districts', 'Inclusive training'],
+        ['Persons with Disabilities', '18', '15%', '4 districts', 'Accessible learning'],
+        ['Senior Citizens', '24', '20%', '6 districts', 'Farm support'],
+      ],
+    },
+  };
+
+  const dashboardReportModal = document.getElementById('dashboardReportModal');
+  const dashboardReportTable = document.getElementById('dashboardReportTable');
+  let dashboardReportDataTable;
+
+  if (dashboardReportModal && dashboardReportTable && typeof DataTable !== 'undefined') {
+    dashboardReportModal.addEventListener('show.bs.modal', (event) => {
+      const reportKey = event.relatedTarget?.dataset.reportKey;
+      const report = dashboardReports[reportKey];
+      if (!report) return;
+
+      document.getElementById('dashboardReportModalTitle').textContent = report.title;
+      document.getElementById('dashboardReportDescription').textContent = report.description;
+      document.getElementById('dashboardReportTotal').textContent = report.total;
+      document.getElementById('dashboardReportIcon').className = `bi ${report.icon}`;
+
+      if (dashboardReportDataTable) dashboardReportDataTable.destroy();
+      dashboardReportTable.replaceChildren();
+
+      const tableHead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      report.headers.forEach((header) => {
+        const cell = document.createElement('th');
+        cell.textContent = header;
+        headerRow.appendChild(cell);
+      });
+      tableHead.appendChild(headerRow);
+
+      const tableBody = document.createElement('tbody');
+      report.rows.forEach((row) => {
+        const tableRow = document.createElement('tr');
+        row.forEach((value) => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          tableRow.appendChild(cell);
+        });
+        tableBody.appendChild(tableRow);
+      });
+      dashboardReportTable.append(tableHead, tableBody);
+
+      dashboardReportDataTable = new DataTable(dashboardReportTable, {
+        layout: {
+          top: 'pageLength',
+          topStart: {
+            buttons: [
+              {
+                extend: 'excelHtml5',
+                text: '<i class="bi bi-file-earmark-excel-fill" aria-hidden="true"></i><span>Export Excel</span>',
+                titleAttr: 'Export this report to Excel',
+                className: 'dashboard-report-excel',
+              },
+            ],
+          },
+          topEnd: 'search',
+          bottomStart: ['pageLength', 'info'],
+          bottomEnd: 'paging',
+        },
+        pageLength: 5,
+        scrollX: true,
+        scrollY: '42dvh',
+        scrollCollapse: true,
+        lengthMenu: [
+          [5, 10, 50, 100, 500, 1000, -1],
+          [5, 10, 50, 100, 500, 1000, 'All'],
+        ],
+        language: {
+          search: 'Search records:',
+          searchPlaceholder: 'Type to search',
+          emptyTable: 'No records available for this report.',
+        },
+      });
+
+      const reportTableContainer = dashboardReportTable.closest('.dt-container');
+      const pageLengthControls = reportTableContainer?.querySelectorAll('.dt-length');
+      const topPageLength = pageLengthControls?.[0];
+
+      if (topPageLength) {
+        const pageLengthRow = topPageLength.closest('.dt-layout-row');
+        const pageLengthCell = topPageLength.closest('.dt-layout-cell');
+        const toolbarRow = [...reportTableContainer.querySelectorAll('.dt-layout-row')]
+          .find((row) => row.querySelector('.dt-buttons'));
+
+        if (pageLengthCell && toolbarRow && pageLengthRow !== toolbarRow) {
+          topPageLength.classList.add('dashboard-report-length-top');
+          toolbarRow.appendChild(pageLengthCell);
+          pageLengthRow?.remove();
+        }
+      }
+    });
+  }
+
+  if (dashboardReportModal) {
+    dashboardReportModal.addEventListener('show.bs.modal', () => {
+      document.body.classList.add('dashboard-report-modal-open');
+    });
+
+    dashboardReportModal.addEventListener('hidden.bs.modal', () => {
+      document.body.classList.remove('dashboard-report-modal-open');
+    });
+  }
+
   const updateUnreadNotificationCount = () => {
     const unreadCount = document.querySelectorAll(
       '.notification-menu-item.is-unread'
@@ -887,7 +1091,7 @@ document.addEventListener('DOMContentLoaded', function () {
       chart: {
         type: 'donut',
         height: 280,
-        toolbar: { show: true },
+        toolbar: { show: false },
         parentHeightOffset: 0,
         redrawOnParentResize: true,
         fontFamily: 'Inter, sans-serif',

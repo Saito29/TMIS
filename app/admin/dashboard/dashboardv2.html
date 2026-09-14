@@ -600,6 +600,7 @@
                   >3</span
                 >
               </button>
+              <!-- Notification Dropdown -->
               <div
                 class="dropdown-menu dropdown-menu-end notification-menu"
                 aria-labelledby="notificationDropdown"
@@ -607,11 +608,17 @@
                 <div class="notification-menu-header">
                   <div>
                     <span class="notification-menu-title">Notifications</span>
-                    <span class="notification-menu-subtitle">3 unread updates</span>
+                    <span class="notification-menu-subtitle"
+                      >3 unread updates</span
+                    >
                   </div>
                   <div class="notification-menu-actions">
-                    <button type="button" class="notification-mark-read">Mark all read</button>
-                    <button type="button" class="notification-clear-all">Clear all</button>
+                    <button type="button" class="notification-mark-read">
+                      Mark all read
+                    </button>
+                    <button type="button" class="notification-clear-all">
+                      Clear all
+                    </button>
                   </div>
                 </div>
                 <div class="notification-menu-list">
@@ -626,13 +633,23 @@
                     data-notification-description="The Advanced Data Analysis training proposal submitted by John Doe is ready for your review. Your feedback is required before it can proceed to approval."
                     data-notification-action="Review proposal"
                   >
-                    <span class="notification-item-icon notification-item-icon--approval"><i class="bi bi-clipboard2-check"></i></span>
+                    <span
+                      class="notification-item-icon notification-item-icon--approval"
+                      ><i class="bi bi-clipboard2-check"></i
+                    ></span>
                     <span class="notification-item-copy">
-                      <span class="notification-item-title">Training proposal review needed</span>
-                      <span class="notification-item-summary">Advanced Data Analysis needs your feedback.</span>
+                      <span class="notification-item-title"
+                        >Training proposal review needed</span
+                      >
+                      <span class="notification-item-summary"
+                        >Advanced Data Analysis needs your feedback.</span
+                      >
                       <span class="notification-item-time">Today, 9:20 PM</span>
                     </span>
-                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                    <span
+                      class="notification-unread-dot"
+                      aria-label="Unread"
+                    ></span>
                   </button>
                   <button
                     type="button"
@@ -645,13 +662,23 @@
                     data-notification-description="The beneficiary district allocation records have been updated. Open this notification to review the updated district entries."
                     data-notification-action="View allocation records"
                   >
-                    <span class="notification-item-icon notification-item-icon--budget"><i class="bi bi-wallet2"></i></span>
+                    <span
+                      class="notification-item-icon notification-item-icon--budget"
+                      ><i class="bi bi-wallet2"></i
+                    ></span>
                     <span class="notification-item-copy">
-                      <span class="notification-item-title">District allocation records updated</span>
-                      <span class="notification-item-summary">Beneficiary district entries are ready to review.</span>
+                      <span class="notification-item-title"
+                        >District allocation records updated</span
+                      >
+                      <span class="notification-item-summary"
+                        >Beneficiary district entries are ready to review.</span
+                      >
                       <span class="notification-item-time">Today, 2:45 PM</span>
                     </span>
-                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                    <span
+                      class="notification-unread-dot"
+                      aria-label="Unread"
+                    ></span>
                   </button>
                   <button
                     type="button"
@@ -664,16 +691,30 @@
                     data-notification-description="A participant registration has been approved and is now included in the beneficiary record for its assigned district."
                     data-notification-action="View participant"
                   >
-                    <span class="notification-item-icon notification-item-icon--participant"><i class="bi bi-person-check"></i></span>
+                    <span
+                      class="notification-item-icon notification-item-icon--participant"
+                      ><i class="bi bi-person-check"></i
+                    ></span>
                     <span class="notification-item-copy">
-                      <span class="notification-item-title">Participant registration approved</span>
-                      <span class="notification-item-summary">A new beneficiary record is now active.</span>
-                      <span class="notification-item-time">Yesterday, 4:10 PM</span>
+                      <span class="notification-item-title"
+                        >Participant registration approved</span
+                      >
+                      <span class="notification-item-summary"
+                        >A new beneficiary record is now active.</span
+                      >
+                      <span class="notification-item-time"
+                        >Yesterday, 4:10 PM</span
+                      >
                     </span>
-                    <span class="notification-unread-dot" aria-label="Unread"></span>
+                    <span
+                      class="notification-unread-dot"
+                      aria-label="Unread"
+                    ></span>
                   </button>
                 </div>
-                <button type="button" class="notification-view-all">View all notifications <i class="bi bi-arrow-right"></i></button>
+                <button type="button" class="notification-view-all">
+                  View all notifications <i class="bi bi-arrow-right"></i>
+                </button>
               </div>
             </div>
 
@@ -995,7 +1036,9 @@
                       <i class="bi bi-geo"></i>
                     </div>
                     <div class="card-header-title">
-                      <h5 class="card-header-text">Allocated Training Budget by District</h5>
+                      <h5 class="card-header-text">
+                        Allocated Training Budget by District
+                      </h5>
                     </div>
                     <div class="card-tools">
                       <!-- card-tools -->
@@ -1020,14 +1063,21 @@
                       <span class="card-chart-eyebrow"
                         >Beneficiary budget by district</span
                       >
-                      <span class="card-chart-period">8 beneficiary districts</span>
+                      <span class="card-chart-period"
+                        >8 beneficiary districts</span
+                      >
                     </div>
                   </div>
                   <div class="card-chart-helper">
                     <i class="bi bi-cursor-fill"></i>
-                    <span>Hover a district to see its total allocated amount</span>
+                    <span
+                      >Hover a district to see its total allocated amount</span
+                    >
                   </div>
-                  <div class="card-chart" id="totalAllocatedDistrictChart"></div>
+                  <div
+                    class="card-chart"
+                    id="totalAllocatedDistrictChart"
+                  ></div>
                 </div>
                 <div class="card-footer">
                   <span class="card-footer-context"
@@ -2089,23 +2139,46 @@
       aria-labelledby="notificationDetailModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered notification-detail-dialog">
+      <div
+        class="modal-dialog modal-dialog-centered modal-dialog-scrollable notification-detail-dialog"
+      >
         <div class="modal-content notification-detail-modal">
           <div class="modal-header notification-detail-header">
-            <span class="notification-detail-icon"><i class="bi bi-bell-fill"></i></span>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <span class="notification-detail-icon"
+              ><i class="bi bi-bell-fill"></i
+            ></span>
+            <button
+              type="button"
+              class="btn btn-modal"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ><i class="bi bi-x-octagon"></i></button>
           </div>
           <div class="modal-body notification-detail-body">
             <div class="notification-detail-meta">
               <span id="notificationDetailType">Approval required</span>
               <time id="notificationDetailTime">Today, 9:20 PM</time>
             </div>
-            <h5 id="notificationDetailModalLabel">Training proposal review needed</h5>
+            <h5 id="notificationDetailModalLabel">
+              Training proposal review needed
+            </h5>
             <p id="notificationDetailDescription"></p>
           </div>
           <div class="modal-footer notification-detail-footer">
-            <button type="button" class="btn notification-detail-dismiss" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn notification-detail-action" id="notificationDetailAction">Review proposal</button>
+            <button
+              type="button"
+              class="btn notification-detail-dismiss"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn notification-detail-action"
+              id="notificationDetailAction"
+            >
+              Review proposal
+            </button>
           </div>
         </div>
       </div>

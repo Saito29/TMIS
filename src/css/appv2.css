@@ -470,8 +470,8 @@ body {
 
 .notification-detail-dismiss:hover {
   color: #f7f9f7;
-  background-color: #43a047;
-  box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.12);
+  background-color: #1976d2;
+  box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.20);
 }
 
 .notification-detail-action {

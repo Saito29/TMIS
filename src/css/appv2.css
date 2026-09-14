@@ -5,6 +5,34 @@ body {
   background: #f7f5f7;
   overflow-x: hidden;
   color: #263238;
+
+  /* Firefox scrollbar styling. WebKit-based browsers are styled below. */
+  scrollbar-width: thin;
+  scrollbar-color: #9ab79c #eef3ee;
+}
+
+/* Slim, rounded scrollbars that match the dashboard palette. */
+body::-webkit-scrollbar,
+.notification-menu-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track,
+.notification-menu-list::-webkit-scrollbar-track {
+  background: #eef3ee;
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb,
+.notification-menu-list::-webkit-scrollbar-thumb {
+  background: #9ab79c;
+  border: 3px solid #eef3ee;
+  border-radius: 999px;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+.notification-menu-list::-webkit-scrollbar-thumb:hover {
+  background: #4f8a54;
 }
 
 /* Navigation bar */
@@ -17,11 +45,59 @@ body {
 
 .app-wrapper .app-header .app-header-main {
   width: 100%;
-  max-width: 140rem;
   margin: 0 auto;
   padding: 12px 20px;
   gap: 16px;
   position: relative;
+}
+
+/* Compact the header below sm so its controls cannot create horizontal overflow. */
+@media (max-width: 575.98px) {
+  .app-wrapper .app-header .app-header-main {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .app-wrapper .app-header .app-header-main .app-mobile-toggle {
+    margin-right: 8px;
+  }
+
+  .app-wrapper .app-header .app-header-main .app-noti-profile {
+    gap: 8px;
+  }
+
+  .app-wrapper .app-header .app-header-main .app-profile .profile-meta {
+    display: none;
+  }
+
+  .app-wrapper .app-header .app-header-main .app-profile .profile-button {
+    gap: 0;
+  }
+
+  /* Keep the notification panel inside the phone viewport and scroll its items when needed. */
+  .app-notification .notification-menu.show {
+    position: fixed !important;
+    top: 76px !important;
+    right: 12px !important;
+    left: 12px !important;
+    width: auto;
+    /* Keep half the phone viewport clear for the page behind the dropdown. */
+    max-height: 50dvh;
+    display: flex;
+    flex-direction: column;
+    transform: none !important;
+  }
+
+  .app-notification .notification-menu-list {
+    max-height: none;
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+
+  .app-notification .notification-menu-header,
+  .app-notification .notification-view-all {
+    flex-shrink: 0;
+  }
 }
 
 /* App logo and TMIS */
@@ -200,11 +276,20 @@ body {
   .app-notification
   .notification-btn
   .notification-count {
+  position: absolute;
+  top: -3px !important;
+  right: -3px;
+  left: auto !important;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  line-height: 18px;
+  transform: none !important;
   background-color: #185e20;
   color: #e8f5e9;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
-  box-shadow: 0 2px 6px rgba(46, 112, 50, 0.25);
+  box-shadow: 0 2px 6px rgba(24, 94, 32, 0.28);
 }
 
 /* Modern notification dropdown and selected-notification dialog. */
@@ -293,6 +378,9 @@ body {
 .notification-menu-list {
   max-height: 360px;
   overflow-y: auto;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: #9ab79c #eef3ee;
 }
 .notification-empty-state {
   margin: 0;

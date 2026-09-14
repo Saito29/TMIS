@@ -76,8 +76,9 @@
             >
               <i class="bi bi-list"></i>
             </button>
+            <!-- Bootstrap hides the logo below sm to keep the mobile header compact. -->
             <div
-              class="app-logo d-flex align-items-center justify-content-start"
+              class="app-logo d-none d-sm-flex align-items-center justify-content-start"
             >
               <a href="dashboardv2.html" class="text-decoration-none">
                 <img
@@ -583,7 +584,7 @@
 
           <!-- Notification & User profile -->
           <div class="app-noti-profile d-flex align-items-center">
-            <!-- notification -->
+            <!-- Notification menu stays end-aligned so its wide content cannot enlarge the mobile layout. -->
             <div class="app-notification dropdown">
               <button
                 class="notification-btn position-relative"

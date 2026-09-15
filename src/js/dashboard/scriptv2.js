@@ -1,8 +1,4 @@
-import { useEffect } from 'react';
-import ApexCharts from 'apexcharts';
-
-export function useDashboard() {
-  useEffect(() => {
+document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   // MOBILE NAVIGATION CONFIGURATION
   // ============================================================
@@ -1480,5 +1476,4 @@ export function useDashboard() {
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
   );
 
-  }, []);
-}
+});

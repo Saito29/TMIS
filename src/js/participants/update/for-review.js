@@ -14,6 +14,42 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: 'TRN-2026-011', title: 'Livestock Health Management', type: 'Technical Training', date: '2026-11-06', location: 'Pagbilao Agri Center', municipality: 'Pagbilao', province: 'Quezon', trainer: 'Dr. Paulo Torres', participants: 31, submitted: '2026-09-18', status: 'For Review' },
     { id: 'TRN-2026-012', title: 'Community-Based Seed Banking', type: 'Skills Training', date: '2026-11-10', location: 'Atimonan Multi-purpose Hall', municipality: 'Atimonan', province: 'Quezon', trainer: 'Ms. Grace Aquino', participants: 36, submitted: '2026-09-18', status: 'For Review' }
   ];
+  // Deterministic demo records keep the full table usable without a live API.
+  // They deliberately span types, years, locations, and trainers for filter testing.
+  const demoTopics = [
+    'Rice Production', 'Vegetable Farming', 'Financial Literacy', 'Basic Bookkeeping',
+    'Enterprise Development', 'Coconut Processing', 'Poultry Production', 'Farm Machinery Safety',
+    'Post-Harvest Management', 'Digital Marketing', 'Organic Fertilizer Making', 'Cooperative Leadership'
+  ];
+  const demoTypes = ['Technical Training', 'Livelihood Training', 'Financial Literacy', 'Bookkeeping', 'Entrepreneurship', 'Agricultural Training', 'Capacity Building', 'Skills Training'];
+  const demoSites = [
+    ['Baybay City Agriculture Office', 'Baybay City', 'Leyte'], ['Davao del Sur Provincial Training Center', 'Digos City', 'Davao del Sur'],
+    ['Bohol Farmers Training Hall', 'Carmen', 'Bohol'], ['Nueva Ecija Agri-Park', 'Muñoz', 'Nueva Ecija'],
+    ['Bukidnon State University Extension Hall', 'Malaybalay City', 'Bukidnon'], ['Iloilo Provincial Capitol Training Room', 'Pototan', 'Iloilo'],
+    ['Benguet Agri Center', 'La Trinidad', 'Benguet'], ['Isabela Multi-Purpose Hall', 'Ilagan City', 'Isabela'],
+    ['Camarines Sur Livelihood Center', 'Pili', 'Camarines Sur'], ['Negros Occidental Farmers Hub', 'Kabankalan City', 'Negros Occidental'],
+    ['North Cotabato Training Pavilion', 'Kidapawan City', 'Cotabato'], ['Palawan State University Extension Center', 'Puerto Princesa City', 'Palawan']
+  ];
+  const demoTrainers = ['Dr. Liza Manalo', 'Engr. Victor dela Cruz', 'Ms. Aileen Bautista', 'Mr. Jerome Navarro', 'Dr. Celeste Ramos', 'Ms. Rina Mercado', 'Mr. Dennis Valdez', 'Engr. Faith Castillo', 'Ms. Hazel Soriano', 'Dr. Mark Villareal', 'Mr. Paolo Bernardo', 'Ms. Teresa Lacuesta'];
+  for (let index = 13; index <= 120; index += 1) {
+    const offset = index - 13;
+    const year = 2024 + (offset % 3);
+    const month = String((offset * 3 % 12) + 1).padStart(2, '0');
+    const day = String((offset * 7 % 25) + 1).padStart(2, '0');
+    const submittedDay = String(Math.max(1, Number(day) - ((offset % 5) + 1))).padStart(2, '0');
+    const site = demoSites[offset % demoSites.length];
+    records.push({
+      id: `DEMO-TRN-${year}-${String(index).padStart(3, '0')}`,
+      title: `Demo ${demoTopics[offset % demoTopics.length]} Workshop ${Math.floor(offset / demoTopics.length) + 1}`,
+      type: demoTypes[offset % demoTypes.length],
+      date: `${year}-${month}-${day}`,
+      location: site[0], municipality: site[1], province: site[2],
+      trainer: demoTrainers[offset % demoTrainers.length],
+      participants: 18 + ((offset * 7) % 53),
+      submitted: `${year}-${month}-${submittedDay}`,
+      status: 'For Review'
+    });
+  }
   const state = { page: 1, perPage: 10, global: '', type: '', year: '', columns: {}, sorts: [], selectedId: null };
   const $ = (selector, context = document) => context.querySelector(selector);
   const $$ = (selector, context = document) => [...context.querySelectorAll(selector)];

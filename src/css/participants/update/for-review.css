@@ -1935,7 +1935,7 @@ body::-webkit-scrollbar-thumb:hover,
 .review-pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 12px 0; color: #607d8b; font-size: 12px; }.pagination-controls { display: flex; align-items: center; gap: 5px; }.pagination-controls select { width: 70px; min-height: 32px; font-size: 12px; }.pagination-controls button { min-width: 32px; height: 32px; padding: 0 8px; color: #2e7d32; background: #ffffff; border: 1px solid #e0e0e0; border-radius: 7px; font-size: 12px; }.pagination-controls button.active, .pagination-controls button:hover:not(:disabled) { color: #ffffff; background: #2e7d32; border-color: #2e7d32; }.pagination-controls button:disabled { opacity: .45; cursor: not-allowed; }
 
 .review-table-scroll { max-height: 550px; border: 1px solid #e0e0e0; border-radius: 10px; scrollbar-color: #66bb6a #f7f9f7; scrollbar-width: thin; }.review-table-scroll::-webkit-scrollbar { width: 8px; height: 8px; }.review-table-scroll::-webkit-scrollbar-track { background: #f7f9f7; border-radius: 8px; }.review-table-scroll::-webkit-scrollbar-thumb { background: #66bb6a; border-radius: 8px; }.review-table-scroll::-webkit-scrollbar-thumb:hover { background: #2e7d32; }
-.review-data-table { min-width: 1450px; margin: 0; font-size: 12px; }.review-data-table > :not(caption) > * > * { padding: 11px 12px; border-color: #e0e0e0; }.review-data-table thead th { position: sticky; top: 0; z-index: 2; color: #ffffff; background: #2e7d32; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; white-space: nowrap; }.review-data-table tbody tr { transition: background-color .18s ease; }.review-data-table tbody tr:hover { background: #e8f5e9; }.review-data-table tfoot th { position: sticky; bottom: 0; z-index: 1; min-width: 105px; background: #f7f9f7; }.review-data-table tfoot .form-control, .review-data-table tfoot .form-select { min-width: 94px; border-color: #e0e0e0; font-size: 11px; }.review-data-table td { color: #263238; white-space: nowrap; }
+.review-data-table { min-width: 1450px; margin: 0; font-size: 12px; }.review-data-table > :not(caption) > * > * { padding: 11px 12px; border-color: #e0e0e0; }.review-data-table thead th { color: #ffffff; background: #2e7d32; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .02em; white-space: nowrap; }.review-data-table tbody tr { transition: background-color .18s ease; }.review-data-table tbody tr:hover { background: #e8f5e9; }.review-data-table tfoot th { min-width: 105px; background: #f7f9f7; }.review-data-table tfoot .form-control, .review-data-table tfoot .form-select { min-width: 94px; border-color: #e0e0e0; font-size: 11px; }.review-data-table td { color: #263238; white-space: nowrap; }
 .table-row-actions { display: flex; align-items: center; gap: 8px; min-width: 116px; }.table-action-button { display: inline-grid; width: 34px; height: 34px; place-items: center; padding: 0; border: 0; border-radius: 9px; font-size: 14px; transition: transform .18s ease, filter .18s ease, box-shadow .18s ease; }.forward-action { color: #ffffff; background: #2e7d32; }.view-action { color: #1976d2; background: rgba(25,118,210,.10); }.edit-action { color: #8e24aa; background: rgba(142,36,170,.10); }.table-action-button:hover, .table-action-button:focus-visible { filter: brightness(.96); box-shadow: 0 4px 10px rgba(38, 50, 56, .14); transform: translateY(-1px); }.status-badge { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 700; }.status-review { color: #1b5e20; background: #e8f5e9; }.status-approval { color: #fb8c00; background: rgba(251,140,0,.12); }
 .review-table-state { padding: 42px 20px; color: #607d8b; text-align: center; }.review-table-state i { display: block; margin-bottom: 8px; color: #66bb6a; font-size: 28px; }
 
@@ -2034,23 +2034,19 @@ body::-webkit-scrollbar-thumb:hover,
 .pagination-controls button.active,
 .pagination-controls button:hover:not(:disabled) { color: #ffffff; background: #43a047; border-color: #43a047; }
 
-/* Keep the table heading and footer filters visible while records scroll. */
+/* Header and footer stay in normal document flow. */
 .review-data-table thead th {
-  position: sticky;
-  top: 0;
-  z-index: 4;
+  position: static;
 }
 
 .review-data-table tfoot th {
-  position: sticky;
-  bottom: 0;
-  z-index: 3;
+  position: static;
   background: #ffffff;
-  box-shadow: inset 0 1px 0 #e0e0e0, 0 -4px 8px rgba(38, 50, 56, 0.04);
+  box-shadow: inset 0 1px 0 #e0e0e0;
 }
 
 .sortable-column { cursor: pointer; user-select: none; }
-.sortable-column:focus { position: sticky; outline: 3px solid #66bb6a; outline-offset: -3px; }
+.sortable-column:focus { outline: 3px solid #66bb6a; outline-offset: -3px; }
 .sortable-column i { margin-left: 5px; color: #e8f5e9; font-size: 11px; }
 .sortable-column.is-sorted { background: #2e7d32; }
 .sortable-column.is-sorted i { color: #ffffff; }
@@ -2064,7 +2060,7 @@ body::-webkit-scrollbar-thumb:hover,
 }
 
 .review-data-table thead,
-.review-data-table tfoot { position: sticky; }
+.review-data-table tfoot { position: static; }
 
 .review-data-table thead { top: 0; z-index: 5; }
 .review-data-table tfoot { bottom: 0; z-index: 4; }
@@ -2154,13 +2150,13 @@ body::-webkit-scrollbar-thumb:hover,
 .review-data-table tbody tr { display: table-row; width: auto; }
 
 .review-data-table thead th {
-  position: sticky !important;
+  position: static !important;
   top: 0;
   z-index: 10;
 }
 
 .review-data-table tfoot th {
-  position: sticky !important;
+  position: static !important;
   bottom: 0;
   z-index: 9;
 }
@@ -2297,13 +2293,13 @@ body::-webkit-scrollbar-thumb:hover,
 
 /* The scroll viewport moves the records; these table edges remain visible. */
 .review-data-table thead th {
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 6;
 }
 
 .review-data-table tfoot th {
-  position: sticky;
+  position: static;
   bottom: 0;
   z-index: 5;
 }
@@ -2459,8 +2455,8 @@ body::-webkit-scrollbar-thumb:hover,
 }
 
 .review-data-table { height: max-content; }
-.review-data-table thead th { position: sticky !important; top: 0; z-index: 10; }
-.review-data-table tfoot th { position: sticky !important; bottom: 0; z-index: 9; }
+.review-data-table thead th { position: static !important; top: auto; z-index: auto; }
+.review-data-table tfoot th { position: static !important; bottom: auto; z-index: auto; }
 .review-data-table thead th:first-child,
 .review-data-table tfoot th:first-child { z-index: 11; }
 .edit-action { text-decoration: none; }
@@ -2514,4 +2510,33 @@ body::-webkit-scrollbar-thumb:hover,
   .for-review-table-header { min-height: 112px; padding: 16px 16px 58px; }.table-header-actions { top: auto; right: 16px; bottom: 12px; }.for-review-table-body { padding: 14px; }
   .review-workflow-dialog { width: calc(100vw - 16px); max-width: none; margin: 8px auto; }.review-modal-content { max-height: calc(100dvh - 16px); border-radius: 14px; }.review-modal-header, .review-modal-body, .review-modal-footer { padding-right: 16px; padding-left: 16px; }.review-modal-header { padding-top: 14px; padding-bottom: 14px; }.review-modal-icon { flex-basis: 38px; width: 38px; height: 38px; font-size: 17px; }.review-modal-heading { gap: 10px; }.review-modal-heading h5 { font-size: 16px; }.review-modal-heading p, .review-modal-footer > span { display: none; }.review-modal-footer { justify-content: flex-end; }
 }
+
+/* Full-page table flow: horizontal overflow is allowed, vertical overflow belongs to the page. */
+.review-table-scroll {
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  overscroll-behavior: auto;
+}
+
+.review-data-table {
+  display: table !important;
+  width: 1827px;
+  min-width: 1827px;
+  height: auto !important;
+  table-layout: fixed;
+}
+
+.review-data-table thead { display: table-header-group !important; position: static !important; }
+.review-data-table tbody { display: table-row-group !important; height: auto !important; max-height: none !important; overflow: visible !important; }
+.review-data-table tfoot { display: table-footer-group !important; position: static !important; }
+.review-data-table thead tr,
+.review-data-table tbody tr,
+.review-data-table tfoot tr { display: table-row !important; width: auto !important; table-layout: auto; }
+.review-data-table thead th,
+.review-data-table tbody td,
+.review-data-table tfoot th { display: table-cell !important; }
+.review-data-table thead th,
+.review-data-table tfoot th { position: static !important; top: auto !important; bottom: auto !important; z-index: auto !important; }
 

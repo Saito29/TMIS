@@ -1,197 +1,35 @@
-// FOR REVIEW TABLE MODULE: client-side records, filters, ordering, pagination, workflow actions, and export.
-document.addEventListener('DOMContentLoaded', () => {
-  const records = [
-    { id: 'TRN-2026-001', title: 'Climate-Smart Rice Production', type: 'Technical Training', date: '2026-09-24', location: 'DA Training Center', municipality: 'Lucena City', province: 'Quezon', trainer: 'Dr. Maria Santos', participants: 35, submitted: '2026-09-14', status: 'For Review' },
-    { id: 'TRN-2026-002', title: 'Organic Vegetable Farming', type: 'Technical Training', date: '2026-09-28', location: 'Candelaria Gymnasium', municipality: 'Candelaria', province: 'Quezon', trainer: 'Engr. Ramon Cruz', participants: 28, submitted: '2026-09-15', status: 'For Review' },
-    { id: 'TRN-2026-003', title: 'Farm Financial Management', type: 'Capability Building', date: '2026-10-03', location: 'Tiaong Municipal Hall', municipality: 'Tiaong', province: 'Quezon', trainer: 'Ms. Lea Mendoza', participants: 42, submitted: '2026-09-15', status: 'For Review' },
-    { id: 'TRN-2026-004', title: 'Post-Harvest Handling', type: 'Technical Training', date: '2026-10-08', location: 'Sariaya Agri Hub', municipality: 'Sariaya', province: 'Quezon', trainer: 'Mr. Noel Garcia', participants: 30, submitted: '2026-09-16', status: 'For Review' },
-    { id: 'TRN-2026-005', title: 'Digital Marketing for Farmers', type: 'Capability Building', date: '2026-10-11', location: 'Tayabas Convention Center', municipality: 'Tayabas City', province: 'Quezon', trainer: 'Ms. Karen Lim', participants: 25, submitted: '2026-09-16', status: 'For Review' },
-    { id: 'TRN-2026-006', title: 'Coconut Value-Adding Workshop', type: 'Skills Training', date: '2026-10-15', location: 'Gumaca People’s Hall', municipality: 'Gumaca', province: 'Quezon', trainer: 'Mr. Carlo Reyes', participants: 38, submitted: '2026-09-17', status: 'For Review' },
-    { id: 'TRN-2026-007', title: 'Integrated Pest Management', type: 'Technical Training', date: '2026-10-18', location: 'Mauban Civic Center', municipality: 'Mauban', province: 'Quezon', trainer: 'Dr. Ana Villanueva', participants: 32, submitted: '2026-09-17', status: 'For Review' },
-    { id: 'TRN-2026-008', title: 'Farmers Association Leadership', type: 'Capability Building', date: '2026-10-22', location: 'Infanta Training Hall', municipality: 'Infanta', province: 'Quezon', trainer: 'Mr. Joel Ramos', participants: 45, submitted: '2026-09-18', status: 'For Review' },
-    { id: 'TRN-2026-009', title: 'Good Agricultural Practices', type: 'Technical Training', date: '2026-10-25', location: 'Lopez Municipal Gym', municipality: 'Lopez', province: 'Quezon', trainer: 'Engr. Sofia Diaz', participants: 40, submitted: '2026-09-18', status: 'For Review' },
-    { id: 'TRN-2026-010', title: 'Food Processing and Packaging', type: 'Skills Training', date: '2026-11-02', location: 'Lucban Covered Court', municipality: 'Lucban', province: 'Quezon', trainer: 'Ms. Irene Flores', participants: 26, submitted: '2026-09-18', status: 'For Review' },
-    { id: 'TRN-2026-011', title: 'Livestock Health Management', type: 'Technical Training', date: '2026-11-06', location: 'Pagbilao Agri Center', municipality: 'Pagbilao', province: 'Quezon', trainer: 'Dr. Paulo Torres', participants: 31, submitted: '2026-09-18', status: 'For Review' },
-    { id: 'TRN-2026-012', title: 'Community-Based Seed Banking', type: 'Skills Training', date: '2026-11-10', location: 'Atimonan Multi-purpose Hall', municipality: 'Atimonan', province: 'Quezon', trainer: 'Ms. Grace Aquino', participants: 36, submitted: '2026-09-18', status: 'For Review' }
+﻿document.addEventListener('DOMContentLoaded', () => {
+  const seed = [
+    ['FMR-2026-001','Villa Esperanza FA','Member','Dela Cruz','Juan','Santos','Male','Alabat','Villa Esperanza','For Review',2026],
+    ['FMR-2026-002','Perez Farmers Association','Member','Santos','Maria','Reyes','Female','Perez','Villamanzano Sur','For Approval',2026],
+    ['FMR-2025-003','Jomalig Farmers Association','Officer','Reyes','Pedro','Garcia','Male','Jomalig','Apad','Approved',2025],
+    ['FMR-2026-004','Alabat Farmers Association','Member','Mendoza','Ana','Cruz','Female','Alabat','Villa Norte','For Review',2026],
+    ['FMR-2024-005','Perez Farmers Association','Member','Ramos','Roberto','Diaz','Male','Perez','Villamanzano Sur','Approved',2024],
+    ['FMR-2026-006','Patnanungan Agricultural Cooperative','Secretary','Villanueva','Liza','Aquino','Female','Patnanungan','Amaga','For Review',2026],
+    ['FMR-2025-007','Alabat Farmers Association','Member','Garcia','Elena','Torres','Female','Alabat','Caglate','For Review',2025],
+    ['FMR-2024-008','Jomalig Farmers Association','Member','Navarro','Rico','Flores','Male','Jomalig','Bukal','For Review',2024]
   ];
-  // Deterministic demo records keep the full table usable without a live API.
-  // They deliberately span types, years, locations, and trainers for filter testing.
-  const demoTopics = [
-    'Rice Production', 'Vegetable Farming', 'Financial Literacy', 'Basic Bookkeeping',
-    'Enterprise Development', 'Coconut Processing', 'Poultry Production', 'Farm Machinery Safety',
-    'Post-Harvest Management', 'Digital Marketing', 'Organic Fertilizer Making', 'Cooperative Leadership'
-  ];
-  const demoTypes = ['Technical Training', 'Livelihood Training', 'Financial Literacy', 'Bookkeeping', 'Entrepreneurship', 'Agricultural Training', 'Capacity Building', 'Skills Training'];
-  const demoSites = [
-    ['Baybay City Agriculture Office', 'Baybay City', 'Leyte'], ['Davao del Sur Provincial Training Center', 'Digos City', 'Davao del Sur'],
-    ['Bohol Farmers Training Hall', 'Carmen', 'Bohol'], ['Nueva Ecija Agri-Park', 'Muñoz', 'Nueva Ecija'],
-    ['Bukidnon State University Extension Hall', 'Malaybalay City', 'Bukidnon'], ['Iloilo Provincial Capitol Training Room', 'Pototan', 'Iloilo'],
-    ['Benguet Agri Center', 'La Trinidad', 'Benguet'], ['Isabela Multi-Purpose Hall', 'Ilagan City', 'Isabela'],
-    ['Camarines Sur Livelihood Center', 'Pili', 'Camarines Sur'], ['Negros Occidental Farmers Hub', 'Kabankalan City', 'Negros Occidental'],
-    ['North Cotabato Training Pavilion', 'Kidapawan City', 'Cotabato'], ['Palawan State University Extension Center', 'Puerto Princesa City', 'Palawan']
-  ];
-  const demoTrainers = ['Dr. Liza Manalo', 'Engr. Victor dela Cruz', 'Ms. Aileen Bautista', 'Mr. Jerome Navarro', 'Dr. Celeste Ramos', 'Ms. Rina Mercado', 'Mr. Dennis Valdez', 'Engr. Faith Castillo', 'Ms. Hazel Soriano', 'Dr. Mark Villareal', 'Mr. Paolo Bernardo', 'Ms. Teresa Lacuesta'];
-  for (let index = 13; index <= 120; index += 1) {
-    const offset = index - 13;
-    const year = 2024 + (offset % 3);
-    const month = String((offset * 3 % 12) + 1).padStart(2, '0');
-    const day = String((offset * 7 % 25) + 1).padStart(2, '0');
-    const submittedDay = String(Math.max(1, Number(day) - ((offset % 5) + 1))).padStart(2, '0');
-    const site = demoSites[offset % demoSites.length];
-    records.push({
-      id: `DEMO-TRN-${year}-${String(index).padStart(3, '0')}`,
-      title: `Demo ${demoTopics[offset % demoTopics.length]} Workshop ${Math.floor(offset / demoTopics.length) + 1}`,
-      type: demoTypes[offset % demoTypes.length],
-      date: `${year}-${month}-${day}`,
-      location: site[0], municipality: site[1], province: site[2],
-      trainer: demoTrainers[offset % demoTrainers.length],
-      participants: 18 + ((offset * 7) % 53),
-      submitted: `${year}-${month}-${submittedDay}`,
-      status: 'For Review'
-    });
-  }
-  const state = { page: 1, perPage: 10, global: '', type: '', year: '', columns: {}, sorts: [], selectedId: null };
-  const $ = (selector, context = document) => context.querySelector(selector);
-  const $$ = (selector, context = document) => [...context.querySelectorAll(selector)];
-  const body = $('#forReviewTableBody');
-  const stateBox = $('#reviewTableState');
-  const forwardModal = new bootstrap.Modal($('#reviewForwardModal'));
-  const toast = new bootstrap.Toast($('#reviewToast'));
-  ['#reviewForwardModal'].forEach((selector) => {
-    $(selector).addEventListener('show.bs.modal', () => document.body.classList.add('review-modal-open'));
-    $(selector).addEventListener('hidden.bs.modal', () => document.body.classList.remove('review-modal-open'));
-  });
-  $$('[data-bs-toggle="tooltip"]').forEach((element) => new bootstrap.Tooltip(element));
-
-  const formatDate = (value) => new Intl.DateTimeFormat('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(`${value}T00:00:00`));
-  const unique = (key) => [...new Set(records.map((record) => record[key]))].sort();
-  const populateSelect = (selector, values) => $(selector).insertAdjacentHTML('beforeend', values.map((value) => `<option value="${value}">${value}</option>`).join(''));
-  populateSelect('#trainingTypeFilter', unique('type'));
-  populateSelect('#yearFilter', [...new Set(records.map((record) => record.date.slice(0, 4)))].sort().reverse());
-  populateSelect('[data-column="type"]', unique('type'));
-  populateSelect('[data-column="municipality"]', unique('municipality'));
-  populateSelect('[data-column="province"]', unique('province'));
-
-  const filteredRecords = () => records.filter((record) => {
-    const haystack = Object.values(record).join(' ').toLowerCase();
-    // This queue defaults to records in For Review; the Status footer filter
-    // can still be used to inspect a record after it has been forwarded.
-    if (!state.columns.status && record.status !== 'For Review') return false;
-    if (state.global && !haystack.includes(state.global.toLowerCase())) return false;
-    if (state.type && record.type !== state.type) return false;
-    if (state.year && !record.date.startsWith(state.year)) return false;
-    return Object.entries(state.columns).every(([key, value]) => {
-      if (!value) return true;
-      return String(record[key]).toLowerCase().includes(String(value).toLowerCase());
-    });
-  });
-
-  const sortedRecords = () => {
-    const result = filteredRecords();
-    if (!state.sorts.length) return result;
-    return [...result].sort((left, right) => {
-      for (const { key, direction } of state.sorts) {
-        const leftValue = left[key];
-        const rightValue = right[key];
-        const comparison = typeof leftValue === 'number'
-          ? leftValue - rightValue
-          : String(leftValue).localeCompare(String(rightValue), undefined, { numeric: true, sensitivity: 'base' });
-        if (comparison) return direction === 'asc' ? comparison : -comparison;
-      }
-      return 0;
-    });
-  };
-
-  const syncWorkflowTotals = () => {
-    const totals = records.reduce((result, record) => {
-      result[record.status] = (result[record.status] || 0) + 1;
-      return result;
-    }, {});
-    const workflowCounts = {
-      'training-total': totals['For Review'] || 0,
-      'training-total-approval': totals['For Approval'] || 0,
-      'training-total-acceptance': totals['For Acceptance'] || 0,
-      'training-total-approved': totals.Approved || 0,
-      'training-total-rejected': totals.Rejected || 0
-    };
-    Object.entries(workflowCounts).forEach(([id, total]) => {
-      const element = document.getElementById(id);
-      if (element) element.textContent = total;
-    });
-    $('#summaryTotalReview').textContent = workflowCounts['training-total'];
-  };
-
-  const pageItems = (page, totalPages) => {
-    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, index) => index + 1);
-    const items = [1];
-    if (page > 3) items.push('…');
-    for (let number = Math.max(2, page - 1); number <= Math.min(totalPages - 1, page + 1); number += 1) items.push(number);
-    if (page < totalPages - 2) items.push('…');
-    items.push(totalPages);
-    return [...new Set(items)];
-  };
-
-  const renderPagination = (container, total) => {
-    const totalPages = state.perPage === 'all' ? 1 : Math.max(1, Math.ceil(total / state.perPage));
-    const start = total ? (state.perPage === 'all' ? 1 : ((state.page - 1) * state.perPage) + 1) : 0;
-    const end = state.perPage === 'all' ? total : Math.min(state.page * state.perPage, total);
-    container.innerHTML = `<span>Showing ${start}–${end} of ${total} record${total === 1 ? '' : 's'}</span><div class="pagination-controls"><label class="visually-hidden" for="${container.id}Rows">Rows per page</label><select id="${container.id}Rows" data-pagination-size><option value="10">10</option><option value="20">20</option><option value="50">50</option><option value="100">100</option><option value="500">500</option><option value="all">All</option></select><button type="button" data-page="prev" ${state.page === 1 || state.perPage === 'all' ? 'disabled' : ''} aria-label="Previous page"><i class="bi bi-chevron-left"></i></button>${pageItems(state.page, totalPages).map((item) => item === '…' ? '<span class="px-1">…</span>' : `<button type="button" data-page="${item}" class="${item === state.page ? 'active' : ''}" ${state.perPage === 'all' ? 'disabled' : ''}>${item}</button>`).join('')}<button type="button" data-page="next" ${state.page === totalPages || state.perPage === 'all' ? 'disabled' : ''} aria-label="Next page"><i class="bi bi-chevron-right"></i></button></div>`;
-    $('[data-pagination-size]', container).value = state.perPage;
-  };
-
-  const render = () => {
-    const filtered = sortedRecords();
-    const totalPages = state.perPage === 'all' ? 1 : Math.max(1, Math.ceil(filtered.length / state.perPage));
-    state.page = Math.min(state.page, totalPages);
-    const visible = state.perPage === 'all' ? filtered : filtered.slice((state.page - 1) * state.perPage, state.page * state.perPage);
-    body.innerHTML = visible.map((record) => `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-action="forward" data-id="${record.id}" data-bs-toggle="tooltip" data-bs-title="Review and forward" aria-label="Review and forward ${record.id}"><i class="bi bi-send-fill"></i></button><button class="btn table-action-button view-action" data-action="view" data-id="${record.id}" data-bs-toggle="tooltip" data-bs-title="View training details" aria-label="View ${record.id}"><i class="bi bi-eye-fill"></i></button><a class="btn table-action-button edit-action" href="edit_training.html?id=${encodeURIComponent(record.id)}" data-bs-toggle="tooltip" data-bs-title="Edit training" aria-label="Edit ${record.id}"><i class="bi bi-pencil-fill"></i></a></div></td><td>${record.id}</td><td>${record.title}</td><td>${record.type}</td><td>${formatDate(record.date)}</td><td>${record.location}</td><td>${record.municipality}</td><td>${record.province}</td><td>${record.trainer}</td><td>${record.participants}</td><td>${formatDate(record.submitted)}</td><td><span class="status-badge ${record.status === 'For Review' ? 'status-review' : 'status-approval'}">${record.status}</span></td></tr>`).join('');
-    stateBox.hidden = filtered.length > 0;
-    if (!filtered.length) stateBox.innerHTML = `<i class="bi bi-search"></i><strong>${records.length ? 'No records match the current filters.' : 'No training records are currently available for review.'}</strong><br><span>Adjust or clear your filters and try again.</span>`;
-    syncWorkflowTotals();
-    $('#summaryRowsPerPage').textContent = state.perPage === 'all' ? 'All' : state.perPage;
-    $('#summaryVisibleRows').textContent = visible.length;
-    renderPagination($('#reviewPaginationTop'), filtered.length);
-    renderPagination($('#reviewPaginationBottom'), filtered.length);
-    $$('.sortable-column').forEach((header) => {
-      const sort = state.sorts.find((item) => item.key === header.dataset.sort);
-      header.setAttribute('aria-sort', sort ? (sort.direction === 'asc' ? 'ascending' : 'descending') : 'none');
-      header.classList.toggle('is-sorted', Boolean(sort));
-      header.querySelector('i').className = `bi ${sort ? (sort.direction === 'asc' ? 'bi-sort-up' : 'bi-sort-down') : 'bi-arrow-down-up'}`;
-    });
-    $$('[data-bs-toggle="tooltip"]', body).forEach((element) => new bootstrap.Tooltip(element));
-  };
-
-  const showToast = (message) => { $('#reviewToastMessage').textContent = message; toast.show(); };
-  const selected = () => records.find((record) => record.id === state.selectedId);
-  const openForward = (record) => {
-    state.selectedId = record.id;
-    const fields = [['Training ID', record.id], ['Training title', record.title], ['Training type', record.type], ['Training date', formatDate(record.date)], ['Location', `${record.location}, ${record.municipality}, ${record.province}`], ['Trainer / resource person', record.trainer], ['Participant count', record.participants], ['Current status', record.status]];
-    $('#reviewForwardDetails').innerHTML = fields.map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('');
-    forwardModal.show();
-  };
-  $('#reviewGlobalSearch').addEventListener('input', (event) => { state.global = event.target.value; state.page = 1; render(); });
-  $('#trainingTypeFilter').addEventListener('change', (event) => { state.type = event.target.value; state.page = 1; render(); });
-  $('#yearFilter').addEventListener('change', (event) => { state.year = event.target.value; state.page = 1; render(); });
-  $$('.column-filter').forEach((input) => input.addEventListener('input', (event) => { state.columns[event.target.dataset.column] = event.target.value; state.page = 1; render(); }));
-  $('#clearReviewFilters').addEventListener('click', () => { state.global = ''; state.type = ''; state.year = ''; state.columns = {}; state.page = 1; $('#reviewGlobalSearch').value = ''; $('#trainingTypeFilter').value = ''; $('#yearFilter').value = ''; $$('.column-filter').forEach((input) => { input.value = ''; }); render(); });
-  $('#refreshReviewTable').addEventListener('click', () => { body.innerHTML = ''; stateBox.hidden = false; stateBox.innerHTML = '<i class="bi bi-arrow-clockwise"></i><strong>Refreshing training records…</strong>'; window.setTimeout(() => { render(); showToast('Training records refreshed.'); }, 350); });
-  $('#exportReviewTable').addEventListener('click', () => { const exportRows = sortedRecords().map(({ id, title, type, date, location, municipality, province, trainer, participants, submitted, status }) => ({ 'Training ID': id, 'Training Title': title, 'Training Type': type, 'Training Date': date, Location: location, Municipality: municipality, Province: province, 'Trainer / Resource Person': trainer, 'No. of Participants': participants, 'Date Submitted': submitted, Status: status })); if (!exportRows.length) { showToast('There are no filtered records to export.'); return; } if (window.XLSX) { const sheet = XLSX.utils.json_to_sheet(exportRows); const book = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(book, sheet, 'For Review'); XLSX.writeFile(book, 'TMIS_For_Review.xlsx'); showToast('Filtered training records exported to Excel.'); } else { showToast('Excel export is unavailable. Please check your internet connection and try again.'); } });
-  $$('#reviewPaginationTop, #reviewPaginationBottom').forEach((container) => container.addEventListener('click', (event) => { const button = event.target.closest('[data-page]'); if (!button || button.disabled) return; const totalPages = Math.max(1, Math.ceil(filteredRecords().length / (state.perPage === 'all' ? 1 : state.perPage))); state.page = button.dataset.page === 'prev' ? Math.max(1, state.page - 1) : button.dataset.page === 'next' ? Math.min(totalPages, state.page + 1) : Number(button.dataset.page); render(); }));
-  $$('#reviewPaginationTop, #reviewPaginationBottom').forEach((container) => container.addEventListener('change', (event) => { if (!event.target.matches('[data-pagination-size]')) return; state.perPage = event.target.value === 'all' ? 'all' : Number(event.target.value); state.page = 1; render(); }));
-  body.addEventListener('click', (event) => { const button = event.target.closest('[data-action]'); if (!button) return; const record = records.find((item) => item.id === button.dataset.id); if (button.dataset.action === 'forward') openForward(record); if (button.dataset.action === 'view') window.location.href = `training_details.html?id=${encodeURIComponent(record.id)}`; });
-  const sortColumn = (header, append) => {
-    const key = header.dataset.sort;
-    const existing = state.sorts.find((item) => item.key === key);
-    if (!append) state.sorts = existing ? [existing] : [];
-    if (existing) existing.direction = existing.direction === 'asc' ? 'desc' : 'asc';
-    else state.sorts.push({ key, direction: 'asc' });
-    state.page = 1;
-    render();
-  };
-  $$('.sortable-column').forEach((header) => {
-    header.addEventListener('click', (event) => sortColumn(header, event.shiftKey));
-    header.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); sortColumn(header, event.shiftKey); } });
-  });
-  $('#confirmForwardButton').addEventListener('click', () => { const record = selected(); if (!record) return; if (!window.confirm(`Forward ${record.id} for approval?`)) return; record.status = 'For Approval'; forwardModal.hide(); render(); showToast(`${record.id} was forwarded for approval.`); });
-  render();
+  const organizations = ['Villa Esperanza FA','Perez Farmers Association','Jomalig Farmers Association','Alabat Farmers Association','Patnanungan Agricultural Cooperative'];
+  const municipalities = [['Alabat','Villa Esperanza'],['Perez','Villamanzano Sur'],['Jomalig','Apad'],['Alabat','Villa Norte'],['Patnanungan','Amaga']];
+  for (let n=9; n<=48; n++) { const y=2024+(n%3), loc=municipalities[n%municipalities.length]; seed.push([`FMR-${y}-${String(n).padStart(3,'0')}`,organizations[n%organizations.length],n%6===0?'Officer':'Member',['Cruz','Bautista','Mercado','Aquino','Castillo'][n%5],['Carlo','Grace','Noel','Irene','Paolo'][n%5],'Santos',n%2?'Male':'Female',loc[0],loc[1],n%4===0?'For Approval':n%7===0?'Approved':'For Review',y]); }
+  const records = seed.map(([id,organization,role,lastName,firstName,middleName,sex,municipality,barangay,status,yearCovered], i) => ({id,organization,role,lastName,firstName,middleName,suffix:'',birthDate:`198${i%9}-0${(i%8)+1}-1${i%9}`,sex,civilStatus:i%2?'Married':'Single',nationality:'Filipino',placeOfBirth:`${municipality}, Quezon`,province:'Quezon',district:['Jomalig','Patnanungan'].includes(municipality)?'1st District':'2nd District',municipality,barangay,sitio:`Purok ${(i%5)+1}`,fourPs:i%3?'No':'Yes',pwd:i%7?'No':'Yes',indigenousGroup:['Jomalig','Patnanungan'].includes(municipality)?'Yes':'No',tribeName:['Jomalig','Patnanungan'].includes(municipality)?'Agta':'—',dietaryRestriction:'None',seniorCitizen:i%8?'No':'Yes',yearCovered,profileStatus:i%11?'Active':'Inactive',status,registered:`${yearCovered}-09-${String((i%20)+1).padStart(2,'0')}`}));
+  const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
+  const body=$('#forReviewTableBody'), empty=$('#reviewTableState'), toast=new bootstrap.Toast($('#reviewToast')), modal=new bootstrap.Modal($('#reviewForwardModal'));
+  const state={page:1,perPage:10,global:'',organization:'',barangay:'',year:'',columns:{},sort:null,selected:null};
+  const values=key=>[...new Set(records.map(r=>r[key]))].sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true}));
+  const fill=(sel,key)=>{const el=$(sel);if(el)el.insertAdjacentHTML('beforeend',values(key).map(v=>`<option value="${v}">${v}</option>`).join(''));};
+  fill('#organizationFilter','organization'); fill('#barangayFilter','barangay'); fill('#yearCoveredFilter','yearCovered'); $$('select.column-filter').forEach(el=>fill(`[data-column="${el.dataset.column}"]`,el.dataset.column));
+  const date=v=>new Intl.DateTimeFormat('en-PH',{month:'short',day:'numeric',year:'numeric'}).format(new Date(`${v}T00:00:00`)); const notify=(title,message,blocked=false)=>{ $('#reviewToastTitle').textContent=title; $('#reviewToastMessage').textContent=message; $('#reviewToastTime').textContent=new Intl.DateTimeFormat('en-PH',{hour:'numeric',minute:'2-digit'}).format(new Date()); $('#reviewToastIcon').className=`bi ${blocked?'bi-exclamation-triangle-fill':'bi-check-circle-fill'}`; $('#reviewToast').classList.toggle('review-toast-blocked',blocked); toast.show(); }; const requirements=r=>[{name:'Farmer Profiling Form',complete:true},{name:'Valid ID',complete:true},{name:'Proof of Farm Ownership / Tenure',complete:r.id!=='FMR-2026-004'},{name:'Association Membership Document',complete:r.id!=='FMR-2026-006'},{name:'Supporting Attachment',complete:true}];
+  const filtered=()=>records.filter(r=>r.status==='For Review' && (!state.global||Object.values(r).join(' ').toLowerCase().includes(state.global)) && (!state.organization||r.organization===state.organization) && (!state.barangay||r.barangay===state.barangay) && (!state.year||String(r.yearCovered)===state.year) && Object.entries(state.columns).every(([k,v])=>!v||String(r[k]).toLowerCase().includes(v.toLowerCase())));
+  const sorted=()=>{const rows=filtered();if(!state.sort)return rows;const {key,dir}=state.sort;return [...rows].sort((a,b)=>{const n=String(a[key]).localeCompare(String(b[key]),undefined,{numeric:true,sensitivity:'base'});return dir==='asc'?n:-n;});};
+  const pagination=(id,total,pages)=>{const el=$('#'+id),all=state.perPage==='all',start=total?(all?1:(state.page-1)*state.perPage+1):0,end=all?total:Math.min(state.page*state.perPage,total);const nums=Array.from({length:pages},(_,i)=>i+1).filter(n=>pages<=7||n===1||n===pages||Math.abs(n-state.page)<=1);const controls=all?'':`<button data-page="prev" ${state.page===1?'disabled':''}><i class="bi bi-chevron-left"></i></button>${nums.map((n,i)=>`${i&&n-nums[i-1]>1?'<span>…</span>':''}<button data-page="${n}" class="${n===state.page?'active':''}">${n}</button>`).join('')}<button data-page="next" ${state.page===pages?'disabled':''}><i class="bi bi-chevron-right"></i></button>`;el.innerHTML=`<span>Showing ${start}–${end} of ${total} farmers</span><div class="pagination-controls"><label class="visually-hidden" for="${id}Rows">Rows per page</label><select id="${id}Rows" data-page-size><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="all">All</option></select>${controls}</div>`;$('[data-page-size]',el).value=state.perPage;};
+  const render=()=>{const all=sorted(),pages=state.perPage==='all'?1:Math.max(1,Math.ceil(all.length/state.perPage));if(state.page>pages)state.page=1;const rows=state.perPage==='all'?all:all.slice((state.page-1)*state.perPage,state.page*state.perPage);body.innerHTML=rows.map(r=>`<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="Review and forward"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="farmer-profile-details.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="edit-farmer-profile.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge status-review">${r.profileStatus}</span></td><td><span class="status-badge status-review">${r.status}</span></td></tr>`).join('');empty.hidden=Boolean(rows.length);if(!rows.length)empty.innerHTML='<i class="bi bi-search"></i><strong>No farmer profiles match the current filters.</strong>';$('#summaryTotalReview').textContent=filtered().length;$('#summaryRowsPerPage').textContent=state.perPage;$('#summaryVisibleRows').textContent=rows.length;pagination('reviewPaginationTop',all.length,pages);pagination('reviewPaginationBottom',all.length,pages);$$('.sortable-column').forEach(h=>{const active=state.sort?.key===h.dataset.sort;h.querySelector('i').className=`bi ${active?(state.sort.dir==='asc'?'bi-sort-up':'bi-sort-down'):'bi-arrow-down-up'}`;});};
+  const refresh=()=>{state.page=1;render();};
+  $('#reviewGlobalSearch').addEventListener('input',e=>{state.global=e.target.value.toLowerCase();refresh();});[['#organizationFilter','organization'],['#barangayFilter','barangay'],['#yearCoveredFilter','year']].forEach(([s,k])=>$(s).addEventListener('change',e=>{state[k]=e.target.value;refresh();}));$$('.column-filter').forEach(el=>el.addEventListener('input',e=>{state.columns[e.target.dataset.column]=e.target.value;refresh();}));
+  $('#clearReviewFilters').addEventListener('click',()=>{state.global=state.organization=state.barangay=state.year='';state.columns={};$('#reviewGlobalSearch').value='';$$('.toolbar-filter select,.column-filter').forEach(e=>e.value='');refresh();});
+  $$('.sortable-column').forEach(h=>h.addEventListener('click',()=>{state.sort=state.sort?.key===h.dataset.sort?{key:h.dataset.sort,dir:state.sort.dir==='asc'?'desc':'asc'}:{key:h.dataset.sort,dir:'asc'};refresh();}));
+  $$('#reviewPaginationTop,#reviewPaginationBottom').forEach(el=>{el.addEventListener('click',e=>{const b=e.target.closest('[data-page]');if(!b||b.disabled)return;const pages=state.perPage==='all'?1:Math.max(1,Math.ceil(sorted().length/state.perPage));state.page=b.dataset.page==='prev'?state.page-1:b.dataset.page==='next'?Math.min(pages,state.page+1):Number(b.dataset.page);render();});el.addEventListener('change',e=>{if(e.target.matches('[data-page-size]')){state.perPage=e.target.value==='all'?'all':Number(e.target.value);refresh();}});});
+  body.addEventListener('click',e=>{const b=e.target.closest('[data-forward]');if(!b)return;state.selected=records.find(r=>r.id===b.dataset.forward);const reqs=requirements(state.selected),missing=reqs.filter(x=>!x.complete);$('#reviewForwardModalLabel').textContent='Review & Submit Farmer Profile';$('#reviewForwardDetails').innerHTML=`<dt>Farmer ID / Core ID</dt><dd>${state.selected.id}</dd><dt>Farmer</dt><dd>${state.selected.firstName} ${state.selected.lastName}</dd><dt>Farmer Status</dt><dd><span class="status-badge status-review">${state.selected.status}</span></dd><dt class="w-100 mt-3">Requirements / Attachments</dt><dd class="w-100"><div class="requirements-panel"><ul>${reqs.map(x=>`<li><i class="bi ${x.complete?'bi-check-circle-fill':'bi-exclamation-triangle-fill'}"></i>${x.name}<span>${x.complete?'Completed':'Incomplete'}</span></li>`).join('')}</ul>${missing.length?`<p class="submission-blocked">Submission blocked: ${missing.map(x=>x.name).join(', ')} is incomplete.</p>`:''}</div></dd>`;$('#confirmForwardButton').disabled=missing.length>0;modal.show();});
+  $('#confirmForwardButton').addEventListener('click',()=>{if(!state.selected)return;const missing=requirements(state.selected).filter(x=>!x.complete);if(missing.length){notify('Submission Blocked','Submission blocked: required attachment is incomplete.',true);return;}state.selected.status='For Approval';modal.hide();refresh();notify('Farmer Profile Submitted','Farmer profile submitted for approval.');});
+  $('#refreshReviewTable').addEventListener('click',()=>{refresh();notify('Farmer Profiles Refreshed','Farmer profiles refreshed successfully.');}); $('#exportReviewTable').addEventListener('click',()=>{if(!window.XLSX)return;const rows=sorted();const sheet=XLSX.utils.aoa_to_sheet([['farmer_profile_for_review'],['data_exported'],[]]);XLSX.utils.sheet_add_json(sheet,rows,{origin:'A4'});const book=XLSX.utils.book_new();XLSX.utils.book_append_sheet(book,sheet,'farmer_profile_for_review');XLSX.writeFile(book,'farmer_profile_for_review.xlsx');});render();
 });

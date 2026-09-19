@@ -1915,7 +1915,7 @@ body::-webkit-scrollbar-thumb:hover,
 .for-review-table-title { margin: 0; color: #263238; font-size: 17px; font-weight: 700; }
 .for-review-table-description { margin: 4px 0 0; color: #808080; font-size: 12px; }
 .table-header-actions { display: flex; gap: 8px; }
-.table-icon-button { display: inline-grid; width: 38px; height: 38px; place-items: center; padding: 0; color: #2e7d32; background: #e8f5e9; border: 1px solid #66bb6a; border-radius: 10px; }
+.table-icon-button { display: inline-grid; width: 38px; height: 38px; place-items: center; padding: 0; color: #2e7d32; background: #e8f5e9; border: 1px solid #66bb6a; border-radius: 10px;  }
 .table-icon-button:hover, .table-icon-button:focus { color: #ffffff; background: #2e7d32; }
 .table-export-button { color: #1976d2; background: rgba(25, 118, 210, 0.10); border-color: rgba(25, 118, 210, 0.35); }
 .table-export-button:hover, .table-export-button:focus { background: #1976d2; }
@@ -2540,3 +2540,25 @@ body::-webkit-scrollbar-thumb:hover,
 .review-data-table thead th,
 .review-data-table tfoot th { position: static !important; top: auto !important; bottom: auto !important; z-index: auto !important; }
 
+
+/* Farmer profile review: preserve a readable field width and horizontal scroll. */
+#forReviewDataTable { width: 3600px; min-width: 3600px; table-layout: auto; }
+#forReviewDataTable th, #forReviewDataTable td { min-width: 118px; white-space: nowrap; }
+#forReviewDataTable th:first-child, #forReviewDataTable td:first-child { min-width: 104px; }
+@media (max-width: 575.98px) { .card-header .review-modal-dismiss { font-size: 11px; padding: 7px 9px; } }
+
+.review-toast-blocked { border-color: #fb8c00; }
+.review-toast-blocked .toast-body, .review-toast-blocked .toast-body i { color: #b26a00; }
+.submission-blocked { margin: 10px 0 0; color: #b26a00; font-size: 12px; font-weight: 600; }
+.requirements-panel li .bi-exclamation-triangle-fill { color: #fb8c00; }
+
+/* Compact Bootstrap review notification. */
+.toast-container { z-index: 1100; max-width: calc(100vw - 24px); }
+.review-toast { width: min(360px, calc(100vw - 24px)); border-radius: 10px; overflow: hidden; }
+.review-toast .toast-header { gap: 0; min-height: 42px; padding: 9px 12px; color: #1b5e20; background: #f7f9f7; border-bottom: 1px solid #e0e0e0; }
+.review-toast .toast-header i { font-size: 15px; color: #43a047; }
+.review-toast .toast-header strong { font-size: 12px; white-space: nowrap; }
+.review-toast .toast-header small { font-size: 10px; white-space: nowrap; }
+.review-toast .toast-body { padding: 10px 12px; font-size: 12px; line-height: 1.35; }
+.review-toast-blocked .toast-header { color: #8a5300; }.review-toast-blocked .toast-header i { color: #fb8c00; }
+@media (max-width: 575.98px) { .toast-container { right: 0; left: 0; display: flex; justify-content: center; } }

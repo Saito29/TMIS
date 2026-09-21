@@ -186,6 +186,14 @@
                           <span>For Approval</span>
                           <span class="badge badge-approval">23</span>
                         </a>
+                         <a
+                          href="#"
+                          class="header-sub-collapse-item"
+                        >
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Acceptance</span>
+                          <span class="badge badge-approval">23</span>
+                        </a>
                       </div>
                     </div>
 
@@ -834,7 +842,7 @@
                   <div class="col-12 col-xl-4">
                     <div class="card h-100">
                       <div
-                        class="card-header d-flex align-items-center justify-content-between gap-2"
+                        class="card-header d-flex align-items-center justify-content-between gap-2 w-100"
                       >
                         <h6 class="card-title">Review Workflow</h6>
                         <button
@@ -868,6 +876,19 @@
                             <div class="workflow-details">
                               <span class="workflow-process-approval"
                                 >For Approval</span
+                              >
+                            </div>
+                          </li>
+                          <li class="workflow-divider" aria-hidden="true">
+                            <i class="bi bi-arrow-right"></i>
+                          </li>
+                          <li class="workflow-item workflow-accepted">
+                            <div class="workflow-icon">
+                              <i class="bi bi-person-check-fill"></i>
+                            </div>
+                            <div class="workflow-details">
+                              <span class="workflow-process-acceptance"
+                                >For acceptance</span
                               >
                             </div>
                           </li>
@@ -1383,6 +1404,12 @@
                     <a href="../update/for-approval.html" class="nav-link">
                       <i class="bi bi-person-fill-check"></i>
                       <span>For approval</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For acceptance</span>
                     </a>
                   </li>
                 </ul>
@@ -1904,9 +1931,6 @@
         <div class="modal-content review-modal-content">
           <div class="modal-header review-modal-header">
             <div class="review-modal-heading">
-              <span class="review-modal-icon"
-                ><i class="bi bi-info-circle-fill"></i
-              ></span>
               <div>
                 <span class="review-modal-eyebrow"
                   >Farmer profile workflow</span
@@ -1914,17 +1938,22 @@
                 <h5 class="modal-title" id="aboutReviewWorkflowModalLabel">
                   About Review Workflow
                 </h5>
-                <p>Each farmer profile progresses through these three steps.</p>
+                <p>Each farmer profile progresses through these four steps.</p>
               </div>
             </div>
-            <button
-              type="button"
-              class="btn review-modal-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            >
-              <i class="bi bi-x-lg"></i>
-            </button>
+            <div class="review-modal-header-actions">
+              <span class="review-modal-icon" aria-hidden="true"
+                ><i class="bi bi-info-circle-fill"></i
+              ></span>
+              <button
+                type="button"
+                class="btn review-modal-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
           </div>
           <div class="modal-body review-modal-body">
             <div class="workflow-transition">
@@ -1932,7 +1961,9 @@
               ><i class="bi bi-arrow-right"></i
               ><span class="status-badge status-approval">For Approval</span
               ><i class="bi bi-arrow-right"></i
-              ><span class="status-badge status-review">Approved</span>
+              ><span class="status-badge status-approved">Approved</span
+              ><i class="bi bi-arrow-right"></i
+              ><span class="status-badge status-accepted">Accepted</span>
             </div>
             <dl class="review-record-details">
               <dt>For Review</dt>
@@ -1948,7 +1979,12 @@
               <dt>Approved</dt>
               <dd>
                 The farmer profile has successfully completed review and
-                approval and is considered approved in the system.
+                approval and is ready for participant acceptance.
+              </dd>
+              <dt>Accepted</dt>
+              <dd>
+                The approved farmer profile has been accepted and is finalized
+                in the system.
               </dd>
             </dl>
           </div>

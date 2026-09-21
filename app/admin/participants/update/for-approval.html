@@ -178,9 +178,20 @@
                           <span>For Review</span>
                           <span class="badge badge-review">34</span>
                         </a>
-                        <a href="#forApproval" class="header-sub-collapse-item">
+                        <a
+                          href="../update/for-approval.html"
+                          class="header-sub-collapse-item"
+                        >
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Approval</span>
+                          <span class="badge badge-approval">23</span>
+                        </a>
+                         <a
+                          href="#"
+                          class="header-sub-collapse-item"
+                        >
+                          <i class="bi bi-clipboard2-check-fill"></i>
+                          <span>For Acceptance</span>
                           <span class="badge badge-approval">23</span>
                         </a>
                       </div>
@@ -811,22 +822,39 @@
               <div class="container-fluid p-0">
                 <div class="row g-3 align-items-stretch">
                   <!-- breadcrumbs navigation -->
-                  <div class="col-12 col-xl-6">
+                  <div class="col-12 col-xl-8">
                     <nav aria-label="breadcrumb">
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item">Participants</li>
                         <li class="breadcrumb-item">Update</li>
-                        <li class="breadcrumb-item active" aria-current="page">For Review</li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                          For Review
+                        </li>
                       </ol>
                     </nav>
-                    <h4 class="content-header">For review participants</h4>
-                    <span class="content-info">Trainings that are currently under review. Once approved, they can be moved to "For Approval" status.</span>
+                    <h4 class="content-header">Farmer Profile Review</h4>
+                    <span class="content-info"
+                      >Review submitted farmer profiles and forward verified
+                      records for approval.</span
+                    >
                   </div>
                   <!-- Worklfow -->
-                  <div class="col-12 col-xl-6">
+                  <div class="col-12 col-xl-4">
                     <div class="card h-100">
-                      <div class="card-header">
+                      <div
+                        class="card-header d-flex align-items-center justify-content-between gap-2 w-100"
+                      >
                         <h6 class="card-title">Review Workflow</h6>
+                        <button
+                          class="btn table-icon-button workflow-about-button"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#aboutReviewWorkflowModal"
+                          title="About Review Workflow"
+                          aria-label="About Review Workflow"
+                        >
+                          <i class="bi bi-info-circle-fill"></i>
+                        </button>
                       </div>
                       <div class="card-body">
                         <ul class="workflow-progress">
@@ -835,13 +863,7 @@
                               <i class="bi bi-clipboard2-check-fill"></i>
                             </div>
                             <div class="workflow-details">
-                              <span class="workflow-process"> For Review </span>
-                              <div class="workflow-current-details">
-                                <span id="training-total">8</span>
-                                <span class="workflow-details-context"
-                                  >trainings (current)</span
-                                >
-                              </div>
+                              <span class="workflow-process">For Review</span>
                             </div>
                           </li>
                           <li class="workflow-divider" aria-hidden="true">
@@ -852,34 +874,22 @@
                               <i class="bi bi-person-check-fill"></i>
                             </div>
                             <div class="workflow-details">
-                              <span class="workflow-process-approval">
-                                For Approval
-                              </span>
-                              <div class="workflow-current-details">
-                                <span id="training-total-approval">0</span>
-                                <span class="workflow-details-context"
-                                  >trainings (next)</span
-                                >
-                              </div>
+                              <span class="workflow-process-approval"
+                                >For Approval</span
+                              >
                             </div>
                           </li>
                           <li class="workflow-divider" aria-hidden="true">
                             <i class="bi bi-arrow-right"></i>
                           </li>
-                          <li class="workflow-item workflow-pending">
+                          <li class="workflow-item workflow-accepted">
                             <div class="workflow-icon">
-                              <i class="bi bi-hand-thumbs-up-fill"></i>
+                              <i class="bi bi-person-check-fill"></i>
                             </div>
                             <div class="workflow-details">
-                              <span class="workflow-process-acceptance">
-                                For Acceptance
-                              </span>
-                              <div class="workflow-current-details">
-                                <span id="training-total-acceptance">0</span>
-                                <span class="workflow-details-context"
-                                  >trainings</span
-                                >
-                              </div>
+                              <span class="workflow-process-acceptance"
+                                >For acceptance</span
+                              >
                             </div>
                           </li>
                           <li class="workflow-divider" aria-hidden="true">
@@ -890,34 +900,9 @@
                               <i class="bi bi-patch-check-fill"></i>
                             </div>
                             <div class="workflow-details">
-                              <span class="workflow-process-approved">
-                                Approved
-                              </span>
-                              <div class="workflow-current-details">
-                                <span id="training-total-approved">0</span>
-                                <span class="workflow-details-context"
-                                  >trainings</span
-                                >
-                              </div>
-                            </div>
-                          </li>
-                          <li class="workflow-divider" aria-hidden="true">
-                            <i class="bi bi-arrow-right"></i>
-                          </li>
-                          <li class="workflow-item workflow-rejected">
-                            <div class="workflow-icon">
-                              <i class="bi bi-x-circle-fill"></i>
-                            </div>
-                            <div class="workflow-details">
-                              <span class="workflow-process-rejected">
-                                Rejected
-                              </span>
-                              <div class="workflow-current-details">
-                                <span id="training-total-rejected">0</span>
-                                <span class="workflow-details-context"
-                                  >trainings</span
-                                >
-                              </div>
+                              <span class="workflow-process-approved"
+                                >Approved</span
+                              >
                             </div>
                           </li>
                         </ul>
@@ -929,50 +914,371 @@
             </div>
           </div>
           <!-- FOR REVIEW TABLE MODULE: filters, workflow actions, pagination, and modal markup -->
-          <!-- second row: table -->
           <div class="row second-row">
             <div class="col-12 mb-2">
-              <section class="card for-review-table-card" aria-labelledby="forReviewTableTitle">
+              <section
+                class="card for-review-table-card"
+                aria-labelledby="forReviewTableTitle"
+              >
                 <header class="card-header for-review-table-header">
                   <div>
-                    <h5 class="for-review-table-title" id="forReviewTableTitle">Details about For Review</h5>
-                    <p class="for-review-table-description">Review submitted training records and forward them for approval.</p>
+                    <h5 class="for-review-table-title" id="forReviewTableTitle">
+                      Farmer Profiles for Review
+                    </h5>
+                    <p class="for-review-table-description">
+                      Review submitted farmer profiles and forward verified
+                      records for approval.
+                    </p>
                   </div>
-                  <div class="table-header-actions" aria-label="Table actions">
-                    <button class="btn table-icon-button" type="button" id="refreshReviewTable" data-bs-toggle="tooltip" data-bs-title="Refresh table data" aria-label="Refresh table data"><i class="bi bi-arrow-clockwise"></i></button>
-                    <button class="btn table-icon-button table-export-button" type="button" id="exportReviewTable" data-bs-toggle="tooltip" data-bs-title="Export filtered records to Excel" aria-label="Export filtered records to Excel"><i class="bi bi-file-earmark-excel-fill"></i></button>
+                  <div class="table-header-actions">
+                    <button
+                      class="btn table-icon-button"
+                      type="button"
+                      id="refreshReviewTable"
+                      aria-label="Refresh farmer profiles"
+                    >
+                      <i class="bi bi-arrow-clockwise"></i></button
+                    ><button
+                      class="btn table-icon-button table-export-button"
+                      type="button"
+                      id="exportReviewTable"
+                      aria-label="Export farmer profiles"
+                    >
+                      <i class="bi bi-file-earmark-excel-fill"></i>
+                    </button>
                   </div>
                 </header>
                 <div class="card-body for-review-table-body">
-                  <div class="review-table-summaries" aria-label="For Review summary">
-                    <div class="review-table-summary"><i class="bi bi-clipboard2-check-fill summary-icon summary-review"></i><span>Total For Review</span><strong id="summaryTotalReview">0</strong></div>
-                    <div class="review-table-summary"><i class="bi bi-table summary-icon summary-rows"></i><span>Rows per Page</span><strong id="summaryRowsPerPage">10</strong></div>
-                    <div class="review-table-summary"><i class="bi bi-list-check summary-icon summary-visible"></i><span>Active / Visible Rows</span><strong id="summaryVisibleRows">0</strong></div>
-                    <div class="review-table-summary"><i class="bi bi-hourglass-split summary-icon summary-current"></i><span>Current Status</span><strong>For Review</strong></div>
-                    <div class="review-table-summary"><i class="bi bi-arrow-right-circle-fill summary-icon summary-next"></i><span>Next Status</span><strong>For Approval</strong></div>
+                  <div class="review-table-summaries">
+                    <div class="review-table-summary">
+                      <i
+                        class="bi bi-people-fill summary-icon summary-review"
+                      ></i
+                      ><span>Total Farmers for Review</span
+                      ><strong id="summaryTotalReview">0</strong>
+                    </div>
+                    <div class="review-table-summary">
+                      <i class="bi bi-table summary-icon summary-rows"></i
+                      ><span>Rows per Page</span
+                      ><strong id="summaryRowsPerPage">10</strong>
+                    </div>
+                    <div class="review-table-summary">
+                      <i
+                        class="bi bi-list-check summary-icon summary-visible"
+                      ></i
+                      ><span>Visible Profiles</span
+                      ><strong id="summaryVisibleRows">0</strong>
+                    </div>
+                    <div class="review-table-summary">
+                      <i
+                        class="bi bi-hourglass-split summary-icon summary-current"
+                      ></i
+                      ><span>Current Status</span><strong>For Review</strong>
+                    </div>
+                    <div class="review-table-summary">
+                      <i
+                        class="bi bi-arrow-right-circle-fill summary-icon summary-next"
+                      ></i
+                      ><span>Next Status</span><strong>For Approval</strong>
+                    </div>
                   </div>
-
                   <div class="review-table-toolbar">
-                    <div class="toolbar-filter"><label for="trainingTypeFilter">Training Type</label><select id="trainingTypeFilter" class="form-select"><option value="">All types</option></select></div>
-                    <div class="toolbar-filter"><label for="yearFilter">Year</label><select id="yearFilter" class="form-select"><option value="">All years</option></select></div>
-                    <div class="toolbar-search"><label for="reviewGlobalSearch">Search records</label><div class="input-group"><span class="input-group-text"><i class="bi bi-search"></i></span><input id="reviewGlobalSearch" class="form-control" type="search" placeholder="Search all columns"></div></div>
-                    <button class="btn clear-filter-button" type="button" id="clearReviewFilters"><i class="bi bi-filter-circle me-1"></i>Clear filters</button>
+                    <div class="toolbar-filter">
+                      <label for="organizationFilter">Farmer Organization</label
+                      ><select id="organizationFilter" class="form-select">
+                        <option value="">All organizations</option>
+                      </select>
+                    </div>
+                    <div class="toolbar-filter">
+                      <label for="barangayFilter">Barangay</label
+                      ><select id="barangayFilter" class="form-select">
+                        <option value="">All barangays</option>
+                      </select>
+                    </div>
+                    <div class="toolbar-filter">
+                      <label for="yearCoveredFilter">Year Covered</label
+                      ><select id="yearCoveredFilter" class="form-select">
+                        <option value="">All years</option>
+                      </select>
+                    </div>
+                    <div class="toolbar-search">
+                      <label for="reviewGlobalSearch">Search profiles</label>
+                      <div class="input-group">
+                        <span class="input-group-text"
+                          ><i class="bi bi-search"></i></span
+                        ><input
+                          id="reviewGlobalSearch"
+                          class="form-control"
+                          type="search"
+                          placeholder="Search all profile fields"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="btn clear-filter-button"
+                      type="button"
+                      id="clearReviewFilters"
+                    >
+                      <i class="bi bi-filter-circle me-1"></i>Clear filters
+                    </button>
                   </div>
-
-                  <div class="review-pagination" id="reviewPaginationTop" aria-label="Top table pagination"></div>
-                  <div class="table-responsive review-table-scroll" id="reviewTableScroll">
-                    <table class="table review-data-table align-middle" id="forReviewDataTable">
-                      <caption class="visually-hidden">Training records currently for review</caption>
-                      <colgroup><col style="width: 132px"><col style="width: 120px"><col style="width: 230px"><col style="width: 155px"><col style="width: 130px"><col style="width: 200px"><col style="width: 145px"><col style="width: 125px"><col style="width: 190px"><col style="width: 130px"><col style="width: 140px"><col style="width: 130px"></colgroup>
-                      <thead><tr><th scope="col">Actions</th><th scope="col" class="sortable-column" data-sort="id" tabindex="0" aria-sort="none">Training ID <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="title" tabindex="0" aria-sort="none">Training Title <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="type" tabindex="0" aria-sort="none">Training Type <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="date" tabindex="0" aria-sort="none">Training Date <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="location" tabindex="0" aria-sort="none">Training Venue / Location <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="municipality" tabindex="0" aria-sort="none">Municipality <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="province" tabindex="0" aria-sort="none">Province <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="trainer" tabindex="0" aria-sort="none">Trainer / Resource Person <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="participants" tabindex="0" aria-sort="none">No. of Participants <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="submitted" tabindex="0" aria-sort="none">Date Submitted <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th><th scope="col" class="sortable-column" data-sort="status" tabindex="0" aria-sort="none">Status <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th></tr></thead>
+                  <div
+                    class="review-pagination"
+                    id="reviewPaginationTop"
+                    aria-label="Top table pagination"
+                  ></div>
+                  <div
+                    class="table-responsive review-table-scroll"
+                    id="reviewTableScroll"
+                  >
+                    <table
+                      class="table review-data-table align-middle"
+                      id="forReviewDataTable"
+                    >
+                      <caption class="visually-hidden">
+                        Farmer profiles currently for review
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th>Actions</th>
+                          <th class="sortable-column" data-sort="id">
+                            Farmer ID / Core ID
+                            <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="organization">
+                            Farmer Organization
+                            <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="role">
+                            Farmer Role <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="lastName">
+                            Last Name <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="firstName">
+                            First Name <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="middleName">
+                            Middle Name <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th>Suffix</th>
+                          <th class="sortable-column" data-sort="birthDate">
+                            Date of Birth <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="sex">
+                            Sex <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th>Civil Status</th>
+                          <th>Nationality</th>
+                          <th>Place of Birth</th>
+                          <th class="sortable-column" data-sort="province">
+                            Province <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th>District</th>
+                          <th class="sortable-column" data-sort="municipality">
+                            Municipality <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="barangay">
+                            Barangay <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th>Sitio / Purok</th>
+                          <th>4Ps</th>
+                          <th>PWD</th>
+                          <th>Indigenous Group</th>
+                          <th>Tribe Name</th>
+                          <th>Dietary Restriction</th>
+                          <th>Senior Citizen</th>
+                          <th class="sortable-column" data-sort="yearCovered">
+                            Year Covered <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="registered">
+                            Registration Date
+                            <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="profileStatus">
+                            Profile Status <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                          <th class="sortable-column" data-sort="status">
+                            Review / Approval Status
+                            <i class="bi bi-arrow-down-up"></i>
+                          </th>
+                        </tr>
+                      </thead>
                       <tbody id="forReviewTableBody"></tbody>
-                      <tfoot><tr><th></th><th><input class="form-control form-control-sm column-filter" data-column="id" aria-label="Filter Training ID" placeholder="Search ID"></th><th><input class="form-control form-control-sm column-filter" data-column="title" aria-label="Filter Training Title" placeholder="Search title"></th><th><select class="form-select form-select-sm column-filter" data-column="type" aria-label="Filter Training Type"><option value="">All</option></select></th><th><input class="form-control form-control-sm column-filter" data-column="date" type="date" aria-label="Filter Training Date"></th><th><input class="form-control form-control-sm column-filter" data-column="location" aria-label="Filter Training Location" placeholder="Search location"></th><th><select class="form-select form-select-sm column-filter" data-column="municipality" aria-label="Filter Municipality"><option value="">All</option></select></th><th><select class="form-select form-select-sm column-filter" data-column="province" aria-label="Filter Province"><option value="">All</option></select></th><th><input class="form-control form-control-sm column-filter" data-column="trainer" aria-label="Filter Trainer" placeholder="Search trainer"></th><th><input class="form-control form-control-sm column-filter" data-column="participants" type="number" min="0" aria-label="Filter participant count" placeholder="Count"></th><th><input class="form-control form-control-sm column-filter" data-column="submitted" type="date" aria-label="Filter Date Submitted"></th><th><select class="form-select form-select-sm column-filter" data-column="status" aria-label="Filter Status"><option value="">All</option><option>For Review</option><option>For Approval</option></select></th></tr></tfoot>
+                      <tfoot>
+                        <tr>
+                          <th></th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="id"
+                              placeholder="Filter"
+                            />
+                          </th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="organization"
+                              placeholder="Filter"
+                            />
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="role"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="lastName"
+                              placeholder="Filter"
+                            />
+                          </th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="firstName"
+                              placeholder="Filter"
+                            />
+                          </th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="middleName"
+                              placeholder="Filter"
+                            />
+                          </th>
+                          <th></th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="birthDate"
+                              type="date"
+                            />
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="sex"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th></th>
+                          <th></th>
+                          <th></th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="province"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th></th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="municipality"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="barangay"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th></th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="fourPs"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="pwd"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="indigenousGroup"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th></th>
+                          <th></th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="seniorCitizen"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="yearCovered"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <input
+                              class="form-control form-control-sm column-filter"
+                              data-column="registered"
+                              type="date"
+                            />
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="profileStatus"
+                            >
+                              <option value="">All</option>
+                            </select>
+                          </th>
+                          <th>
+                            <select
+                              class="form-select form-select-sm column-filter"
+                              data-column="status"
+                            >
+                              <option value="">All</option>
+                              <option>For Review</option>
+                              <option>For Approval</option>
+                              <option>Approved</option>
+                            </select>
+                          </th>
+                        </tr>
+                      </tfoot>
                     </table>
-                    <div class="review-table-state" id="reviewTableState" hidden></div>
+                    <div
+                      class="review-table-state"
+                      id="reviewTableState"
+                      hidden
+                    ></div>
                   </div>
-                  <div class="review-pagination" id="reviewPaginationBottom" aria-label="Bottom table pagination"></div>
+                  <div
+                    class="review-pagination"
+                    id="reviewPaginationBottom"
+                    aria-label="Bottom table pagination"
+                  ></div>
                 </div>
-              </div>
               </section>
             </div>
           </div>
@@ -1095,9 +1401,15 @@
                     </a>
                   </li>
                   <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
+                    <a href="../update/for-approval.html" class="nav-link">
                       <i class="bi bi-person-fill-check"></i>
                       <span>For approval</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For acceptance</span>
                     </a>
                   </li>
                 </ul>
@@ -1604,17 +1916,180 @@
         </div>
       </div>
     </div>
-    
-    <!-- Modal review -->
-    <div class="modal fade" id="reviewForwardModal" tabindex="-1" aria-labelledby="reviewForwardModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"><div class="modal-content review-modal-content">
-        <div class="modal-header review-modal-header"><div class="review-modal-heading"><span class="review-modal-icon"><i class="bi bi-clipboard2-check-fill"></i></span><div><span class="review-modal-eyebrow">Training workflow</span><h5 class="modal-title" id="reviewForwardModalLabel">Review &amp; Forward</h5><p>Confirm the training details and requirements before forwarding.</p></div></div><button type="button" class="btn review-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button></div>
-        <div class="modal-body review-modal-body"><div class="workflow-transition"><span class="status-badge status-review">For Review</span><i class="bi bi-arrow-right"></i><span class="status-badge status-approval">For Approval</span></div><dl class="review-record-details" id="reviewForwardDetails"></dl><div class="requirements-panel"><h6>Required documents / requirements</h6><ul><li><i class="bi bi-check-circle-fill"></i> Training proposal and agenda <span>Complete</span></li><li><i class="bi bi-check-circle-fill"></i> Participant list <span>Complete</span></li><li><i class="bi bi-check-circle-fill"></i> Resource person profile <span>Complete</span></li></ul></div></div>
-        <div class="modal-footer review-modal-footer"><span><i class="bi bi-shield-check"></i> Status will update after confirmation</span><div><button type="button" class="btn review-modal-dismiss" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn forward-confirm-button" id="confirmForwardButton"><i class="bi bi-send-check-fill me-1"></i>Forward for Approval</button></div></div>
-      </div></div>
+
+    <!-- Farmer profile review modals -->
+    <div
+      class="modal fade"
+      id="aboutReviewWorkflowModal"
+      tabindex="-1"
+      aria-labelledby="aboutReviewWorkflowModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"
+      >
+        <div class="modal-content review-modal-content">
+          <div class="modal-header review-modal-header">
+            <div class="review-modal-heading">
+              <div>
+                <span class="review-modal-eyebrow"
+                  >Farmer profile workflow</span
+                >
+                <h5 class="modal-title" id="aboutReviewWorkflowModalLabel">
+                  About Review Workflow
+                </h5>
+                <p>Each farmer profile progresses through these four steps.</p>
+              </div>
+            </div>
+            <div class="review-modal-header-actions">
+              <span class="review-modal-icon" aria-hidden="true"
+                ><i class="bi bi-info-circle-fill"></i
+              ></span>
+              <button
+                type="button"
+                class="btn review-modal-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+          <div class="modal-body review-modal-body">
+            <div class="workflow-transition">
+              <span class="status-badge status-review">For Review</span
+              ><i class="bi bi-arrow-right"></i
+              ><span class="status-badge status-approval">For Approval</span
+              ><i class="bi bi-arrow-right"></i
+              ><span class="status-badge status-approved">Approved</span
+              ><i class="bi bi-arrow-right"></i
+              ><span class="status-badge status-accepted">Accepted</span>
+            </div>
+            <dl class="review-record-details">
+              <dt>For Review</dt>
+              <dd>
+                The farmer profile has been submitted and is awaiting
+                verification of encoded information and supporting details.
+              </dd>
+              <dt>For Approval</dt>
+              <dd>
+                The profile has completed initial review and is forwarded to the
+                appropriate approval process.
+              </dd>
+              <dt>Approved</dt>
+              <dd>
+                The farmer profile has successfully completed review and
+                approval and is ready for participant acceptance.
+              </dd>
+              <dt>Accepted</dt>
+              <dd>
+                The approved farmer profile has been accepted and is finalized
+                in the system.
+              </dd>
+            </dl>
+          </div>
+          <div class="modal-footer review-modal-footer">
+            <div>
+              <button
+                type="button"
+                class="btn review-modal-dismiss"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="reviewForwardModal"
+      tabindex="-1"
+      aria-labelledby="reviewForwardModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"
+      >
+        <div class="modal-content review-modal-content">
+          <div class="modal-header review-modal-header">
+            <div class="review-modal-heading">
+              <span class="review-modal-icon"
+                ><i class="bi bi-person-vcard-fill"></i
+              ></span>
+              <div>
+                <span class="review-modal-eyebrow">Farmer profile</span>
+                <h5 class="modal-title" id="reviewForwardModalLabel">
+                  Farmer Profile Details
+                </h5>
+                <p>Review the submitted farmer profile information.</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn review-modal-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="modal-body review-modal-body">
+            <dl class="review-record-details" id="reviewForwardDetails"></dl>
+          </div>
+          <div class="modal-footer review-modal-footer">
+            <span
+              ><i class="bi bi-shield-check"></i> Status updates after
+              confirmation</span
+            >
+            <div>
+              <button
+                type="button"
+                class="btn review-modal-dismiss"
+                data-bs-dismiss="modal"
+              >
+                Close</button
+              ><button
+                type="button"
+                class="btn forward-confirm-button"
+                id="confirmForwardButton"
+              >
+                <i class="bi bi-send-check-fill me-1"></i>Submit for Approval
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Modal toast notification -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3"><div id="reviewToast" class="toast review-toast" role="status" aria-live="polite" aria-atomic="true"><div class="d-flex"><div class="toast-body"><i class="bi bi-check-circle-fill me-2"></i><span id="reviewToastMessage">Update successful.</span></div><button type="button" class="btn review-toast-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Dismiss notification" title="Dismiss notification"><i class="bi bi-x-lg" aria-hidden="true"></i></button></div></div></div>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        id="reviewToast"
+        class="toast review-toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        data-bs-delay="6000"
+      >
+        <div class="toast-header">
+          <i id="reviewToastIcon" class="bi bi-check-circle-fill me-2"></i
+          ><strong id="reviewToastTitle" class="me-2"
+            >Farmer Profile Submitted</strong
+          ><small id="reviewToastTime" class="text-body-secondary me-auto"
+            >Now</small
+          ><button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div id="reviewToastMessage" class="toast-body">
+          Farmer profile submitted for approval.
+        </div>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script

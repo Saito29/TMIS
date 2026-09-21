@@ -55,9 +55,9 @@
     />
     <link
       rel="stylesheet"
-      href="../../../../src/css/participants/update/for-review.css"
+      href="../../../../src/css/participants/update/for-approval.css"
     />
-    <title>DA-TMIS For Review</title>
+    <title>DA-TMIS For Approval</title>
   </head>
   <body class="layout-fixed">
     <div class="app-wrapper">
@@ -186,10 +186,7 @@
                           <span>For Approval</span>
                           <span class="badge badge-approval">23</span>
                         </a>
-                         <a
-                          href="#"
-                          class="header-sub-collapse-item"
-                        >
+                        <a href="#" class="header-sub-collapse-item">
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Acceptance</span>
                           <span class="badge badge-approval">23</span>
@@ -828,14 +825,14 @@
                         <li class="breadcrumb-item">Participants</li>
                         <li class="breadcrumb-item">Update</li>
                         <li class="breadcrumb-item active" aria-current="page">
-                          For Review
+                          For Approval
                         </li>
                       </ol>
                     </nav>
-                    <h4 class="content-header">Farmer Profile Review</h4>
+                    <h4 class="content-header">Farmer Profile Approval</h4>
                     <span class="content-info"
-                      >Review submitted farmer profiles and forward verified
-                      records for approval.</span
+                      >Approve farmer profiles and forward accepted records for
+                      final acceptance.</span
                     >
                   </div>
                   <!-- Worklfow -->
@@ -844,21 +841,21 @@
                       <div
                         class="card-header d-flex align-items-center justify-content-between gap-2 w-100"
                       >
-                        <h6 class="card-title">Review Workflow</h6>
+                        <h6 class="card-title">Approval Workflow</h6>
                         <button
                           class="btn table-icon-button workflow-about-button"
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target="#aboutReviewWorkflowModal"
-                          title="About Review Workflow"
-                          aria-label="About Review Workflow"
+                          title="About Approval Workflow"
+                          aria-label="About Approval Workflow"
                         >
                           <i class="bi bi-info-circle-fill"></i>
                         </button>
                       </div>
                       <div class="card-body">
                         <ul class="workflow-progress">
-                          <li class="workflow-item workflow-current">
+                          <li class="workflow-item workflow-approved">
                             <div class="workflow-icon">
                               <i class="bi bi-clipboard2-check-fill"></i>
                             </div>
@@ -869,7 +866,7 @@
                           <li class="workflow-divider" aria-hidden="true">
                             <i class="bi bi-arrow-right"></i>
                           </li>
-                          <li class="workflow-item workflow-pending">
+                          <li class="workflow-item workflow-current">
                             <div class="workflow-icon">
                               <i class="bi bi-person-check-fill"></i>
                             </div>
@@ -882,13 +879,13 @@
                           <li class="workflow-divider" aria-hidden="true">
                             <i class="bi bi-arrow-right"></i>
                           </li>
-                          <li class="workflow-item workflow-accepted">
+                          <li class="workflow-item workflow-pending">
                             <div class="workflow-icon">
                               <i class="bi bi-person-check-fill"></i>
                             </div>
                             <div class="workflow-details">
                               <span class="workflow-process-acceptance"
-                                >For acceptance</span
+                                >For Acceptance</span
                               >
                             </div>
                           </li>
@@ -923,11 +920,11 @@
                 <header class="card-header for-review-table-header">
                   <div>
                     <h5 class="for-review-table-title" id="forReviewTableTitle">
-                      Farmer Profiles for Review
+                      Farmer Profiles for Approval
                     </h5>
                     <p class="for-review-table-description">
-                      Review submitted farmer profiles and forward verified
-                      records for approval.
+                      Approve farmer profiles and forward accepted records for
+                      final acceptance.
                     </p>
                   </div>
                   <div class="table-header-actions">
@@ -954,7 +951,7 @@
                       <i
                         class="bi bi-people-fill summary-icon summary-review"
                       ></i
-                      ><span>Total Farmers for Review</span
+                      ><span>Total Farmers for Approval</span
                       ><strong id="summaryTotalReview">0</strong>
                     </div>
                     <div class="review-table-summary">
@@ -973,13 +970,13 @@
                       <i
                         class="bi bi-hourglass-split summary-icon summary-current"
                       ></i
-                      ><span>Current Status</span><strong>For Review</strong>
+                      ><span>Current Status</span><strong>For Approval</strong>
                     </div>
                     <div class="review-table-summary">
                       <i
                         class="bi bi-arrow-right-circle-fill summary-icon summary-next"
                       ></i
-                      ><span>Next Status</span><strong>For Approval</strong>
+                      ><span>Next Status</span><strong>For Acceptance</strong>
                     </div>
                   </div>
                   <div class="review-table-toolbar">
@@ -1036,7 +1033,7 @@
                       id="forReviewDataTable"
                     >
                       <caption class="visually-hidden">
-                        Farmer profiles currently for review
+                        Farmer profiles currently for approval
                       </caption>
                       <thead>
                         <tr>
@@ -1459,406 +1456,6 @@
               </li>
             </ul>
           </li>
-          <li class="mobile-list-navigation">
-            <a
-              href="#"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              data-bs-target="#trainingMobile"
-              aria-controls="trainingMobile"
-              aria-expanded="false"
-            >
-              <i class="bi bi-book-fill"></i>
-              <span>Training</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul class="collapse mobile-subnav" id="trainingMobile">
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#createTrainingMobile"
-                  aria-controls="createTrainingMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-plus-circle"></i>
-                  <span>Create</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="createTrainingMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Register</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#updateTrainingMobile"
-                  aria-controls="updateTrainingMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-arrow-repeat"></i>
-                  <span>Update</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="updateTrainingMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-person-fill-check"></i>
-                      <span>For review</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-person-fill-check"></i>
-                      <span>For approval</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#detailsTrainingMobile"
-                  aria-controls="detailsTrainingMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-file-earmark-text"></i>
-                  <span>Details</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="detailsTrainingMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-list-check"></i>
-                      <span>All status</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Approved & accepted</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-exclamation-circle-fill"></i>
-                      <span>Incomplete</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-x-circle-fill"></i>
-                      <span>Inactive</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="mobile-list-navigation">
-            <a
-              href="#"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              data-bs-target="#evaluationMobile"
-              aria-controls="evaluationMobile"
-              aria-expanded="false"
-            >
-              <i class="bi bi-file-earmark-check"></i>
-              <span>Evaluation</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul class="collapse mobile-subnav" id="evaluationMobile">
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#createEvaluationMobile"
-                  aria-controls="createEvaluationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-plus-circle"></i>
-                  <span>Create</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="createEvaluationMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-file-earmark-text"></i>
-                      <span>Pre-test Questionaire</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-file-earmark-text"></i>
-                      <span>Post-test Questionaire</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-file-earmark-check"></i>
-                      <span>Training Evaluation</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-star-fill"></i>
-                      <span>Resource Person Evaluation</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#encodeEvaluationMobile"
-                  aria-controls="encodeEvaluationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-pencil-square"></i>
-                  <span>Encode</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="encodeEvaluationMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Pre-test Evaluation</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Post-test Evaluation</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Training Evaluation</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Resource Person Evaluation</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#updateEvaluationMobile"
-                  aria-controls="updateEvaluationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-arrow-repeat"></i>
-                  <span>Update</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul class="collapse mobile-submenu" id="updateEvaluationMobile">
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-person-fill-check"></i>
-                      <span>For review</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-person-fill-check"></i>
-                      <span>For approval</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#detailsEvaluationMobile"
-                  aria-controls="detailsEvaluationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-file-earmark-text"></i>
-                  <span>Details</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul
-                  class="collapse mobile-submenu"
-                  id="detailsEvaluationMobile"
-                >
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-list-check"></i>
-                      <span>All status</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Approved & accepted</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-exclamation-circle-fill"></i>
-                      <span>Incomplete</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-x-circle-fill"></i>
-                      <span>Inactive</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="mobile-list-navigation">
-            <a
-              href="#"
-              class="nav-link"
-              data-bs-toggle="collapse"
-              data-bs-target="#administrationMobile"
-              aria-controls="administrationMobile"
-              aria-expanded="false"
-            >
-              <i class="bi bi-sliders"></i>
-              <span>Administration</span>
-              <i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul class="collapse mobile-subnav" id="administrationMobile">
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#createAdministrationMobile"
-                  aria-controls="createAdministrationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-plus-circle"></i>
-                  <span>Create</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul
-                  class="collapse mobile-submenu"
-                  id="createAdministrationMobile"
-                >
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-pencil-square"></i>
-                      <span>Register</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#updateAdministrationMobile"
-                  aria-controls="updateAdministrationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-arrow-repeat"></i>
-                  <span>Update</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul
-                  class="collapse mobile-submenu"
-                  id="updateAdministrationMobile"
-                >
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-person-fill-check"></i>
-                      <span>For approval</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mobile-list-navigation">
-                <a
-                  href="#"
-                  class="nav-link"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#detailsAdministrationMobile"
-                  aria-controls="detailsAdministrationMobile"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-file-earmark-text"></i>
-                  <span>Details</span>
-                  <i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul
-                  class="collapse mobile-submenu"
-                  id="detailsAdministrationMobile"
-                >
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-list-check"></i>
-                      <span>All status</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Approved & accepted</span>
-                    </a>
-                  </li>
-                  <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
-                      <i class="bi bi-x-circle-fill"></i>
-                      <span>Inactive</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li class="mobile-list-navigation">
-            <a href="#my-profile" class="nav-link">
-              <i class="bi bi-person-circle"></i>
-              <span>Profile</span>
-            </a>
-          </li>
-          <li class="mobile-list-navigation">
-            <a href="#my-logs" class="nav-link">
-              <i class="bi bi-journal-text"></i>
-              <span>Logs</span>
-            </a>
-          </li>
-          <li class="mobile-list-navigation">
-            <a href="#settings" class="nav-link">
-              <i class="bi bi-gear"></i>
-              <span>Settings</span>
-            </a>
-          </li>
-          <li class="mobile-list-navigation">
-            <a href="#signout" class="nav-link sign-out-item">
-              <i class="bi bi-box-arrow-right"></i>
-              <span>Sign Out</span>
-            </a>
-          </li>
         </ul>
       </div>
     </div>
@@ -2010,54 +1607,38 @@
       aria-hidden="true"
     >
       <div
-        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
       >
-        <div class="modal-content review-modal-content">
-          <div class="modal-header review-modal-header">
-            <div class="review-modal-heading">
-              <span class="review-modal-icon"
-                ><i class="bi bi-person-vcard-fill"></i
-              ></span>
-              <div>
-                <span class="review-modal-eyebrow">Farmer profile</span>
-                <h5 class="modal-title" id="reviewForwardModalLabel">
-                  Farmer Profile Details
-                </h5>
-                <p>Review the submitted farmer profile information.</p>
-              </div>
-            </div>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="reviewForwardModalLabel">
+              Approve Farmer Profile
+            </h5>
             <button
               type="button"
-              class="btn review-modal-close"
+              class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-            >
-              <i class="bi bi-x-lg"></i>
-            </button>
+            ></button>
           </div>
-          <div class="modal-body review-modal-body">
+          <div class="modal-body">
             <dl class="review-record-details" id="reviewForwardDetails"></dl>
           </div>
-          <div class="modal-footer review-modal-footer">
-            <span
-              ><i class="bi bi-shield-check"></i> Status updates after
-              confirmation</span
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
             >
-            <div>
-              <button
-                type="button"
-                class="btn review-modal-dismiss"
-                data-bs-dismiss="modal"
-              >
-                Close</button
-              ><button
-                type="button"
-                class="btn forward-confirm-button"
-                id="confirmForwardButton"
-              >
-                <i class="bi bi-send-check-fill me-1"></i>Submit for Approval
-              </button>
-            </div>
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="confirmForwardButton"
+            >
+              Approve & Forward
+            </button>
           </div>
         </div>
       </div>
@@ -2107,6 +1688,6 @@
 
     <!-- nav -->
     <script src="../../../../src/js/nav.js"></script>
-    <script src="../../../../src/js/participants/update/for-review.js"></script>
+    <script src="../../../../src/js/participants/update/for-approval.js"></script>
   </body>
 </html>

@@ -1,1 +1,64 @@
-﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet"><link rel="stylesheet" href="../../../../src/css/participants/update/for-review.css"><title>Edit Farmer Profile</title></head><body><main class="container py-4"><a class="btn review-modal-dismiss mb-3" href="for_review.html"><i class="bi bi-arrow-left me-1"></i>Back to For Review</a><section class="card for-review-table-card"><header class="card-header for-review-table-header"><div><h5 class="for-review-table-title">Edit Farmer Profile</h5><p class="for-review-table-description" id="profileId"></p></div></header><form class="card-body for-review-table-body"><div class="row g-3"><div class="col-md-6"><label class="form-label">First Name</label><input class="form-control"></div><div class="col-md-6"><label class="form-label">Last Name</label><input class="form-control"></div><div class="col-md-6"><label class="form-label">Farmer Organization</label><input class="form-control"></div><div class="col-md-6"><label class="form-label">Farmer Role</label><input class="form-control"></div><div class="col-12"><button type="button" class="btn forward-confirm-button">Save Changes</button></div></div></form></section></main><script>document.querySelector('#profileId').textContent=`Editing ${new URLSearchParams(location.search).get('id')||'farmer profile'}`;</script></body></html>
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../src/css/participants/update/for-review.css"
+    />
+    <title>Edit Farmer Profile</title>
+  </head>
+  <body>
+    <main class="container py-4">
+      <a class="btn review-modal-dismiss mb-3" href="for_review.html"
+        ><i class="bi bi-arrow-left me-1"></i>Back to For Review</a
+      >
+      <section class="card for-review-table-card">
+        <header class="card-header for-review-table-header">
+          <div>
+            <h5 class="for-review-table-title">Edit Farmer Profile</h5>
+            <p class="for-review-table-description" id="profileId"></p>
+          </div>
+        </header>
+        <form class="card-body for-review-table-body">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">First Name</label
+              ><input class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Last Name</label
+              ><input class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Farmer Organization</label
+              ><input class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Farmer Role</label
+              ><input class="form-control" />
+            </div>
+            <div class="col-12">
+              <button type="button" class="btn forward-confirm-button">
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script>
+      document.querySelector('#profileId').textContent =
+        `Editing ${new URLSearchParams(location.search).get('id') || 'farmer profile'}`;
+    </script>
+  </body>
+</html>

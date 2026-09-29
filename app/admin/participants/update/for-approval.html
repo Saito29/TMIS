@@ -1944,6 +1944,89 @@
         </div>
       </div>
     </div>
+    <div
+      class="modal fade"
+      id="revertToReviewModal"
+      tabindex="-1"
+      aria-labelledby="revertToReviewModalLabel"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"
+      >
+        <div class="modal-content review-modal-content">
+          <div class="modal-header review-modal-header">
+            <div class="review-modal-heading">
+              <span class="review-modal-icon revert-modal-icon" aria-hidden="true">
+                <i class="bi bi-arrow-counterclockwise"></i>
+              </span>
+              <div>
+                <span class="review-modal-eyebrow">Farmer profile workflow</span>
+                <h5 class="modal-title" id="revertToReviewModalLabel">
+                  Return Profile to For Review
+                </h5>
+                <p>Provide a reason before returning this profile to review.</p>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="btn review-modal-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="modal-body review-modal-body">
+            <dl class="review-record-details revert-record-details">
+              <dt>Farmer Core ID</dt>
+              <dd id="revertCoreId"></dd>
+              <dt>Farmer Name</dt>
+              <dd id="revertFarmerName"></dd>
+              <dt>Current Status</dt>
+              <dd><span class="status-badge status-approval" id="revertCurrentStatus"></span></dd>
+              <dt>New Status</dt>
+              <dd><span class="status-badge status-review">For Review</span></dd>
+            </dl>
+            <div class="revert-remarks-field">
+              <label class="form-label" for="revertRemarks">Remarks</label>
+              <textarea
+                class="form-control"
+                id="revertRemarks"
+                rows="4"
+                maxlength="1000"
+                placeholder="Describe why this profile is being returned for review"
+                required
+                aria-describedby="revertRemarksHelp"
+              ></textarea>
+              <small class="form-text" id="revertRemarksHelp">
+                A reason is required and will be saved with the profile.
+              </small>
+            </div>
+          </div>
+          <div class="modal-footer review-modal-footer">
+            <span><i class="bi bi-info-circle"></i> Status changes after confirmation</span>
+            <div>
+              <button
+                type="button"
+                class="btn review-modal-dismiss"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                class="btn revert-confirm-button"
+                id="confirmRevertButton"
+              >
+                <i class="bi bi-arrow-counterclockwise me-1"></i>Return to Review
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal toast notification -->
     <div class="toast-container position-fixed top-0 end-0 p-3">
       <div

@@ -2552,6 +2552,29 @@ body::-webkit-scrollbar-thumb:hover,
 .submission-blocked { margin: 10px 0 0; color: #b26a00; font-size: 12px; font-weight: 600; }
 .requirements-panel li .bi-exclamation-triangle-fill { color: #fb8c00; }
 
+.revert-action { color: #a65b00; background: #fff3e0; }
+.revert-action:hover, .revert-action:focus-visible { color: #ffffff; background: #a65b00; }
+.revert-modal-icon { color: #a65b00; background: #fff3e0; }
+.revert-record-details { margin-bottom: 20px; }
+.revert-remarks-field .form-label { color: #263238; font-size: 13px; font-weight: 600; }
+.revert-remarks-field .form-control {
+  color-scheme: light;
+  color: #263238 !important;
+  background-color: #ffffff !important;
+  border-color: #e0e0e0;
+  font-size: 13px;
+}
+.revert-remarks-field .form-control::placeholder { color: #607d8b; opacity: 1; }
+.revert-remarks-field .form-control:focus {
+  color: #263238 !important;
+  background-color: #ffffff !important;
+  border-color: #a65b00;
+  box-shadow: 0 0 0 3px rgba(251, 140, 0, 0.16);
+}
+.revert-remarks-field .form-text { color: #607d8b; font-size: 11px; }
+.revert-confirm-button { color: #ffffff; background: #a65b00; border-color: #a65b00; }
+.revert-confirm-button:hover, .revert-confirm-button:focus-visible { color: #ffffff; background: #824700; border-color: #824700; }
+
 /* Compact Bootstrap review notification. */
 .toast-container { z-index: 1100; max-width: calc(100vw - 24px); }
 .review-toast { width: min(360px, calc(100vw - 24px)); border-radius: 10px; overflow: hidden; }

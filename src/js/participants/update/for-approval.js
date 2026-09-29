@@ -193,7 +193,8 @@
   const body = $('#forReviewTableBody'),
     empty = $('#reviewTableState'),
     toast = new bootstrap.Toast($('#reviewToast')),
-    modal = new bootstrap.Modal($('#reviewForwardModal'));
+    modal = new bootstrap.Modal($('#reviewForwardModal')),
+    revertModal = new bootstrap.Modal($('#revertToReviewModal'));
   const currentStatus = document.body.dataset.currentStatus || 'For Review';
   const nextStatus = document.body.dataset.nextStatus || 'For Approval';
   const approvalMode = currentStatus === 'For Approval';
@@ -345,6 +346,16 @@
           `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="${approvalMode ? 'Approve and forward for acceptance' : 'Review and forward'}"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="farmer-profile-details.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="edit-farmer-profile.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge status-review">${r.profileStatus}</span></td><td><span class="status-badge ${currentStatusClass}">${r.status}</span></td></tr>`
       )
       .join('');
+    rows.forEach((record, index) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'btn table-action-button revert-action';
+      button.dataset.revert = record.id;
+      button.title = 'Return profile to For Review';
+      button.setAttribute('aria-label', `Return ${record.id} to For Review`);
+      button.innerHTML = '<i class="bi bi-arrow-counterclockwise"></i>';
+      body.querySelectorAll('.table-row-actions')[index].append(button);
+    });
     empty.hidden = Boolean(rows.length);
     if (!rows.length)
       empty.innerHTML =
@@ -435,6 +446,18 @@
     });
   });
   body.addEventListener('click', (e) => {
+    const revertButton = e.target.closest('[data-revert]');
+    if (revertButton) {
+      state.selected = records.find((r) => r.id === revertButton.dataset.revert);
+      $('#revertCoreId').textContent = state.selected.id;
+      $('#revertFarmerName').textContent =
+        `${state.selected.firstName} ${state.selected.lastName}`;
+      $('#revertCurrentStatus').textContent = state.selected.status;
+      $('#revertRemarks').value = '';
+      $('#revertRemarks').setCustomValidity('');
+      revertModal.show();
+      return;
+    }
     const b = e.target.closest('[data-forward]');
     if (!b) return;
     state.selected = records.find((r) => r.id === b.dataset.forward);
@@ -466,6 +489,23 @@
       approvalMode
         ? 'Farmer profile forwarded for acceptance.'
         : 'Farmer profile submitted for approval.'
+    );
+  });
+  $('#confirmRevertButton').addEventListener('click', () => {
+    const remarksField = $('#revertRemarks');
+    const remarks = remarksField.value.trim();
+    remarksField.setCustomValidity(remarks ? '' : 'Please provide a reason for returning this profile.');
+    if (!remarksField.reportValidity() || !state.selected) return;
+
+    state.selected.previousStatus = state.selected.status;
+    state.selected.status = 'For Review';
+    state.selected.revertRemarks = remarks;
+    state.selected.revertedAt = new Date().toISOString();
+    revertModal.hide();
+    refresh();
+    notify(
+      'Profile Returned to Review',
+      `${state.selected.id} was returned to For Review.`
     );
   });
   $('#refreshReviewTable').addEventListener('click', () => {

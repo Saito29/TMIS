@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const seed = [
     [
       'FMR-2026-001',
@@ -199,12 +199,23 @@
     perPage: 10,
     global: '',
     organization: '',
+    municipality: '',
     barangay: '',
     year: '',
     columns: {},
     sort: null,
     selected: null,
   };
+  const statusBadgeClass = (status) =>
+    ({
+      'For Review': 'status-review',
+      'For Approval': 'status-approval',
+      'For Acceptance': 'status-acceptance',
+      Approved: 'status-approved',
+      Accepted: 'status-accepted',
+      Active: 'status-active',
+      Inactive: 'status-inactive',
+    })[status] || 'status-neutral';
   const values = (key) =>
     [...new Set(records.map((r) => r[key]))].sort((a, b) =>
       String(a).localeCompare(String(b), undefined, { numeric: true })
@@ -219,8 +230,23 @@
           .join('')
       );
   };
+  const fillBarangays = (municipality = '') => {
+    const select = $('#barangayFilter');
+    const barangays = [
+      ...new Set(
+        records
+          .filter((record) => !municipality || record.municipality === municipality)
+          .map((record) => record.barangay)
+      ),
+    ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+    select.replaceChildren(
+      new Option('All barangays', ''),
+      ...barangays.map((barangay) => new Option(barangay, barangay))
+    );
+  };
   fill('#organizationFilter', 'organization');
-  fill('#barangayFilter', 'barangay');
+  fill('#municipalityFilter', 'municipality');
+  fillBarangays();
   fill('#yearCoveredFilter', 'yearCovered');
   $$('select.column-filter').forEach((el) =>
     fill(`[data-column="${el.dataset.column}"]`, el.dataset.column)
@@ -263,6 +289,7 @@
         (!state.global ||
           Object.values(r).join(' ').toLowerCase().includes(state.global)) &&
         (!state.organization || r.organization === state.organization) &&
+          (!state.municipality || r.municipality === state.municipality) &&
         (!state.barangay || r.barangay === state.barangay) &&
         (!state.year || String(r.yearCovered) === state.year) &&
         Object.entries(state.columns).every(
@@ -316,6 +343,18 @@
           `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="Review and forward"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="farmer-profile-details.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="edit-farmer-profile.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge status-review">${r.profileStatus}</span></td><td><span class="status-badge status-review">${r.status}</span></td></tr>`
       )
       .join('');
+    const headers = Array.from($('#forReviewDataTable thead tr').cells);
+    const statusColumn = headers.findIndex((cell) => cell.dataset.sort === 'status');
+    const profileStatusColumn = headers.findIndex(
+      (cell) => cell.dataset.sort === 'profileStatus'
+    );
+    body.querySelectorAll('tr').forEach((row) => {
+      [statusColumn, profileStatusColumn].forEach((column) => {
+        const badge = row.cells[column]?.querySelector('.status-badge');
+        if (badge)
+          badge.className = `status-badge ${statusBadgeClass(badge.textContent.trim())}`;
+      });
+    });
     empty.hidden = Boolean(rows.length);
     if (!rows.length)
       empty.innerHTML =
@@ -339,6 +378,12 @@
     state.global = e.target.value.toLowerCase();
     refresh();
   });
+  $('#municipalityFilter').addEventListener('change', (e) => {
+    state.municipality = e.target.value;
+    state.barangay = '';
+    fillBarangays(state.municipality);
+    refresh();
+  });
   [
     ['#organizationFilter', 'organization'],
     ['#barangayFilter', 'barangay'],
@@ -356,9 +401,10 @@
     })
   );
   $('#clearReviewFilters').addEventListener('click', () => {
-    state.global = state.organization = state.barangay = state.year = '';
+    state.global = state.organization = state.municipality = state.barangay = state.year = '';
     state.columns = {};
     $('#reviewGlobalSearch').value = '';
+    fillBarangays();
     $$('.toolbar-filter select,.column-filter').forEach((e) => (e.value = ''));
     refresh();
   });
@@ -408,6 +454,8 @@
       'Review & Submit Farmer Profile';
     $('#reviewForwardDetails').innerHTML =
       `<dt>Farmer ID / Core ID</dt><dd>${state.selected.id}</dd><dt>Farmer</dt><dd>${state.selected.firstName} ${state.selected.lastName}</dd><dt>Farmer Status</dt><dd><span class="status-badge status-review">${state.selected.status}</span></dd><dt class="w-100 mt-3">Requirements / Attachments</dt><dd class="w-100"><div class="requirements-panel"><ul>${reqs.map((x) => `<li><i class="bi ${x.complete ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'}"></i>${x.name}<span>${x.complete ? 'Completed' : 'Incomplete'}</span></li>`).join('')}</ul>${missing.length ? `<p class="submission-blocked">Submission blocked: ${missing.map((x) => x.name).join(', ')} is incomplete.</p>` : ''}</div></dd>`;
+    $('#reviewForwardDetails .status-badge').className =
+      `status-badge ${statusBadgeClass(state.selected.status)}`;
     $('#confirmForwardButton').disabled = missing.length > 0;
     modal.show();
   });

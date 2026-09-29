@@ -2562,3 +2562,12 @@ body::-webkit-scrollbar-thumb:hover,
 .review-toast .toast-body { padding: 10px 12px; font-size: 12px; line-height: 1.35; }
 .review-toast-blocked .toast-header { color: #8a5300; }.review-toast-blocked .toast-header i { color: #fb8c00; }
 @media (max-width: 575.98px) { .toast-container { right: 0; left: 0; display: flex; justify-content: center; } }
+
+.status-review { color: #1565c0; background: #e3f2fd; }
+.status-approval { color: #a65b00; background: #fff3e0; }
+.status-acceptance { color: #00796b; background: #e0f2f1; }
+.status-approved { color: #1b5e20; background: #e8f5e9; }
+.status-accepted { color: #00695c; background: #e0f2f1; }
+.status-active { color: #1b5e20; background: #e8f5e9; }
+.status-inactive { color: #b71c1c; background: #ffebee; }
+.status-neutral { color: #455a64; background: #eceff1; }

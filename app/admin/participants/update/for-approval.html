@@ -53,13 +53,18 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/admin-lte@4.8.4/dist/css/adminlte.min.css"
     />
+    <link rel="stylesheet" href="../../../../src/css/shared/main-body.css" />
     <link
       rel="stylesheet"
       href="../../../../src/css/participants/update/for-approval.css"
     />
     <title>DA-TMIS For Approval</title>
   </head>
-  <body class="layout-fixed">
+  <body
+    class="layout-fixed"
+    data-current-status="For Approval"
+    data-next-status="For Acceptance"
+  >
     <div class="app-wrapper">
       <nav class="app-header navbar navbar-expand">
         <div
@@ -186,7 +191,10 @@
                           <span>For Approval</span>
                           <span class="badge badge-approval">23</span>
                         </a>
-                        <a href="#" class="header-sub-collapse-item">
+                         <a
+                          href="#"
+                          class="header-sub-collapse-item"
+                        >
                           <i class="bi bi-clipboard2-check-fill"></i>
                           <span>For Acceptance</span>
                           <span class="badge badge-approval">23</span>
@@ -831,8 +839,8 @@
                     </nav>
                     <h4 class="content-header">Farmer Profile Approval</h4>
                     <span class="content-info"
-                      >Approve farmer profiles and forward accepted records for
-                      final acceptance.</span
+                      >Approve reviewed farmer profiles and forward eligible
+                      records for acceptance.</span
                     >
                   </div>
                   <!-- Worklfow -->
@@ -892,7 +900,7 @@
                           <li class="workflow-divider" aria-hidden="true">
                             <i class="bi bi-arrow-right"></i>
                           </li>
-                          <li class="workflow-item workflow-approved">
+                          <li class="workflow-item workflow-pending">
                             <div class="workflow-icon">
                               <i class="bi bi-patch-check-fill"></i>
                             </div>
@@ -910,7 +918,7 @@
               </div>
             </div>
           </div>
-          <!-- FOR REVIEW TABLE MODULE: filters, workflow actions, pagination, and modal markup -->
+          <!-- FOR APPROVAL TABLE MODULE: filters, workflow actions, pagination, and modal markup -->
           <div class="row second-row">
             <div class="col-12 mb-2">
               <section
@@ -920,11 +928,11 @@
                 <header class="card-header for-review-table-header">
                   <div>
                     <h5 class="for-review-table-title" id="forReviewTableTitle">
-                      Farmer Profiles for Approval
+                      Farmer Profiles for Approval  
                     </h5>
                     <p class="for-review-table-description">
-                      Approve farmer profiles and forward accepted records for
-                      final acceptance.
+                      Approve reviewed farmer profiles and forward eligible
+                      records for acceptance.
                     </p>
                   </div>
                   <div class="table-header-actions">
@@ -984,6 +992,12 @@
                       <label for="organizationFilter">Farmer Organization</label
                       ><select id="organizationFilter" class="form-select">
                         <option value="">All organizations</option>
+                      </select>
+                    </div>
+                    <div class="toolbar-filter">
+                      <label for="municipalityFilter">Municipality</label
+                      ><select id="municipalityFilter" class="form-select">
+                        <option value="">All municipalities</option>
                       </select>
                     </div>
                     <div class="toolbar-filter">
@@ -1105,162 +1119,33 @@
                       <tfoot>
                         <tr>
                           <th></th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="id"
-                              placeholder="Filter"
-                            />
-                          </th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="organization"
-                              placeholder="Filter"
-                            />
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="role"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="lastName"
-                              placeholder="Filter"
-                            />
-                          </th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="firstName"
-                              placeholder="Filter"
-                            />
-                          </th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="middleName"
-                              placeholder="Filter"
-                            />
-                          </th>
-                          <th></th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="birthDate"
-                              type="date"
-                            />
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="sex"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="province"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th></th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="municipality"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="barangay"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th></th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="fourPs"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="pwd"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="indigenousGroup"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th></th>
-                          <th></th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="seniorCitizen"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="yearCovered"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <input
-                              class="form-control form-control-sm column-filter"
-                              data-column="registered"
-                              type="date"
-                            />
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="profileStatus"
-                            >
-                              <option value="">All</option>
-                            </select>
-                          </th>
-                          <th>
-                            <select
-                              class="form-select form-select-sm column-filter"
-                              data-column="status"
-                            >
-                              <option value="">All</option>
-                              <option>For Review</option>
-                              <option>For Approval</option>
-                              <option>Approved</option>
-                            </select>
-                          </th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="id" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="organization" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="role" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="lastName" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="firstName" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="middleName" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="suffix" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="birthDate" type="date" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="sex" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="civilStatus" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="nationality" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="placeOfBirth" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="province" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="district" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="municipality" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="barangay" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="sitio" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="fourPs" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="pwd" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="indigenousGroup" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="tribeName" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="dietaryRestriction" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="seniorCitizen" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="yearCovered" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="registered" type="date" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="profileStatus" type="search" placeholder="Search" /></th>
+                          <th><input class="form-control form-control-sm column-filter" data-column="status" type="search" placeholder="Search" /></th>
                         </tr>
                       </tfoot>
                     </table>
@@ -1406,7 +1291,7 @@
                   <li class="mobile-subnav-panel-navigation">
                     <a href="#" class="nav-link">
                       <i class="bi bi-person-fill-check"></i>
-                      <span>For acceptance</span>
+                      <span>For Acceptance</span>
                     </a>
                   </li>
                 </ul>
@@ -1455,6 +1340,406 @@
                 </ul>
               </li>
             </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a
+              href="#"
+              class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#trainingMobile"
+              aria-controls="trainingMobile"
+              aria-expanded="false"
+            >
+              <i class="bi bi-book-fill"></i>
+              <span>Training</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="trainingMobile">
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#createTrainingMobile"
+                  aria-controls="createTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#updateTrainingMobile"
+                  aria-controls="updateTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For review</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#detailsTrainingMobile"
+                  aria-controls="detailsTrainingMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="detailsTrainingMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-exclamation-circle-fill"></i>
+                      <span>Incomplete</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a
+              href="#"
+              class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#evaluationMobile"
+              aria-controls="evaluationMobile"
+              aria-expanded="false"
+            >
+              <i class="bi bi-file-earmark-check"></i>
+              <span>Evaluation</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="evaluationMobile">
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#createEvaluationMobile"
+                  aria-controls="createEvaluationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="createEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Pre-test Questionaire</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-text"></i>
+                      <span>Post-test Questionaire</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-file-earmark-check"></i>
+                      <span>Training Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-star-fill"></i>
+                      <span>Resource Person Evaluation</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#encodeEvaluationMobile"
+                  aria-controls="encodeEvaluationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-pencil-square"></i>
+                  <span>Encode</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="encodeEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Pre-test Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Post-test Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Training Evaluation</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Resource Person Evaluation</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#updateEvaluationMobile"
+                  aria-controls="updateEvaluationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul class="collapse mobile-submenu" id="updateEvaluationMobile">
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For review</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#detailsEvaluationMobile"
+                  aria-controls="detailsEvaluationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul
+                  class="collapse mobile-submenu"
+                  id="detailsEvaluationMobile"
+                >
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-exclamation-circle-fill"></i>
+                      <span>Incomplete</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a
+              href="#"
+              class="nav-link"
+              data-bs-toggle="collapse"
+              data-bs-target="#administrationMobile"
+              aria-controls="administrationMobile"
+              aria-expanded="false"
+            >
+              <i class="bi bi-sliders"></i>
+              <span>Administration</span>
+              <i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul class="collapse mobile-subnav" id="administrationMobile">
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#createAdministrationMobile"
+                  aria-controls="createAdministrationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul
+                  class="collapse mobile-submenu"
+                  id="createAdministrationMobile"
+                >
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-pencil-square"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#updateAdministrationMobile"
+                  aria-controls="updateAdministrationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-arrow-repeat"></i>
+                  <span>Update</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul
+                  class="collapse mobile-submenu"
+                  id="updateAdministrationMobile"
+                >
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-person-fill-check"></i>
+                      <span>For approval</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="mobile-list-navigation">
+                <a
+                  href="#"
+                  class="nav-link"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#detailsAdministrationMobile"
+                  aria-controls="detailsAdministrationMobile"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul
+                  class="collapse mobile-submenu"
+                  id="detailsAdministrationMobile"
+                >
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-list-check"></i>
+                      <span>All status</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-check-circle-fill"></i>
+                      <span>Approved & accepted</span>
+                    </a>
+                  </li>
+                  <li class="mobile-subnav-panel-navigation">
+                    <a href="#" class="nav-link">
+                      <i class="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#my-profile" class="nav-link">
+              <i class="bi bi-person-circle"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#my-logs" class="nav-link">
+              <i class="bi bi-journal-text"></i>
+              <span>Logs</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#settings" class="nav-link">
+              <i class="bi bi-gear"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li class="mobile-list-navigation">
+            <a href="#signout" class="nav-link sign-out-item">
+              <i class="bi bi-box-arrow-right"></i>
+              <span>Sign Out</span>
+            </a>
           </li>
         </ul>
       </div>
@@ -1533,7 +1818,7 @@
                   >Farmer profile workflow</span
                 >
                 <h5 class="modal-title" id="aboutReviewWorkflowModalLabel">
-                  About Review Workflow
+                  About Approval Workflow
                 </h5>
                 <p>Each farmer profile progresses through these four steps.</p>
               </div>
@@ -1558,9 +1843,9 @@
               ><i class="bi bi-arrow-right"></i
               ><span class="status-badge status-approval">For Approval</span
               ><i class="bi bi-arrow-right"></i
-              ><span class="status-badge status-approved">Approved</span
+              ><span class="status-badge status-accepted">For Acceptance</span
               ><i class="bi bi-arrow-right"></i
-              ><span class="status-badge status-accepted">Accepted</span>
+              ><span class="status-badge status-approved">Approved</span>
             </div>
             <dl class="review-record-details">
               <dt>For Review</dt>
@@ -1570,18 +1855,18 @@
               </dd>
               <dt>For Approval</dt>
               <dd>
-                The profile has completed initial review and is forwarded to the
-                appropriate approval process.
+                The profile has completed its initial review and is awaiting
+                approval.
+              </dd>
+              <dt>For Acceptance</dt>
+              <dd>
+                The profile has been approved and is awaiting participant
+                acceptance.
               </dd>
               <dt>Approved</dt>
               <dd>
-                The farmer profile has successfully completed review and
-                approval and is ready for participant acceptance.
-              </dd>
-              <dt>Accepted</dt>
-              <dd>
-                The approved farmer profile has been accepted and is finalized
-                in the system.
+                The farmer profile has completed the approval and acceptance
+                process and is finalized in the system.
               </dd>
             </dl>
           </div>
@@ -1607,38 +1892,54 @@
       aria-hidden="true"
     >
       <div
-        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"
+        class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable review-workflow-dialog"
       >
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="reviewForwardModalLabel">
-              Approve Farmer Profile
-            </h5>
+        <div class="modal-content review-modal-content">
+          <div class="modal-header review-modal-header">
+            <div class="review-modal-heading">
+              <span class="review-modal-icon"
+                ><i class="bi bi-person-vcard-fill"></i
+              ></span>
+              <div>
+                <span class="review-modal-eyebrow">Farmer profile</span>
+                <h5 class="modal-title" id="reviewForwardModalLabel">
+                  Farmer Profile Details
+                </h5>
+                <p>Approve the reviewed farmer profile and forward it for acceptance.</p>
+              </div>
+            </div>
             <button
               type="button"
-              class="btn-close"
+              class="btn review-modal-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-            ></button>
+            >
+              <i class="bi bi-x-lg"></i>
+            </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body review-modal-body">
             <dl class="review-record-details" id="reviewForwardDetails"></dl>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+          <div class="modal-footer review-modal-footer">
+            <span
+              ><i class="bi bi-shield-check"></i> Status updates after
+              confirmation</span
             >
-              Close
-            </button>
-            <button
-              type="button"
-              class="btn btn-primary"
-              id="confirmForwardButton"
-            >
-              Approve & Forward
-            </button>
+            <div>
+              <button
+                type="button"
+                class="btn review-modal-dismiss"
+                data-bs-dismiss="modal"
+              >
+                Close</button
+              ><button
+                type="button"
+                class="btn forward-confirm-button"
+                id="confirmForwardButton"
+              >
+                <i class="bi bi-send-check-fill me-1"></i><span id="confirmForwardLabel">Submit for Acceptance</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1656,7 +1957,7 @@
         <div class="toast-header">
           <i id="reviewToastIcon" class="bi bi-check-circle-fill me-2"></i
           ><strong id="reviewToastTitle" class="me-2"
-            >Farmer Profile Submitted</strong
+            >Farmer Profile Forwarded</strong
           ><small id="reviewToastTime" class="text-body-secondary me-auto"
             >Now</small
           ><button
@@ -1667,7 +1968,7 @@
           ></button>
         </div>
         <div id="reviewToastMessage" class="toast-body">
-          Farmer profile submitted for approval.
+          Farmer profile forwarded for acceptance.
         </div>
       </div>
     </div>

@@ -1,0 +1,38 @@
+.app-main .app-main-body {
+  width: 100%;
+}
+
+.app-main .app-main-body .first-row,
+.app-main .app-main-body .second-row,
+.app-main .app-main-body .third-row,
+.app-main .app-main-body .fourth-row,
+.app-main .app-main-body .fifth-row,
+.app-main .app-main-body .sixth-row {
+  margin: 10px auto;
+}
+
+.app-main .app-main-body .card {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.06);
+  color: #263238;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.app-main .app-main-body .card:hover {
+  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
+  transform: translateY(-2px);
+}
+
+.app-main-body .badge-review {
+  color: #1b5e20;
+  background-color: #e8f5e9;
+}
+
+.app-main-body .badge-approval {
+  color: #fb8c00;
+  background-color: rgba(251, 140, 0, 0.12);
+}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../../../src/css/training/details/view-training.css"
+    />
+    <title>Training Details | DA-TMIS</title>
+  </head>
+  <body>
+    <main class="training-details-page container">
+      <nav class="details-breadcrumb" aria-label="Breadcrumb">
+        <a href="../../dashboard/dashboardv2.html">Dashboard</a>
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+        <span>Training Details</span>
+      </nav>
+
+      <div class="details-state" id="trainingNotFound" role="alert" hidden>
+        <span class="details-state-icon"><i class="bi bi-exclamation-circle" aria-hidden="true"></i></span>
+        <h1>Training not found</h1>
+        <p>This training record is unavailable or the link is invalid.</p>
+      </div>
+
+      <article class="training-details-card" id="trainingDetails" hidden>
+        <header class="training-details-header">
+          <span class="details-title-icon"><i class="bi bi-mortarboard-fill" aria-hidden="true"></i></span>
+          <div>
+            <span class="details-eyebrow">Training record</span>
+            <h1 id="trainingTitle"></h1>
+            <span class="details-type" id="trainingType"></span>
+          </div>
+          <span class="details-status" id="trainingStatus"></span>
+        </header>
+
+        <section class="training-details-body" aria-label="Training information">
+          <h2>Training Information</h2>
+          <dl class="training-details-grid">
+            <div>
+              <dt><i class="bi bi-calendar3" aria-hidden="true"></i> Schedule</dt>
+              <dd id="trainingDate"></dd>
+            </div>
+            <div>
+              <dt><i class="bi bi-geo-alt" aria-hidden="true"></i> Location</dt>
+              <dd id="trainingLocation"></dd>
+            </div>
+            <div>
+              <dt><i class="bi bi-person-vcard" aria-hidden="true"></i> Participant</dt>
+              <dd>Juan Dela Cruz</dd>
+            </div>
+            <div>
+              <dt><i class="bi bi-bookmark-check" aria-hidden="true"></i> Record Status</dt>
+              <dd id="trainingRecordStatus"></dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="training-results" aria-label="Training results">
+          <h2>Training Results</h2>
+          <dl class="results-grid">
+            <div><dt>Pre-Test</dt><dd id="trainingPreTest"></dd></div>
+            <div><dt>Post-Test</dt><dd id="trainingPostTest"></dd></div>
+            <div><dt>Rating</dt><dd id="trainingRating"></dd></div>
+          </dl>
+        </section>
+      </article>
+    </main>
+    <script src="../../../../src/js/training/details/view-training.js"></script>
+  </body>
+</html>

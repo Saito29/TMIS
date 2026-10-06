@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Male',
       'Alabat',
       'Villa Esperanza',
-      'For Acceptance',
+      'For Review',
       2026,
     ],
     [
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Female',
       'Perez',
       'Villamanzano Sur',
-      'For Acceptance',
+      'For Approval',
       2026,
     ],
     [
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Male',
       'Jomalig',
       'Apad',
-      'For Acceptance',
+      'Approved',
       2025,
     ],
     [
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Female',
       'Alabat',
       'Villa Norte',
-      'For Acceptance',
+      'For Review',
       2026,
     ],
     [
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Male',
       'Perez',
       'Villamanzano Sur',
-      'For Acceptance',
+      'Approved',
       2024,
     ],
     [
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Female',
       'Patnanungan',
       'Amaga',
-      'For Acceptance',
+      'For Review',
       2026,
     ],
     [
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Female',
       'Alabat',
       'Caglate',
-      'For Acceptance',
+      'For Review',
       2025,
     ],
     [
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'Male',
       'Jomalig',
       'Bukal',
-      'Approved',
+      'For Review',
       2024,
     ],
   ];
@@ -132,13 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       n % 2 ? 'Male' : 'Female',
       loc[0],
       loc[1],
-      n % 4 === 0
-        ? 'For Acceptance'
-        : n % 7 === 0
-          ? 'Approved'
-          : n % 2
-            ? 'For Approval'
-            : 'For Review',
+      n % 4 === 0 ? 'For Approval' : n % 7 === 0 ? 'Approved' : 'For Review',
       y,
     ]);
   }
@@ -200,27 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
     empty = $('#reviewTableState'),
     toast = new bootstrap.Toast($('#reviewToast')),
     modal = new bootstrap.Modal($('#reviewForwardModal'));
-  const currentStatus = document.body.dataset.currentStatus || 'For Acceptance';
-  const nextStatus = document.body.dataset.nextStatus || 'Approved';
-  const approvalMode = currentStatus === 'For Approval';
-  const acceptanceMode = currentStatus === 'For Acceptance';
-  const currentStatusClass = acceptanceMode
-    ? 'status-acceptance'
-    : approvalMode
-      ? 'status-approval'
-      : 'status-review';
-  const exportName = acceptanceMode
-    ? 'farmer_profile_for_acceptance'
-    : approvalMode
-      ? 'farmer_profile_for_approval'
-      : 'farmer_profile_for_review';
-  const confirmForwardLabel = $('#confirmForwardLabel');
-  if (confirmForwardLabel)
-    confirmForwardLabel.textContent = acceptanceMode
-      ? 'Approve Profile'
-      : approvalMode
-        ? 'Submit for Acceptance'
-        : 'Submit for Approval';
   const state = {
     page: 1,
     perPage: 10,
@@ -233,6 +206,16 @@ document.addEventListener('DOMContentLoaded', () => {
     sort: null,
     selected: null,
   };
+  const statusBadgeClass = (status) =>
+    ({
+      'For Review': 'status-review',
+      'For Approval': 'status-approval',
+      'For Acceptance': 'status-acceptance',
+      Approved: 'status-approved',
+      Accepted: 'status-accepted',
+      Active: 'status-active',
+      Inactive: 'status-inactive',
+    })[status] || 'status-neutral';
   const values = (key) =>
     [...new Set(records.map((r) => r[key]))].sort((a, b) =>
       String(a).localeCompare(String(b), undefined, { numeric: true })
@@ -291,22 +274,22 @@ document.addEventListener('DOMContentLoaded', () => {
     { name: 'Valid ID', complete: true },
     {
       name: 'Proof of Farm Ownership / Tenure',
-      complete: acceptanceMode || r.id !== 'FMR-2026-004',
+      complete: r.id !== 'FMR-2026-004',
     },
     {
       name: 'Association Membership Document',
-      complete: acceptanceMode || r.id !== 'FMR-2026-006',
+      complete: r.id !== 'FMR-2026-006',
     },
     { name: 'Supporting Attachment', complete: true },
   ];
   const filtered = () =>
     records.filter(
       (r) =>
-        r.status === currentStatus &&
+        r.status === 'For Review' &&
         (!state.global ||
           Object.values(r).join(' ').toLowerCase().includes(state.global)) &&
         (!state.organization || r.organization === state.organization) &&
-        (!state.municipality || r.municipality === state.municipality) &&
+          (!state.municipality || r.municipality === state.municipality) &&
         (!state.barangay || r.barangay === state.barangay) &&
         (!state.year || String(r.yearCovered) === state.year) &&
         Object.entries(state.columns).every(
@@ -357,9 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
     body.innerHTML = rows
       .map(
         (r) =>
-          `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="${acceptanceMode ? 'Approve farmer profile' : approvalMode ? 'Approve and forward for acceptance' : 'Review and forward'}"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="farmer-profile-details.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="edit-farmer-profile.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge ${r.profileStatus === 'Active' ? 'status-active' : 'status-inactive'}">${r.profileStatus}</span></td><td><span class="status-badge ${currentStatusClass}">${r.status}</span></td></tr>`
+          `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="Review and forward"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="farmer-profile-details.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="edit-farmer-profile.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge status-review">${r.profileStatus}</span></td><td><span class="status-badge status-review">${r.status}</span></td></tr>`
       )
       .join('');
+    const headers = Array.from($('#forReviewDataTable thead tr').cells);
+    const statusColumn = headers.findIndex((cell) => cell.dataset.sort === 'status');
+    const profileStatusColumn = headers.findIndex(
+      (cell) => cell.dataset.sort === 'profileStatus'
+    );
+    body.querySelectorAll('tr').forEach((row) => {
+      [statusColumn, profileStatusColumn].forEach((column) => {
+        const badge = row.cells[column]?.querySelector('.status-badge');
+        if (badge)
+          badge.className = `status-badge ${statusBadgeClass(badge.textContent.trim())}`;
+      });
+    });
     empty.hidden = Boolean(rows.length);
     if (!rows.length)
       empty.innerHTML =
@@ -456,13 +451,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const reqs = requirements(state.selected),
       missing = reqs.filter((x) => !x.complete);
     $('#reviewForwardModalLabel').textContent =
-      acceptanceMode
-        ? 'Approve Farmer Profile'
-        : approvalMode
-          ? 'Approve & Submit Farmer Profile'
-          : 'Review & Submit Farmer Profile';
+      'Review & Submit Farmer Profile';
     $('#reviewForwardDetails').innerHTML =
-      `<dt>Farmer ID / Core ID</dt><dd>${state.selected.id}</dd><dt>Farmer</dt><dd>${state.selected.firstName} ${state.selected.lastName}</dd><dt>Farmer Status</dt><dd><span class="status-badge ${currentStatusClass}">${state.selected.status}</span></dd><dt class="w-100 mt-3">Requirements / Attachments</dt><dd class="w-100"><div class="requirements-panel"><ul>${reqs.map((x) => `<li><i class="bi ${x.complete ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'}"></i>${x.name}<span>${x.complete ? 'Completed' : 'Incomplete'}</span></li>`).join('')}</ul>${missing.length ? `<p class="submission-blocked">Submission blocked: ${missing.map((x) => x.name).join(', ')} is incomplete.</p>` : ''}</div></dd>`;
+      `<dt>Farmer ID / Core ID</dt><dd>${state.selected.id}</dd><dt>Farmer</dt><dd>${state.selected.firstName} ${state.selected.lastName}</dd><dt>Farmer Status</dt><dd><span class="status-badge status-review">${state.selected.status}</span></dd><dt class="w-100 mt-3">Requirements / Attachments</dt><dd class="w-100"><div class="requirements-panel"><ul>${reqs.map((x) => `<li><i class="bi ${x.complete ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'}"></i>${x.name}<span>${x.complete ? 'Completed' : 'Incomplete'}</span></li>`).join('')}</ul>${missing.length ? `<p class="submission-blocked">Submission blocked: ${missing.map((x) => x.name).join(', ')} is incomplete.</p>` : ''}</div></dd>`;
+    $('#reviewForwardDetails .status-badge').className =
+      `status-badge ${statusBadgeClass(state.selected.status)}`;
     $('#confirmForwardButton').disabled = missing.length > 0;
     modal.show();
   });
@@ -477,20 +470,12 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       return;
     }
-    state.selected.status = nextStatus;
+    state.selected.status = 'For Approval';
     modal.hide();
     refresh();
     notify(
-      acceptanceMode
-        ? 'Farmer Profile Approved'
-        : approvalMode
-          ? 'Farmer Profile Forwarded'
-          : 'Farmer Profile Submitted',
-      acceptanceMode
-        ? 'Farmer profile approved successfully.'
-        : approvalMode
-          ? 'Farmer profile forwarded for acceptance.'
-          : 'Farmer profile submitted for approval.'
+      'Farmer Profile Submitted',
+      'Farmer profile submitted for approval.'
     );
   });
   $('#refreshReviewTable').addEventListener('click', () => {
@@ -504,14 +489,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!window.XLSX) return;
     const rows = sorted();
     const sheet = XLSX.utils.aoa_to_sheet([
-      [exportName],
+      ['farmer_profile_for_review'],
       ['data_exported'],
       [],
     ]);
     XLSX.utils.sheet_add_json(sheet, rows, { origin: 'A4' });
     const book = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, sheet, exportName);
-    XLSX.writeFile(book, `${exportName}.xlsx`);
+    XLSX.utils.book_append_sheet(book, sheet, 'farmer_profile_for_review');
+    XLSX.writeFile(book, 'farmer_profile_for_review.xlsx');
   });
   render();
 });

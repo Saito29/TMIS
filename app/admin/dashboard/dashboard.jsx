@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
+import "../../../src/css/shared/main-body.css";
 import "../../../src/css/dashboard/app.css";
 import { useDashboard } from "../../../src/js/dashboard/script.js";
 

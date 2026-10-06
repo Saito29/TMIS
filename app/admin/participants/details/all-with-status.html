@@ -56,15 +56,11 @@
     <link rel="stylesheet" href="../../../../src/css/shared/main-body.css" />
     <link
       rel="stylesheet"
-      href="../../../../src/css/participants/update/for-acceptance.css"
+      href="../../../../src/css/participants/update/for-review.css"
     />
-    <title>DA-TMIS For Acceptance</title>
+    <title>DA-TMIS For Review</title>
   </head>
-  <body
-    class="layout-fixed"
-    data-current-status="For Acceptance"
-    data-next-status="Approved"
-  >
+  <body class="layout-fixed">
     <div class="app-wrapper">
       <nav class="app-header navbar navbar-expand">
         <div
@@ -825,14 +821,14 @@
                         <li class="breadcrumb-item">Participants</li>
                         <li class="breadcrumb-item">Update</li>
                         <li class="breadcrumb-item active" aria-current="page">
-                          For Acceptance
+                          For Review
                         </li>
                       </ol>
                     </nav>
-                    <h4 class="content-header">Farmer Profile Acceptance</h4>
+                    <h4 class="content-header">Farmer Profile Review</h4>
                     <span class="content-info"
-                      >Confirm eligible farmer profiles for acceptance and
-                      approve them for final processing.</span
+                      >Review submitted farmer profiles and forward verified
+                      records for approval.</span
                     >
                   </div>
                   <!-- Worklfow -->
@@ -841,21 +837,21 @@
                       <div
                         class="card-header d-flex align-items-center justify-content-between gap-2 w-100"
                       >
-                        <h6 class="card-title">Acceptance Workflow</h6>
+                        <h6 class="card-title">Review Workflow</h6>
                         <button
                           class="btn table-icon-button workflow-about-button"
                           type="button"
                           data-bs-toggle="modal"
                           data-bs-target="#aboutReviewWorkflowModal"
-                          title="About Acceptance Workflow"
-                          aria-label="About Acceptance Workflow"
+                          title="About Review Workflow"
+                          aria-label="About Review Workflow"
                         >
                           <i class="bi bi-info-circle-fill"></i>
                         </button>
                       </div>
                       <div class="card-body">
                         <ul class="workflow-progress">
-                          <li class="workflow-item workflow-approved">
+                          <li class="workflow-item workflow-current">
                             <div class="workflow-icon">
                               <i class="bi bi-clipboard2-check-fill"></i>
                             </div>
@@ -866,26 +862,13 @@
                           <li class="workflow-divider" aria-hidden="true">
                             <i class="bi bi-arrow-right"></i>
                           </li>
-                          <li class="workflow-item workflow-approved">
+                          <li class="workflow-item workflow-pending">
                             <div class="workflow-icon">
                               <i class="bi bi-person-check-fill"></i>
                             </div>
                             <div class="workflow-details">
                               <span class="workflow-process-approval"
                                 >For Approval</span
-                              >
-                            </div>
-                          </li>
-                          <li class="workflow-divider" aria-hidden="true">
-                            <i class="bi bi-arrow-right"></i>
-                          </li>
-                          <li class="workflow-item workflow-current">
-                            <div class="workflow-icon">
-                              <i class="bi bi-person-check-fill"></i>
-                            </div>
-                            <div class="workflow-details">
-                              <span class="workflow-process-acceptance"
-                                >For Acceptance</span
                               >
                             </div>
                           </li>
@@ -910,7 +893,7 @@
               </div>
             </div>
           </div>
-          <!-- FOR ACCEPTANCE TABLE MODULE: filters, approval actions, pagination, and modal markup -->
+          <!-- FOR REVIEW TABLE MODULE: filters, workflow actions, pagination, and modal markup -->
           <div class="row second-row">
             <div class="col-12 mb-2">
               <section
@@ -920,11 +903,11 @@
                 <header class="card-header for-review-table-header">
                   <div>
                     <h5 class="for-review-table-title" id="forReviewTableTitle">
-                      Farmer Profiles for Acceptance  
+                      Farmer Profiles for Review
                     </h5>
                     <p class="for-review-table-description">
-                      Confirm acceptance for reviewed and approved farmer
-                      profiles before final approval.
+                      Review submitted farmer profiles and forward verified
+                      records for approval.
                     </p>
                   </div>
                   <div class="table-header-actions">
@@ -951,7 +934,7 @@
                       <i
                         class="bi bi-people-fill summary-icon summary-review"
                       ></i
-                      ><span>Total Farmers for Acceptance</span
+                      ><span>Total Farmers for Review</span
                       ><strong id="summaryTotalReview">0</strong>
                     </div>
                     <div class="review-table-summary">
@@ -970,13 +953,13 @@
                       <i
                         class="bi bi-hourglass-split summary-icon summary-current"
                       ></i
-                      ><span>Current Status</span><strong>For Acceptance</strong>
+                      ><span>Current Status</span><strong>For Review</strong>
                     </div>
                     <div class="review-table-summary">
                       <i
                         class="bi bi-arrow-right-circle-fill summary-icon summary-next"
                       ></i
-                      ><span>Next Status</span><strong>Approved</strong>
+                      ><span>Next Status</span><strong>For Approval</strong>
                     </div>
                   </div>
                   <div class="review-table-toolbar">
@@ -1039,7 +1022,7 @@
                       id="forReviewDataTable"
                     >
                       <caption class="visually-hidden">
-                        Farmer profiles currently for acceptance
+                        Farmer profiles currently for review
                       </caption>
                       <thead>
                         <tr>
@@ -1102,7 +1085,7 @@
                             Profile Status <i class="bi bi-arrow-down-up"></i>
                           </th>
                           <th class="sortable-column" data-sort="status">
-                            Workflow Status
+                            Review / Approval Status
                             <i class="bi bi-arrow-down-up"></i>
                           </th>
                         </tr>
@@ -1804,9 +1787,9 @@
                   >Farmer profile workflow</span
                 >
                 <h5 class="modal-title" id="aboutReviewWorkflowModalLabel">
-                  About Acceptance Workflow
+                  About Review Workflow
                 </h5>
-                <p>Each farmer profile progresses through these four steps.</p>
+                <p>Each farmer profile progresses through these three steps.</p>
               </div>
             </div>
             <div class="review-modal-header-actions">
@@ -1829,8 +1812,6 @@
               ><i class="bi bi-arrow-right"></i
               ><span class="status-badge status-approval">For Approval</span
               ><i class="bi bi-arrow-right"></i
-              ><span class="status-badge status-acceptance">For Acceptance</span
-              ><i class="bi bi-arrow-right"></i
               ><span class="status-badge status-approved">Approved</span>
             </div>
             <dl class="review-record-details">
@@ -1841,18 +1822,12 @@
               </dd>
               <dt>For Approval</dt>
               <dd>
-                The profile has completed its initial review and is awaiting
-                approval.
-              </dd>
-              <dt>For Acceptance</dt>
-              <dd>
-                The reviewed and approved profile is awaiting confirmation of
-                participant acceptance.
+                The profile has passed initial review and is awaiting approval.
               </dd>
               <dt>Approved</dt>
               <dd>
-                The farmer profile has been accepted and is finalized in the
-                system.
+                The farmer profile has completed the approval process and is
+                finalized in the system.
               </dd>
             </dl>
           </div>
@@ -1891,7 +1866,7 @@
                 <h5 class="modal-title" id="reviewForwardModalLabel">
                   Farmer Profile Details
                 </h5>
-                <p>Confirm participant acceptance and approve the farmer profile.</p>
+                <p>Review the submitted farmer profile information.</p>
               </div>
             </div>
             <button
@@ -1923,7 +1898,7 @@
                 class="btn forward-confirm-button"
                 id="confirmForwardButton"
               >
-                <i class="bi bi-check2-circle me-1"></i><span id="confirmForwardLabel">Approve Profile</span>
+                <i class="bi bi-send-check-fill me-1"></i>Submit for Approval
               </button>
             </div>
           </div>
@@ -1943,7 +1918,7 @@
         <div class="toast-header">
           <i id="reviewToastIcon" class="bi bi-check-circle-fill me-2"></i
           ><strong id="reviewToastTitle" class="me-2"
-            >Farmer Profile Approved</strong
+            >Farmer Profile Submitted</strong
           ><small id="reviewToastTime" class="text-body-secondary me-auto"
             >Now</small
           ><button
@@ -1954,7 +1929,7 @@
           ></button>
         </div>
         <div id="reviewToastMessage" class="toast-body">
-          Farmer profile approved successfully.
+          Farmer profile submitted for approval.
         </div>
       </div>
     </div>
@@ -1975,6 +1950,6 @@
 
     <!-- nav -->
     <script src="../../../../src/js/nav.js"></script>
-    <script src="../../../../src/js/participants/update/for-acceptance.js"></script>
+    <script src="../../../../src/js/participants/update/for-review.js"></script>
   </body>
 </html>

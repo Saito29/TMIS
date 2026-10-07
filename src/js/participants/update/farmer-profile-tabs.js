@@ -120,46 +120,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const form = document.getElementById('addAttachmentForm');
-  const list = document.getElementById('attachmentList');
-  const emptyState = document.getElementById('attachmentEmptyState');
-  const modalElement = document.getElementById('addDocumentModal');
-
-  if (!form || !list || !emptyState || !modalElement) return;
-
-  const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!form.reportValidity()) return;
-
-    const name = document.getElementById('attachmentName').value.trim();
-    const type = document.getElementById('attachmentType').value;
-    const file = document.getElementById('attachmentFile').files[0];
-    if (!name || !file) return;
-
-    const item = document.createElement('article');
-    item.className = 'attachment-item';
-
-    const icon = document.createElement('span');
-    icon.className = 'attachment-item-icon';
-    icon.innerHTML = '<i class="bi bi-file-earmark-text" aria-hidden="true"></i>';
-
-    const details = document.createElement('div');
-    details.className = 'attachment-item-details';
-
-    const title = document.createElement('strong');
-    title.textContent = name;
-
-    const metadata = document.createElement('span');
-    metadata.textContent = `${type} · ${file.name}`;
-
-    details.append(title, metadata);
-    item.append(icon, details);
-    list.append(item);
-    emptyState.hidden = true;
-
-    form.reset();
-    modal.hide();
-  });
 });

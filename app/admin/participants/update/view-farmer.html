@@ -1947,26 +1947,62 @@
             <section class="info-wrapper d-none" id="attachments" role="tabpanel" aria-labelledby="attachments-tab" hidden>
               <div class="row">
                 <div class="col-12 col-lg-12 mb-2">
-                  <div class="card">
+                  <div class="card attachment-documents-card">
                     <div class="card-header">
-                      <i class="bi bi-file-earmark-text"></i>
-                      <h5 class="title-card">Attachment Documents</h5>
-                      <span class="card-context">Manage and view all attached documents for this farmer.</span>
-                      <div class="card-tools">
-                        <button class="btn" type="button" data-bs-toggle="modal" data-bs-target="#addDocumentModal" title="Add Document" aria-label="Add Document">
-                          <i class="bi bi-plus-circle"></i> 
-                          Add Attachments
-                        </button>
+                      <div class="attachment-documents-heading">
+                        <span class="attachment-documents-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span>
+                        <div>
+                          <h5 class="title-card">Attachment Documents</h5>
+                          <span class="card-context">Manage and view all attached documents for this farmer.</span>
+                        </div>
                       </div>
+                      <button class="btn attachment-add-button" type="button" data-bs-toggle="modal" data-bs-target="#addDocumentModal" title="Add Document" aria-label="Add Document">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i>
+                        <span>Add Attachments</span>
+                      </button>
                     </div>
                     <div class="card-body">
                       <div id="attachmentList" class="attachment-list" aria-live="polite">
                         <div class="attachment-empty-state" id="attachmentEmptyState">
                           <i class="bi bi-file-earmark-arrow-up" aria-hidden="true"></i>
-                          <p>No documents have been attached yet.</p>
+                          <p>No attachments yet. Add images or PDFs to build this farmer's document library.</p>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card attachment-queue-card mt-3" id="attachmentQueueSection">
+                <div class="card-header">
+                  <div>
+                    <h5 class="title-card">Attachment upload queue</h5>
+                    <span class="card-context">Review the file type and year, then add complete rows to the document library.</span>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table attachment-queue-table align-middle">
+                      <thead>
+                        <tr>
+                          <th scope="col">Preview</th>
+                          <th scope="col">Type</th>
+                          <th scope="col">Year</th>
+                          <th scope="col">Remarks</th>
+                          <th scope="col">Status</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody id="attachmentQueueBody">
+                        <tr class="attachment-queue-empty"><td colspan="6">No files are waiting to be uploaded.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="attachment-queue-footer">
+                    <span id="attachmentQueueSummary">0 files staged</span>
+                    <span id="attachmentFeedback" role="status" aria-live="polite"></span>
+                    <button type="button" class="btn attachment-submit-button" id="saveStagedAttachments" disabled>
+                      <i class="bi bi-cloud-arrow-up me-1" aria-hidden="true"></i>Save attachments
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2785,43 +2821,140 @@
           Farmer profile submitted for approval.
         </div>
       </div>
+      <div
+        id="attachmentToast"
+        class="toast attachment-toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        data-bs-delay="6000"
+      >
+        <div class="toast-header">
+          <i id="attachmentToastIcon" class="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
+          <strong id="attachmentToastTitle" class="me-2">Attachments staged</strong>
+          <small id="attachmentToastTime" class="text-body-secondary me-auto">Now</small>
+          <button type="button" class="btn attachment-toast-close" data-bs-dismiss="toast" aria-label="Close notification">
+            <i class="bi bi-x-lg" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div id="attachmentToastMessage" class="toast-body"></div>
+      </div>
     </div>
 
     <!-- Add attachment dialog -->
     <div class="modal fade" id="addDocumentModal" tabindex="-1" aria-labelledby="addDocumentModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content attachment-modal">
-          <form id="addAttachmentForm">
-            <div class="modal-header">
-              <div>
-                <span class="attachment-modal-icon"><i class="bi bi-file-earmark-plus" aria-hidden="true"></i></span>
-                <h5 class="modal-title" id="addDocumentModalLabel">Add Attachment</h5>
-                <p class="attachment-modal-description">Add a supporting document to this farmer's profile.</p>
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable attachment-form-dialog">
+        <div class="modal-content review-modal-content attachment-modal">
+          <form id="addAttachmentForm" class="attachment-form">
+            <div class="modal-header review-modal-header">
+              <div class="review-modal-heading">
+                <span class="review-modal-icon" aria-hidden="true"><i class="bi bi-file-earmark-plus"></i></span>
+                <div>
+                  <span class="review-modal-eyebrow">Farmer documents</span>
+                  <h5 class="modal-title" id="addDocumentModalLabel">Upload attachments</h5>
+                  <p>Choose image or PDF files. Set each file's type and year in the queue before saving.</p>
+                </div>
               </div>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn review-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
             </div>
-            <div class="modal-body">
-              <label class="form-label" for="attachmentName">Document name</label>
-              <input class="form-control" id="attachmentName" name="attachmentName" type="text" maxlength="120" placeholder="e.g. Valid ID" required />
-              <label class="form-label mt-3" for="attachmentType">Document type</label>
-              <select class="form-select" id="attachmentType" name="attachmentType" required>
-                <option value="" selected disabled>Select a document type</option>
-                <option>Identification</option>
-                <option>Proof of Ownership / Tenure</option>
-                <option>Membership Document</option>
-                <option>Other Supporting Document</option>
-              </select>
-              <label class="form-label mt-3" for="attachmentFile">Choose file</label>
-              <input class="form-control" id="attachmentFile" name="attachmentFile" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" required />
-              <div class="form-text">Accepted formats: PDF, JPG, PNG, DOC, DOCX.</div>
+            <div class="modal-body review-modal-body">
+              <label class="form-label" for="attachmentFiles">Choose files</label>
+              <input class="form-control" id="attachmentFiles" name="attachmentFiles" type="file" accept=".pdf,.jpg,.jpeg,.png,image/jpeg,image/png,application/pdf" multiple />
+              <div class="form-text">Accepted formats: PDF, JPG, and PNG. Files are staged for review before being added to the library.</div>
+              <div class="form-text text-danger" id="uploadAttachmentFeedback" role="alert"></div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn attachment-submit-button"><i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Add Document</button>
+            <div class="modal-footer review-modal-footer">
+              <span><i class="bi bi-info-circle me-1" aria-hidden="true"></i>Files are staged before they are added.</span>
+              <div>
+                <button type="button" class="btn review-modal-dismiss" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn attachment-submit-button"><i class="bi bi-list-check me-1" aria-hidden="true"></i>Stage files</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
+    </div>
+
+    <!-- Edit attachment dialog -->
+    <div class="modal fade" id="editAttachmentModal" tabindex="-1" aria-labelledby="editAttachmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable attachment-form-dialog">
+        <div class="modal-content review-modal-content attachment-modal">
+          <form id="editAttachmentForm" class="attachment-form">
+            <div class="modal-header review-modal-header">
+              <div class="review-modal-heading">
+                <span class="review-modal-icon" aria-hidden="true"><i class="bi bi-pencil-square"></i></span>
+                <div>
+                  <span class="review-modal-eyebrow">Farmer documents</span>
+                  <h5 class="modal-title" id="editAttachmentModalLabel">Edit attachment details</h5>
+                  <p>Update the document category and year covered, and adjust the optional remarks.</p>
+                </div>
+              </div>
+              <button type="button" class="btn review-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+            </div>
+            <div class="modal-body review-modal-body">
+              <label class="form-label" for="editAttachmentType">Tagged selection</label>
+              <select class="form-select" id="editAttachmentType" required>
+                <option value="Profile Form">Profile Form</option>
+                <option value="Profile Picture">Profile Picture</option>
+                <option value="ID">ID</option>
+                <option value="Other Files">Other Files</option>
+              </select>
+              <label class="form-label mt-3" for="editAttachmentYear">Year covered</label>
+              <select class="form-select" id="editAttachmentYear" required></select>
+              <label class="form-label mt-3" for="editAttachmentRemarks">Remarks <span class="attachment-optional-label">(optional)</span></label>
+              <textarea class="form-control" id="editAttachmentRemarks" rows="4" maxlength="500" placeholder="Add a note about this attachment"></textarea>
+            </div>
+            <div class="modal-footer review-modal-footer">
+              <span id="editAttachmentChangeHint" class="attachment-edit-hint" aria-live="polite"><i class="bi bi-shield-check me-1" aria-hidden="true"></i><span id="editAttachmentChangeText">No changes to save.</span></span>
+              <div>
+                <button type="button" class="btn review-modal-dismiss" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn attachment-submit-button" id="saveAttachmentChanges" disabled><i class="bi bi-check2 me-1" aria-hidden="true"></i>Save changes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Attachment viewer -->
+    <div class="modal fade attachment-viewer-modal" id="attachmentViewerModal" tabindex="-1" aria-labelledby="attachmentViewerTitle" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+          <div class="modal-header attachment-viewer-header">
+            <div class="attachment-viewer-heading">
+              <h5 class="modal-title" id="attachmentViewerTitle">Attachment</h5>
+              <span id="attachmentViewerMeta"></span>
+            </div>
+            <div class="attachment-viewer-actions">
+              <button type="button" class="btn btn-light btn-sm" id="viewerDownload" title="Download attachment"><i class="bi bi-download" aria-hidden="true"></i><span class="visually-hidden">Download attachment</span></button>
+              <button type="button" class="btn btn-light btn-sm" id="viewerZoomOut" title="Zoom out"><i class="bi bi-zoom-out" aria-hidden="true"></i><span class="visually-hidden">Zoom out</span></button>
+              <button type="button" class="btn btn-light btn-sm" id="viewerZoomIn" title="Zoom in"><i class="bi bi-zoom-in" aria-hidden="true"></i><span class="visually-hidden">Zoom in</span></button>
+              <button type="button" class="btn btn-light btn-sm" id="viewerReset" title="Reset view"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i><span class="visually-hidden">Reset view</span></button>
+              <button type="button" class="btn btn-light btn-sm" id="viewerOpenNewTab" title="Open in new tab"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span class="visually-hidden">Open in new tab</span></button>
+              <button type="button" class="btn btn-light btn-sm" id="viewerEdit" title="Edit attachment"><i class="bi bi-pencil" aria-hidden="true"></i><span class="visually-hidden">Edit attachment</span></button>
+              <button type="button" class="btn btn-light btn-sm text-danger" id="viewerDelete" title="Delete attachment"><i class="bi bi-trash" aria-hidden="true"></i><span class="visually-hidden">Delete attachment</span></button>
+              <button type="button" class="btn-close ms-1" data-bs-dismiss="modal" aria-label="Close attachment viewer"></button>
+            </div>
+          </div>
+          <div class="modal-body attachment-viewer-body">
+            <button type="button" class="attachment-viewer-nav attachment-viewer-prev" id="viewerPrevious" aria-label="Previous attachment"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+            <div class="attachment-viewer-stage" id="attachmentViewerStage">
+              <img id="attachmentViewerImage" alt="" hidden />
+              <iframe id="attachmentViewerPdf" title="PDF attachment preview" hidden></iframe>
+            </div>
+            <button type="button" class="attachment-viewer-nav attachment-viewer-next" id="viewerNext" aria-label="Next attachment"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="attachment-delete-notice" id="attachmentDeleteNotice" role="status" aria-live="polite" hidden>
+      <div class="attachment-delete-copy">
+        <i class="bi bi-trash3" aria-hidden="true"></i>
+        <span id="attachmentDeleteMessage">Attachment deletion scheduled.</span>
+        <strong id="attachmentDeleteCountdown">10</strong>
+      </div>
+      <button type="button" class="btn btn-sm btn-light" id="cancelAttachmentDelete">Undo</button>
     </div>
 
     <!-- Scripts -->
@@ -2842,5 +2975,6 @@
     <script src="../../../../src/js/nav.js"></script>
     <script src="../../../../src/js/participants/update/farmer-profile-tabs.js"></script>
     <script src="../../../../src/js/participants/update/farmer-training-table.js"></script>
+    <script src="../../../../src/js/participants/update/attachment-manager.js"></script>
   </body>
 </html>

@@ -2085,13 +2085,38 @@
             </section>
 
             <section class="info-wrapper d-none" id="footprints" role="tabpanel" aria-labelledby="activity-logs-tab" hidden>
-              <div class="card profile-empty-panel">
-                <div class="card-body">
-                  <span class="profile-empty-icon"><i class="bi bi-activity" aria-hidden="true"></i></span>
-                  <h5>Activity Logs</h5>
-                  <p>No activity logs are available for this farmer.</p>
+              <section class="card activity-log-panel" aria-labelledby="activityLogTitle">
+                <header class="activity-log-header">
+                  <div class="activity-log-heading">
+                    <span class="activity-log-heading-icon" aria-hidden="true"><i class="bi bi-activity"></i></span>
+                    <div>
+                      <h2 id="activityLogTitle">Activity Logs</h2>
+                      <p>Recent updates and actions recorded for Juan Dela Cruz’s profile.</p>
+                    </div>
+                  </div>
+                  <div class="activity-log-search input-group">
+                    <label class="visually-hidden" for="activityLogSearch">Search activity logs</label>
+                    <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+                    <input class="form-control" id="activityLogSearch" type="search" placeholder="Search activity" autocomplete="off" />
+                  </div>
+                </header>
+                <div class="activity-log-toolbar">
+                  <nav class="activity-log-filters" aria-label="Filter activity logs">
+                    <button class="activity-log-filter is-active" type="button" data-activity-filter="all" aria-pressed="true">All activity <span data-activity-count="all">0</span></button>
+                    <button class="activity-log-filter" type="button" data-activity-filter="attachment" aria-pressed="false"><i class="bi bi-paperclip" aria-hidden="true"></i>Attachments <span data-activity-count="attachment">0</span></button>
+                    <button class="activity-log-filter" type="button" data-activity-filter="membership" aria-pressed="false"><i class="bi bi-people" aria-hidden="true"></i>Membership <span data-activity-count="membership">0</span></button>
+                    <button class="activity-log-filter" type="button" data-activity-filter="status" aria-pressed="false"><i class="bi bi-arrow-left-right" aria-hidden="true"></i>Status changes <span data-activity-count="status">0</span></button>
+                    <button class="activity-log-filter" type="button" data-activity-filter="profile" aria-pressed="false"><i class="bi bi-person-vcard" aria-hidden="true"></i>Profile changes <span data-activity-count="profile">0</span></button>
+                  </nav>
+                  <p class="activity-log-result-count" id="activityLogResultCount" aria-live="polite"></p>
                 </div>
-              </div>
+                <div class="activity-log-list" id="activityLogList" aria-live="polite"></div>
+                <div class="activity-log-empty" id="activityLogEmpty" hidden>
+                  <i class="bi bi-search" aria-hidden="true"></i>
+                  <strong>No matching activity</strong>
+                  <span>Try another search or activity filter.</span>
+                </div>
+              </section>
             </section>
           </div>
         </div>
@@ -3108,6 +3133,7 @@
     <script src="../../../../src/js/participants/update/farmer-profile-tabs.js"></script>
     <script src="../../../../src/js/participants/update/farmer-training-table.js"></script>
     <script src="../../../../src/js/participants/update/farmer-intervention-table.js"></script>
+    <script src="../../../../src/js/participants/update/farmer-activity-logs.js"></script>
     <script src="../../../../src/js/participants/update/attachment-manager.js"></script>
   </body>
 </html>

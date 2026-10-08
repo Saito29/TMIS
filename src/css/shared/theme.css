@@ -60,6 +60,10 @@ body {
   border-color: var(--color-border);
 }
 
+[data-theme='light'] .app-wrapper .app-header .app-header-left .app-logo .app-logo-text .app-name {
+  color: var(--color-primary-dark);
+}
+
 [data-theme='light'] .app-header .nav-link,
 [data-theme='light'] .app-header .profile-button,
 [data-theme='light'] .app-header .profile-name,
@@ -201,6 +205,10 @@ body {
   );
   border-color: var(--color-border);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-header-left .app-logo .app-logo-text .app-name {
+  color: var(--color-primary);
 }
 
 [data-theme='dark'] .app-header .nav-link,
@@ -1139,31 +1147,31 @@ body {
   border-color: var(--color-border);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal {
+[data-theme='dark'] .modal-content.dashboard-report-modal {
   color: var(--color-text-primary);
   background-color: var(--color-surface);
   border-color: var(--color-border);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-heading h5 {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-heading h5 {
   color: var(--color-text-primary);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-heading p {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-heading p {
   color: var(--color-text-secondary);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-eyebrow {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-eyebrow {
   color: var(--color-primary);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-icon {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-icon {
   color: var(--color-primary);
   background-color: var(--color-primary-surface);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-summary,
-[data-theme='dark'] .modal-content .dashboard-report-modal .table > :not(caption) > * > * {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-summary,
+[data-theme='dark'] .modal-content.dashboard-report-modal .table > :not(caption) > * > * {
   color: var(--color-text-primary);
   background-color: color-mix(
     in srgb,
@@ -1173,11 +1181,11 @@ body {
   border-color: var(--color-border);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-summary {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-summary {
   border-left-color: var(--color-primary);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal .table thead th {
+[data-theme='dark'] .modal-content.dashboard-report-modal .table thead th {
   color: var(--color-text-primary);
   background-color: color-mix(
     in srgb,
@@ -1186,7 +1194,7 @@ body {
   );
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal :is(
+[data-theme='dark'] .modal-content.dashboard-report-modal :is(
   .dt-container,
   .dt-info,
   .dt-length,
@@ -1197,20 +1205,20 @@ body {
   color: var(--color-text-secondary);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal .dt-input {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-input {
   color: var(--color-text-primary);
   background-color: var(--color-bg);
   border-color: var(--color-border);
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal .dt-paging-button {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-paging-button {
   color: var(--color-text-primary) !important;
   background: var(--color-surface) !important;
   border-color: var(--color-border) !important;
 }
 
-[data-theme='dark'] .modal-content .dashboard-report-modal .dt-paging-button.current,
-[data-theme='dark'] .modal-content .dashboard-report-modal .dt-paging-button:hover {
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-paging-button.current,
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-paging-button:hover {
   color: var(--color-bg) !important;
   background: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
@@ -2326,4 +2334,1316 @@ body {
   [aria-expanded='true']
 ) :is(i, span) {
   color: var(--color-primary-dark);
+}
+
+[data-theme='light'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page,
+[data-theme='light'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page:is(:hover, :focus-visible) {
+  color: var(--color-primary-dark) !important;
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='light'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page > i:first-child {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--color-primary-dark);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 72%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page,
+[data-theme='dark'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page:is(:hover, :focus-visible) {
+  color: var(--color-primary) !important;
+  background-color: color-mix(in srgb, var(--color-primary-surface) 64%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page > i:first-child {
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 76%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-navigation-bar .navbar-nav .nav-item .nav-link.active-page > span {
+  color: var(--color-primary);
+}
+
+[data-theme='light'] .app-mobile-menu .mobile-nav .nav-link.active-page > i:first-child {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: var(--color-primary-dark);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 76%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-mobile-menu .mobile-nav .nav-link.active-page > i:first-child {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 76%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-btn {
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-btn:is(:hover, :focus-visible, .show) {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-count {
+  color: #fff;
+  background-color: var(--color-danger);
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--color-danger) 34%, transparent);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border);
+  box-shadow: var(--theme-overlay-shadow);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu :is(
+  .notification-menu-header,
+  .notification-menu-item,
+  .notification-view-all
+) {
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu :is(
+  .notification-menu-title,
+  .notification-item-title
+) {
+  color: var(--color-text-primary) !important;
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu :is(
+  .notification-menu-subtitle,
+  .notification-item-summary
+) {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-item-time {
+  color: var(--color-text-muted) !important;
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-menu-item {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-menu-item:is(:hover, :focus-visible) {
+  background-color: color-mix(in srgb, var(--color-primary-surface) 58%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu :is(
+  .notification-item-icon--approval,
+  .notification-item-icon--budget,
+  .notification-item-icon--participant
+) {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 68%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu :is(
+  .notification-mark-read,
+  .notification-view-all
+) {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-clear-all {
+  color: var(--color-danger);
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-view-all {
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-header .app-notification .notification-menu .notification-view-all:hover {
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-icon {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-header .btn-modal {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-header .btn-modal:is(:hover, :focus-visible) {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-dismiss {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-action {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+[data-theme='dark'] .notification-detail-modal .notification-detail-action:hover {
+  color: var(--color-bg);
+  background-color: var(--color-primary-dark);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .card-header-text,
+  .card-title-gender,
+  .card-chart-eyebrow,
+  .card-title-trends,
+  .card-training-trends .trends-context,
+  .card-upcoming-training .card-training-wrapper,
+  .card-beneficiary-description,
+  .card-details-evaluation,
+  .text-header,
+  .text-number,
+  .card-allocation-title-row h5,
+  .card-allocation-summary strong,
+  .training-insights-heading h5,
+  .training-insights-section-title h6,
+  .training-insights-list strong
+) {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .card-chart-period,
+  .card-data-vs-year,
+  .card-beneficiary-description,
+  .card-allocation-title-group > span,
+  .card-allocation-summary span,
+  .training-insights-heading p,
+  .training-insights-list p,
+  .training-insights-footer,
+  .text-dsb
+) {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .card-header-context,
+  .card-data-text-vs-year,
+  .card-month,
+  .card-date-text,
+  .slot-text,
+  .slot-number,
+  .card-allocation-summary strong,
+  .training-insights-eyebrow,
+  .training-insights-link
+) {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-title .card-header-text,
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-body .card-chart-eyebrow,
+[data-theme='dark'] .app-main .app-main-body .card-beneficiary .card-header .card-title-gender,
+[data-theme='dark'] .app-main .app-main-body .card-upcoming-training .card-header .card-header-text,
+[data-theme='dark'] .app-main .app-main-body .card-allocation-title-row h5 {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .card-allocation-summary,
+  .card-upcoming-training .card-date,
+  .card-training-trends .btn-summary,
+  .card-app-right-main-content .card-tools .btn-modal,
+  .recommendation-number,
+  .training-insights-section,
+  .training-recommendations-section
+) {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .card-allocation-icon,
+  .card-evaluation-result .card-icon-evaluation,
+  .training-insights-icon
+) {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-evaluation-result .card-icon-evaluation i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-allocation-summary div + div {
+  border-left-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.participants-icon {
+  color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 20%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.fca-icon {
+  color: var(--color-warning);
+  background-color: color-mix(in srgb, var(--color-warning) 18%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-icon.district-icon {
+  color: var(--color-purple);
+  background-color: color-mix(in srgb, var(--color-purple) 20%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-icon-evaluation {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-evaluation-result .card-body .card-wrapper-evaluation .card-icon-evaluation i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-insights-footer {
+  background-color: color-mix(in srgb, var(--color-bg) 68%, var(--color-surface));
+  border-top-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .apexcharts-legend-text {
+  color: var(--color-text-secondary) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-table {
+  --bs-table-color: var(--color-text-primary);
+  --bs-table-bg: color-mix(in srgb, var(--color-bg) 64%, var(--color-surface));
+  --bs-table-border-color: var(--color-border);
+  color: var(--color-text-primary);
+  border-color: var(--color-border) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-table > :not(caption) > * > * {
+  color: var(--color-text-primary) !important;
+  background-color: color-mix(in srgb, var(--color-bg) 64%, var(--color-surface)) !important;
+  border-color: var(--color-border) !important;
+  box-shadow: none;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-table thead th {
+  color: var(--color-text-primary) !important;
+  background-color: color-mix(in srgb, var(--color-primary-surface) 76%, var(--color-surface)) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-table tbody tr:nth-child(even) > *,
+[data-theme='dark'] .modal-content.dashboard-report-modal .dashboard-report-table tbody tr:hover > * {
+  background-color: color-mix(in srgb, var(--color-primary-surface) 30%, var(--color-surface)) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal :is(
+  .dt-container,
+  .dt-info,
+  .dt-length,
+  .dt-search,
+  .dt-paging,
+  .dt-layout-cell,
+  .dt-layout-row
+) {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal :is(.dt-input, .dt-length select) {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg) !important;
+  border-color: var(--color-border) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-paging button.dt-paging-button {
+  color: var(--color-text-primary) !important;
+  background: var(--color-surface) !important;
+  border-color: var(--color-border) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal .dt-paging button.dt-paging-button:is(.current, :hover) {
+  color: var(--color-bg) !important;
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal :is(.dashboard-report-close, .dashboard-report-dismiss) {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .modal-content.dashboard-report-modal :is(.dashboard-report-close, .dashboard-report-dismiss):is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps {
+  --wizard-line-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li.is-current {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li::before {
+  color: var(--color-text-secondary);
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+  outline-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li.is-completed::before {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li.is-progress::before {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-progress-bar .wizard-steps li.is-current::before {
+  color: var(--color-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .wizard-step {
+  border-bottom-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-header i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-header .card-header-title {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-label,
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-check-label,
+[data-theme='dark'] .app-main .app-main-body .card-form form .review_content {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .text-required {
+  color: var(--color-danger);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form :is(
+  .form-control,
+  .form-select
+) {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+  color-scheme: dark;
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form :is(
+  .form-control,
+  .form-select
+):focus {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 84%, var(--color-surface));
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form :is(
+  .form-control,
+  .form-select
+)::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form :is(
+  .form-control,
+  .form-select
+):disabled {
+  color: var(--color-text-muted);
+  background-color: color-mix(in srgb, var(--color-bg) 70%, var(--color-surface));
+  border-color: var(--color-border);
+  opacity: 1;
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(84%) sepia(14%) saturate(800%) hue-rotate(75deg) brightness(95%) contrast(88%);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .input-group-text {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-check-input {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-check-input:checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .form-check-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .association-options .form-check-label {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .association-options .form-check-input:checked + .form-check-label {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .review-information {
+  color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 12%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-info) 42%, var(--color-border));
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .review-information :is(i, .information-text) {
+  color: var(--color-info);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .btn-submit {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-form form .btn-submit:is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-tips {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 42%, var(--color-surface)) !important;
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-tips .card-header {
+  color: var(--color-primary);
+  background-color: transparent;
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-tips :is(.card-tips-title, .tips-list .list-item, .tips-list .list-context) {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-tips .tips-list .list-item > i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-tips .tips-list .list-item .list-required {
+  color: var(--color-danger);
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-header-main .app-noti-profile .app-notification .notification-btn,
+[data-theme='dark'] .app-wrapper .app-header .app-header-main .app-noti-profile .app-notification .notification-btn i {
+  color: var(--color-primary) !important;
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-header-main .app-noti-profile .app-notification .notification-btn:is(:hover, :focus-visible, .show),
+[data-theme='dark'] .app-wrapper .app-header .app-header-main .app-noti-profile .app-notification .notification-btn:is(:hover, :focus-visible, .show) i {
+  color: var(--color-primary) !important;
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-header-main .app-noti-profile .app-notification .notification-btn .notification-count {
+  color: #fff !important;
+  background-color: var(--color-danger) !important;
+  border-color: var(--color-surface);
+}
+
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-title .card-header-context,
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-body .card-vs-year,
+[data-theme='dark'] .app-main .app-main-body .card-app-right-main-content .card-body .card-vs-year .card-data-text-vs-year {
+  color: var(--color-primary);
+}
+
+.app-main .app-main-body .card-header:has(> .workflow-about-button) {
+  position: relative;
+  padding-right: 64px;
+}
+
+.app-main .app-main-body .card-header:has(> .workflow-about-button) > .workflow-about-button {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 1;
+}
+
+[data-theme='light'] .app-main .app-main-body .workflow-current .workflow-icon,
+[data-theme='light'] .app-main .app-main-body .workflow-approved .workflow-icon,
+[data-theme='light'] .app-main .app-main-body .workflow-accepted .workflow-icon {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='light'] .app-main .app-main-body .workflow-pending .workflow-icon {
+  color: var(--color-warning);
+  background-color: color-mix(in srgb, var(--color-warning) 12%, var(--color-surface));
+}
+
+[data-theme='light'] .app-main .app-main-body .workflow-rejected .workflow-icon {
+  color: var(--color-danger);
+  background-color: color-mix(in srgb, var(--color-danger) 10%, var(--color-surface));
+}
+
+[data-theme='light'] .app-main .app-main-body :is(
+  .workflow-current-details,
+  .workflow-process,
+  .workflow-process-approval,
+  .workflow-process-acceptance,
+  .workflow-process-approved,
+  .workflow-process-rejected
+) {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='light'] .app-main .app-main-body .workflow-divider {
+  color: var(--color-primary);
+}
+
+[data-theme='light'] .app-main .app-main-body .workflow-about-button {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary-light);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .workflow-current .workflow-icon,
+  .workflow-approved .workflow-icon,
+  .workflow-accepted .workflow-icon
+) {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 76%, var(--color-surface));
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .workflow-pending .workflow-icon {
+  color: var(--color-warning);
+  background-color: color-mix(in srgb, var(--color-warning) 14%, var(--color-surface));
+  border-color: var(--color-warning);
+}
+
+[data-theme='dark'] .app-main .app-main-body .workflow-rejected .workflow-icon {
+  color: var(--color-danger);
+  background-color: color-mix(in srgb, var(--color-danger) 14%, var(--color-surface));
+  border-color: var(--color-danger);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .workflow-current-details,
+  .workflow-process,
+  .workflow-process-approval,
+  .workflow-process-acceptance,
+  .workflow-process-approved,
+  .workflow-process-rejected
+) {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .workflow-divider {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .workflow-about-button {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .workflow-about-button:is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+[data-theme='light'] .app-main .app-main-body .review-table-summary {
+  color: var(--color-text-secondary);
+  background-color: color-mix(in srgb, var(--color-bg) 72%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='light'] .app-main .app-main-body .review-table-summary strong {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-summary strong {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-summary :is(.summary-icon, i) {
+  color: var(--color-primary);
+}
+
+[data-theme='light'] .app-main .app-main-body .review-table-toolbar {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 72%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='light'] .app-main .app-main-body .review-table-toolbar label,
+[data-theme='light'] .app-main .app-main-body .review-pagination {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-toolbar {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-toolbar label,
+[data-theme='dark'] .app-main .app-main-body .review-pagination {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-toolbar .input-group-text {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .review-table-toolbar .form-control,
+  .review-table-toolbar .form-select,
+  .pagination-controls select,
+  .review-data-table tfoot .form-control,
+  .review-data-table tfoot .form-select
+) {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+  color-scheme: dark;
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .review-table-toolbar .form-control,
+  .review-data-table tfoot .form-control
+)::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(
+  .review-table-toolbar .form-control,
+  .review-table-toolbar .form-select,
+  .review-data-table tfoot .form-control,
+  .review-data-table tfoot .form-select
+):focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-primary) 22%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .clear-filter-button,
+[data-theme='dark'] .app-main .app-main-body .pagination-controls button {
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .pagination-controls button:is(.active, :hover:not(:disabled)) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table thead th {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 70%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table thead th:is(.sortable-column, .sortable-column.is-sorted) {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 70%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table thead th .sortable-column i,
+[data-theme='dark'] .app-main .app-main-body .review-data-table .sortable-column i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table tbody td {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table tbody tr:nth-child(even) td {
+  background-color: color-mix(in srgb, var(--color-bg) 58%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table tbody tr:hover td {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 46%, var(--color-surface));
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-data-table tfoot th {
+  color: var(--color-text-secondary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 34%, var(--color-surface));
+  border-color: var(--color-border);
+  box-shadow: inset 0 1px 0 var(--color-border);
+}
+
+[data-theme='dark'] .app-main .app-main-body .table-row-actions .table-action-button {
+  border: 1px solid transparent;
+}
+
+[data-theme='dark'] .app-main .app-main-body .table-row-actions .view-action {
+  color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 16%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-info) 36%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .table-row-actions .edit-action {
+  color: var(--color-purple);
+  background-color: color-mix(in srgb, var(--color-purple) 16%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-purple) 36%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .table-row-actions .forward-action {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-state {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .review-table-state i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(.table-icon-button, .table-export-button) {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .table-export-button {
+  color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 14%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-info) 35%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body :is(.table-icon-button, .table-export-button):is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-content {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog :is(
+  .review-modal-header,
+  .review-modal-body,
+  .review-modal-footer
+) {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  background-image: none;
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-icon {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-eyebrow {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-heading :is(h5, p) {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-heading p {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-close {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-close:is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog :is(.workflow-transition, .workflow-transition > i) {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-record-details dt {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-record-details dd {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog :is(.status-review, .status-approved, .status-accepted) {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 14%, var(--color-bg));
+  border-color: color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
+
+[data-theme='dark'] .review-workflow-dialog .status-approval {
+  color: var(--color-warning);
+  background-color: color-mix(in srgb, var(--color-warning) 12%, var(--color-bg));
+  border-color: color-mix(in srgb, var(--color-warning) 30%, transparent);
+}
+
+[data-theme='dark'] .review-workflow-dialog .requirements-panel {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 38%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog .requirements-panel h6 {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .requirements-panel li {
+  color: var(--color-text-primary);
+  background-color: color-mix(in srgb, var(--color-bg) 66%, var(--color-surface));
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog .requirements-panel li i,
+[data-theme='dark'] .review-workflow-dialog .requirements-panel li span {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-footer > span {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-footer > span i {
+  color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-dismiss {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .review-workflow-dialog .review-modal-dismiss:is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog .forward-confirm-button,
+[data-theme='dark'] .review-workflow-dialog .revert-confirm-button {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .review-workflow-dialog :is(.forward-confirm-button, .revert-confirm-button):is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+}
+
+[data-theme] .toast-container {
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  width: min(420px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
+}
+
+[data-theme] .toast-container .toast {
+  --toast-accent: var(--color-primary);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--color-text-primary);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-surface) 94%, var(--toast-accent) 6%),
+    var(--color-surface) 72%
+  );
+  border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--toast-accent);
+  border-radius: 14px;
+  box-shadow: var(--theme-overlay-shadow);
+  translate: 0 -6px;
+  transition:
+    opacity 180ms ease,
+    translate 220ms ease,
+    box-shadow 180ms ease;
+}
+
+[data-theme] .toast-container .toast.showing,
+[data-theme] .toast-container .toast.show {
+  translate: 0 0;
+}
+
+[data-theme] .toast-container .toast-header {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  color: var(--color-text-primary);
+  background: color-mix(
+    in srgb,
+    var(--color-surface) 88%,
+    var(--toast-accent) 12%
+  );
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme] .toast-container .toast-header > i {
+  display: inline-grid;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  margin: 0 2px 0 0 !important;
+  color: var(--toast-accent);
+  background: color-mix(
+    in srgb,
+    var(--color-surface) 78%,
+    var(--toast-accent) 22%
+  );
+  border-radius: 9px;
+  font-size: 14px;
+}
+
+[data-theme] .toast-container .toast-header strong {
+  min-width: 0;
+  color: var(--color-text-primary);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: normal;
+}
+
+[data-theme] .toast-container .toast-header small {
+  flex: 0 0 auto;
+  margin-inline-start: auto !important;
+  color: var(--color-text-muted) !important;
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+[data-theme] .toast-container .toast-body {
+  padding: 12px 16px 14px;
+  color: var(--color-text-secondary);
+  background: color-mix(
+    in srgb,
+    var(--color-surface) 92%,
+    var(--toast-accent) 8%
+  );
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+[data-theme] .toast-container .toast-header .btn-close {
+  flex: 0 0 auto;
+  margin: 0 0 0 4px;
+  padding: 7px;
+  border-radius: 8px;
+  opacity: 0.68;
+  transition:
+    opacity 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+[data-theme] .toast-container .toast-header .btn-close:hover,
+[data-theme] .toast-container .toast-header .btn-close:focus-visible {
+  background-color: color-mix(
+    in srgb,
+    var(--color-surface) 76%,
+    var(--color-border) 24%
+  );
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+[data-theme='dark'] .toast-container .toast-header .btn-close {
+  filter: invert(1) grayscale(100%) brightness(1.8);
+}
+
+[data-theme] .toast-container .toast-header .attachment-toast-close {
+  display: inline-grid;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  margin: 0 0 0 4px;
+  padding: 0;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 11px;
+  opacity: 1;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+[data-theme] .toast-container .toast-header .attachment-toast-close:hover,
+[data-theme] .toast-container .toast-header .attachment-toast-close:focus-visible {
+  color: var(--toast-accent);
+  background: color-mix(
+    in srgb,
+    var(--color-surface) 72%,
+    var(--toast-accent) 28%
+  );
+  border-color: var(--toast-accent);
+  transform: scale(1.06);
+}
+
+[data-theme] .toast-container .review-toast {
+  --toast-accent: var(--color-success);
+}
+
+[data-theme] .toast-container .review-toast-blocked {
+  --toast-accent: var(--color-warning);
+}
+
+[data-theme] .toast-container .review-toast-blocked .toast-header > i,
+[data-theme] .toast-container .review-toast-blocked .toast-body {
+  color: var(--color-warning);
+}
+
+[data-theme] .toast-container .attachment-toast.is-error {
+  --toast-accent: var(--color-danger);
+}
+
+[data-theme] .toast-container .attachment-toast.is-error .toast-header > i,
+[data-theme] .toast-container .attachment-toast.is-error .toast-body {
+  color: var(--color-danger);
+}
+
+@media (max-width: 575.98px) {
+  [data-theme] .toast-container {
+    right: 0;
+    left: 0;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme] .toast-container .toast,
+  [data-theme] .toast-container .toast-header :is(.btn-close, .attachment-toast-close) {
+    transition: none;
+  }
+}
+
+[data-theme='dark'] #footprints :is(
+  .activity-log-heading p,
+  .activity-log-entry-description
+) {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] #footprints :is(
+  .activity-log-result-count,
+  .activity-log-entry-meta,
+  .activity-log-entry-meta i
+) {
+  color: var(--color-text-muted);
+}
+
+[data-theme='dark'] #footprints .activity-log-actor {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-art-blue {
+  color: var(--color-info);
+  background-color: color-mix(in srgb, var(--color-info) 14%, var(--color-bg));
+  border-color: color-mix(in srgb, var(--color-info) 32%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-art-green {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 14%, var(--color-bg));
+  border-color: color-mix(in srgb, var(--color-primary) 32%, transparent);
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-preview-scores .bi-star-fill {
+  color: var(--color-warning);
+}
+
+[data-theme='light'] .app-main .app-main-body .training-pagination .pagination-controls select {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-surface) !important;
+  border-color: var(--color-border);
+  color-scheme: light;
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-pagination .pagination-controls select {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg) !important;
+  border-color: var(--color-border);
+  color-scheme: dark;
+}
+
+[data-theme='dark'] .app-main .app-main-body .training-pagination .pagination-controls select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+
+[data-theme='dark'] .attachment-modal .review-modal-header,
+[data-theme='dark'] .attachment-modal .review-modal-body,
+[data-theme='dark'] .attachment-modal .review-modal-footer {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .attachment-modal .review-modal-icon {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary-surface) 78%, var(--color-surface));
+  border-color: var(--color-primary);
+}
+
+[data-theme='dark'] .attachment-modal :is(
+  .review-modal-eyebrow,
+  .review-modal-heading h5
+) {
+  color: var(--color-text-primary);
+}
+
+[data-theme='dark'] .attachment-modal .review-modal-heading p,
+[data-theme='dark'] .attachment-modal .form-text:not(.text-danger),
+[data-theme='dark'] .attachment-modal .review-modal-footer > span {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .attachment-modal .form-label {
+  color: var(--color-text-secondary);
+}
+
+[data-theme='dark'] .attachment-modal :is(
+  .form-control,
+  .form-select,
+  input[type='file'].form-control
+) {
+  color: var(--color-text-primary) !important;
+  background-color: var(--color-bg) !important;
+  border-color: var(--color-border);
+  color-scheme: dark;
+}
+
+[data-theme='dark'] .attachment-modal .form-select option {
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+}
+
+[data-theme='dark'] .attachment-modal .form-control::placeholder {
+  color: var(--color-text-muted);
+}
+
+[data-theme='dark'] .attachment-modal input[type='file']::file-selector-button {
+  color: var(--color-primary);
+  background-color: var(--color-primary-surface);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 34%, var(--color-border));
+}
+
+[data-theme='dark'] .attachment-modal input[type='file']:is(:hover, :focus-visible)::file-selector-button {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+}
+
+[data-theme='dark'] .attachment-modal .review-modal-close {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .attachment-modal .review-modal-close:is(:hover, :focus-visible) {
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+[data-theme='light'] .attachment-modal .review-modal-close {
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  border-color: var(--color-border);
+}
+
+[data-theme='light'] .attachment-modal .review-modal-close:is(:hover, :focus-visible) {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+  border-color: var(--color-primary-light);
 }

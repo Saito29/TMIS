@@ -58,6 +58,8 @@
       rel="stylesheet"
       href="../../../../src/css/participants/update/view-farmer.css"
     />
+    <link rel="stylesheet" href="../../../../src/css/shared/theme.css" />
+    <script src="../../../../src/js/theme.js" defer></script>
     <title>DA-TMIS - View Farmer</title>
     <meta name="description" content="View Farmer | DA-TMIS" />
   </head>
@@ -837,7 +839,7 @@
             </div>
           </div>
           <!-- FOR REVIEW TABLE MODULE: filters, workflow actions, pagination, and modal markup -->
-          <div class="row second-row">
+          <div class="row second-row">    
             <div class="col-12 mb-2">
               <!-- Navigation tabs -->
               <div class="card-navigation">
@@ -2009,11 +2011,75 @@
             </section>
 
             <section class="info-wrapper d-none" id="interventions" role="tabpanel" aria-labelledby="interventions-tab" hidden>
-              <div class="card profile-empty-panel">
-                <div class="card-body">
-                  <span class="profile-empty-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
-                  <h5>Interventions</h5>
-                  <p>No intervention records are available for this farmer.</p>
+              <div class="card intervention-panel">
+                <div class="card-header intervention-table-header">
+                  <div class="intervention-table-heading">
+                    <span class="intervention-heading-icon"><i class="bi bi-box-seam" aria-hidden="true"></i></span>
+                    <div>
+                      <h5 class="title-card">Farmer Interventions</h5>
+                      <p>Review support and services provided to this farmer.</p>
+                    </div>
+                  </div>
+                  <div class="intervention-table-actions">
+                    <button class="btn intervention-action-button" id="refreshInterventions" type="button" title="Refresh intervention records">
+                      <i class="bi bi-arrow-clockwise" aria-hidden="true"></i><span class="visually-hidden">Refresh</span>
+                    </button>
+                    <button class="btn intervention-export-button" id="exportInterventions" type="button" title="Export Excel file">
+                      <i class="bi bi-file-earmark-excel" aria-hidden="true"></i><span class="visually-hidden">Export XLSX</span>
+                    </button>
+                    <button class="btn intervention-add-button" type="button" title="Add intervention" data-bs-toggle="modal" data-bs-target="#addInterventionModal">
+                      <i class="bi bi-plus-lg" aria-hidden="true"></i><span class="visually-hidden">Add Intervention</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body intervention-table-body">
+                  <div class="intervention-table-meta">
+                    <span><i class="bi bi-info-circle" aria-hidden="true"></i> Intervention records for Farmer ID 271901</span>
+                    <span id="interventionRecordCount" aria-live="polite">0 records</span>
+                  </div>
+                  <div class="intervention-table-toolbar">
+                    <label class="visually-hidden" for="interventionGlobalSearch">Search all intervention fields</label>
+                    <div class="input-group intervention-search">
+                      <span class="input-group-text"><i class="bi bi-search" aria-hidden="true"></i></span>
+                      <input class="form-control" id="interventionGlobalSearch" type="search" placeholder="Search interventions" />
+                    </div>
+                    <button class="btn intervention-clear-button" id="clearInterventionFilters" type="button">
+                      <i class="bi bi-filter-circle" aria-hidden="true"></i><span>Clear filters</span>
+                    </button>
+                  </div>
+                  <div class="review-pagination intervention-pagination" id="interventionPaginationTop" aria-label="Top intervention table pagination"></div>
+                  <div class="table-responsive intervention-table-scroll">
+                    <table class="table intervention-data-table align-middle" id="interventionDataTable">
+                      <caption class="visually-hidden">Interventions provided to this farmer</caption>
+                      <thead>
+                        <tr>
+                          <th scope="col" class="intervention-sortable" data-sort="title" tabindex="0">Intervention <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="office" tabindex="0">Office <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="yearCovered" tabindex="0">Year Covered <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="action" tabindex="0">Actions <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="type" tabindex="0">Type <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="unit" tabindex="0">Unit <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="qty" tabindex="0">Qty <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                          <th scope="col" class="intervention-sortable" data-sort="remarks" tabindex="0">Remarks <i class="bi bi-arrow-down-up" aria-hidden="true"></i></th>
+                        </tr>
+                        <tr class="intervention-filter-row">
+                          <th><label class="visually-hidden" for="filterInterventionTitle">Filter interventions</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionTitle" data-column="title" type="search" placeholder="Filter intervention" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionOffice">Filter office</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionOffice" data-column="office" type="search" placeholder="Filter office" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionYear">Filter year covered</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionYear" data-column="yearCovered" type="search" placeholder="Filter year" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionAction">Filter delivery action</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionAction" data-column="action" type="search" placeholder="Filter action" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionType">Filter intervention type</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionType" data-column="type" type="search" placeholder="Filter type" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionUnit">Filter unit</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionUnit" data-column="unit" type="search" placeholder="Filter unit" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionQty">Filter quantity</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionQty" data-column="qty" type="search" placeholder="Filter qty" /></th>
+                          <th><label class="visually-hidden" for="filterInterventionRemarks">Filter remarks</label><input class="form-control form-control-sm intervention-column-filter" id="filterInterventionRemarks" data-column="remarks" type="search" placeholder="Filter remarks" /></th>
+                        </tr>
+                      </thead>
+                      <tbody id="interventionTableBody">
+                        <tr><td colspan="8" class="intervention-empty-cell">Loading intervention records…</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="review-pagination intervention-pagination" id="interventionPaginationBottom" aria-label="Bottom intervention table pagination"></div>
+                  <p class="intervention-feedback" id="interventionFeedback" role="status" aria-live="polite"></p>
                 </div>
               </div>
             </section>
@@ -2794,6 +2860,72 @@
         </div>
       </div>
     </div>
+    <div class="modal fade" id="addInterventionModal" tabindex="-1" aria-labelledby="addInterventionModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable intervention-form-dialog">
+        <div class="modal-content review-modal-content intervention-modal">
+          <form id="addInterventionForm">
+            <div class="modal-header review-modal-header">
+              <div class="review-modal-heading">
+                <span class="review-modal-icon" aria-hidden="true"><i class="bi bi-box-seam"></i></span>
+                <div>
+                  <span class="review-modal-eyebrow">Farmer support</span>
+                  <h5 class="modal-title" id="addInterventionModalLabel">Add intervention</h5>
+                  <p>Record an intervention, delivery status, and quantity provided to this farmer.</p>
+                </div>
+              </div>
+              <button type="button" class="btn review-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+            </div>
+            <div class="modal-body review-modal-body intervention-form-body">
+              <div class="row g-3 mt-0">
+                <div class="col-12">
+                  <label class="form-label" for="interventionTitle">Intervention</label>
+                  <input class="form-control" id="interventionTitle" name="title" type="text" maxlength="120" placeholder="e.g. Certified rice seeds distribution" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionOffice">Office</label>
+                  <input class="form-control" id="interventionOffice" name="office" type="text" maxlength="120" placeholder="e.g. DA RFO IV-A" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionYear">Year covered</label>
+                  <input class="form-control" id="interventionYear" name="yearCovered" type="number" min="1900" max="2100" step="1" value="2026" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionAction">Delivery action</label>
+                  <select class="form-select" id="interventionAction" name="action" required>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Not Delivered">Not Delivered</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionType">Type</label>
+                  <input class="form-control" id="interventionType" name="type" type="text" maxlength="80" placeholder="e.g. Seeds, fertilizer, training" required />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionUnit">Unit</label>
+                  <input class="form-control" id="interventionUnit" name="unit" type="text" maxlength="40" placeholder="e.g. kg, bags, units" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label" for="interventionQty">Quantity</label>
+                  <input class="form-control" id="interventionQty" name="qty" type="number" min="0" step="any" placeholder="Enter quantity" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label" for="interventionRemarks">Remarks <span class="intervention-optional-label">(optional)</span></label>
+                  <textarea class="form-control" id="interventionRemarks" name="remarks" rows="3" maxlength="500" placeholder="Add delivery notes or other details"></textarea>
+                </div>
+              </div>
+              <p class="intervention-form-error" id="interventionFormError" role="alert"></p>
+            </div>
+            <div class="modal-footer review-modal-footer">
+              <span><i class="bi bi-shield-check me-1" aria-hidden="true"></i>Details are saved for this browser.</span>
+              <div>
+                <button type="button" class="btn review-modal-dismiss" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn intervention-save-button"><i class="bi bi-check2 me-1" aria-hidden="true"></i>Save intervention</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- Modal toast notification -->
     <div class="toast-container position-fixed top-0 end-0 p-3">
       <div
@@ -2975,6 +3107,7 @@
     <script src="../../../../src/js/nav.js"></script>
     <script src="../../../../src/js/participants/update/farmer-profile-tabs.js"></script>
     <script src="../../../../src/js/participants/update/farmer-training-table.js"></script>
+    <script src="../../../../src/js/participants/update/farmer-intervention-table.js"></script>
     <script src="../../../../src/js/participants/update/attachment-manager.js"></script>
   </body>
 </html>

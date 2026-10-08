@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../src/js/page-loading.js"></script>
+    <link rel="stylesheet" href="../../src/css/shared/page-loading.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,19 +25,18 @@
       href="https://db.onlinewebfonts.com/c/07e0cde7ae44d7e3cdc61a55fe9af110?family=Blanka"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../src/auth.css" />
+    <link rel="stylesheet" href="../../src/css/auth.css" />
     <link
       rel="shortcut icon"
       href="../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
       type="image/x-icon"
     />
-    <title>TMIS-Login</title>
+    <title>TMIS Login</title>
   </head>
   <body>
-    <div class="container-fluid authenticator-container">
+    <main class="container-fluid authenticator-container">
       <div class="row">
-        <!-- Left side -->
-        <div class="col authenticator-left">
+        <section class="col authenticator-left">
           <div class="authenticator-left-content-logo">
             <img
               src="../../assets/logo/DA SAAD LOGO FULL - WHITE TEXT.png"
@@ -45,108 +46,107 @@
             <span class="authenticator-system-name">TMIS</span>
           </div>
           <div class="authenticator-left-content-tagline">
-            <h3 class="authenticator-tagline">
+            <h1 class="authenticator-tagline">
               Building Competence Through Smarter Training Management.
-            </h3>
+            </h1>
           </div>
           <div class="authenticator-left-content-DA">
-            <span class="authenticator-left-content-DA-name"
-              >Department of Agriculture 4A - SAAD</span
-            >
+            <span class="authenticator-left-content-DA-name">
+              Department of Agriculture 4A - SAAD
+            </span>
           </div>
-        </div>
-        <!-- Right side -->
-        <div class="col authenticator-right card">
+        </section>
+
+        <section class="col authenticator-right card">
           <div class="card-body">
-            <!-- Header -->
-            <div class="authenticator-right-card-form card-title">
-              <h3 class="authenticator-right-card-header">Welcome Back!</h3>
+            <header class="authenticator-right-card-form card-title">
+              <h2 class="authenticator-right-card-header">Welcome Back!</h2>
               <p class="authenticator-right-card-header2">
                 Sign in to continue to your account
               </p>
-            </div>
-            <!-- Form box -->
+            </header>
             <div class="authenticator-right-card-form-box">
               <form
                 action="#"
                 id="authenticator_form"
                 class="row gx-2 gy-3"
-                enctype="application/x-www-form-urlencoded"
                 autocomplete="on"
               >
                 <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
-                  <label for="email-input" class="form-label text-form-label"
-                    >Email Address</label
-                  >
+                  <label for="email-input" class="form-label text-form-label">
+                    Email Address
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-envelope-at-fill"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-envelope-at-fill" aria-hidden="true"></i>
+                    </span>
                     <input
                       type="email"
                       name="email_address"
                       id="email-input"
                       class="form-control text-form"
                       placeholder="your@emailaddress"
+                      autocomplete="email"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
-                  <label for="password_input" class="form-label text-form-label"
-                    >Password</label
+                  <label
+                    for="password_input"
+                    class="form-label text-form-label"
                   >
+                    Password
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-lock-fill"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                    </span>
                     <input
                       type="password"
                       name="password_auth"
                       id="password_input"
                       class="form-control text-form"
                       placeholder="Enter your password"
+                      autocomplete="current-password"
                       required
                     />
-                    <button type="button" class="password-toggle" id="toggle-password" aria-label="Show password">
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      id="toggle-password"
+                      data-password-target="password_input"
+                      aria-label="Show password"
+                    >
                       <i class="bi bi-eye-fill" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
-                  <input type="submit" value="Login" class="btn btn-outline-success form-control form-submit">
+                <div class="col-12 mb-2">
+                  <input
+                    type="submit"
+                    value="Login"
+                    class="btn btn-outline-success form-control form-submit"
+                  />
                 </div>
               </form>
             </div>
-            <!-- Other sign up  -->
             <div class="authenticator-right-card-form-others">
-              <a href="/app/authentication/forget_password.html" class="authenticator-right-card-form-forgetpassword">Forgot Password?</a>
-              <p class="authenticator-right-card-form-sign-up">Don't have an account? <a href="/app/authentication/register.html" class="sign-up-text">Sign up</a></p>
+              <a
+                href="forget_password.html"
+                class="authenticator-right-card-form-forgetpassword"
+              >
+                Forgot Password?
+              </a>
+              <p class="authenticator-right-card-form-sign-up">
+                Don&apos;t have an account?
+                <a href="register.html" class="sign-up-text">Sign up</a>
+              </p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
-
-    <!-- Scripts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const passwordInput = document.getElementById("password_input");
-      const passwordToggle = document.getElementById("toggle-password");
-
-      function setPasswordVisibility(isVisible) {
-        passwordInput.type = isVisible ? "text" : "password";
-        passwordToggle.setAttribute("aria-label", isVisible ? "Hide password" : "Show password");
-        passwordToggle.innerHTML = `<i class="bi bi-eye${isVisible ? "-slash" : ""}-fill" aria-hidden="true"></i>`;
-      }
-
-      passwordToggle.addEventListener("click", () => {
-        setPasswordVisibility(passwordInput.type === "password");
-      });
-    </script>
+    </main>
+    <script src="../../src/js/authentication.js"></script>
   </body>
 </html>

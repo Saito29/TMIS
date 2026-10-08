@@ -1555,7 +1555,139 @@ export default function Dashboard() {
                     </div>
                   </div>
                   <div className="col-12 col-xl-8">
-                    <div className="card training-insights-card h-100">
+                    <div className="card community-feedback-card h-100">
+                      <div
+                        id="communityFeedbackCarousel"
+                        className="carousel slide community-feedback-carousel"
+                        role="region"
+                        aria-roledescription="carousel"
+                        aria-label="Community feedback"
+                      >
+                        <div className="carousel-inner">
+                          <article className="carousel-item active">
+                            <img
+                              src="/assets/img/ricefield_with_farmer.png"
+                              className="community-feedback-image"
+                              alt=""
+                            />
+                            <div className="community-feedback-overlay">
+                              <div className="community-feedback-topline">
+                                <span className="community-feedback-label">
+                                  <i className="bi bi-chat-heart-fill"></i> Community
+                                  feedback
+                                </span>
+                              </div>
+                              <div className="community-feedback-copy">
+                                <blockquote className="community-feedback-quote">
+                                  “The live demonstrations made lessons on budgeting
+                                  and farm records much easier to understand.”
+                                </blockquote>
+                                <div className="community-feedback-attribution">
+                                  <span
+                                    className="community-feedback-avatar"
+                                    aria-hidden="true"
+                                  >
+                                    <i className="bi bi-person-fill"></i>
+                                  </span>
+                                  <div>
+                                    <strong>Training participant</strong>
+                                    <span>Sample feedback · Quezon</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="community-feedback-caption">
+                                <div>
+                                  <h5>Training Highlights &amp; Community Feedback</h5>
+                                  <p>
+                                    Experiences and ideas shared during farmer training
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                          <article className="carousel-item">
+                            <img
+                              src="/assets/img/ricefield_with_farmer-Picsart-AiImageEnhancer.png"
+                              className="community-feedback-image"
+                              alt=""
+                            />
+                            <div className="community-feedback-overlay">
+                              <div className="community-feedback-topline">
+                                <span className="community-feedback-label">
+                                  <i className="bi bi-chat-heart-fill"></i> Community
+                                  feedback
+                                </span>
+                              </div>
+                              <div className="community-feedback-copy">
+                                <blockquote className="community-feedback-quote">
+                                  “More hands-on activities and simple guides would
+                                  help us use what we learned on our farms.”
+                                </blockquote>
+                                <div className="community-feedback-attribution">
+                                  <span
+                                    className="community-feedback-avatar"
+                                    aria-hidden="true"
+                                  >
+                                    <i className="bi bi-person-fill"></i>
+                                  </span>
+                                  <div>
+                                    <strong>Training participant</strong>
+                                    <span>Sample feedback · Quezon</span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="community-feedback-caption">
+                                <div>
+                                  <h5>Training Highlights &amp; Community Feedback</h5>
+                                  <p>
+                                    Experiences and ideas shared during farmer training
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                        <div className="carousel-indicators community-feedback-indicators">
+                          <button
+                            type="button"
+                            data-bs-target="#communityFeedbackCarousel"
+                            data-bs-slide-to="0"
+                            className="active"
+                            aria-current="true"
+                            aria-label="Show feedback slide 1"
+                          ></button>
+                          <button
+                            type="button"
+                            data-bs-target="#communityFeedbackCarousel"
+                            data-bs-slide-to="1"
+                            aria-label="Show feedback slide 2"
+                          ></button>
+                        </div>
+                        <button
+                          className="carousel-control-prev community-feedback-control"
+                          type="button"
+                          data-bs-target="#communityFeedbackCarousel"
+                          data-bs-slide="prev"
+                          aria-label="Previous feedback"
+                        >
+                          <span
+                            className="carousel-control-prev-icon"
+                            aria-hidden="true"
+                          ></span>
+                        </button>
+                        <button
+                          className="carousel-control-next community-feedback-control"
+                          type="button"
+                          data-bs-target="#communityFeedbackCarousel"
+                          data-bs-slide="next"
+                          aria-label="Next feedback"
+                        >
+                          <span
+                            className="carousel-control-next-icon"
+                            aria-hidden="true"
+                          ></span>
+                        </button>
+                      </div>
                       <div className="card-header training-insights-header">
                         <div className="training-insights-heading">
                           <span className="training-insights-icon"

@@ -3647,3 +3647,444 @@ body {
   background-color: var(--color-primary-surface);
   border-color: var(--color-primary-light);
 }
+
+[data-theme='light'] .app-header .header-sub-collapse-item.active-page {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='light'] .app-header .header-sub-collapse-item.active-page :is(i, span) {
+  color: var(--color-primary-dark);
+}
+
+[data-theme='dark'] .app-header .header-sub-collapse-item.active-page {
+  color: var(--color-primary);
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary-surface) 78%,
+    var(--color-surface)
+  );
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='dark'] .app-header .header-sub-collapse-item.active-page :is(i, span) {
+  color: var(--color-primary);
+}
+
+[data-theme='light'] .app-mobile-menu .mobile-nav .mobile-submenu .nav-link.active-page {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='light'] .app-mobile-menu .mobile-nav .mobile-submenu .nav-link.active-page :is(i, span) {
+  color: var(--color-primary-dark);
+}
+
+[data-theme='dark'] .app-mobile-menu .mobile-nav .mobile-submenu .nav-link.active-page {
+  color: var(--color-primary);
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary-surface) 78%,
+    var(--color-surface)
+  );
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='dark'] .app-mobile-menu .mobile-nav .mobile-submenu .nav-link.active-page :is(i, span) {
+  color: var(--color-primary);
+}
+
+[data-theme='light'] .app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item :is(
+  .header-collapse-item,
+  .header-sub-collapse-item
+).active-page {
+  color: var(--color-primary-dark);
+  background-color: var(--color-primary-surface);
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='light'] .app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item :is(
+  .header-collapse-item,
+  .header-sub-collapse-item
+).active-page :is(i, span) {
+  color: var(--color-primary-dark);
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item :is(
+  .header-collapse-item,
+  .header-sub-collapse-item
+).active-page {
+  color: var(--color-primary);
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary-surface) 78%,
+    var(--color-surface)
+  );
+  box-shadow: inset 3px 0 0 var(--color-primary);
+}
+
+[data-theme='dark'] .app-wrapper .app-header .app-navigation-bar .navbar-nav .nav-item :is(
+  .header-collapse-item,
+  .header-sub-collapse-item
+).active-page :is(i, span) {
+  color: var(--color-primary);
+}
+
+html[data-page-loading='true']::before {
+  position: fixed;
+  z-index: 30000;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 13%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 22%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 11%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 18%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 11%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 18%, var(--color-border))
+    ),
+    linear-gradient(var(--color-surface), var(--color-surface)),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 22%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 32%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 9%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 16%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 19%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 8%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 14%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 10%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 16%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 8%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 14%, var(--color-border))
+    );
+  background-repeat: no-repeat;
+  background-size:
+    100% 68px,
+    44px 36px,
+    88px 14px,
+    68px 28px,
+    76px 28px,
+    76px 28px,
+    74px 28px,
+    38px 38px,
+    38px 38px,
+    38px 38px,
+    250px 22px,
+    350px 12px,
+    430px 36px,
+    calc(100% - 80px) 132px,
+    38% 115px,
+    34% 115px,
+    27% 115px;
+  background-position:
+    0 0,
+    20px 16px,
+    76px 27px,
+    205px 20px,
+    288px 20px,
+    380px 20px,
+    472px 20px,
+    calc(100% - 176px) 15px,
+    calc(100% - 126px) 15px,
+    calc(100% - 76px) 15px,
+    40px 103px,
+    40px 135px,
+    40px 170px,
+    40px 224px,
+    62px 250px,
+    calc(62px + 38%) 250px,
+    calc(62px + 74%) 250px;
+  transition: opacity 220ms ease;
+}
+
+html[data-page-loading='true']::after {
+  position: fixed;
+  z-index: 30001;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 34%,
+    color-mix(in srgb, var(--color-primary) 10%, transparent) 48%,
+    color-mix(in srgb, var(--color-primary-light) 20%, transparent) 52%,
+    transparent 66%
+  );
+  background-size: 220% 100%;
+  animation: page-loading-glow 1.35s ease-in-out infinite;
+  transition: opacity 220ms ease;
+}
+
+html[data-page-loading='exit']::before,
+html[data-page-loading='exit']::after {
+  opacity: 0;
+}
+
+@keyframes page-loading-glow {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -120% 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  html[data-page-loading='true']::before {
+    background-image:
+      linear-gradient(var(--color-surface), var(--color-surface)),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 13%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 22%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 20%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 11%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 18%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 19%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 8%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 14%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 22%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 32%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 10%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 16%, var(--color-border))
+      ),
+      linear-gradient(
+        100deg,
+        color-mix(in srgb, var(--color-primary) 8%, var(--color-border)),
+        color-mix(in srgb, var(--color-primary) 14%, var(--color-border))
+      );
+    background-size:
+      100% 62px,
+      40px 34px,
+      76px 13px,
+      38px 38px,
+      38px 38px,
+      38px 38px,
+      250px 22px,
+      310px 12px,
+      100% 34px,
+      calc(100% - 32px) 122px,
+      40% 100px,
+      34% 100px,
+      27% 100px;
+    background-position:
+      0 0,
+      12px 14px,
+      62px 25px,
+      calc(100% - 164px) 12px,
+      calc(100% - 116px) 12px,
+      calc(100% - 68px) 12px,
+      12px 88px,
+      12px 119px,
+      12px 153px,
+      16px 202px,
+      28px 226px,
+      calc(28px + 40%) 226px,
+      calc(28px + 74%) 226px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page-loading='true']::after {
+    animation: none;
+  }
+
+  html[data-page-loading]::before,
+  html[data-page-loading]::after {
+    transition: none;
+  }
+}
+
+html[data-page-loading]::before,
+html[data-page-loading]::after {
+  content: none;
+}
+
+html[data-page-loading='true'] .app-main {
+  position: relative;
+  isolation: isolate;
+}
+
+html[data-page-loading='true'] .app-main::before {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 12%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 22%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 9%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 17%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 18%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 30%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 9%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 17%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 9%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 17%, var(--color-border))
+    ),
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--color-primary) 9%, var(--color-border)),
+      color-mix(in srgb, var(--color-primary) 17%, var(--color-border))
+    );
+  background-repeat: no-repeat;
+  background-size:
+    min(330px, 42%) 22px,
+    min(250px, 32%) 12px,
+    min(210px, 32%) 28px,
+    calc(100% - 48px) 18px,
+    calc(100% - 48px) 18px,
+    62% 18px;
+  background-position:
+    24px 24px,
+    24px 56px,
+    24px 112px,
+    24px 158px,
+    24px 188px,
+    24px 218px;
+  box-shadow: 0 0 0 1px var(--color-border);
+  transition: opacity 220ms ease;
+}
+
+html[data-page-loading='true'] .app-main::after {
+  position: absolute;
+  z-index: 21;
+  inset: 0;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 34%,
+    color-mix(in srgb, var(--color-primary) 10%, transparent) 48%,
+    color-mix(in srgb, var(--color-primary-light) 20%, transparent) 52%,
+    transparent 66%
+  );
+  background-size: 220% 100%;
+  animation: page-loading-glow 1.35s ease-in-out infinite;
+  transition: opacity 220ms ease;
+}
+
+html[data-page-loading='exit'] .app-main::before,
+html[data-page-loading='exit'] .app-main::after {
+  opacity: 0;
+}
+
+@media (max-width: 767.98px) {
+  html[data-page-loading='true'] .app-main::before {
+    background-size:
+      min(240px, 68%) 20px,
+      min(180px, 48%) 12px,
+      min(180px, 58%) 26px,
+      calc(100% - 32px) 16px,
+      calc(100% - 32px) 16px,
+      70% 16px;
+    background-position:
+      16px 20px,
+      16px 50px,
+      16px 100px,
+      16px 142px,
+      16px 168px,
+      16px 194px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-page-loading='true'] .app-main::after {
+    animation: none;
+  }
+
+  html[data-page-loading] .app-main::before,
+  html[data-page-loading] .app-main::after {
+    transition: none;
+  }
+}

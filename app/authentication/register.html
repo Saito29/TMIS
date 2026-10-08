@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../../src/js/page-loading.js"></script>
+    <link rel="stylesheet" href="../../src/css/shared/page-loading.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,19 +25,18 @@
       href="https://db.onlinewebfonts.com/c/07e0cde7ae44d7e3cdc61a55fe9af110?family=Blanka"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../src/auth.css" />
+    <link rel="stylesheet" href="../../src/css/auth.css" />
     <link
       rel="shortcut icon"
       href="../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
       type="image/x-icon"
     />
-    <title>TMIS-Login</title>
+    <title>Create Account | TMIS</title>
   </head>
   <body>
-    <div class="container-fluid authenticator-container">
+    <main class="container-fluid authenticator-container">
       <div class="row">
-        <!-- Left side -->
-        <div class="col authenticator-left">
+        <section class="col authenticator-left">
           <div class="authenticator-left-content-logo">
             <img
               src="../../assets/logo/DA SAAD LOGO FULL - WHITE TEXT.png"
@@ -45,148 +46,200 @@
             <span class="authenticator-system-name">TMIS</span>
           </div>
           <div class="authenticator-left-content-tagline">
-            <h3 class="authenticator-tagline">
+            <h1 class="authenticator-tagline">
               Building Competence Through Smarter Training Management.
-            </h3>
+            </h1>
           </div>
           <div class="authenticator-left-content-DA">
-            <span class="authenticator-left-content-DA-name"
-              >Department of Agriculture 4A - SAAD</span
-            >
+            <span class="authenticator-left-content-DA-name">
+              Department of Agriculture 4A - SAAD
+            </span>
           </div>
-        </div>
-        <!-- Right side -->
-        <div class="col authenticator-right card">
+        </section>
+
+        <section class="col authenticator-right card">
           <div class="card-body">
-            <!-- Header -->
-            <div class="authenticator-right-card-form card-title">
-              <h3 class="authenticator-right-card-header">Register</h3>
+            <header class="authenticator-right-card-form card-title">
+              <h2 class="authenticator-right-card-header">Register</h2>
               <p class="authenticator-right-card-header2">Create an account</p>
-            </div>
-            <!-- Form box -->
+            </header>
             <div class="authenticator-right-card-form-box">
               <form
                 action="#"
                 id="authenticator_form"
                 class="row gx-3 gy-3"
-                enctype="application/x-www-form-urlencoded"
                 autocomplete="on"
               >
                 <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
-                  <label for="first_name" class="form-label text-form-label"
-                    >First Name</label
-                  >
+                  <label for="first_name" class="form-label text-form-label">
+                    First Name
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </span>
                     <input
                       type="text"
                       class="form-control text-form"
                       id="first_name"
                       name="first_name"
                       placeholder="Enter your first name"
+                      autocomplete="given-name"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
-                  <label for="middle_name" class="form-label text-form-label"
-                    >Middle Name</label
-                  >
+                  <label for="middle_name" class="form-label text-form-label">
+                    Middle Name
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </span>
                     <input
                       type="text"
-                      name="middle_name"
                       class="form-control text-form"
                       id="middle_name"
+                      name="middle_name"
                       placeholder="Enter your middle name"
+                      autocomplete="additional-name"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
-                  <label for="last_name" class="form-label text-form-label"
-                    >Last Name</label
-                  >
+                  <label for="last_name" class="form-label text-form-label">
+                    Last Name
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-person-fill" aria-hidden="true"></i>
+                    </span>
                     <input
                       type="text"
                       class="form-control text-form"
                       id="last_name"
                       name="last_name"
                       placeholder="Enter your last name"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
-                  <label for="email-input" class="form-label text-form-label"
-                    >Email Address</label
-                  >
-                  <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
-                    <input
-                      type="email"
-                      name="email_address"
-                      id="email-input"
-                      class="form-control text-form"
-                      placeholder="your@emailaddress"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
-                  <label for="password_input" class="form-label text-form-label"
-                    >Password</label
-                  >
-                  <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
-                    <input
-                      type="password"
-                      name="password_auth"
-                      id="password_input"
-                      class="form-control text-form"
-                      placeholder="Enter your password"
+                      autocomplete="family-name"
                       required
                     />
                   </div>
                 </div>
                 <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
                   <label
-                    for="confirm_password"
+                    for="register-email-input"
                     class="form-label text-form-label"
-                    >Confirm Password</label
                   >
+                    Email Address
+                  </label>
                   <div class="input-group form-group">
-                    <span class="input-group-text"
-                      ><i class="bi bi-circle"></i
-                    ></span>
+                    <span class="input-group-text">
+                      <i class="bi bi-envelope-at-fill" aria-hidden="true"></i>
+                    </span>
                     <input
-                      type="text"
+                      type="email"
+                      name="email_address"
+                      id="register-email-input"
                       class="form-control text-form"
-                      id="confirm_password"
-                      name="confirm_password"
-                      placeholder="Enter your password"
+                      placeholder="your@emailaddress"
+                      autocomplete="email"
                       required
                     />
                   </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
-                    <input type="checkbox" name="show_password" id="show_password" class="form-check-input">
-                    <label for="show_password" class="form-label">Show password</label>
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label
+                    for="register-password-input"
+                    class="form-label text-form-label"
+                  >
+                    Password
+                  </label>
+                  <div class="input-group form-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                    </span>
+                    <input
+                      type="password"
+                      name="password_auth"
+                      id="register-password-input"
+                      class="form-control text-form"
+                      placeholder="Enter your password"
+                      autocomplete="new-password"
+                      minlength="8"
+                      pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      data-password-target="register-password-input"
+                      aria-label="Show password"
+                    >
+                      <i class="bi bi-eye-fill" aria-hidden="true"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="col-sm-12 col-md-12 col-lg-12 mb-2">
+                <div class="col-sm-6 col-md-6 col-lg-6 mb-2">
+                  <label
+                    for="confirm_password"
+                    class="form-label text-form-label"
+                  >
+                    Confirm Password
+                  </label>
+                  <div class="input-group form-group">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                    </span>
+                    <input
+                      type="password"
+                      class="form-control text-form"
+                      id="confirm_password"
+                      name="confirm_password"
+                      placeholder="Confirm your password"
+                      autocomplete="new-password"
+                      required
+                    />
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      data-password-target="confirm_password"
+                      aria-label="Show confirm password"
+                    >
+                      <i class="bi bi-eye-fill" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-12 password-requirements-column">
+                  <ul class="password-requirements" aria-label="Password requirements">
+                    <li data-password-requirement="length">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>At least 8 characters</span>
+                    </li>
+                    <li data-password-requirement="uppercase">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>At least 1 uppercase letter</span>
+                    </li>
+                    <li data-password-requirement="lowercase">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>At least 1 lowercase letter</span>
+                    </li>
+                    <li data-password-requirement="number">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>At least 1 number</span>
+                    </li>
+                    <li data-password-requirement="special">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>At least 1 special character (@$!%*?&amp;#)</span>
+                    </li>
+                    <li data-password-requirement="match">
+                      <i class="bi bi-circle" aria-hidden="true"></i>
+                      <span>Passwords match</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-12 mb-2">
                   <input
                     type="submit"
                     value="Register"
@@ -195,40 +248,16 @@
                 </div>
               </form>
             </div>
-            <!-- Other sign up  -->
             <div class="authenticator-right-card-form-other">
               <p class="authenticator-right-card-form-login">
                 Already have an account?
-                <a href="/app/authentication/login.html" class="login-text">Login</a>
+                <a href="login.html" class="login-text">Login</a>
               </p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
-
-    <!-- Scripts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const passwordInput = document.getElementById("password_input");
-      const passwordToggle = document.getElementById("toggle-password");
-
-      function setPasswordVisibility(isVisible) {
-        passwordInput.type = isVisible ? "text" : "password";
-        passwordToggle.setAttribute(
-          "aria-label",
-          isVisible ? "Hide password" : "Show password",
-        );
-        passwordToggle.innerHTML = `<i class="bi bi-eye${isVisible ? "-slash" : ""}-fill" aria-hidden="true"></i>`;
-      }
-
-      passwordToggle.addEventListener("click", () => {
-        setPasswordVisibility(passwordInput.type === "password");
-      });
-    </script>
+    </main>
+    <script src="../../src/js/authentication.js"></script>
   </body>
 </html>

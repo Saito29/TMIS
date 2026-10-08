@@ -4,6 +4,8 @@ import Login from "../app/authentication/App.jsx";
 import Register from "../app/authentication/Register.jsx";
 import ForgetPassword from "../app/authentication/ForgetPassword.jsx";
 import "./css/auth.css";
+import "./css/shared/page-loading.css";
+import "./js/page-loading.js";
 
 const routes = {
   "/": Login,

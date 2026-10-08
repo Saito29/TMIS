@@ -2,21 +2,39 @@ import React, { useState } from "react";
 import { AuthShell, Field, PasswordField, PasswordRequirements } from "./App.jsx";
 
 const fields = [
-  { id: "first_name", name: "first_name", label: "First Name", placeholder: "Enter your first name", icon: "person-fill" },
-  { id: "middle_name", name: "middle_name", label: "Middle Name", placeholder: "Enter your middle name", icon: "person-fill" },
-  { id: "last_name", name: "last_name", label: "Last Name", placeholder: "Enter your last name", icon: "person-fill" },
+  {
+    id: "first_name",
+    name: "first_name",
+    label: "First Name",
+    placeholder: "Enter your first name",
+    icon: "person-fill",
+  },
+  {
+    id: "middle_name",
+    name: "middle_name",
+    label: "Middle Name",
+    placeholder: "Enter your middle name",
+    icon: "person-fill",
+  },
+  {
+    id: "last_name",
+    name: "last_name",
+    label: "Last Name",
+    placeholder: "Enter your last name",
+    icon: "person-fill",
+  },
 ];
 
 function Register() {
-  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   function updateField(event) {
-    setFormData((current) => ({ ...current, [event.target.name]: event.target.value }));
-  }
-
-  function togglePassword() {
-    setShowPassword((visible) => !visible);
+    setFormData((current) => ({
+      ...current,
+      [event.target.name]: event.target.value,
+    }));
   }
 
   return (
@@ -26,16 +44,71 @@ function Register() {
         <p className="authenticator-right-card-header2">Create an account</p>
       </header>
       <div className="authenticator-right-card-form-box">
-        <form action="#" id="authenticator_form" className="row gx-3 gy-3" onSubmit={(event) => event.preventDefault()} autoComplete="on">
-          {fields.map((field) => <Field key={field.id} {...field} columnClass="col-sm-6 col-md-6 col-lg-6" value={formData[field.name] || ""} onChange={updateField} />)}
-          <Field id="register-email-input" name="email_address" label="Email Address" placeholder="your@emailaddress" icon="envelope-at-fill" type="email" columnClass="col-sm-6 col-md-6 col-lg-6" value={formData.email_address || ""} onChange={updateField} />
-          <PasswordField id="register-password-input" name="password_auth" label="Password" placeholder="Enter your password" columnClass="col-sm-6 col-md-6 col-lg-6" value={formData.password_auth || ""} onChange={updateField} showPassword={showPassword} onToggle={togglePassword} minLength={8} pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}" />
-          <PasswordField id="confirm_password" name="confirm_password" label="Confirm Password" placeholder="Confirm your password" columnClass="col-sm-6 col-md-6 col-lg-6" value={formData.confirm_password || ""} onChange={updateField} showPassword={showPassword} onToggle={togglePassword} />
+        <form
+          action="#"
+          id="authenticator_form"
+          className="row gx-3 gy-3"
+          onSubmit={(event) => event.preventDefault()}
+          autoComplete="on"
+        >
+          {fields.map((field) => (
+            <Field
+              key={field.id}
+              {...field}
+              columnClass="col-sm-6 col-md-6 col-lg-6"
+              value={formData[field.name] || ""}
+              onChange={updateField}
+            />
+          ))}
+          <Field
+            id="register-email-input"
+            name="email_address"
+            label="Email Address"
+            placeholder="your@emailaddress"
+            icon="envelope-at-fill"
+            type="email"
+            columnClass="col-sm-6 col-md-6 col-lg-6"
+            value={formData.email_address || ""}
+            onChange={updateField}
+          />
+          <PasswordField
+            id="register-password-input"
+            name="password_auth"
+            label="Password"
+            placeholder="Enter your password"
+            columnClass="col-sm-6 col-md-6 col-lg-6"
+            value={formData.password_auth || ""}
+            onChange={updateField}
+            showPassword={showPassword}
+            onToggle={() => setShowPassword((visible) => !visible)}
+            minLength={8}
+            pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}"
+          />
+          <PasswordField
+            id="confirm_password"
+            name="confirm_password"
+            label="Confirm Password"
+            placeholder="Confirm your password"
+            columnClass="col-sm-6 col-md-6 col-lg-6"
+            value={formData.confirm_password || ""}
+            onChange={updateField}
+            showPassword={showConfirmPassword}
+            onToggle={() =>
+              setShowConfirmPassword((visible) => !visible)
+            }
+          />
           <div className="col-12 password-requirements-column">
-            <PasswordRequirements password={formData.password_auth || ""} confirmPassword={formData.confirm_password || ""} />
+            <PasswordRequirements
+              password={formData.password_auth || ""}
+              confirmPassword={formData.confirm_password || ""}
+            />
           </div>
           <div className="col-sm-12 col-md-12 col-lg-12 mb-2">
-            <input type="submit" value="Register" className="btn btn-outline-success form-control form-submit" />
+            <input
+              type="submit"
+              value="Register"
+              className="btn btn-outline-success form-control form-submit"
+            />
           </div>
         </form>
       </div>

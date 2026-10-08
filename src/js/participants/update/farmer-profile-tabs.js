@@ -42,6 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  const initialTab =
+    tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') || tabs[0];
+  if (initialTab) activateTab(initialTab);
+
   const trainingTrack = document.getElementById('overviewTrainingTrack');
   const trainingCarousel = document.getElementById('overviewTrainingCarousel');
   const trainingCount = document.getElementById('overviewTrainingCount');

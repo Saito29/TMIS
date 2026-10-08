@@ -19,6 +19,10 @@
       rel="stylesheet"
       href="../../../../src/css/participants/update/for-review.css"
     />
+    <link
+      rel="stylesheet"
+      href="../../../../src/css/shared/theme.css"
+    />
     <title>Edit Farmer Profile</title>
   </head>
   <body>
@@ -60,6 +64,7 @@
         </form>
       </section>
     </main>
+    <script src="../../../../src/js/theme.js"></script>
     <script>
       document.querySelector('#profileId').textContent =
         `Editing ${new URLSearchParams(location.search).get('id') || 'farmer profile'}`;

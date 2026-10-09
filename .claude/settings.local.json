@@ -1,9 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "ANTHROPIC_BASE_URL": "http://localhost:20130",
-    "ANTHROPIC_MODEL": "claude-fable-5-1[1m]",
+    "ANTHROPIC_BASE_URL": "http://localhost:20128",
+    "ANTHROPIC_MODEL": "anthropic/claude-fable-5-1",
     "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   },
-  "model": "claude-fable-5-1[1m]"
+  "model": "anthropic/claude-fable-5-1"
 }

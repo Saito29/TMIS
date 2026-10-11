@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -57,12 +57,12 @@
     <link rel="stylesheet" href="../../../../src/css/shared/main-body.css" />
     <link
       rel="stylesheet"
-      href="../../../../src/css/participants/update/edit-farmer.css"
+      href="../../../../src/css/participants/update/view-farmer.css"
     />
     <link rel="stylesheet" href="../../../../src/css/shared/theme.css" />
     <script src="../../../../src/js/theme.js" defer></script>
-    <title>DA-TMIS - Edit Farmer</title>
-    <meta name="description" content="Edit Farmer | DA-TMIS" />
+    <title>DA-TMIS - View Farmer</title>
+    <meta name="description" content="View Farmer | DA-TMIS" />
   </head>
   <body class="layout-fixed">
     <div class="app-wrapper">
@@ -208,7 +208,7 @@
                     </a>
                     <div class="collapse" id="detailsParticipantHeaderCollapse">
                       <div class="header-sub-collapse-menu">
-                        <a href="#allStatus" class="header-sub-collapse-item">
+                        <a href="../details/all-with-status.html" class="header-sub-collapse-item">
                           <i class="bi bi-list-check"></i>
                           <span>All Status</span>
                         </a>
@@ -825,13 +825,13 @@
                         <li class="breadcrumb-item">Participants</li>
                         <li class="breadcrumb-item">Details</li>
                         <li class="breadcrumb-item active" aria-current="page">
-                          Edit Farmer Information
+                          View Farmer Information
                         </li>
                       </ol>
                     </nav>
-                    <h4 class="content-header">Edit Farmer Information</h4>
+                    <h4 class="content-header">View Farmer Information</h4>
                     <span class="content-info"
-                      >Edit this farmer's personal, association, and training
+                      >View this farmer's personal, association, and training
                       information.</span
                     >
                   </div>
@@ -880,269 +880,96 @@
             <section class="info-wrapper" id="farmer-info" role="tabpanel" aria-labelledby="farmer-info-tab">
               <div class="farmer-overview-layout">
                 <div class="row g-3 farmer-overview-grid">
-                  <!-- Personal Information Form Card -->
-                  <div class="col-12 col-xl-8">
-                    <article class="card overview-card edit-farmer-overview-card">
+                  <div class="col-12 col-xl-7">
+                    <article class="card overview-card h-100">
                       <div class="card-header overview-card-header">
                         <div class="overview-heading">
                           <span class="overview-heading-icon"><i class="bi bi-person-vcard" aria-hidden="true"></i></span>
-                          <h5 class="title-card">Personal Information &amp; Profile Details</h5>
+                          <h5 class="title-card">Personal Information</h5>
+                          <span class="overview-status">Active</span>
                         </div>
                       </div>
-                      <div class="card-body overview-card-body p-3 p-md-4">
-                        <!-- Farmer ID Highlight Banner -->
-                        <div class="farmer-id-banner">
-                          <div class="farmer-id-banner-header">
-                            <div class="farmer-id-badge-wrap">
-                              <span class="farmer-id-icon"><i class="bi bi-person-badge-fill" aria-hidden="true"></i></span>
-                              <div class="farmer-id-details">
-                                <span class="farmer-id-label">Farmer Identification Number</span>
-                                <h3 class="farmer-id-value" id="displayFarmerId">271901</h3>
-                              </div>
-                            </div>
-                            <div class="farmer-status-wrap">
-                              <span class="farmer-status-pill active-status">
-                                <i class="bi bi-patch-check-fill"></i> Active
-                              </span>
-                            </div>
+                      <div class="card-body overview-card-body">
+                        <div class="farmer-detail-grid">
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-person-badge" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Farmer ID</span><strong>271901</strong></div>
                           </div>
-                          <div class="farmer-meta-items">
-                            <div class="farmer-meta-item">
-                              <span class="farmer-meta-label"><i class="bi bi-calendar2-check-fill text-success"></i> Registration Date:</span>
-                              <strong class="farmer-meta-value" id="displayRegistrationDate">September 15, 2023</strong>
-                            </div>
-                            <div class="farmer-meta-item">
-                              <span class="farmer-meta-label"><i class="bi bi-clock-history text-success"></i> Updated Date:</span>
-                              <strong class="farmer-meta-value" id="displayUpdatedDate">January 1, 2023</strong>
-                            </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Mobile Number</span><strong>09092308202</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Address</span><strong>Villa Jesus Weste, Alabat, Quezon</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-person" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Full Name</span><strong>Juan Dela Cruz</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Email Address</span><strong>None</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-calendar3" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Date of Birth</span><strong>January 1, 1990</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-flag" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Nationality</span><strong>Filipino</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-gender-male" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Gender</span><strong>Male</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-heart" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Civil Status</span><strong>Married</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-geo" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Place of Birth</span><strong>Gumaca, Quezon</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">4Ps</span><strong>No</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-universal-access" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Person With Disability</span><strong>No</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-person-hearts" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Indigenous Group</span><strong>No</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-egg" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Dietary Restrictions</span><strong>None</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-bandaid" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Allergies</span><strong>None</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-person-check" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Senior Citizen</span><strong>No</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Telephone Number</span><strong>None</strong></div>
+                          </div>
+                          <div class="farmer-detail">
+                            <span class="farmer-detail-icon"><i class="bi bi-mailbox" aria-hidden="true"></i></span>
+                            <div><span class="farmer-detail-label">Postal Code</span><strong>4331</strong></div>
                           </div>
                         </div>
-
-                        <!-- Editable Form -->
-                        <form id="editFarmerPersonalForm" class="farmer-edit-form" novalidate autocomplete="off">
-                          <!-- Section 1: Personal Information -->
-                          <div class="form-section-divider">
-                            <span class="form-section-icon"><i class="bi bi-person-fill" aria-hidden="true"></i></span>
-                            <h6 class="form-section-title">Personal Information</h6>
-                            <span class="form-section-subtitle d-none d-sm-inline">Basic identification &amp; demographic data</span>
-                          </div>
-
-                          <div class="row g-3">
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_last_name" class="form-label">Last Name <span class="text-required">*</span></label>
-                              <input type="text" class="form-control" id="farmer_last_name" name="last_name" value="Dela Cruz" placeholder="Enter last name" required>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_first_name" class="form-label">First Name <span class="text-required">*</span></label>
-                              <input type="text" class="form-control" id="farmer_first_name" name="first_name" value="Juan" placeholder="Enter first name" required>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_middle_name" class="form-label">Middle Name</label>
-                              <input type="text" class="form-control" id="farmer_middle_name" name="middle_name" value="Santos" placeholder="Enter middle name">
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_extension" class="form-label">Extension</label>
-                              <select class="form-select form-control" id="farmer_extension" name="extension">
-                                <option value="" selected>None</option>
-                                <option value="Jr.">Jr.</option>
-                                <option value="Sr.">Sr.</option>
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="V">V</option>
-                              </select>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_dob" class="form-label">Date of Birth <span class="text-required">*</span></label>
-                              <input type="date" class="form-control" id="farmer_dob" name="dob" value="1990-01-01" required>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_gender" class="form-label">Gender <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_gender" name="gender" required>
-                                <option value="" disabled>Choose..</option>
-                                <option value="Male" selected>Male</option>
-                                <option value="Female">Female</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_civil_status" class="form-label">Civil Status <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_civil_status" name="civil_status" required>
-                                <option value="" disabled>Choose..</option>
-                                <option value="Single">Single</option>
-                                <option value="Married" selected>Married</option>
-                                <option value="Separated">Separated</option>
-                                <option value="Widowed">Widowed</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_nationality" class="form-label">Nationality <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_nationality" name="nationality" required>
-                                <option value="Filipino" selected>Filipino</option>
-                                <option value="American">American</option>
-                                <option value="Japanese">Japanese</option>
-                                <option value="Chinese">Chinese</option>
-                                <option value="Other">Other</option>
-                              </select>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_place_of_birth" class="form-label">Place of Birth <span class="text-required">*</span></label>
-                              <input type="text" class="form-control" id="farmer_place_of_birth" name="place_of_birth" value="Gumaca, Quezon" placeholder="Enter place of birth" required>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_4ps" class="form-label">4Ps <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_4ps" name="four_ps" required>
-                                <option value="Yes">Yes</option>
-                                <option value="No" selected>No</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_pwd" class="form-label">Person with Disability <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_pwd" name="pwd" required>
-                                <option value="Yes">Yes</option>
-                                <option value="No" selected>No</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_senior_citizen" class="form-label">Senior Citizen <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_senior_citizen" name="senior_citizen" required>
-                                <option value="Yes">Yes</option>
-                                <option value="No" selected>No</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_registration_date" class="form-label">Registration Date <span class="text-required">*</span></label>
-                              <input type="date" class="form-control" id="farmer_registration_date" name="registration_date" value="2023-09-15" required>
-                            </div>
-
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_indigenous_group" class="form-label">Indigenous Group <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_indigenous_group" name="indigenous_group" required>
-                                <option value="Yes">Yes</option>
-                                <option value="No" selected>No</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_tribe_name" class="form-label">If IP, type tribe name</label>
-                              <input type="text" class="form-control" id="farmer_tribe_name" name="tribe_name" placeholder="Disabled (Not an IP)" disabled>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_dietary_restriction" class="form-label">Dietary Restriction <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_dietary_restriction" name="dietary_restriction" required>
-                                <option value="None" selected>None</option>
-                                <option value="Non-meat">Non-meat</option>
-                                <option value="Vegetarian">Vegetarian</option>
-                                <option value="Allergies">Allergies</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-3">
-                              <label for="farmer_allergies_on" class="form-label">If they had allergies on</label>
-                              <input type="text" class="form-control" id="farmer_allergies_on" name="allergies_on" placeholder="Disabled (No allergies specified)" disabled>
-                            </div>
-                          </div>
-
-                          <!-- Section 2: Address Information -->
-                          <div class="form-section-divider">
-                            <span class="form-section-icon"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i></span>
-                            <h6 class="form-section-title">Address Information</h6>
-                            <span class="form-section-subtitle d-none d-sm-inline">Synchronized geographic location &amp; residence</span>
-                          </div>
-
-                          <div class="row g-3">
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_region" class="form-label">Region <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_region" name="region" required>
-                                <option value="" selected disabled>Choose region...</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_district" class="form-label">District <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_district" name="district" required disabled>
-                                <option value="" selected disabled>Choose district...</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_province" class="form-label">Province <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_province" name="province" required disabled>
-                                <option value="" selected disabled>Choose province...</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_municipality" class="form-label">Municipality <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_municipality" name="municipality" required disabled>
-                                <option value="" selected disabled>Choose municipality...</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_barangay" class="form-label">Barangay <span class="text-required">*</span></label>
-                              <select class="form-select form-control" id="farmer_barangay" name="barangay" required disabled>
-                                <option value="" selected disabled>Choose barangay...</option>
-                              </select>
-                            </div>
-                            <div class="col-12 col-sm-6 col-lg-4">
-                              <label for="farmer_postal_code" class="form-label">Postal Code <span class="text-required">*</span></label>
-                              <input type="text" class="form-control" id="farmer_postal_code" name="postal_code" value="4331" placeholder="Enter postal code" required>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                              <label for="farmer_house_no" class="form-label">House/ Building No.</label>
-                              <input type="text" class="form-control" id="farmer_house_no" name="house_building_number" value="" placeholder="Enter house/building number">
-                            </div>
-                            <div class="col-12 col-sm-6">
-                              <label for="farmer_street_sitio" class="form-label">Street/ Purok/ Sitio</label>
-                              <input type="text" class="form-control" id="farmer_street_sitio" name="street_purok_sitio" value="Villa Jesus Weste" placeholder="Enter street/purok/sitio">
-                            </div>
-                          </div>
-
-                          <!-- Section 3: Contact Information -->
-                          <div class="form-section-divider">
-                            <span class="form-section-icon"><i class="bi bi-telephone-fill" aria-hidden="true"></i></span>
-                            <h6 class="form-section-title">Contact Information</h6>
-                            <span class="form-section-subtitle d-none d-sm-inline">Communication lines &amp; electronic mail</span>
-                          </div>
-
-                          <div class="row g-3">
-                            <div class="col-12 col-md-4">
-                              <label for="farmer_mobile_no" class="form-label">Mobile Number</label>
-                              <div class="input-group">
-                                <span class="input-group-text" id="farmerMobileAddon">+63</span>
-                                <input type="tel" class="form-control" id="farmer_mobile_no" name="mobile_no" value="9092308202" maxlength="10" inputmode="numeric" placeholder="9XXXXXXXXX" pattern="[0-9]{10}" aria-describedby="farmerMobileAddon">
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-4">
-                              <label for="farmer_tel_no" class="form-label">Telephone Number</label>
-                              <input type="tel" class="form-control" id="farmer_tel_no" name="tel_number" value="" placeholder="Enter telephone number" inputmode="tel">
-                            </div>
-                            <div class="col-12 col-md-4">
-                              <label for="farmer_email" class="form-label">Email Address</label>
-                              <input type="email" class="form-control" id="farmer_email" name="email" value="" placeholder="name@domain.com" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" autocomplete="email">
-                              <div class="invalid-feedback">Please provide a valid email address.</div>
-                            </div>
-                          </div>
-
-                          <!-- Section 4: Form Actions -->
-                          <div class="form-actions-panel">
-                            <div class="d-flex align-items-center gap-2 text-muted small">
-                              <i class="bi bi-info-circle-fill text-success" aria-hidden="true"></i>
-                              <span>Fields with (<span class="text-danger fw-bold">*</span>) are required. Changes reflect immediately in the database upon saving.</span>
-                            </div>
-                            <div class="d-flex align-items-center gap-2">
-                              <button type="reset" class="btn btn-outline-secondary px-3" id="resetFarmerBtn">
-                                <i class="bi bi-arrow-counterclockwise me-1" aria-hidden="true"></i> Reset
-                              </button>
-                              <button type="submit" class="btn btn-success px-4 fw-semibold" id="saveFarmerBtn">
-                                <i class="bi bi-check2-circle me-1" aria-hidden="true"></i> Save Changes
-                              </button>
-                            </div>
-                          </div>
-                        </form>
                       </div>
                     </article>
                   </div>
 
-                  <div class="col-12 col-xl-4">
-                    <article class="card overview-card association-overview-card">
+                  <div class="col-12 col-xl-5">
+                    <article class="card overview-card association-overview-card h-100">
                       <div class="card-header overview-card-header">
                         <div class="overview-heading">
                           <span class="overview-heading-icon"><i class="bi bi-people" aria-hidden="true"></i></span>
@@ -1206,7 +1033,7 @@
                           <span class="training-preview-art training-art-green"><i class="bi bi-flower1" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=modern-rice-production" target="_blank" rel="noopener">Modern Rice Production</a></strong><span class="training-type">Crop Production</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> May 22&ndash;24, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> May 22–24, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Los Baños, Laguna</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1216,7 +1043,7 @@
                           <span class="training-preview-art training-art-blue"><i class="bi bi-flower2" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=organic-vegetable-production" target="_blank" rel="noopener">Organic Vegetable Production</a></strong><span class="training-type training-type-blue">Organic Agriculture</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> May 27&ndash;29, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> May 27–29, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Benguet State Univ.</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1226,7 +1053,7 @@
                           <span class="training-preview-art training-art-orange"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=farm-business-management" target="_blank" rel="noopener">Farm Business Management</a></strong><span class="training-type training-type-orange">Agribusiness</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 3&ndash;5, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 3–5, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> DA RFO VI, Iloilo</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1236,17 +1063,17 @@
                           <span class="training-preview-art training-art-purple"><i class="bi bi-leaf" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=climate-smart-agriculture" target="_blank" rel="noopener">Climate Smart Agriculture</a></strong><span class="training-type training-type-purple">Climate Smart Agriculture</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 10&ndash;12, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 10–12, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Isabela State Univ.</small>
                             <span class="training-status training-status-ongoing">Ongoing</span>
                           </div>
-                          <div class="training-preview-scores"><span>Pre-Test<strong>&mdash;</strong></span><span>Post-Test<strong>&mdash;</strong></span><span>Rating<strong>&mdash;</strong></span></div>
+                          <div class="training-preview-scores"><span>Pre-Test<strong>—</strong></span><span>Post-Test<strong>—</strong></span><span>Rating<strong>—</strong></span></div>
                         </article>
                         <article class="training-preview-card" data-training-id="soil-health-nutrient-management">
                           <span class="training-preview-art training-art-green"><i class="bi bi-tree" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=soil-health-nutrient-management" target="_blank" rel="noopener">Soil Health and Nutrient Management</a></strong><span class="training-type">Crop Production</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 18&ndash;20, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> June 18–20, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Quezon Province</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1256,7 +1083,7 @@
                           <span class="training-preview-art training-art-blue"><i class="bi bi-droplet" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=efficient-water-management" target="_blank" rel="noopener">Efficient Water Management</a></strong><span class="training-type training-type-blue">Farm Technology</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> July 2&ndash;4, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> July 2–4, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Lucban, Quezon</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1266,7 +1093,7 @@
                           <span class="training-preview-art training-art-orange"><i class="bi bi-cash-coin" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=agricultural-financial-literacy" target="_blank" rel="noopener">Agricultural Financial Literacy</a></strong><span class="training-type training-type-orange">Agribusiness</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> July 15&ndash;17, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> July 15–17, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Sariaya, Quezon</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1276,7 +1103,7 @@
                           <span class="training-preview-art training-art-purple"><i class="bi bi-recycle" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=postharvest-handling-storage" target="_blank" rel="noopener">Postharvest Handling and Storage</a></strong><span class="training-type training-type-purple">Postharvest</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> August 5&ndash;7, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> August 5–7, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Quezon City</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1286,7 +1113,7 @@
                           <span class="training-preview-art training-art-green"><i class="bi bi-bug" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=integrated-pest-management" target="_blank" rel="noopener">Integrated Pest Management</a></strong><span class="training-type">Crop Production</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> August 20&ndash;22, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> August 20–22, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Alabat, Quezon</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1296,7 +1123,7 @@
                           <span class="training-preview-art training-art-blue"><i class="bi bi-shop" aria-hidden="true"></i></span>
                           <div class="training-preview-main">
                             <strong><a class="training-title-link" href="../../training/details/view-training.html?trainingId=farmers-market-linkage" target="_blank" rel="noopener">Farmers' Market Linkage Workshop</a></strong><span class="training-type training-type-blue">Market Development</span>
-                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> September 2&ndash;4, 2025</small>
+                            <small><i class="bi bi-calendar3" aria-hidden="true"></i> September 2–4, 2025</small>
                             <small><i class="bi bi-geo-alt" aria-hidden="true"></i> Lucena City</small>
                             <span class="training-status">Completed</span>
                           </div>
@@ -1305,7 +1132,7 @@
                       </div>
                     </div>
                     <div class="training-carousel-controls">
-                      <span class="training-carousel-count" id="overviewTrainingCount" aria-live="polite">1&ndash;4 of 10</span>
+                      <span class="training-carousel-count" id="overviewTrainingCount" aria-live="polite">1–4 of 10</span>
                       <div>
                         <button class="training-carousel-button" type="button" id="overviewTrainingPrevious" aria-label="Show previous trainings" disabled><i class="bi bi-arrow-left" aria-hidden="true"></i></button>
                         <button class="training-carousel-button" type="button" id="overviewTrainingNext" aria-label="Show next trainings"><i class="bi bi-arrow-right" aria-hidden="true"></i></button>
@@ -1315,6 +1142,735 @@
                 </article>
               </div>
 
+              <div class="row d-none">
+                <!-- personal info -->
+                <div class="col-12 col-lg-12 mb-2">
+                  <!-- Personal Information -->
+                  <div class="card mb-2">
+                    <div
+                      class="card-header d-flex align-items-center justify-content-start gap-3"
+                    >
+                      <i class="bi bi-person-fill-check"></i>
+                      <h5 class="title-card">Personal Information</h5>
+                      <span class="badge rounded-pill bg-success">Active</span>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="hstack gap-2">
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-journal-bookmark-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Farmer ID</span>
+                                    <span class="item-text">271901</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-person-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Full Name</span>
+                                    <span class="item-text"
+                                      >Juan Dela Cruz</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-calendar-week"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Date of Birth</span>
+                                    <span class="item-text"
+                                      >January 1, 1990</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-gender-male"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Gender</span>
+                                    <span class="item-text">Male</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-journal-bookmark-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Civil Status</span>
+                                    <span class="item-text">Married</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-person-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Nationality</span>
+                                    <span class="item-text">Filipino</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-calendar-week"></i>
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Place of Birth</span
+                                    >
+                                    <span class="item-text"
+                                      >Gumaca, Quezon</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-gender-male"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">4Ps</span>
+                                    <span class="item-text">No</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-journal-bookmark-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Person With Disability</span
+                                    >
+                                    <span class="item-text">No</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-person-fill"></i>
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Indegenous Group</span
+                                    >
+                                    <span class="item-text">No</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-calendar-week"></i>
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Dietary Restrictions</span
+                                    >
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-gender-male"></i>
+                                  <div class="item-context">
+                                    <span class="item-text">Allergies</span>
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <div class="item-group">
+                                  <i class="bi bi-gender-male"></i>
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Senior Citizen</span
+                                    >
+                                    <span class="item-text">No</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Association Info -->
+                  <div class="card mb-2">
+                    <div
+                      class="card-header d-flex align-items-center justify-content-start gap-2"
+                    >
+                      <i class="bi bi-person-vcard-fill"></i>
+                      <h5 class="title-card">
+                        Farmer Association / Organization
+                      </h5>
+                      <span class="badge rounded-pill bg-success">Active</span>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="hstack gap-3">
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Association ID</span
+                                    >
+                                    <span class="item-text">11921</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Association Name</span
+                                    >
+                                    <span class="item-text"
+                                      >Villa Manzano Norte Farmers</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Position/ Role</span
+                                    >
+                                    <span class="item-text">Member</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Date Updated</span>
+                                    <span class="item-text"
+                                      >January 1, 2023</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Status</span>
+                                    <span class="item-text badge rounded-pill"
+                                      >Active</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-4 col-lg-4 mb-2">
+                            <div class="card">
+                              <img
+                                src="#"
+                                alt="association_profile"
+                                class="card-img"
+                              />
+                              <div class="card-img-overlay">
+                                <h6 class="assocation-name">
+                                  Villa Manzano Norte Farmers
+                                </h6>
+                                <p class="card-short-name">VMNF</p>
+                                <p class="card-location">
+                                  Villa Manzano Norte, Perez, Quezon
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Address Information -->
+                  <div class="card mb-2">
+                    <div
+                      class="card-header d-flex align-items-center justify-content-start gap-3"
+                    >
+                      <i class="bi bi-person-fill-check"></i>
+                      <h5 class="title-card">Address Information</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="hstack gap-3">
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Region</span>
+                                    <span class="item-text">4A</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">District</span>
+                                    <span class="item-text">4th</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Province</span>
+                                    <span class="item-text">Quezon</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Municipality</span>
+                                    <span class="item-text">Alabat</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="vr"></div>
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Barangay</span>
+                                    <span class="item-text"
+                                      >Villa Jesus Weste</span
+                                    >
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >House/ Building No.</span
+                                    >
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Street/ Purok/ Sitio</span
+                                    >
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Postal Code</span>
+                                    <span class="item-text">4331</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Contact Information -->
+                  <div class="card mb-2">
+                    <div
+                      class="card-header d-flex align-items-center justify-content-start gap-3"
+                    >
+                      <i class="bi bi-person-fill-check"></i>
+                      <h5 class="title-card">Contact Information</h5>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="hstack gap-3">
+                          <div class="col-4 col-lg-4 mb-2">
+                            <ul class="information-list">
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Mobile Number</span>
+                                    <span class="item-text">09092308202</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text"
+                                      >Telephone Number</span
+                                    >
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                              <li class="information-item">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <div class="item-group">
+                                  <div class="item-context">
+                                    <span class="item-text">Email Address</span>
+                                    <span class="item-text">None</span>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Trainings participated -->
+                <div class="col-12 col-lg-12 mb-2">
+                  <div class="card">
+                    <div class="card-header">
+                      <i class="bi bi-book-fill"></i>
+                      <h5 class="title-card">Trainings Participated</h5>
+                    </div>
+                    <div class="card-body">
+                      <!-- card list of trainings participated -->
+                      <div class="row">
+                        <div class="col-3 col-lg-3 mb-2">
+                          <div class="card-trainings">
+                            <div class="card-body">
+                              <div class="card-content-wrapper">
+                                <div class="card-icon-bg">
+                                  <i class="bi bi-flower3"></i>
+                                </div>
+                                <div class="card-content">
+                                  <h5 class="card-training-title">
+                                    Retooling on Basic Bookkeeping
+                                  </h5>
+                                  <span
+                                    class="card-type-badge badge rounded-pill"
+                                    >Workshop</span
+                                  >
+                                  <div class="card-dates">
+                                    <i class="bi bi-calendar2-week"></i>
+                                    <span class="date-text"
+                                      >June 15, 2023 - June 20, 2023</span
+                                    >
+                                  </div>
+                                  <div class="card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span class="location-text"
+                                      >Villa Manzano Norte, Alabat</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="card-status-badge badge rounded-pill"
+                                  >
+                                    Completed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="hstack gap-3">
+                                <div class="col-4">
+                                  <span class="header-text"> Pre-Test </span>
+                                  <span class="percentage">68.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Post-Test </span>
+                                  <span class="percentage">86.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Rating </span>
+                                  <span class="percentage"
+                                    ><span class="start-text"
+                                      ><i class="bi bi-star-fill"></i
+                                    ></span>
+                                    4.50 / 5.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3 col-lg-3 mb-2">
+                          <div class="card-trainings">
+                            <div class="card-body">
+                              <div class="card-content-wrapper">
+                                <div class="card-icon-bg">
+                                  <i class="bi bi-flower3"></i>
+                                </div>
+                                <div class="card-content">
+                                  <h5 class="card-training-title">
+                                    Retooling on Basic Bookkeeping
+                                  </h5>
+                                  <span
+                                    class="card-type-badge badge rounded-pill"
+                                    >Workshop</span
+                                  >
+                                  <div class="card-dates">
+                                    <i class="bi bi-calendar2-week"></i>
+                                    <span class="date-text"
+                                      >June 15, 2023 - June 20, 2023</span
+                                    >
+                                  </div>
+                                  <div class="card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span class="location-text"
+                                      >Villa Manzano Norte, Alabat</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="card-status-badge badge rounded-pill"
+                                  >
+                                    Completed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="hstack gap-3">
+                                <div class="col-4">
+                                  <span class="header-text"> Pre-Test </span>
+                                  <span class="percentage">68.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Post-Test </span>
+                                  <span class="percentage">86.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Rating </span>
+                                  <span class="percentage"
+                                    ><span class="start-text"
+                                      ><i class="bi bi-star-fill"></i
+                                    ></span>
+                                    4.50 / 5.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3 col-lg-3 mb-2">
+                          <div class="card-trainings">
+                            <div class="card-body">
+                              <div class="card-content-wrapper">
+                                <div class="card-icon-bg">
+                                  <i class="bi bi-flower3"></i>
+                                </div>
+                                <div class="card-content">
+                                  <h5 class="card-training-title">
+                                    Retooling on Basic Bookkeeping
+                                  </h5>
+                                  <span
+                                    class="card-type-badge badge rounded-pill"
+                                    >Workshop</span
+                                  >
+                                  <div class="card-dates">
+                                    <i class="bi bi-calendar2-week"></i>
+                                    <span class="date-text"
+                                      >June 15, 2023 - June 20, 2023</span
+                                    >
+                                  </div>
+                                  <div class="card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span class="location-text"
+                                      >Villa Manzano Norte, Alabat</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="card-status-badge badge rounded-pill"
+                                  >
+                                    Completed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="hstack gap-3">
+                                <div class="col-4">
+                                  <span class="header-text"> Pre-Test </span>
+                                  <span class="percentage">68.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Post-Test </span>
+                                  <span class="percentage">86.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Rating </span>
+                                  <span class="percentage"
+                                    ><span class="start-text"
+                                      ><i class="bi bi-star-fill"></i
+                                    ></span>
+                                    4.50 / 5.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3 col-lg-3 mb-2">
+                          <div class="card-trainings">
+                            <div class="card-body">
+                              <div class="card-content-wrapper">
+                                <div class="card-icon-bg">
+                                  <i class="bi bi-flower3"></i>
+                                </div>
+                                <div class="card-content">
+                                  <h5 class="card-training-title">
+                                    Retooling on Basic Bookkeeping
+                                  </h5>
+                                  <span
+                                    class="card-type-badge badge rounded-pill"
+                                    >Workshop</span
+                                  >
+                                  <div class="card-dates">
+                                    <i class="bi bi-calendar2-week"></i>
+                                    <span class="date-text"
+                                      >June 15, 2023 - June 20, 2023</span
+                                    >
+                                  </div>
+                                  <div class="card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span class="location-text"
+                                      >Villa Manzano Norte, Alabat</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="card-status-badge badge rounded-pill"
+                                  >
+                                    Completed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="hstack gap-3">
+                                <div class="col-4">
+                                  <span class="header-text"> Pre-Test </span>
+                                  <span class="percentage">68.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Post-Test </span>
+                                  <span class="percentage">86.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Rating </span>
+                                  <span class="percentage"
+                                    ><span class="start-text"
+                                      ><i class="bi bi-star-fill"></i
+                                    ></span>
+                                    4.50 / 5.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-3 col-lg-3 mb-2">
+                          <div class="card-trainings">
+                            <div class="card-body">
+                              <div class="card-content-wrapper">
+                                <div class="card-icon-bg">
+                                  <i class="bi bi-flower3"></i>
+                                </div>
+                                <div class="card-content">
+                                  <h5 class="card-training-title">
+                                    Retooling on Basic Bookkeeping
+                                  </h5>
+                                  <span
+                                    class="card-type-badge badge rounded-pill"
+                                    >Workshop</span
+                                  >
+                                  <div class="card-dates">
+                                    <i class="bi bi-calendar2-week"></i>
+                                    <span class="date-text"
+                                      >June 15, 2023 - June 20, 2023</span
+                                    >
+                                  </div>
+                                  <div class="card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span class="location-text"
+                                      >Villa Manzano Norte, Alabat</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="card-status-badge badge rounded-pill"
+                                  >
+                                    Completed
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <div class="hstack gap-3">
+                                <div class="col-4">
+                                  <span class="header-text"> Pre-Test </span>
+                                  <span class="percentage">68.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Post-Test </span>
+                                  <span class="percentage">86.00%</span>
+                                </div>
+                                <div class="col-4">
+                                  <span class="header-text"> Rating </span>
+                                  <span class="percentage"
+                                    ><span class="start-text"
+                                      ><i class="bi bi-star-fill"></i
+                                    ></span>
+                                    4.50 / 5.00</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </section>
 
             <!-- Trainings participated -->
@@ -1519,7 +2075,7 @@
                         </tr>
                       </thead>
                       <tbody id="interventionTableBody">
-                        <tr><td colspan="8" class="intervention-empty-cell">Loading intervention records&hellip;</td></tr>
+                        <tr><td colspan="8" class="intervention-empty-cell">Loading intervention records…</td></tr>
                       </tbody>
                     </table>
                   </div>
@@ -1536,7 +2092,7 @@
                     <span class="activity-log-heading-icon" aria-hidden="true"><i class="bi bi-activity"></i></span>
                     <div>
                       <h2 id="activityLogTitle">Activity Logs</h2>
-                      <p>Recent updates and actions recorded for Juan Dela Cruz's profile.</p>
+                      <p>Recent updates and actions recorded for Juan Dela Cruz’s profile.</p>
                     </div>
                   </div>
                   <div class="activity-log-search input-group">
@@ -1708,7 +2264,7 @@
                   id="detailsParticipantMobile"
                 >
                   <li class="mobile-subnav-panel-navigation">
-                    <a href="#" class="nav-link">
+                    <a href="../details/all-with-status.html" class="nav-link">
                       <i class="bi bi-list-check"></i>
                       <span>All status</span>
                     </a>
@@ -2581,6 +3137,5 @@
     <script src="../../../../src/js/participants/update/farmer-intervention-table.js"></script>
     <script src="../../../../src/js/participants/update/farmer-activity-logs.js"></script>
     <script src="../../../../src/js/participants/update/attachment-manager.js"></script>
-    <script src="../../../../src/js/participants/update/edit-farmer.js"></script>
   </body>
 </html>

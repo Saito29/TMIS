@@ -1,109 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ============================================================
+  // Data
+  // ============================================================
+  const REGION = 'Region IV-A (CALABARZON)';
+  const PROVINCE = 'Quezon';
+
   const seed = [
-    [
-      'FMR-2026-001',
-      'Villa Esperanza FA',
-      'Member',
-      'Dela Cruz',
-      'Juan',
-      'Santos',
-      'Male',
-      'Alabat',
-      'Villa Esperanza',
-      'For Review',
-      2026,
-    ],
-    [
-      'FMR-2026-002',
-      'Perez Farmers Association',
-      'Member',
-      'Santos',
-      'Maria',
-      'Reyes',
-      'Female',
-      'Perez',
-      'Villamanzano Sur',
-      'For Approval',
-      2026,
-    ],
-    [
-      'FMR-2025-003',
-      'Jomalig Farmers Association',
-      'Officer',
-      'Reyes',
-      'Pedro',
-      'Garcia',
-      'Male',
-      'Jomalig',
-      'Apad',
-      'Approved',
-      2025,
-    ],
-    [
-      'FMR-2026-004',
-      'Alabat Farmers Association',
-      'Member',
-      'Mendoza',
-      'Ana',
-      'Cruz',
-      'Female',
-      'Alabat',
-      'Villa Norte',
-      'For Review',
-      2026,
-    ],
-    [
-      'FMR-2024-005',
-      'Perez Farmers Association',
-      'Member',
-      'Ramos',
-      'Roberto',
-      'Diaz',
-      'Male',
-      'Perez',
-      'Villamanzano Sur',
-      'Approved',
-      2024,
-    ],
-    [
-      'FMR-2026-006',
-      'Patnanungan Agricultural Cooperative',
-      'Secretary',
-      'Villanueva',
-      'Liza',
-      'Aquino',
-      'Female',
-      'Patnanungan',
-      'Amaga',
-      'For Review',
-      2026,
-    ],
-    [
-      'FMR-2025-007',
-      'Alabat Farmers Association',
-      'Member',
-      'Garcia',
-      'Elena',
-      'Torres',
-      'Female',
-      'Alabat',
-      'Caglate',
-      'For Review',
-      2025,
-    ],
-    [
-      'FMR-2024-008',
-      'Jomalig Farmers Association',
-      'Member',
-      'Navarro',
-      'Rico',
-      'Flores',
-      'Male',
-      'Jomalig',
-      'Bukal',
-      'For Review',
-      2024,
-    ],
+    ['FMR-2026-001', 'Villa Esperanza FA', 'Member', 'Dela Cruz', 'Juan', 'Santos', 'Male', 'Alabat', 'Villa Esperanza', 'For Review', 2026],
+    ['FMR-2026-002', 'Perez Farmers Association', 'Member', 'Santos', 'Maria', 'Reyes', 'Female', 'Perez', 'Villamanzano Sur', 'For Approval', 2026],
+    ['FMR-2025-003', 'Jomalig Farmers Association', 'Officer', 'Reyes', 'Pedro', 'Garcia', 'Male', 'Jomalig', 'Apad', 'Approved & Accepted', 2025],
+    ['FMR-2026-004', 'Alabat Farmers Association', 'Member', 'Mendoza', 'Ana', 'Cruz', 'Female', 'Alabat', 'Villa Norte', 'For Review', 2026],
+    ['FMR-2024-005', 'Perez Farmers Association', 'Member', 'Ramos', 'Roberto', 'Diaz', 'Male', 'Perez', 'Villamanzano Sur', 'Approved & Accepted', 2024],
+    ['FMR-2026-006', 'Patnanungan Agricultural Cooperative', 'Secretary', 'Villanueva', 'Liza', 'Aquino', 'Female', 'Patnanungan', 'Amaga', 'For Review', 2026],
+    ['FMR-2025-007', 'Alabat Farmers Association', 'Member', 'Garcia', 'Elena', 'Torres', 'Female', 'Alabat', 'Caglate', 'For Review', 2025],
+    ['FMR-2024-008', 'Jomalig Farmers Association', 'Member', 'Navarro', 'Rico', 'Flores', 'Male', 'Jomalig', 'Bukal', 'For Review', 2024],
   ];
   const organizations = [
     'Villa Esperanza FA',
@@ -119,9 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ['Alabat', 'Villa Norte'],
     ['Patnanungan', 'Amaga'],
   ];
+  const statuses = ['For Review', 'For Approval', 'Approved & Accepted'];
   for (let n = 9; n <= 48; n++) {
-    const y = 2024 + (n % 3),
-      loc = municipalities[n % municipalities.length];
+    const y = 2024 + (n % 3);
+    const loc = municipalities[n % municipalities.length];
     seed.push([
       `FMR-${y}-${String(n).padStart(3, '0')}`,
       organizations[n % organizations.length],
@@ -132,27 +43,14 @@ document.addEventListener('DOMContentLoaded', () => {
       n % 2 ? 'Male' : 'Female',
       loc[0],
       loc[1],
-      n % 4 === 0 ? 'For Approval' : n % 7 === 0 ? 'Approved' : 'For Review',
+      statuses[n % 3],
       y,
     ]);
   }
-  const records = seed.map(
-    (
-      [
-        id,
-        organization,
-        role,
-        lastName,
-        firstName,
-        middleName,
-        sex,
-        municipality,
-        barangay,
-        status,
-        yearCovered,
-      ],
-      i
-    ) => ({
+
+  const islandTowns = ['Jomalig', 'Patnanungan'];
+  const allRecords = seed.map(
+    ([id, organization, role, lastName, firstName, middleName, sex, municipality, barangay, status, yearCovered], i) => ({
       id,
       organization,
       role,
@@ -165,21 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
       civilStatus: i % 2 ? 'Married' : 'Single',
       nationality: 'Filipino',
       placeOfBirth: `${municipality}, Quezon`,
-      province: 'Quezon',
-      district: ['Jomalig', 'Patnanungan'].includes(municipality)
-        ? '1st District'
-        : '2nd District',
+      region: REGION,
+      province: PROVINCE,
+      district: islandTowns.includes(municipality) ? '1st District' : '2nd District',
       municipality,
       barangay,
       sitio: `Purok ${(i % 5) + 1}`,
       fourPs: i % 3 ? 'No' : 'Yes',
       pwd: i % 7 ? 'No' : 'Yes',
-      indigenousGroup: ['Jomalig', 'Patnanungan'].includes(municipality)
-        ? 'Yes'
-        : 'No',
-      tribeName: ['Jomalig', 'Patnanungan'].includes(municipality)
-        ? 'Agta'
-        : '—',
+      indigenousGroup: islandTowns.includes(municipality) ? 'Yes' : 'No',
+      tribeName: islandTowns.includes(municipality) ? 'Agta' : '—',
       dietaryRestriction: 'None',
       seniorCitizen: i % 8 ? 'No' : 'Yes',
       yearCovered,
@@ -188,75 +81,68 @@ document.addEventListener('DOMContentLoaded', () => {
       registered: `${yearCovered}-09-${String((i % 20) + 1).padStart(2, '0')}`,
     })
   );
-  const $ = (s, c = document) => c.querySelector(s),
-    $$ = (s, c = document) => [...c.querySelectorAll(s)];
-  const body = $('#forReviewTableBody'),
-    empty = $('#reviewTableState'),
-    toast = new bootstrap.Toast($('#reviewToast')),
-    modal = new bootstrap.Modal($('#reviewForwardModal'));
+
+  // This page lists only For Review, For Approval and Approved & Accepted
+  // profiles. Inactive profiles belong to the Inactive details page.
+  const records = allRecords.filter((r) => r.profileStatus === 'Active');
+
+  // ============================================================
+  // Helpers and state
+  // ============================================================
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const esc = (v) =>
+    String(v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+  const body = $('#forReviewTableBody');
+  const empty = $('#reviewTableState');
+  const toast = new bootstrap.Toast($('#reviewToast'));
+  const deleteModal = new bootstrap.Modal($('#deleteConfirmModal'));
+
+  const geoLevels = ['region', 'province', 'district', 'municipality', 'barangay'];
+  const geoSelectIds = {
+    region: 'regionFilter',
+    province: 'provinceFilter',
+    district: 'districtFilter',
+    municipality: 'municipalityFilter',
+    barangay: 'barangayFilter',
+  };
+  const geoAllLabels = {
+    region: 'All regions',
+    province: 'All provinces',
+    district: 'All districts',
+    municipality: 'All municipalities',
+    barangay: 'All barangays',
+  };
+
   const state = {
     page: 1,
     perPage: 10,
     global: '',
+    status: '',
+    yearCovered: '',
     organization: '',
+    region: '',
+    province: '',
+    district: '',
     municipality: '',
     barangay: '',
-    year: '',
     columns: {},
     sort: null,
-    selected: null,
   };
+
   const statusBadgeClass = (status) =>
     ({
       'For Review': 'status-review',
       'For Approval': 'status-approval',
-      'For Acceptance': 'status-acceptance',
-      Approved: 'status-approved',
-      Accepted: 'status-accepted',
-      Active: 'status-active',
-      Inactive: 'status-inactive',
+      'Approved & Accepted': 'status-approved',
     })[status] || 'status-neutral';
-  const values = (key) =>
-    [...new Set(records.map((r) => r[key]))].sort((a, b) =>
-      String(a).localeCompare(String(b), undefined, { numeric: true })
-    );
-  const fill = (sel, key) => {
-    const el = $(sel);
-    if (el)
-      el.insertAdjacentHTML(
-        'beforeend',
-        values(key)
-          .map((v) => `<option value="${v}">${v}</option>`)
-          .join('')
-      );
-  };
-  const fillBarangays = (municipality = '') => {
-    const select = $('#barangayFilter');
-    const barangays = [
-      ...new Set(
-        records
-          .filter((record) => !municipality || record.municipality === municipality)
-          .map((record) => record.barangay)
-      ),
-    ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-    select.replaceChildren(
-      new Option('All barangays', ''),
-      ...barangays.map((barangay) => new Option(barangay, barangay))
-    );
-  };
-  fill('#organizationFilter', 'organization');
-  fill('#municipalityFilter', 'municipality');
-  fillBarangays();
-  fill('#yearCoveredFilter', 'yearCovered');
-  $$('select.column-filter').forEach((el) =>
-    fill(`[data-column="${el.dataset.column}"]`, el.dataset.column)
-  );
+
   const date = (v) =>
-    new Intl.DateTimeFormat('en-PH', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    }).format(new Date(`${v}T00:00:00`));
+    new Intl.DateTimeFormat('en-PH', { month: 'short', day: 'numeric', year: 'numeric' }).format(
+      new Date(`${v}T00:00:00`)
+    );
+
   const notify = (title, message, blocked = false) => {
     $('#reviewToastTitle').textContent = title;
     $('#reviewToastMessage').textContent = message;
@@ -264,133 +150,188 @@ document.addEventListener('DOMContentLoaded', () => {
       hour: 'numeric',
       minute: '2-digit',
     }).format(new Date());
-    $('#reviewToastIcon').className =
-      `bi ${blocked ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill'}`;
+    $('#reviewToastIcon').className = `bi ${blocked ? 'bi-exclamation-triangle-fill' : 'bi-check-circle-fill'} me-2`;
     $('#reviewToast').classList.toggle('review-toast-blocked', blocked);
     toast.show();
   };
-  const requirements = (r) => [
-    { name: 'Farmer Profiling Form', complete: true },
-    { name: 'Valid ID', complete: true },
-    {
-      name: 'Proof of Farm Ownership / Tenure',
-      complete: r.id !== 'FMR-2026-004',
-    },
-    {
-      name: 'Association Membership Document',
-      complete: r.id !== 'FMR-2026-006',
-    },
-    { name: 'Supporting Attachment', complete: true },
-  ];
+
+  // ============================================================
+  // Cascading Region > Province > District > Municipality > Barangay filters
+  // ============================================================
+  const syncGeoFilters = () => {
+    geoLevels.forEach((key, i) => {
+      const parents = geoLevels.slice(0, i);
+      const scope = records.filter((r) => parents.every((p) => !state[p] || r[p] === state[p]));
+      const options = [...new Set(scope.map((r) => r[key]))].sort((a, b) =>
+        String(a).localeCompare(String(b), undefined, { numeric: true })
+      );
+      if (state[key] && !options.includes(state[key])) state[key] = '';
+      const select = $('#' + geoSelectIds[key]);
+      select.replaceChildren(new Option(geoAllLabels[key], ''), ...options.map((o) => new Option(o, o)));
+      select.value = state[key];
+    });
+  };
+
+  // Year Covered and Farmer Association (FA) filters
+  const fillSimpleFilters = () => {
+    const fill = (id, key, allLabel, stateKey) => {
+      const options = [...new Set(records.map((r) => String(r[key])))].sort((a, b) =>
+        a.localeCompare(b, undefined, { numeric: true })
+      );
+      if (state[stateKey] && !options.includes(state[stateKey])) state[stateKey] = '';
+      const select = $('#' + id);
+      select.replaceChildren(new Option(allLabel, ''), ...options.map((o) => new Option(o, o)));
+      select.value = state[stateKey];
+    };
+    fill('yearCoveredFilter', 'yearCovered', 'All years', 'yearCovered');
+    fill('organizationFilter', 'organization', 'All associations', 'organization');
+  };
+
+  // ============================================================
+  // Filtering, sorting, pagination
+  // ============================================================
   const filtered = () =>
     records.filter(
       (r) =>
-        r.status === 'For Review' &&
-        (!state.global ||
-          Object.values(r).join(' ').toLowerCase().includes(state.global)) &&
+        (!state.status || r.status === state.status) &&
+        (!state.yearCovered || String(r.yearCovered) === state.yearCovered) &&
         (!state.organization || r.organization === state.organization) &&
-          (!state.municipality || r.municipality === state.municipality) &&
-        (!state.barangay || r.barangay === state.barangay) &&
-        (!state.year || String(r.yearCovered) === state.year) &&
+        geoLevels.every((k) => !state[k] || r[k] === state[k]) &&
+        (!state.global || Object.values(r).join(' ').toLowerCase().includes(state.global)) &&
         Object.entries(state.columns).every(
           ([k, v]) => !v || String(r[k]).toLowerCase().includes(v.toLowerCase())
         )
     );
+
   const sorted = () => {
     const rows = filtered();
     if (!state.sort) return rows;
     const { key, dir } = state.sort;
     return [...rows].sort((a, b) => {
-      const n = String(a[key]).localeCompare(String(b[key]), undefined, {
-        numeric: true,
-        sensitivity: 'base',
-      });
+      const n = String(a[key]).localeCompare(String(b[key]), undefined, { numeric: true, sensitivity: 'base' });
       return dir === 'asc' ? n : -n;
     });
   };
+
   const pagination = (id, total, pages) => {
-    const el = $('#' + id),
-      all = state.perPage === 'all',
-      start = total ? (all ? 1 : (state.page - 1) * state.perPage + 1) : 0,
-      end = all ? total : Math.min(state.page * state.perPage, total);
+    const el = $('#' + id);
+    const all = state.perPage === 'all';
+    const start = total ? (all ? 1 : (state.page - 1) * state.perPage + 1) : 0;
+    const end = all ? total : Math.min(state.page * state.perPage, total);
     const nums = Array.from({ length: pages }, (_, i) => i + 1).filter(
-      (n) =>
-        pages <= 7 || n === 1 || n === pages || Math.abs(n - state.page) <= 1
+      (n) => pages <= 7 || n === 1 || n === pages || Math.abs(n - state.page) <= 1
     );
     const controls = all
       ? ''
-      : `<button data-page="prev" ${state.page === 1 ? 'disabled' : ''}><i class="bi bi-chevron-left"></i></button>${nums.map((n, i) => `${i && n - nums[i - 1] > 1 ? '<span>…</span>' : ''}<button data-page="${n}" class="${n === state.page ? 'active' : ''}">${n}</button>`).join('')}<button data-page="next" ${state.page === pages ? 'disabled' : ''}><i class="bi bi-chevron-right"></i></button>`;
+      : `<button data-page="prev" ${state.page === 1 ? 'disabled' : ''}><i class="bi bi-chevron-left"></i></button>${nums
+          .map(
+            (n, i) =>
+              `${i && n - nums[i - 1] > 1 ? '<span>…</span>' : ''}<button data-page="${n}" class="${n === state.page ? 'active' : ''}">${n}</button>`
+          )
+          .join('')}<button data-page="next" ${state.page === pages ? 'disabled' : ''}><i class="bi bi-chevron-right"></i></button>`;
     el.innerHTML = `<span>Showing ${start}–${end} of ${total} farmers</span><div class="pagination-controls"><label class="visually-hidden" for="${id}Rows">Rows per page</label><select id="${id}Rows" data-page-size><option value="10">10</option><option value="20">20</option><option value="50">50</option><option value="100">100</option><option value="500">500</option><option value="1000">1000</option><option value="all">All</option></select>${controls}</div>`;
     $('[data-page-size]', el).value = state.perPage;
   };
+
+  // ============================================================
+  // Table rendering
+  // ============================================================
+  const rowHtml = (r) => {
+    const id = encodeURIComponent(r.id);
+    return `<tr>
+      <td data-column="actions"><div class="table-row-actions">
+        <a class="btn table-action-button view-action" href="../id/view-farmer.html?id=${id}" target="_blank" rel="noopener" title="View farmer profile" aria-label="View farmer profile"><i class="bi bi-eye-fill"></i></a>
+        <a class="btn table-action-button edit-action" href="../id/edit-farmer.html?id=${id}" target="_blank" rel="noopener" title="Edit farmer profile" aria-label="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a>
+        <button type="button" class="btn table-action-button delete-action" data-delete="${esc(r.id)}" title="Delete farmer profile" aria-label="Delete farmer profile"><i class="bi bi-trash-fill"></i></button>
+      </div></td>
+      <td data-column="status"><span class="status-badge ${statusBadgeClass(r.status)}">${esc(r.status)}</span></td>
+      <td data-column="id">${esc(r.id)}</td>
+      <td data-column="region">${esc(r.region)}</td>
+      <td data-column="province">${esc(r.province)}</td>
+      <td data-column="district">${esc(r.district)}</td>
+      <td data-column="municipality">${esc(r.municipality)}</td>
+      <td data-column="barangay">${esc(r.barangay)}</td>
+      <td data-column="lastName">${esc(r.lastName)}</td>
+      <td data-column="firstName">${esc(r.firstName)}</td>
+      <td data-column="middleName">${esc(r.middleName)}</td>
+      <td data-column="suffix">${esc(r.suffix || '—')}</td>
+      <td data-column="birthDate">${date(r.birthDate)}</td>
+      <td data-column="sex">${esc(r.sex)}</td>
+      <td data-column="organization">${esc(r.organization)}</td>
+      <td data-column="role">${esc(r.role)}</td>
+      <td data-column="civilStatus">${esc(r.civilStatus)}</td>
+      <td data-column="nationality">${esc(r.nationality)}</td>
+      <td data-column="placeOfBirth">${esc(r.placeOfBirth)}</td>
+      <td data-column="sitio">${esc(r.sitio)}</td>
+      <td data-column="fourPs">${esc(r.fourPs)}</td>
+      <td data-column="pwd">${esc(r.pwd)}</td>
+      <td data-column="indigenousGroup">${esc(r.indigenousGroup)}</td>
+      <td data-column="tribeName">${esc(r.tribeName)}</td>
+      <td data-column="dietaryRestriction">${esc(r.dietaryRestriction)}</td>
+      <td data-column="seniorCitizen">${esc(r.seniorCitizen)}</td>
+      <td data-column="yearCovered">${esc(r.yearCovered)}</td>
+      <td data-column="registered">${date(r.registered)}</td>
+    </tr>`;
+  };
+
   const render = () => {
-    const all = sorted(),
-      pages =
-        state.perPage === 'all'
-          ? 1
-          : Math.max(1, Math.ceil(all.length / state.perPage));
+    const all = sorted();
+    const pages = state.perPage === 'all' ? 1 : Math.max(1, Math.ceil(all.length / state.perPage));
     if (state.page > pages) state.page = 1;
     const rows =
       state.perPage === 'all'
         ? all
-        : all.slice(
-            (state.page - 1) * state.perPage,
-            state.page * state.perPage
-          );
-    body.innerHTML = rows
-      .map(
-        (r) =>
-          `<tr><td><div class="table-row-actions"><button class="btn table-action-button forward-action" data-forward="${r.id}" title="Review and forward"><i class="bi bi-send-fill"></i></button><a class="btn table-action-button view-action" href="../id/view-farmer.html?id=${encodeURIComponent(r.id)}" title="View farmer profile"><i class="bi bi-eye-fill"></i></a><a class="btn table-action-button edit-action" href="../id/edit-farmer.html?id=${encodeURIComponent(r.id)}" title="Edit farmer profile"><i class="bi bi-pencil-fill"></i></a></div></td><td>${r.id}</td><td>${r.organization}</td><td>${r.role}</td><td>${r.lastName}</td><td>${r.firstName}</td><td>${r.middleName}</td><td>—</td><td>${date(r.birthDate)}</td><td>${r.sex}</td><td>${r.civilStatus}</td><td>${r.nationality}</td><td>${r.placeOfBirth}</td><td>${r.province}</td><td>${r.district}</td><td>${r.municipality}</td><td>${r.barangay}</td><td>${r.sitio}</td><td>${r.fourPs}</td><td>${r.pwd}</td><td>${r.indigenousGroup}</td><td>${r.tribeName}</td><td>${r.dietaryRestriction}</td><td>${r.seniorCitizen}</td><td>${r.yearCovered}</td><td>${date(r.registered)}</td><td><span class="status-badge status-review">${r.profileStatus}</span></td><td><span class="status-badge status-review">${r.status}</span></td></tr>`
-      )
-      .join('');
-    const headers = Array.from($('#forReviewDataTable thead tr').cells);
-    const statusColumn = headers.findIndex((cell) => cell.dataset.sort === 'status');
-    const profileStatusColumn = headers.findIndex(
-      (cell) => cell.dataset.sort === 'profileStatus'
-    );
-    body.querySelectorAll('tr').forEach((row) => {
-      [statusColumn, profileStatusColumn].forEach((column) => {
-        const badge = row.cells[column]?.querySelector('.status-badge');
-        if (badge)
-          badge.className = `status-badge ${statusBadgeClass(badge.textContent.trim())}`;
-      });
-    });
+        : all.slice((state.page - 1) * state.perPage, state.page * state.perPage);
+
+    body.innerHTML = rows.map(rowHtml).join('');
     empty.hidden = Boolean(rows.length);
     if (!rows.length)
       empty.innerHTML =
         '<i class="bi bi-search"></i><strong>No farmer profiles match the current filters.</strong>';
-    $('#summaryTotalReview').textContent = filtered().length;
-    $('#summaryRowsPerPage').textContent = state.perPage;
+
+    $('#summaryTotalReview').textContent = all.length;
+    $('#summaryRowsPerPage').textContent = state.perPage === 'all' ? 'All' : state.perPage;
     $('#summaryVisibleRows').textContent = rows.length;
+
     pagination('reviewPaginationTop', all.length, pages);
     pagination('reviewPaginationBottom', all.length, pages);
+
     $$('.sortable-column').forEach((h) => {
       const active = state.sort?.key === h.dataset.sort;
-      h.querySelector('i').className =
-        `bi ${active ? (state.sort.dir === 'asc' ? 'bi-sort-up' : 'bi-sort-down') : 'bi-arrow-down-up'}`;
+      h.querySelector('i').className = `bi ${
+        active ? (state.sort.dir === 'asc' ? 'bi-sort-up' : 'bi-sort-down') : 'bi-arrow-down-up'
+      }`;
     });
   };
+
   const refresh = () => {
     state.page = 1;
     render();
   };
+
+  // ============================================================
+  // Filter events
+  // ============================================================
   $('#reviewGlobalSearch').addEventListener('input', (e) => {
-    state.global = e.target.value.toLowerCase();
+    state.global = e.target.value.trim().toLowerCase();
     refresh();
   });
-  $('#municipalityFilter').addEventListener('change', (e) => {
-    state.municipality = e.target.value;
-    state.barangay = '';
-    fillBarangays(state.municipality);
+  $('#statusFilter').addEventListener('change', (e) => {
+    state.status = e.target.value;
     refresh();
   });
-  [
-    ['#organizationFilter', 'organization'],
-    ['#barangayFilter', 'barangay'],
-    ['#yearCoveredFilter', 'year'],
-  ].forEach(([s, k]) =>
-    $(s).addEventListener('change', (e) => {
-      state[k] = e.target.value;
+  $('#yearCoveredFilter').addEventListener('change', (e) => {
+    state.yearCovered = e.target.value;
+    refresh();
+  });
+  $('#organizationFilter').addEventListener('change', (e) => {
+    state.organization = e.target.value;
+    refresh();
+  });
+  geoLevels.forEach((key) =>
+    $('#' + geoSelectIds[key]).addEventListener('change', (e) => {
+      state[key] = e.target.value;
+      syncGeoFilters();
       refresh();
     })
   );
@@ -400,37 +341,44 @@ document.addEventListener('DOMContentLoaded', () => {
       refresh();
     })
   );
-  $('#clearReviewFilters').addEventListener('click', () => {
-    state.global = state.organization = state.municipality = state.barangay = state.year = '';
+
+  const resetFilters = () => {
+    state.global = '';
+    state.status = '';
+    state.yearCovered = '';
+    state.organization = '';
+    geoLevels.forEach((k) => (state[k] = ''));
     state.columns = {};
     $('#reviewGlobalSearch').value = '';
-    fillBarangays();
-    $$('.toolbar-filter select,.column-filter').forEach((e) => (e.value = ''));
+    $('#statusFilter').value = '';
+    $$('.column-filter').forEach((e) => (e.value = ''));
+    fillSimpleFilters();
+    syncGeoFilters();
+  };
+
+  $('#clearReviewFilters').addEventListener('click', () => {
+    resetFilters();
     refresh();
   });
+
   $$('.sortable-column').forEach((h) =>
     h.addEventListener('click', () => {
       state.sort =
         state.sort?.key === h.dataset.sort
-          ? {
-              key: h.dataset.sort,
-              dir: state.sort.dir === 'asc' ? 'desc' : 'asc',
-            }
+          ? { key: h.dataset.sort, dir: state.sort.dir === 'asc' ? 'desc' : 'asc' }
           : { key: h.dataset.sort, dir: 'asc' };
       refresh();
     })
   );
+
   $$('#reviewPaginationTop,#reviewPaginationBottom').forEach((el) => {
     el.addEventListener('click', (e) => {
       const b = e.target.closest('[data-page]');
       if (!b || b.disabled) return;
-      const pages =
-        state.perPage === 'all'
-          ? 1
-          : Math.max(1, Math.ceil(sorted().length / state.perPage));
+      const pages = state.perPage === 'all' ? 1 : Math.max(1, Math.ceil(sorted().length / state.perPage));
       state.page =
         b.dataset.page === 'prev'
-          ? state.page - 1
+          ? Math.max(1, state.page - 1)
           : b.dataset.page === 'next'
             ? Math.min(pages, state.page + 1)
             : Number(b.dataset.page);
@@ -438,65 +386,183 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     el.addEventListener('change', (e) => {
       if (e.target.matches('[data-page-size]')) {
-        state.perPage =
-          e.target.value === 'all' ? 'all' : Number(e.target.value);
+        state.perPage = e.target.value === 'all' ? 'all' : Number(e.target.value);
         refresh();
       }
     });
   });
-  body.addEventListener('click', (e) => {
-    const b = e.target.closest('[data-forward]');
-    if (!b) return;
-    state.selected = records.find((r) => r.id === b.dataset.forward);
-    const reqs = requirements(state.selected),
-      missing = reqs.filter((x) => !x.complete);
-    $('#reviewForwardModalLabel').textContent =
-      'Review & Submit Farmer Profile';
-    $('#reviewForwardDetails').innerHTML =
-      `<dt>Farmer ID / Core ID</dt><dd>${state.selected.id}</dd><dt>Farmer</dt><dd>${state.selected.firstName} ${state.selected.lastName}</dd><dt>Farmer Status</dt><dd><span class="status-badge status-review">${state.selected.status}</span></dd><dt class="w-100 mt-3">Requirements / Attachments</dt><dd class="w-100"><div class="requirements-panel"><ul>${reqs.map((x) => `<li><i class="bi ${x.complete ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'}"></i>${x.name}<span>${x.complete ? 'Completed' : 'Incomplete'}</span></li>`).join('')}</ul>${missing.length ? `<p class="submission-blocked">Submission blocked: ${missing.map((x) => x.name).join(', ')} is incomplete.</p>` : ''}</div></dd>`;
-    $('#reviewForwardDetails .status-badge').className =
-      `status-badge ${statusBadgeClass(state.selected.status)}`;
-    $('#confirmForwardButton').disabled = missing.length > 0;
-    modal.show();
+
+  // ============================================================
+  // Refresh: reset filters, sorting and paging, then redraw the table
+  // ============================================================
+  $('#refreshReviewTable').addEventListener('click', () => {
+    const icon = $('#refreshReviewTable i');
+    icon.classList.add('spin');
+    setTimeout(() => icon.classList.remove('spin'), 700);
+    resetFilters();
+    state.sort = null;
+    state.perPage = 10;
+    refresh();
+    notify('Farmer Profiles Refreshed', `Table reloaded with ${records.length} farmer profiles.`);
   });
-  $('#confirmForwardButton').addEventListener('click', () => {
-    if (!state.selected) return;
-    const missing = requirements(state.selected).filter((x) => !x.complete);
-    if (missing.length) {
-      notify(
-        'Submission Blocked',
-        'Submission blocked: required attachment is incomplete.',
-        true
-      );
+
+  // ============================================================
+  // Export: every field of every farmer, regardless of filters or hidden columns
+  // ============================================================
+  $('#exportReviewTable').addEventListener('click', () => {
+    if (!window.XLSX) {
+      notify('Export Unavailable', 'The Excel library could not be loaded. Check your connection and try again.', true);
       return;
     }
-    state.selected.status = 'For Approval';
-    modal.hide();
-    refresh();
-    notify(
-      'Farmer Profile Submitted',
-      'Farmer profile submitted for approval.'
-    );
-  });
-  $('#refreshReviewTable').addEventListener('click', () => {
-    refresh();
-    notify(
-      'Farmer Profiles Refreshed',
-      'Farmer profiles refreshed successfully.'
-    );
-  });
-  $('#exportReviewTable').addEventListener('click', () => {
-    if (!window.XLSX) return;
-    const rows = sorted();
-    const sheet = XLSX.utils.aoa_to_sheet([
-      ['farmer_profile_for_review'],
-      ['data_exported'],
-      [],
-    ]);
-    XLSX.utils.sheet_add_json(sheet, rows, { origin: 'A4' });
+    const exportColumns = [
+      ['Farmer ID', 'id'],
+      ['Status', 'status'],
+      ['Region', 'region'],
+      ['Province', 'province'],
+      ['District', 'district'],
+      ['Municipality', 'municipality'],
+      ['Barangay', 'barangay'],
+      ['Sitio / Purok', 'sitio'],
+      ['Last Name', 'lastName'],
+      ['First Name', 'firstName'],
+      ['Middle Name', 'middleName'],
+      ['Extension', 'suffix'],
+      ['Date of Birth', 'birthDate'],
+      ['Place of Birth', 'placeOfBirth'],
+      ['Sex', 'sex'],
+      ['Civil Status', 'civilStatus'],
+      ['Nationality', 'nationality'],
+      ['Farmer Organization', 'organization'],
+      ['Farmer Role', 'role'],
+      ['4Ps', 'fourPs'],
+      ['PWD', 'pwd'],
+      ['Senior Citizen', 'seniorCitizen'],
+      ['Indigenous Group', 'indigenousGroup'],
+      ['Tribe Name', 'tribeName'],
+      ['Dietary Restriction', 'dietaryRestriction'],
+      ['Year Covered', 'yearCovered'],
+      ['Registration Date', 'registered'],
+    ];
+    const rows = records.map((r) => Object.fromEntries(exportColumns.map(([label, key]) => [label, r[key]])));
+    const sheet = XLSX.utils.json_to_sheet(rows, { header: exportColumns.map(([label]) => label) });
+    sheet['!cols'] = exportColumns.map(([label]) => ({ wch: Math.max(14, label.length + 4) }));
     const book = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(book, sheet, 'farmer_profile_for_review');
-    XLSX.writeFile(book, 'farmer_profile_for_review.xlsx');
+    XLSX.utils.book_append_sheet(book, sheet, 'All Farmer Profiles');
+    const stamp = new Date().toISOString().slice(0, 10);
+    XLSX.writeFile(book, `all_farmer_profiles_${stamp}.xlsx`);
+    notify('Export Complete', `${rows.length} farmer profiles exported to Excel.`);
   });
+
+  // ============================================================
+  // Show / hide columns (switches apply immediately)
+  // ============================================================
+  const columnFilterToggle = $('#columnFilterToggle');
+  const columnFilterPanel = $('#columnFilterPanel');
+  const columnToggles = $$('.column-toggle');
+  const columnKeys = columnToggles.map((t) => t.dataset.column);
+
+  const defaultColumns = [
+    'actions', 'status', 'id', 'region', 'province', 'district', 'municipality',
+    'barangay', 'lastName', 'firstName', 'middleName', 'suffix', 'birthDate', 'sex',
+  ];
+  const visibleColumns = new Set(defaultColumns);
+
+  // One stylesheet hides columns, so they stay hidden after every re-render.
+  const columnStyle = document.createElement('style');
+  document.head.appendChild(columnStyle);
+
+  const applyColumnVisibility = () => {
+    columnStyle.textContent = columnKeys
+      .filter((key) => !visibleColumns.has(key))
+      .map((key) => `#forReviewDataTable [data-column="${key}"] { display: none !important; }`)
+      .join('\n');
+    columnToggles.forEach((t) => (t.checked = visibleColumns.has(t.dataset.column)));
+  };
+
+  const setPanel = (open) => {
+    columnFilterPanel.style.display = open ? 'block' : 'none';
+    columnFilterToggle.classList.toggle('active', open);
+    columnFilterToggle.setAttribute('aria-expanded', String(open));
+  };
+
+  columnFilterToggle.addEventListener('click', () => setPanel(columnFilterPanel.style.display === 'none'));
+  $('#closeColumnFilter').addEventListener('click', () => setPanel(false));
+  $('#applyColumnFilter').addEventListener('click', () => setPanel(false));
+
+  columnToggles.forEach((toggle) =>
+    toggle.addEventListener('change', () => {
+      const key = toggle.dataset.column;
+      if (toggle.checked) visibleColumns.add(key);
+      else {
+        visibleColumns.delete(key);
+        const input = $(`.column-filter[data-column="${key}"]`);
+        if (input && input.value) {
+          input.value = '';
+          delete state.columns[key];
+          refresh();
+        }
+      }
+      applyColumnVisibility();
+    })
+  );
+
+  $('#showAllColumns').addEventListener('click', () => {
+    columnKeys.forEach((k) => visibleColumns.add(k));
+    applyColumnVisibility();
+  });
+  $('#resetColumns').addEventListener('click', () => {
+    visibleColumns.clear();
+    defaultColumns.forEach((k) => visibleColumns.add(k));
+    applyColumnVisibility();
+  });
+
+  // ============================================================
+  // Delete (confirmation modal with the farmer's basic information)
+  // ============================================================
+  let pendingDeleteId = null;
+
+  body.addEventListener('click', (e) => {
+    const button = e.target.closest('.delete-action');
+    if (!button) return;
+    const farmer = records.find((r) => r.id === button.dataset.delete);
+    if (!farmer) return;
+    pendingDeleteId = farmer.id;
+    $('#deleteFarmerId').textContent = farmer.id;
+    $('#deleteFarmerName').textContent = [`${farmer.lastName},`, farmer.firstName, farmer.middleName, farmer.suffix]
+      .filter(Boolean)
+      .join(' ');
+    const badge = $('#deleteFarmerStatus');
+    badge.textContent = farmer.status;
+    badge.className = `status-badge ${statusBadgeClass(farmer.status)}`;
+    $('#deleteFarmerProvince').textContent = farmer.province;
+    $('#deleteFarmerMunicipality').textContent = farmer.municipality;
+    $('#deleteFarmerBarangay').textContent = farmer.barangay;
+    deleteModal.show();
+  });
+
+  $('#confirmDeleteButton').addEventListener('click', () => {
+    if (!pendingDeleteId) return;
+    const index = records.findIndex((r) => r.id === pendingDeleteId);
+    if (index > -1) {
+      records.splice(index, 1);
+      fillSimpleFilters();
+      syncGeoFilters();
+      render();
+      notify('Farmer Profile Deleted', 'The farmer profile has been deleted successfully.');
+    }
+    pendingDeleteId = null;
+    deleteModal.hide();
+  });
+
+  $('#deleteConfirmModal').addEventListener('hidden.bs.modal', () => {
+    pendingDeleteId = null;
+  });
+
+  // ============================================================
+  // Init
+  // ============================================================
+  applyColumnVisibility();
+  fillSimpleFilters();
+  syncGeoFilters();
   render();
 });

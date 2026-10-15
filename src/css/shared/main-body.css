@@ -1121,6 +1121,18 @@ body::-webkit-scrollbar-thumb:hover,
   gap: 4px;
 }
 
+.mobile-subnav-section-label {
+  margin: 7px 12px 3px;
+  padding: 10px 12px 2px;
+  border-top: 1px solid rgba(120, 130, 140, 0.25);
+  color: #748078;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .app-mobile-menu
   .offcanvas-body
   .mobile-nav
@@ -1496,6 +1508,19 @@ body::-webkit-scrollbar-thumb:hover,
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.participant-nav-section-label,
+.training-nav-section-label {
+  margin: 8px 12px 2px;
+  padding-top: 9px;
+  border-top: 1px solid rgba(120, 130, 140, 0.25);
+  color: #748078;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .app-wrapper

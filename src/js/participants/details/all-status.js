@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const PROVINCE = 'Quezon';
 
   const seed = [
-    ['FMR-2026-001', 'Villa Esperanza FA', 'Member', 'Dela Cruz', 'Juan', 'Santos', 'Male', 'Alabat', 'Villa Esperanza', 'For Review', 2026],
-    ['FMR-2026-002', 'Perez Farmers Association', 'Member', 'Santos', 'Maria', 'Reyes', 'Female', 'Perez', 'Villamanzano Sur', 'For Approval', 2026],
-    ['FMR-2025-003', 'Jomalig Farmers Association', 'Officer', 'Reyes', 'Pedro', 'Garcia', 'Male', 'Jomalig', 'Apad', 'Approved & Accepted', 2025],
-    ['FMR-2026-004', 'Alabat Farmers Association', 'Member', 'Mendoza', 'Ana', 'Cruz', 'Female', 'Alabat', 'Villa Norte', 'For Review', 2026],
-    ['FMR-2024-005', 'Perez Farmers Association', 'Member', 'Ramos', 'Roberto', 'Diaz', 'Male', 'Perez', 'Villamanzano Sur', 'Approved & Accepted', 2024],
-    ['FMR-2026-006', 'Patnanungan Agricultural Cooperative', 'Secretary', 'Villanueva', 'Liza', 'Aquino', 'Female', 'Patnanungan', 'Amaga', 'For Review', 2026],
-    ['FMR-2025-007', 'Alabat Farmers Association', 'Member', 'Garcia', 'Elena', 'Torres', 'Female', 'Alabat', 'Caglate', 'For Review', 2025],
-    ['FMR-2024-008', 'Jomalig Farmers Association', 'Member', 'Navarro', 'Rico', 'Flores', 'Male', 'Jomalig', 'Bukal', 'For Review', 2024],
+    ['FMR-2026-001', 'Villa Esperanza FA', 'Member', 'Dela Cruz', 'Juan', 'Santos', 'Male', 'Alabat', 'Villa Esperanza', 2026],
+    ['FMR-2026-002', 'Perez Farmers Association', 'Member', 'Santos', 'Maria', 'Reyes', 'Female', 'Perez', 'Villamanzano Sur', 2026],
+    ['FMR-2025-003', 'Jomalig Farmers Association', 'Officer', 'Reyes', 'Pedro', 'Garcia', 'Male', 'Jomalig', 'Apad', 2025],
+    ['FMR-2026-004', 'Alabat Farmers Association', 'Member', 'Mendoza', 'Ana', 'Cruz', 'Female', 'Alabat', 'Villa Norte', 2026],
+    ['FMR-2024-005', 'Perez Farmers Association', 'Member', 'Ramos', 'Roberto', 'Diaz', 'Male', 'Perez', 'Villamanzano Sur', 2024],
+    ['FMR-2026-006', 'Patnanungan Agricultural Cooperative', 'Secretary', 'Villanueva', 'Liza', 'Aquino', 'Female', 'Patnanungan', 'Amaga', 2026],
+    ['FMR-2025-007', 'Alabat Farmers Association', 'Member', 'Garcia', 'Elena', 'Torres', 'Female', 'Alabat', 'Caglate', 2025],
+    ['FMR-2024-008', 'Jomalig Farmers Association', 'Member', 'Navarro', 'Rico', 'Flores', 'Male', 'Jomalig', 'Bukal', 2024],
   ];
   const organizations = [
     'Villa Esperanza FA',
@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ['Alabat', 'Villa Norte'],
     ['Patnanungan', 'Amaga'],
   ];
-  const statuses = ['For Review', 'For Approval', 'Approved & Accepted'];
   for (let n = 9; n <= 48; n++) {
     const y = 2024 + (n % 3);
     const loc = municipalities[n % municipalities.length];
@@ -43,14 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
       n % 2 ? 'Male' : 'Female',
       loc[0],
       loc[1],
-      statuses[n % 3],
       y,
     ]);
   }
 
   const islandTowns = ['Jomalig', 'Patnanungan'];
   const allRecords = seed.map(
-    ([id, organization, role, lastName, firstName, middleName, sex, municipality, barangay, status, yearCovered], i) => ({
+    ([id, organization, role, lastName, firstName, middleName, sex, municipality, barangay, yearCovered], i) => ({
       id,
       organization,
       role,
@@ -76,15 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
       dietaryRestriction: 'None',
       seniorCitizen: i % 8 ? 'No' : 'Yes',
       yearCovered,
-      profileStatus: i % 11 ? 'Active' : 'Inactive',
-      status,
+      status: i % 11 ? 'Active' : 'Inactive',
       registered: `${yearCovered}-09-${String((i % 20) + 1).padStart(2, '0')}`,
     })
   );
 
-  // This page lists only For Review, For Approval and Approved & Accepted
-  // profiles. Inactive profiles belong to the Inactive details page.
-  const records = allRecords.filter((r) => r.profileStatus === 'Active');
+  // This page lists active farmer profiles. Inactive profiles belong to the
+  // Inactive details page.
+  const records = allRecords.filter((r) => r.status === 'Active');
 
   // ============================================================
   // Helpers and state
@@ -119,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     page: 1,
     perPage: 10,
     global: '',
-    status: '',
     yearCovered: '',
     organization: '',
     region: '',
@@ -133,9 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const statusBadgeClass = (status) =>
     ({
-      'For Review': 'status-review',
-      'For Approval': 'status-approval',
-      'Approved & Accepted': 'status-approved',
+      Active: 'status-active',
     })[status] || 'status-neutral';
 
   const date = (v) =>
@@ -193,7 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const filtered = () =>
     records.filter(
       (r) =>
-        (!state.status || r.status === state.status) &&
         (!state.yearCovered || String(r.yearCovered) === state.yearCovered) &&
         (!state.organization || r.organization === state.organization) &&
         geoLevels.every((k) => !state[k] || r[k] === state[k]) &&
@@ -316,10 +309,6 @@ document.addEventListener('DOMContentLoaded', () => {
     state.global = e.target.value.trim().toLowerCase();
     refresh();
   });
-  $('#statusFilter').addEventListener('change', (e) => {
-    state.status = e.target.value;
-    refresh();
-  });
   $('#yearCoveredFilter').addEventListener('change', (e) => {
     state.yearCovered = e.target.value;
     refresh();
@@ -344,13 +333,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const resetFilters = () => {
     state.global = '';
-    state.status = '';
     state.yearCovered = '';
     state.organization = '';
     geoLevels.forEach((k) => (state[k] = ''));
     state.columns = {};
     $('#reviewGlobalSearch').value = '';
-    $('#statusFilter').value = '';
     $$('.column-filter').forEach((e) => (e.value = ''));
     fillSimpleFilters();
     syncGeoFilters();

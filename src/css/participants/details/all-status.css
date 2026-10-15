@@ -76,6 +76,7 @@
 .status-review { color: #1565c0; background: #e3f2fd; }
 .status-approval { color: #a65b00; background: #fff3e0; }
 .status-approved { color: #1b5e20; background: #e8f5e9; }
+.status-active { color: #1b5e20; background: #e8f5e9; }
 .status-accepted { color: #00695c; background: #e0f2f1; }
 .status-neutral { color: #455a64; background: #eceff1; }
 

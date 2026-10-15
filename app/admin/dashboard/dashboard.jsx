@@ -91,6 +91,7 @@ export default function Dashboard() {
                         id="participantHeaderCollapse"
                       >
                         <div className="header-collapse-menu">
+                          <div className="participant-nav-section-label">Individual</div>
                           <a
                             href="#"
                             className="header-collapse-item"
@@ -117,33 +118,6 @@ export default function Dashboard() {
                             className="header-collapse-item"
                             role="button"
                             data-bs-toggle="collapse"
-                            data-bs-target="#updateParticipantHeaderCollapse"
-                            aria-expanded="false"
-                          >
-                            <i className="bi bi-arrow-repeat"></i>
-                            <span>Update</span>
-                            <i className="bi bi-chevron-down ms-auto"></i>
-                          </a>
-                          <div className="collapse" id="updateParticipantHeaderCollapse">
-                            <div className="header-sub-collapse-menu">
-                              <a href="#forReview" className="header-sub-collapse-item">
-                                <i className="bi bi-clipboard2-check-fill"></i>
-                                <span>For Review</span>
-                                <span className="badge badge-review">34</span>
-                              </a>
-                              <a href="#forApproval" className="header-sub-collapse-item">
-                                <i className="bi bi-clipboard2-check-fill"></i>
-                                <span>For Approval</span>
-                                <span className="badge badge-approval">23</span>
-                              </a>
-                            </div>
-                          </div>
-      
-                          <a
-                            href="#"
-                            className="header-collapse-item"
-                            role="button"
-                            data-bs-toggle="collapse"
                             data-bs-target="#detailsParticipantHeaderCollapse"
                             aria-expanded="false"
                           >
@@ -155,18 +129,7 @@ export default function Dashboard() {
                             <div className="header-sub-collapse-menu">
                               <a href="#allStatus" className="header-sub-collapse-item">
                                 <i className="bi bi-list-check"></i>
-                                <span>All Status</span>
-                              </a>
-                              <a
-                                href="#approvedAccepted"
-                                className="header-sub-collapse-item"
-                              >
-                                <i className="bi bi-check2-circle"></i>
-                                <span>Approved & Accepted</span>
-                              </a>
-                              <a href="#incomplete" className="header-sub-collapse-item">
-                                <i className="bi bi-person-x-fill"></i>
-                                <span>Incomplete</span>
+                                <span>List of Farmers</span>
                               </a>
                               <a href="#inactive" className="header-sub-collapse-item">
                                 <i className="bi bi-person-walking"></i>
@@ -174,6 +137,37 @@ export default function Dashboard() {
                               </a>
                             </div>
                           </div>
+                          <div className="participant-nav-section-label">Farmer Association</div>
+                  <a href="#" className="header-collapse-item" role="button" data-bs-toggle="collapse" data-bs-target="#createFarmerAssociationHeaderCollapse" aria-expanded="false" aria-controls="createFarmerAssociationHeaderCollapse">
+                    <i className="bi bi-plus-circle"></i>
+                    <span>Create</span>
+                    <i className="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <div className="collapse" id="createFarmerAssociationHeaderCollapse">
+                    <div className="header-sub-collapse-menu">
+                      <a href="#" className="header-sub-collapse-item">
+                        <i className="bi bi-building-add"></i>
+                        <span>Register</span>
+                      </a>
+                    </div>
+                  </div>
+                  <a href="#" className="header-collapse-item" role="button" data-bs-toggle="collapse" data-bs-target="#detailsFarmerAssociationHeaderCollapse" aria-expanded="false" aria-controls="detailsFarmerAssociationHeaderCollapse">
+                    <i className="bi bi-file-earmark-text"></i>
+                    <span>Details</span>
+                    <i className="bi bi-chevron-down ms-auto"></i>
+                  </a>
+                  <div className="collapse" id="detailsFarmerAssociationHeaderCollapse">
+                    <div className="header-sub-collapse-menu">
+                      <a href="#" className="header-sub-collapse-item">
+                        <i className="bi bi-list-ul"></i>
+                        <span>List of FA</span>
+                      </a>
+                      <a href="#" className="header-sub-collapse-item">
+                        <i className="bi bi-x-circle-fill"></i>
+                        <span>Inactive</span>
+                      </a>
+                    </div>
+                  </div>
                         </div>
                       </div>
                     </li>
@@ -284,6 +278,37 @@ export default function Dashboard() {
                                 className="header-sub-collapse-item"
                               >
                                 <i className="bi bi-envelope-exclamation-fill"></i>
+                                <span>Inactive</span>
+                              </a>
+                            </div>
+                          </div>
+                          <div className="training-nav-section-label">Facilitator / Resource Person</div>
+                          <a href="#" className="header-collapse-item" role="button" data-bs-toggle="collapse" data-bs-target="#createFacilitatorRpHeaderCollapse" aria-expanded="false" aria-controls="createFacilitatorRpHeaderCollapse">
+                            <i className="bi bi-plus-circle"></i>
+                            <span>Create</span>
+                            <i className="bi bi-chevron-down ms-auto"></i>
+                          </a>
+                          <div className="collapse" id="createFacilitatorRpHeaderCollapse">
+                            <div className="header-sub-collapse-menu">
+                              <a href="#" className="header-sub-collapse-item">
+                                <i className="bi bi-person-fill-add"></i>
+                                <span>Register</span>
+                              </a>
+                            </div>
+                          </div>
+                          <a href="#" className="header-collapse-item" role="button" data-bs-toggle="collapse" data-bs-target="#detailsFacilitatorRpHeaderCollapse" aria-expanded="false" aria-controls="detailsFacilitatorRpHeaderCollapse">
+                            <i className="bi bi-file-earmark-text"></i>
+                            <span>Details</span>
+                            <i className="bi bi-chevron-down ms-auto"></i>
+                          </a>
+                          <div className="collapse" id="detailsFacilitatorRpHeaderCollapse">
+                            <div className="header-sub-collapse-menu">
+                              <a href="#" className="header-sub-collapse-item">
+                                <i className="bi bi-list-ul"></i>
+                                <span>List of RP</span>
+                              </a>
+                              <a href="#" className="header-sub-collapse-item">
+                                <i className="bi bi-x-circle-fill"></i>
                                 <span>Inactive</span>
                               </a>
                             </div>
@@ -1966,6 +1991,7 @@ export default function Dashboard() {
                     <i className="bi bi-chevron-down ms-auto"></i>
                   </a>
                   <ul className="collapse mobile-subnav" id="participantMobile">
+                    <li className="mobile-subnav-section-label">Individual</li>
                     <li className="mobile-list-navigation">
                       <a
                         href="../participants/create/register.html"
@@ -1996,37 +2022,6 @@ export default function Dashboard() {
                         href="#"
                         className="nav-link"
                         data-bs-toggle="collapse"
-                        data-bs-target="#updateParticipantMobile"
-                        aria-controls="updateParticipantMobile"
-                        aria-expanded="false"
-                      >
-                        <i className="bi bi-arrow-repeat"></i>
-                        <span>Update</span>
-                        <i className="bi bi-chevron-down ms-auto"></i>
-                      </a>
-                      <ul
-                        className="collapse mobile-submenu"
-                        id="updateParticipantMobile"
-                      >
-                        <li className="mobile-subnav-panel-navigation">
-                          <a href="#" className="nav-link">
-                            <i className="bi bi-person-fill-check"></i>
-                            <span>For review</span>
-                          </a>
-                        </li>
-                        <li className="mobile-subnav-panel-navigation">
-                          <a href="#" className="nav-link">
-                            <i className="bi bi-person-fill-check"></i>
-                            <span>For approval</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="mobile-list-navigation">
-                      <a
-                        href="#"
-                        className="nav-link"
-                        data-bs-toggle="collapse"
                         data-bs-target="#detailsParticipantMobile"
                         aria-controls="detailsParticipantMobile"
                         aria-expanded="false"
@@ -2042,19 +2037,7 @@ export default function Dashboard() {
                         <li className="mobile-subnav-panel-navigation">
                           <a href="#" className="nav-link">
                             <i className="bi bi-list-check"></i>
-                            <span>All status</span>
-                          </a>
-                        </li>
-                        <li className="mobile-subnav-panel-navigation">
-                          <a href="#" className="nav-link">
-                            <i className="bi bi-check-circle-fill"></i>
-                            <span>Approved & accepted</span>
-                          </a>
-                        </li>
-                        <li className="mobile-subnav-panel-navigation">
-                          <a href="#" className="nav-link">
-                            <i className="bi bi-exclamation-circle-fill"></i>
-                            <span>Incomplete</span>
+                            <span>List of Farmers</span>
                           </a>
                         </li>
                         <li className="mobile-subnav-panel-navigation">
@@ -2065,6 +2048,43 @@ export default function Dashboard() {
                         </li>
                       </ul>
                     </li>
+                    <li className="mobile-subnav-section-label">Farmer Association</li>
+              <li className="mobile-list-navigation">
+                <a href="#" className="nav-link" data-bs-toggle="collapse" data-bs-target="#createFarmerAssociationMobile" aria-controls="createFarmerAssociationMobile" aria-expanded="false">
+                  <i className="bi bi-plus-circle"></i>
+                  <span>Create</span>
+                  <i className="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul className="collapse mobile-submenu" id="createFarmerAssociationMobile">
+                  <li className="mobile-subnav-panel-navigation">
+                    <a href="#" className="nav-link">
+                      <i className="bi bi-building-add"></i>
+                      <span>Register</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li className="mobile-list-navigation">
+                <a href="#" className="nav-link" data-bs-toggle="collapse" data-bs-target="#detailsFarmerAssociationMobile" aria-controls="detailsFarmerAssociationMobile" aria-expanded="false">
+                  <i className="bi bi-file-earmark-text"></i>
+                  <span>Details</span>
+                  <i className="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul className="collapse mobile-submenu" id="detailsFarmerAssociationMobile">
+                  <li className="mobile-subnav-panel-navigation">
+                    <a href="#" className="nav-link">
+                      <i className="bi bi-list-ul"></i>
+                      <span>List of FA</span>
+                    </a>
+                  </li>
+                  <li className="mobile-subnav-panel-navigation">
+                    <a href="#" className="nav-link">
+                      <i className="bi bi-x-circle-fill"></i>
+                      <span>Inactive</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
                   </ul>
                 </li>
                 <li className="mobile-list-navigation">
@@ -2161,6 +2181,43 @@ export default function Dashboard() {
                           <a href="#" className="nav-link">
                             <i className="bi bi-exclamation-circle-fill"></i>
                             <span>Incomplete</span>
+                          </a>
+                        </li>
+                        <li className="mobile-subnav-panel-navigation">
+                          <a href="#" className="nav-link">
+                            <i className="bi bi-x-circle-fill"></i>
+                            <span>Inactive</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="mobile-subnav-section-label">Facilitator / Resource Person</li>
+                    <li className="mobile-list-navigation">
+                      <a href="#" className="nav-link" data-bs-toggle="collapse" data-bs-target="#createFacilitatorRpMobile" aria-controls="createFacilitatorRpMobile" aria-expanded="false">
+                        <i className="bi bi-plus-circle"></i>
+                        <span>Create</span>
+                        <i className="bi bi-chevron-down ms-auto"></i>
+                      </a>
+                      <ul className="collapse mobile-submenu" id="createFacilitatorRpMobile">
+                        <li className="mobile-subnav-panel-navigation">
+                          <a href="#" className="nav-link">
+                            <i className="bi bi-person-fill-add"></i>
+                            <span>Register</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li className="mobile-list-navigation">
+                      <a href="#" className="nav-link" data-bs-toggle="collapse" data-bs-target="#detailsFacilitatorRpMobile" aria-controls="detailsFacilitatorRpMobile" aria-expanded="false">
+                        <i className="bi bi-file-earmark-text"></i>
+                        <span>Details</span>
+                        <i className="bi bi-chevron-down ms-auto"></i>
+                      </a>
+                      <ul className="collapse mobile-submenu" id="detailsFacilitatorRpMobile">
+                        <li className="mobile-subnav-panel-navigation">
+                          <a href="#" className="nav-link">
+                            <i className="bi bi-list-ul"></i>
+                            <span>List of RP</span>
                           </a>
                         </li>
                         <li className="mobile-subnav-panel-navigation">

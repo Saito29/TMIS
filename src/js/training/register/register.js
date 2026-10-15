@@ -12,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const barangay = document.querySelector('#barangay_id');
   const trainerList = document.querySelector('#trainer_list');
   const addTrainerButton = document.querySelector('#add_trainer');
-  const designInput = document.querySelector('#training_design');
-  const designError = document.querySelector('#training_design_error');
-  const designList = document.querySelector('#training_design_list');
   const submitButton = form?.querySelector('button[type="submit"]');
 
   if (!form || !steps.length || !fieldsets.length) return;
@@ -332,70 +329,6 @@ document.addEventListener('DOMContentLoaded', () => {
   startDate?.addEventListener('change', syncDateRange);
   endDate?.addEventListener('change', syncDateRange);
   syncDateRange();
-
-  /* ------------------------------------------------------------------
-     Training design attachment: .docx and .pdf only
-  ------------------------------------------------------------------ */
-  const allowedExtensions = ['.docx', '.pdf'];
-
-  const formatFileSize = (bytes) =>
-    bytes >= 1048576
-      ? `${(bytes / 1048576).toFixed(1)} MB`
-      : `${Math.max(1, Math.round(bytes / 1024))} KB`;
-
-  const showDesignError = (message) => {
-    if (!designError) return;
-
-    designError.textContent = message;
-    designError.classList.toggle('is-visible', Boolean(message));
-  };
-
-  const renderDesignFiles = () => {
-    if (!designList || !designInput) return;
-
-    designList.replaceChildren();
-
-    [...designInput.files].forEach((file) => {
-      const item = document.createElement('li');
-      const icon = document.createElement('i');
-      const name = document.createElement('span');
-      const size = document.createElement('span');
-
-      icon.className = file.name.toLowerCase().endsWith('.pdf')
-        ? 'bi bi-file-earmark-pdf-fill'
-        : 'bi bi-file-earmark-word-fill';
-      name.textContent = file.name;
-      size.className = 'file-size';
-      size.textContent = formatFileSize(file.size);
-
-      item.append(icon, name, size);
-      designList.append(item);
-    });
-  };
-
-  designInput?.addEventListener('change', () => {
-    const files = [...designInput.files];
-    const invalid = files.filter(
-      (file) => !allowedExtensions.some((extension) => file.name.toLowerCase().endsWith(extension))
-    );
-
-    if (invalid.length) {
-      // Reject the whole selection so no disallowed file is ever submitted.
-      designInput.value = '';
-      showDesignError(
-        `Only .docx and .pdf files are allowed. Not accepted: ${invalid.map((file) => file.name).join(', ')}`
-      );
-    } else {
-      showDesignError('');
-    }
-
-    renderDesignFiles();
-  });
-
-  form.addEventListener('reset', () => {
-    showDesignError('');
-    setTimeout(renderDesignFiles);
-  });
 
   /* ------------------------------------------------------------------
      Venue address hierarchy: region > district > province > municipality > barangay

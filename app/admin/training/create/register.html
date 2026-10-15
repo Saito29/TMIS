@@ -825,7 +825,7 @@
                       program and assign trainer information</span
                     >
                   </div>
-                  <a href="#allTrainingStatus" class="btn btn-back-list">
+                  <a href="../details/all-status.html" class="btn btn-back-list">
                     <i class="bi bi-arrow-left"></i>
                     <span>Back to Trainings List</span>
                   </a>
@@ -925,7 +925,6 @@
                   <form
                     action="#"
                     class="row"
-                    enctype="multipart/form-data"
                     autocomplete="on"
                   >
                     <!-- Step 1 Training Information -->
@@ -1017,30 +1016,6 @@
                             placeholder="Briefly describe the training and its objectives"
                             required
                           ></textarea>
-                        </div>
-                        <div class="col-12 mb-1">
-                          <label for="training_design" class="form-label"
-                            >Training Design Attachment
-                            <span class="text-required">*</span></label
-                          >
-                          <input
-                            type="file"
-                            id="training_design"
-                            name="training_design[]"
-                            class="form-control"
-                            accept=".docx,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf"
-                            multiple
-                            required
-                          />
-                          <small class="field-hint"
-                            >Accepted file types: .docx and .pdf only.</small
-                          >
-                          <div
-                            class="field-error"
-                            id="training_design_error"
-                            role="alert"
-                          ></div>
-                          <ul class="file-list" id="training_design_list"></ul>
                         </div>
                       </div>
                     </fieldset>
@@ -1573,10 +1548,6 @@
                       <li class="list-item">
                         <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
                         <p class="list-context">Set an accurate schedule, venue and delivery mode to avoid conflicts</p>
-                      </li>
-                      <li class="list-item">
-                        <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
-                        <p class="list-context">Attach the training design in .docx or .pdf format only</p>
                       </li>
                       <li class="list-item">
                         <i class="bi bi-check-circle-fill" aria-hidden="true"></i>

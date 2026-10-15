@@ -1077,14 +1077,18 @@
                                 >Full Name
                                 <span class="text-required">*</span></label
                               >
-                              <input
-                                type="text"
+                              <select
                                 id="trainer_name_1"
                                 name="trainer_name[]"
-                                class="form-control"
-                                placeholder="Enter trainer/facilitator name"
+                                class="form-select"
                                 required
-                              />
+                              >
+                                <option value="" selected disabled>Select a trainer/facilitator</option>
+                                <option value="Maria Teresa Santos" data-organization="Department of Agriculture - Quezon Provincial Office">Maria Teresa Santos</option>
+                                <option value="Roberto Mendoza" data-organization="Agricultural Training Institute - RTC IV-A">Roberto Mendoza</option>
+                                <option value="Liza Villanueva" data-organization="Quezon State University">Liza Villanueva</option>
+                                <option value="Carlo Dela Cruz" data-organization="Local Government Unit - Quezon">Carlo Dela Cruz</option>
+                              </select>
                             </div>
                             <div class="col-12 col-lg-6 mb-3">
                               <label
@@ -1098,7 +1102,8 @@
                                 id="trainer_organization_1"
                                 name="trainer_organization[]"
                                 class="form-control"
-                                placeholder="Enter organization/affiliation"
+                                placeholder="Automatically filled from the selected trainer"
+                                readonly
                                 required
                               />
                             </div>

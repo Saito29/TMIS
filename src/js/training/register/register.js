@@ -299,6 +299,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
   form.querySelectorAll('.repeat-list').forEach(refreshRepeatList);
 
+  // Selecting a registered trainer fills their organization affiliation.
+  form.addEventListener('change', (event) => {
+    const nameSelect = event.target.closest('select[name="trainer_name[]"]');
+    if (!nameSelect) return;
+
+    const row = nameSelect.closest('[data-repeat-row]');
+    const organization = row?.querySelector('input[name="trainer_organization[]"]');
+    if (!organization) return;
+
+    organization.value = nameSelect.selectedOptions[0]?.dataset.organization || '';
+    updateWizard();
+  });
+
   // Only digits are accepted in the mobile number fields (any row).
   form.addEventListener('input', (event) => {
     if (event.target.matches('input[name="trainer_contact[]"]')) {

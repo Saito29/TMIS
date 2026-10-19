@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     association: associations[index % associations.length],
     role: index % 7 === 0 ? 'Officer' : 'Member',
     province: 'Batangas', municipality: 'Tanauan City', barangay: barangays[index % barangays.length],
-    preTestAnsweredAt: 'May 22, 2025',
   }));
   const columns = [
     ['actions', 'Actions'], ['farmerId', 'Farmer ID'], ['lastName', 'Last Name'],
@@ -35,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ['birthDate', 'Date of Birth'], ['mobile', 'Mobile Number'],
     ['association', 'Farmer Association'], ['role', 'Role'], ['province', 'Province'],
     ['municipality', 'Municipality'], ['barangay', 'Barangay'],
-    ['preTestAnsweredAt', 'Pre-Test Answer Date'],
   ];
   const hiddenByDefault = ['birthDate', 'mobile', 'role', 'province'];
   const state = { search: '', sex: '', filters: {}, sort: null, page: 1, perPage: 10,

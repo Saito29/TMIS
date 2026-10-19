@@ -4440,3 +4440,9 @@
     transition: none;
   }
 }
+.attachment-documents-card .attachment-add-button:disabled,
+.intervention-add-button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

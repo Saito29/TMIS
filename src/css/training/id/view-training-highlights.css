@@ -1,0 +1,8 @@
+.training-bottom-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.training-bottom-grid > .training-card { min-width: 0; min-height: 176px; padding: 16px; }
+.training-bottom-grid ul { margin: 0; padding-left: 29px; }
+.training-bottom-grid li { margin-bottom: 7px; padding-left: 2px; color: var(--color-text-secondary); font-size: 12px; }
+.training-bottom-grid li::marker { color: var(--color-primary); }
+@media (max-width: 700px) {
+  .training-stats, .training-dashboard-grid, .training-bottom-grid { grid-template-columns: 1fr; }
+  .training-dashboard-grid > :nth-child(2) { grid-column: auto; grid-row: auto; } }

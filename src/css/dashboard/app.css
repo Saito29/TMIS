@@ -304,10 +304,6 @@
   }
 }
 
-.app-main .app-main-body .sixth-row {
-  margin: 10px auto;
-}
-
 
 
 /* ============================================================
@@ -1314,128 +1310,6 @@
   background-color: #43a047;
   color: #f7f9f7;
   box-shadow: 4px 8px 24px rgba(38, 50, 56, 0.25);
-}
-
-/* ================================================= */
-/* Card Evalutation Result */
-/* ================================================ */
-.app-main .app-main-body .card-evaluation-result {
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  outline: 1px solid #e0e0e0;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(38, 50, 56, 0.06);
-  color: #263238;
-  overflow: visible;
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-
-/* When hovering the card evaluation result */
-.app-main .app-main-body .card-evaluation-result:hover {
-  box-shadow: 0 14px 32px rgba(38, 50, 56, 0.12);
-  transform: translateY(-2px);
-}
-
-/* card evaluation body wrapper */
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-/* card icon */
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-icon-evaluation {
-  background-color: #e8f5e9;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 72px;
-  width: 72px;
-}
-
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-icon-evaluation
-  i {
-  font-size: 32px;
-  color: #185e20;
-}
-
-/* card details */
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-details-evaluation {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  line-height: 1.3;
-  color: #263238;
-}
-
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-details-evaluation
-  .text-header {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-details-evaluation
-  .text-number {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-details-evaluation
-  .text-vs-percentage {
-  color: #43a047;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.app-main
-  .app-main-body
-  .card-evaluation-result
-  .card-body
-  .card-wrapper-evaluation
-  .card-details-evaluation
-  .text-vs-percentage
-  .text-dsb {
-  color: #808080;
 }
 
 /* Provincial and municipal training-fund allocation cards. */

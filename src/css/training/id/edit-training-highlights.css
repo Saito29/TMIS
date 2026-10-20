@@ -40,8 +40,9 @@
 .highlight-edit-size-label .form-control { width:72px; min-width:72px; }
 .highlight-edit-bullets { padding-top:16px; border-top:1px solid var(--color-border); }
 .highlight-edit-bullets textarea { min-height:110px; }
-.highlight-edit-bullet-preview { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; width:100%; max-width:900px; }
+.highlight-edit-bullet-preview { display:grid; grid-template-columns:1fr; gap:12px; width:100%; max-width:900px; }
 .highlight-edit-bullet-preview > div { min-width:0; padding:14px; border:1px solid var(--color-border); border-radius:9px; background:var(--color-surface); color:var(--color-text-primary); }
+.highlight-edit-bullet-preview > div[hidden] { display:none; }
 .highlight-edit-bullet-preview strong { font-size:12px; }
 .highlight-edit-bullet-preview ul { margin:8px 0 0; padding-left:18px; font-size:11px; line-height:1.5; }
 .highlight-edit-bullet-preview li + li { margin-top:5px; }
@@ -53,4 +54,4 @@
 .training-export-preview-overlay #trainingExportPreviewFooter .training-highlight-branding img { max-width:none; max-height:none; }
 .training-highlight-overlay:has(.training-highlight-branding) .training-highlight-copy { margin-bottom:42px; }
 @media (max-width:900px) { .training-highlight-edit-modal .training-export-layout { grid-template-columns:1fr; grid-template-rows:minmax(180px, 42dvh) minmax(0, 1fr); } }
-@media (max-width:600px) { .training-highlight-header-actions { flex-wrap:wrap; } .training-highlight-edit-modal .training-export-layout { grid-template-rows:minmax(150px, 34dvh) minmax(0, 1fr); } .training-highlight-edit-modal .training-export-preview-area { padding:12px; } .highlight-edit-bullet-preview { grid-template-columns:1fr; } .training-highlight-branding { bottom:12px; } }
+@media (max-width:600px) { .training-highlight-header-actions { flex-wrap:wrap; } .training-highlight-edit-modal .training-export-layout { grid-template-rows:minmax(0, 44dvh) minmax(0, 1fr); } .training-highlight-edit-modal .training-export-preview-area { gap:8px; padding:10px; } .training-highlight-edit-modal .highlight-edit-bullet-preview > div { padding:10px 12px; } .training-highlight-edit-modal .highlight-edit-bullet-preview ul { font-size:12px; } .training-highlight-branding { bottom:12px; } }

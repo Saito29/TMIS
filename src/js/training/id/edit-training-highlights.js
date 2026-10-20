@@ -175,6 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#highlightEditPreviewQuote').style.fontSize = `${size('#highlightEditQuoteSize', 20)}px`;
     renderBullets($('#highlightEditKeyPreview'), bulletItems('#highlightEditKeyBullets'));
     renderBullets($('#highlightEditForwardPreview'), bulletItems('#highlightEditForwardBullets'));
+    bulletPreview.children[0].hidden = selected !== 0;
+    bulletPreview.children[1].hidden = selected !== 1;
     title.textContent = $('#highlightEditTrainingTitle').value;
     title.style.fontSize = `${size('#highlightEditTitleSize', 18)}px`;
     title.style.fontWeight = $('#highlightEditBold').checked ? '700' : '400';

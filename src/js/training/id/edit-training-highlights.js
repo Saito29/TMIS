@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   modalElement.querySelector('.training-export-settings').append(bulletFields);
   const dashboardChoice = document.createElement('fieldset');
   dashboardChoice.className = 'training-export-section highlight-dashboard-choice';
-  dashboardChoice.innerHTML = '<legend class="training-export-label">Show in dashboard carousel</legend><p>Select the training slide to feature on the dashboard.</p><div class="highlight-dashboard-options"><label><input type="radio" name="highlightDashboardSlide" value="0" checked> Key Highlights</label><label><input type="radio" name="highlightDashboardSlide" value="1"> Ways Forward</label></div>';
+  dashboardChoice.innerHTML = '<legend class="training-export-label">Dashboard carousel</legend><p>Choose a slide to show, or hide the training slide from the dashboard.</p><div class="highlight-dashboard-options"><label><input type="radio" name="highlightDashboardSlide" value="0" checked> Show Key Highlights</label><label><input type="radio" name="highlightDashboardSlide" value="1"> Show Ways Forward</label><label><input type="radio" name="highlightDashboardSlide" value="-1"> Hide from dashboard</label></div>';
   bulletFields.after(dashboardChoice);
   const bulletPreview = document.createElement('div');
   bulletPreview.className = 'highlight-edit-bullet-preview';
@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const choiceRequest = db.transaction('slides', 'readonly').objectStore('slides').get('edit-training-dashboard-slide');
     choiceRequest.onsuccess = () => {
       const choice = Number(choiceRequest.result);
-      if (choice === 0 || choice === 1) form.querySelector(`[name="highlightDashboardSlide"][value="${choice}"]`).checked = true;
+      if (choice === -1 || choice === 0 || choice === 1) form.querySelector(`[name="highlightDashboardSlide"][value="${choice}"]`).checked = true;
     };
     const bulletRequest = db.transaction('slides', 'readonly').objectStore('slides').get('edit-training-bullets');
     bulletRequest.onsuccess = () => {

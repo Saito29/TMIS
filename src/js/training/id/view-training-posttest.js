@@ -42,38 +42,38 @@
   let selectedIndex = 0;
   let search = '';
   let answerDate = '';
+  let association = '';
   panel.innerHTML = `<section class="posttest-results-card training-card" aria-labelledby="posttestResultsTitle"><header class="training-evaluation-header"><div class="training-evaluation-heading"><span class="training-evaluation-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></span><div><span class="training-evaluation-eyebrow">Knowledge assessment</span><h2 id="posttestResultsTitle">Post-Test Questionnaires</h2><p>View participant scores for the selected post-test.</p></div></div><div class="posttest-select-wrap"><label for="posttestQuestionnaireSelect">Post-test questionnaire</label><select id="posttestQuestionnaireSelect" class="form-select">${items.map((item, index) => `<option value="${index}">${escape(item.name)}</option>`).join('')}</select></div></header>${items.length ? `<div class="posttest-selected-heading"><span class="posttest-selected-icon"><i class="bi bi-journal-check" aria-hidden="true"></i></span><div><strong id="posttestSelectedTitle"></strong><small id="posttestSelectedMeta"></small></div><span class="training-evaluation-sample">Sample participant scores</span></div><div class="training-evaluation-summary"><div><span>Participants scored</span><strong id="posttestParticipantCount"></strong></div><div><span>Questionnaire items</span><strong id="posttestItemCount"></strong></div><div><span>Average score</span><strong id="posttestAverageScore"></strong></div></div><div class="posttest-table-toolbar"><div><h3>Participant results</h3><p>Scores are shown for the selected questionnaire only.</p></div><label class="posttest-search"><i class="bi bi-search" aria-hidden="true"></i><span class="visually-hidden">Search participants</span><input id="posttestParticipantSearch" class="form-control" type="search" placeholder="Search participant" autocomplete="off"></label></div><div class="training-evaluation-table-wrap table-responsive"><table class="table posttest-results-table"><thead><tr><th scope="col">Participant full name</th><th scope="col">Training title</th><th scope="col">Post-test score</th><th scope="col">Percentage</th></tr></thead><tbody id="posttestResultsBody"></tbody></table></div><p id="posttestResultsCount" class="posttest-results-count" role="status" aria-live="polite"></p>` : '<div class="posttest-empty">No post-test questionnaires are linked to this training.</div>'}</section>`;
   if (!items.length) return;
   panel.querySelector('.training-evaluation-summary > div:first-child > span').textContent = 'Total participants';
   panel.querySelector('.posttest-search').insertAdjacentHTML('beforebegin', '<label class="posttest-date-filter"><span>Answer date</span><select id="posttestAnswerDateFilter" class="form-select" aria-label="Filter by post-test answer date"></select></label>');
+  panel.querySelector('.posttest-search').insertAdjacentHTML('beforebegin', '<label class="posttest-association-filter"><span>Farmer association</span><select id="posttestAssociationFilter" class="form-select" aria-label="Filter by farmer association"></select></label>');
   panel.querySelector('.posttest-results-table thead th:nth-child(3)').insertAdjacentHTML('beforebegin', '<th scope="col">Date answered</th>');
   panel.querySelector('.posttest-results-table thead th:nth-child(3)').insertAdjacentHTML('beforebegin', '<th scope="col">Farmer association</th>');
   const $ = selector => panel.querySelector(selector);
   function render() {
     const item = items[selectedIndex];
     const rows = scoreRows[selectedIndex];
-    const datedRows = rows.filter(row => !answerDate || row.answeredAt === answerDate);
-    const average = datedRows.length ? datedRows.reduce((sum, row) => sum + row.score, 0) / datedRows.length : null;
-    const dates = [...new Set(rows.map(row => row.answeredAt))].sort();
-    $('#posttestAnswerDateFilter').innerHTML = `<option value="">All answer dates</option>${dates.map(date => `<option value="${date}">${new Date(`${date}T00:00:00`).toLocaleDateString('en-PH', {year:'numeric', month:'short', day:'numeric'})}</option>`).join('')}`;
-    $('#posttestAnswerDateFilter').value = answerDate;
-    const shown = datedRows.filter(row => `${row.name} ${row.id} ${row.association}`.toLowerCase().includes(search));
+    const scopedRows = rows.filter(row => (!answerDate || row.answeredAt === answerDate) && (!association || row.association === association));
+    const average = scopedRows.length ? scopedRows.reduce((sum, row) => sum + row.score, 0) / scopedRows.length : null;
+    const shown = scopedRows.filter(row => `${row.name} ${row.id} ${row.association}`.toLowerCase().includes(search));
     $('#posttestQuestionnaireSelect').value = String(selectedIndex);
     $('#posttestSelectedTitle').textContent = item.name;
-    $('#posttestSelectedMeta').textContent = `${item.id} · ${trainingTitle}${answerDate && datedRows.length ? ` · ${datedRows[0].association}` : ''}`;
-    const totalForDate = answerDate
-      ? new Set(scoreRows.flat().filter(row => row.answeredAt === answerDate).map(row => row.id)).size
-      : roster.length;
-    $('#posttestParticipantCount').textContent = totalForDate;
+    $('#posttestSelectedMeta').textContent = `${item.id} · ${trainingTitle}${answerDate ? ` · ${new Date(`${answerDate}T00:00:00`).toLocaleDateString('en-PH', {year:'numeric', month:'short', day:'numeric'})}` : ''}${association ? ` · ${association}` : ''}`;
+    const totalForScope = new Set(scoreRows.flat().filter(row => (!answerDate || row.answeredAt === answerDate) && (!association || row.association === association)).map(row => row.id)).size;
+    $('#posttestParticipantCount').textContent = totalForScope;
     $('#posttestItemCount').textContent = item.itemCount ?? '—';
     $('#posttestAverageScore').innerHTML = average === null ? 'No scores yet' : `${average.toFixed(2)} <small>/ ${item.itemCount} (${(average / item.itemCount * 100).toFixed(1)}%)</small>`;
-    $('#posttestResultsBody').innerHTML = shown.length ? shown.map((row, index) => `<tr><th scope="row"><span class="posttest-row-number">${String(index + 1).padStart(2,'0')}</span><span><strong>${escape(row.name)}</strong><small>${escape(row.id)}</small></span></th><td>${escape(trainingTitle)}</td><td>${escape(row.association)}</td><td>${new Date(`${row.answeredAt}T00:00:00`).toLocaleDateString('en-PH', {year:'numeric', month:'short', day:'numeric'})}</td><td><span class="posttest-score">${row.score} <small>/ ${item.itemCount}</small></span></td><td>${(row.score / item.itemCount * 100).toFixed(1)}%</td></tr>`).join('') : `<tr><td colspan="6" class="posttest-empty">${datedRows.length ? 'No participants match your search.' : 'No participant scores are available for this date.'}</td></tr>`;
-    $('#posttestResultsCount').textContent = `Showing ${shown.length} of ${datedRows.length} scored participants${answerDate ? ' for the selected date' : ''}`;
+    $('#posttestResultsBody').innerHTML = shown.length ? shown.map((row, index) => `<tr><th scope="row"><span class="posttest-row-number">${String(index + 1).padStart(2,'0')}</span><span><strong>${escape(row.name)}</strong><small>${escape(row.id)}</small></span></th><td>${escape(trainingTitle)}</td><td>${escape(row.association)}</td><td>${new Date(`${row.answeredAt}T00:00:00`).toLocaleDateString('en-PH', {year:'numeric', month:'short', day:'numeric'})}</td><td><span class="posttest-score">${row.score} <small>/ ${item.itemCount}</small></span></td><td>${(row.score / item.itemCount * 100).toFixed(1)}%</td></tr>`).join('') : `<tr><td colspan="6" class="posttest-empty">${scopedRows.length ? 'No participants match your search.' : 'No participant scores are available for these filters.'}</td></tr>`;
+    $('#posttestResultsCount').textContent = `Showing ${shown.length} of ${scopedRows.length} scored participants${answerDate || association ? ' for the selected filters' : ''}`;
   }
-  $('#posttestQuestionnaireSelect').addEventListener('change', event => { selectedIndex = Number(event.target.value); search = ''; answerDate = ''; $('#posttestParticipantSearch').value = ''; $('#posttestAnswerDateFilter').value = ''; render(); });
+  $('#posttestQuestionnaireSelect').addEventListener('change', event => { selectedIndex = Number(event.target.value); search = ''; $('#posttestParticipantSearch').value = ''; render(); });
   $('#posttestParticipantSearch').addEventListener('input', event => { search = event.target.value.trim().toLowerCase(); render(); });
-  $('#posttestAnswerDateFilter').addEventListener('change', event => { answerDate = event.target.value; render(); });
-  render();
+  window.trainingFeedbackFilters.register($('#posttestAnswerDateFilter'), $('#posttestAssociationFilter'), scope => {
+    answerDate = scope.date;
+    association = scope.association;
+    render();
+  });
 });
 
 

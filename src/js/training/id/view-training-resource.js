@@ -91,11 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#resourceCommentList').innerHTML = visibleComments.length ? visibleComments.map(comment => `<article class="resource-comment"><span class="training-evaluation-avatar" aria-hidden="true">${escape(comment.farmer.split(' ').map(part => part[0]).slice(0,2).join(''))}</span><div><div class="resource-comment-heading"><strong>${escape(comment.farmer)}</strong><span>${comment.rating} <i class="bi bi-star-fill" aria-hidden="true"></i></span></div><p>${escape(comment.text)}</p></div></article>`).join('') : '<p class="evaluation-filter-empty">No farmer comments for these filters.</p>';
   }
   $('#resourcePersonSelect').addEventListener('change', event => { selectedResource = event.target.value; selectedQuestion = 1; selectedRating = null; render(); });
-  $('#resourceEvaluationDate').addEventListener('change', event => { selectedDate = event.target.value; selectedRating = null; render(); });
-  $('#resourceEvaluationAssociation').addEventListener('change', event => { selectedAssociation = event.target.value; selectedRating = null; render(); });
+  window.trainingFeedbackFilters.register($('#resourceEvaluationDate'), $('#resourceEvaluationAssociation'), scope => {
+    selectedDate = scope.date;
+    selectedAssociation = scope.association;
+    selectedRating = null;
+    render();
+  });
   $('#resourceEvaluationRows').addEventListener('click', event => { const button = event.target.closest('[data-question][data-rating]'); if (!button) return; const question = Number(button.dataset.question); const rating = Number(button.dataset.rating); selectedRating = selectedQuestion === question && selectedRating === rating ? null : rating; selectedQuestion = question; render(); });
   $('#resourceRatingTabs').addEventListener('click', event => { const button = event.target.closest('[data-detail-rating]'); if (!button) return; selectedRating = button.dataset.detailRating === 'all' ? null : Number(button.dataset.detailRating); render(); });
-  render();
   const overviewCard = document.querySelector('a[href="#resource-panel"][data-go-panel]')?.closest('article');
   overviewCard?.querySelectorAll('.person-row').forEach((row, index) => {
     const resource = resources[index];

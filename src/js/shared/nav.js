@@ -1,14 +1,14 @@
 /* Shared header and mobile navigation behavior. */
 document.addEventListener('DOMContentLoaded', () => {
   const mobileMainCollapses = {
-    participantMobile: ['createParticipantMobile', 'updateParticipantMobile', 'detailsParticipantMobile'],
-    trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile'],
+    participantMobile: ['createParticipantMobile', 'updateParticipantMobile', 'detailsParticipantMobile', 'createFarmerAssociationMobile', 'detailsFarmerAssociationMobile'],
+    trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile', 'createFacilitatorRpMobile', 'detailsFacilitatorRpMobile'],
     evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'updateEvaluationMobile', 'detailsEvaluationMobile'],
     administrationMobile: ['createAdministrationMobile', 'updateAdministrationMobile', 'detailsAdministrationMobile'],
   };
   const headerMainCollapses = {
-    participantHeaderCollapse: ['createParticipantHeaderCollapse', 'updateParticipantHeaderCollapse', 'detailsParticipantHeaderCollapse'],
-    trainingHeaderCollapse: ['createTrainingHeaderCollapse', 'updateTrainingHeaderCollapse', 'detailsTrainingHeaderCollapse'],
+    participantHeaderCollapse: ['createParticipantHeaderCollapse', 'updateParticipantHeaderCollapse', 'detailsParticipantHeaderCollapse', 'createFarmerAssociationHeaderCollapse', 'detailsFarmerAssociationHeaderCollapse'],
+    trainingHeaderCollapse: ['createTrainingHeaderCollapse', 'updateTrainingHeaderCollapse', 'detailsTrainingHeaderCollapse', 'createFacilitatorRpHeaderCollapse', 'detailsFacilitatorRpHeaderCollapse'],
     evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'updateEvaluationHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
     administrationHeaderCollapse: ['createAdministrationHeaderCollapse', 'updateAdministrationHeaderCollapse', 'detailsAdministrationHeaderCollapse'],
   };
@@ -69,17 +69,31 @@ document.addEventListener('DOMContentLoaded', () => {
     bootstrap.Collapse.getOrCreateInstance(element, { toggle: false }).hide();
   };
   const bindCollapseGroup = (groups) => {
+    let activeMainId = null;
     Object.entries(groups).forEach(([mainId, nestedIds]) => {
-      document.getElementById(mainId)?.addEventListener('show.bs.collapse', () => {
+      const main = document.getElementById(mainId);
+      let activeNestedId = null;
+      main?.addEventListener('show.bs.collapse', (event) => {
+        if (event.target !== main) return;
+        activeMainId = mainId;
         Object.entries(groups).forEach(([otherId, otherNestedIds]) => {
           if (otherId === mainId) return;
           hideCollapse(document.getElementById(otherId));
           otherNestedIds.forEach((id) => hideCollapse(document.getElementById(id)));
         });
       });
+      main?.addEventListener('shown.bs.collapse', (event) => {
+        if (event.target === main && activeMainId !== mainId) hideCollapse(main);
+      });
       nestedIds.forEach((nestedId) => {
-        document.getElementById(nestedId)?.addEventListener('show.bs.collapse', () => {
+        const nested = document.getElementById(nestedId);
+        nested?.addEventListener('show.bs.collapse', (event) => {
+          if (event.target !== nested) return;
+          activeNestedId = nestedId;
           nestedIds.filter((otherId) => otherId !== nestedId).forEach((otherId) => hideCollapse(document.getElementById(otherId)));
+        });
+        nested?.addEventListener('shown.bs.collapse', (event) => {
+          if (event.target === nested && activeNestedId !== nestedId) hideCollapse(nested);
         });
       });
     });

@@ -112,9 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
     renderRows();
     renderDetail();
   });
-  $('#trainingEvaluationDate').addEventListener('change', event => { selectedDate = event.target.value; selectedRating = null; renderFiltered(); });
-  $('#trainingEvaluationAssociation').addEventListener('change', event => { selectedAssociation = event.target.value; selectedRating = null; renderFiltered(); });
-  renderFiltered();
+  window.trainingFeedbackFilters.register($('#trainingEvaluationDate'), $('#trainingEvaluationAssociation'), scope => {
+    selectedDate = scope.date;
+    selectedAssociation = scope.association;
+    selectedRating = null;
+    renderFiltered();
+  });
 
   const overall = questions.reduce((accumulator, question) => {
     const {count, score} = stats(question);

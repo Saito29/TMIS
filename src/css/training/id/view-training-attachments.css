@@ -18,8 +18,8 @@
 .training-file-info strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--color-text-primary); font-size:13px; }
 .training-file-info span,.training-file-info small { color:var(--color-text-secondary); font-size:11px; }
 .training-file-actions { display:flex; gap:5px; }
-.training-file-actions button,.training-queue-remove { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--color-border); border-radius:8px; color:var(--color-text-secondary); background:var(--color-surface); }
-.training-file-actions button:hover,.training-queue-remove:hover { color:var(--color-primary-dark); background:var(--color-primary-surface); }
+.training-file-actions button,.training-file-actions a,.training-queue-remove { display:grid; place-items:center; width:32px; height:32px; border:1px solid var(--color-border); border-radius:8px; color:var(--color-text-secondary); background:var(--color-surface); text-decoration:none; }
+.training-file-actions button:hover,.training-file-actions a:hover,.training-queue-remove:hover { color:var(--color-primary-dark); background:var(--color-primary-surface); }
 .training-queue-table { margin:0; color:var(--color-text-primary); font-size:12px; }
 .training-queue-table th { color:var(--color-text-secondary); font-size:11px; font-weight:700; white-space:nowrap; }
 .training-queue-table td { min-width:90px; vertical-align:middle; }
@@ -34,6 +34,29 @@
 .training-queue-footer { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:12px; padding-top:16px; color:var(--color-text-secondary); font-size:12px; }
 #trainingQueueFeedback { margin-right:auto; color:var(--color-success); }
 @media (max-width:600px) { .training-document-header,.training-document-body { padding:16px; } .training-add-attachment { width:100%; justify-content:center; } .training-document-item { flex-wrap:wrap; } .training-file-actions { margin-left:auto; } }
+
+.training-carousel-body { padding:20px 24px 24px; }
+.training-carousel-stage { display:grid; place-items:center; height:min(54vh,480px); min-height:280px; overflow:hidden; border-radius:12px; background:var(--color-bg); }
+.training-carousel-stage img,.training-carousel-stage iframe { width:100%; height:100%; border:0; object-fit:contain; }
+.training-carousel-details { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 2px; }
+.training-carousel-file { display:flex; align-items:center; gap:12px; min-width:0; }
+.training-carousel-file > i { color:var(--color-primary); font-size:26px; }
+.training-carousel-file > div { display:grid; gap:3px; min-width:0; }
+.training-carousel-file strong { overflow-wrap:anywhere; color:var(--color-text-primary); font-size:13px; }
+.training-carousel-file span,.training-carousel-file small { color:var(--color-text-secondary); font-size:11px; }
+.training-carousel-controls { display:flex; align-items:center; justify-content:center; gap:16px; padding:4px 0 16px; color:var(--color-text-secondary); font-size:12px; }
+.training-carousel-controls button { display:grid; place-items:center; width:34px; height:34px; border:1px solid var(--color-border); border-radius:50%; color:var(--color-text-primary); background:var(--color-surface); }
+.training-carousel-controls button:disabled { opacity:.4; cursor:default; }
+.training-carousel-thumbnails { display:flex; gap:10px; overflow-x:auto; padding:2px 2px 8px; }
+.training-carousel-thumbnails button { display:flex; align-items:center; gap:8px; flex:0 0 auto; max-width:220px; padding:6px 10px; border:1px solid var(--color-border); border-radius:9px; color:var(--color-text-secondary); background:var(--color-surface); font-size:11px; }
+.training-carousel-thumbnails button.is-active { border-color:var(--color-primary); color:var(--color-primary-dark); background:var(--color-primary-surface); }
+.training-carousel-thumbnails img { width:34px; height:34px; border-radius:5px; object-fit:cover; }
+.training-carousel-thumbnails i { font-size:26px; }
+.training-carousel-thumbnails span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.training-carousel-empty { color:var(--color-text-secondary); font-size:13px; }
+.training-attachment-preview-modal .modal-body { display:grid; place-items:center; height:min(78vh,850px); padding:12px; background:var(--color-bg); }
+.training-attachment-preview-modal .modal-body img,.training-attachment-preview-modal .modal-body iframe { width:100%; height:100%; border:0; object-fit:contain; }
+@media (max-width:600px) { .training-carousel-body { padding:16px; } .training-carousel-stage { height:45vh; min-height:220px; } .training-carousel-details { align-items:flex-start; flex-direction:column; } }
 .training-edit-modal .modal-content { border:1px solid var(--color-border); border-radius:14px; color:var(--color-text-primary); background:var(--color-surface); }
 .training-edit-modal .modal-header { align-items:flex-start; background:var(--color-primary-surface); border-bottom-color:var(--color-border); }
 .training-edit-modal .modal-header small { color:var(--color-primary-dark); font-size:11px; font-weight:700; }

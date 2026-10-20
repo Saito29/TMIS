@@ -1,7 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
   const panel = document.getElementById('attachments-panel');
   if (!panel) return;
-  const library = [];
+  const samplePdf = (title, lines) => {
+    const content = [`BT /F1 18 Tf 50 760 Td (${title}) Tj`, ...lines.map((line, index) => `${index ? '0 -22 Td' : '0 -36 Td'} /F1 11 Tf (${line}) Tj`), 'ET'].join('\n');
+    const objects = [
+      '<< /Type /Catalog /Pages 2 0 R >>',
+      '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+      '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
+      '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
+      `<< /Length ${content.length} >>\nstream\n${content}\nendstream`
+    ];
+    let pdf = '%PDF-1.4\n';
+    const offsets = [0];
+    objects.forEach((object, index) => { offsets.push(pdf.length); pdf += `${index + 1} 0 obj\n${object}\nendobj\n`; });
+    const xref = pdf.length;
+    pdf += `xref\n0 ${objects.length + 1}\n0000000000 65535 f \n${offsets.slice(1).map(offset => `${String(offset).padStart(10, '0')} 00000 n \n`).join('')}trailer\n<< /Size ${objects.length + 1} /Root 1 0 R >>\nstartxref\n${xref}\n%%EOF`;
+    return new Blob([pdf], {type:'application/pdf'});
+  };
+  const samples = [
+    {name:'GAP Training Program.pdf', type:'Training Program', year:'2025', remarks:'Sample agenda for May 22-23, 2025.', title:'GAP Training Program', lines:['May 22-23, 2025 - Tanauan City', 'Day 1: GAP principles and farm safety', 'Day 2: Field demonstration and workshop']},
+    {name:'GAP Training Materials.pdf', type:'Training Materials', year:'2025', remarks:'Sample participant handout.', title:'GAP Training Materials', lines:['Good Agricultural Practices', 'Farm hygiene and record keeping', 'Safe handling and sustainable production']}
+  ].map(item => { const file = samplePdf(item.title, item.lines); return {...item, file: {name:item.name, type:file.type, size:file.size}, url:URL.createObjectURL(file)}; });
+  const fileSize = bytes => bytes < 1048576 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / 1048576).toFixed(2)} MB`;
+  if (panel.hasAttribute('data-attachments-readonly')) {
+    panel.innerHTML = '<section class="training-document-card training-card"><header class="training-document-header"><div class="training-document-heading"><span class="training-document-icon"><i class="bi bi-file-earmark-text"></i></span><div><h2>Attachment Documents</h2><p>Sample supporting documents for this training.</p></div></div></header><div class="training-document-body" id="trainingDocumentList"></div></section>';
+    panel.querySelector('#trainingDocumentList').innerHTML = samples.map(item => `<article class="training-document-item"><span class="training-file-icon"><i class="bi bi-file-earmark-pdf"></i></span><div class="training-file-info"><strong>${item.name}</strong><span>${item.type} · ${item.year} · ${fileSize(item.file.size)}</span><small>${item.remarks}</small></div><div class="training-file-actions"><a href="${item.url}" target="_blank" rel="noopener" aria-label="View ${item.name}" title="View"><i class="bi bi-eye"></i></a><a href="${item.url}" download="${item.name}" aria-label="Download ${item.name}" title="Download"><i class="bi bi-download"></i></a></div></article>`).join('');
+    return;
+  }
+  const library = [...samples];
   const queue = [];
   const types = ['Training Program', 'Attendance Sheet', 'Training Materials', 'Photos', 'Other Files'];
   const escape = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));

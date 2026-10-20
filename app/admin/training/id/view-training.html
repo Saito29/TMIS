@@ -65,7 +65,7 @@
     <link rel="stylesheet" href="../../../../src/css/training/id/view-training-resource.css" />
     <link rel="stylesheet" href="../../../../src/css/training/id/view-training-evaluation.css" />
     <link rel="stylesheet" href="../../../../src/css/training/id/view-training-highlights.css" />
-    <link rel="stylesheet" href="../../../../src/css/training/id/view-training-attachments.css" />
+    <link rel="stylesheet" href="../../../../src/css/training/id/view-training-attachments-cards.css" />
     <link rel="stylesheet" href="../../../../src/css/training/id/view-training-logs.css" />
     <link rel="stylesheet" href="../../../../src/css/shared/theme.css" />
     <script src="../../../../src/js/shared/theme.js" defer></script>
@@ -935,7 +935,7 @@
           <section id="resource-panel" class="training-panel" role="tabpanel" aria-labelledby="resource-tab" hidden></section>
           <section id="evaluation-panel" class="training-panel" role="tabpanel" aria-labelledby="evaluation-tab" hidden></section>
           <section id="highlights-panel" class="training-panel" role="tabpanel" aria-labelledby="highlights-tab" hidden></section>
-          <section id="attachments-panel" class="training-panel" role="tabpanel" aria-labelledby="attachments-tab" hidden></section>
+          <section id="attachments-panel" class="training-panel" role="tabpanel" aria-labelledby="attachments-tab" data-attachments-readonly hidden></section>
           <section id="logs-panel" class="training-panel" role="tabpanel" aria-labelledby="logs-tab" hidden></section>
         </div>
       </main>
@@ -1849,40 +1849,6 @@
       </div>
     </div>
 
-    <!-- Add attachment dialog -->
-    <div class="modal fade" id="addDocumentModal" tabindex="-1" aria-labelledby="addDocumentModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable attachment-form-dialog">
-        <div class="modal-content review-modal-content attachment-modal">
-          <form id="addAttachmentForm" class="attachment-form">
-            <div class="modal-header review-modal-header">
-              <div class="review-modal-heading">
-                <span class="review-modal-icon" aria-hidden="true"><i class="bi bi-file-earmark-plus"></i></span>
-                <div>
-                  <span class="review-modal-eyebrow">Farmer documents</span>
-                  <h5 class="modal-title" id="addDocumentModalLabel">Upload attachments</h5>
-                  <p>Choose image or PDF files. Set each file's type and year in the queue before saving.</p>
-                </div>
-              </div>
-              <button type="button" class="btn review-modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
-            </div>
-            <div class="modal-body review-modal-body">
-              <label class="form-label" for="attachmentFiles">Choose files</label>
-              <input class="form-control" id="attachmentFiles" name="attachmentFiles" type="file" accept=".pdf,.jpg,.jpeg,.png,image/jpeg,image/png,application/pdf" multiple />
-              <div class="form-text">Accepted formats: PDF, JPG, and PNG. Files are staged for review before being added to the library.</div>
-              <div class="form-text text-danger" id="uploadAttachmentFeedback" role="alert"></div>
-            </div>
-            <div class="modal-footer review-modal-footer">
-              <span><i class="bi bi-info-circle me-1" aria-hidden="true"></i>Files are staged before they are added.</span>
-              <div>
-                <button type="button" class="btn review-modal-dismiss" data-bs-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn attachment-submit-button"><i class="bi bi-list-check me-1" aria-hidden="true"></i>Stage files</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
     <!-- Edit attachment dialog -->
     <div class="modal fade" id="editAttachmentModal" tabindex="-1" aria-labelledby="editAttachmentModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable attachment-form-dialog">
@@ -1994,7 +1960,7 @@
     <script src="../../../../src/js/training/id/view-training-resource.js"></script>
     <script src="../../../../src/js/training/id/view-training-evaluation.js"></script>
     <script src="../../../../src/js/training/id/view-training-highlights.js"></script>
-    <script src="../../../../src/js/training/id/view-training-attachments.js"></script>
+    <script src="../../../../src/js/training/id/view-training-attachments-cards.js"></script>
     <script src="../../../../src/js/training/id/view-training-logs.js"></script>
   </body>
 </html>

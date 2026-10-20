@@ -16,6 +16,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!form || !steps.length || !fieldsets.length) return;
 
+  const trainerSelect = trainerList?.querySelector('select[name="trainer_name[]"]');
+  const staticTrainers = [...(trainerSelect?.options || [])].filter((option) => option.value).map((option) => ({
+    name: option.value,
+    organization: option.dataset.organization || '',
+  }));
+  const registeredRps = new Map();
+  const rpName = (record) => [
+    ...(record.title === 'RAgr' ? [] : [record.title]),
+    record.first_name, record.middle_name, record.last_name, record.suffix,
+    ...(record.title === 'RAgr' ? ['RAgr'] : []),
+  ].map((part) => String(part || '').trim()).filter(Boolean).join(' ');
+  const syncTrainerContact = (row) => {
+    const phone = row?.querySelector('input[name="trainer_contact[]"]');
+    const email = row?.querySelector('input[name="trainer_email[]"]');
+    if (!phone || !email) return;
+    phone.required = !email.value.trim();
+    email.required = !phone.value.trim() && Boolean(email.value.trim());
+  };
+  const fillTrainerRow = (row) => {
+    const selected = row?.querySelector('select[name="trainer_name[]"]')?.selectedOptions[0];
+    const rp = registeredRps.get(selected?.dataset.rpId);
+    const rpId = row?.querySelector('input[name="trainer_rp_id[]"]');
+    if (rpId) rpId.value = rp?.id || '';
+    const values = {
+      'trainer_organization[]': rp?.office || selected?.dataset.organization || '',
+      'trainer_qualification[]': rp?.qualification || '',
+      'trainer_expertise[]': rp?.expertise || '',
+      'trainer_contact[]': rp?.phone || '',
+      'trainer_email[]': rp?.email || '',
+    };
+    Object.entries(values).forEach(([name, value]) => {
+      const input = row?.querySelector(`input[name="${name}"]`);
+      if (input) input.value = value;
+    });
+    syncTrainerContact(row);
+  };
+  const refreshRegisteredRps = () => {
+    let saved = [];
+    try {
+      const parsed = JSON.parse(localStorage.getItem('tmis-resource-persons') || '[]');
+      if (Array.isArray(parsed)) saved = parsed;
+    } catch { saved = []; }
+    registeredRps.clear();
+    saved.filter((record) => record?.id && record.status !== 'Inactive').forEach((record) => registeredRps.set(record.id, record));
+    trainerList?.querySelectorAll('select[name="trainer_name[]"]').forEach((select) => {
+      const selectedId = select.selectedOptions[0]?.dataset.rpId;
+      const selectedName = select.value;
+      const placeholder = new Option('Select a trainer/facilitator', '');
+      placeholder.disabled = true;
+      const samples = document.createElement('optgroup'); samples.label = 'Sample trainers';
+      staticTrainers.forEach(({ name, organization }) => { const option = new Option(name, name); option.dataset.organization = organization; samples.append(option); });
+      const registered = document.createElement('optgroup'); registered.label = 'Registered resource persons';
+      registeredRps.forEach((record, id) => { const name = rpName(record); if (!name) return; const option = new Option(name, name); option.dataset.rpId = id; registered.append(option); });
+      select.replaceChildren(placeholder, samples, registered);
+      const match = selectedId ? [...select.options].find((option) => option.dataset.rpId === selectedId) : [...select.options].find((option) => !option.dataset.rpId && option.value === selectedName);
+      if (match) match.selected = true;
+      else select.selectedIndex = 0;
+      if (selectedId && !match) fillTrainerRow(select.closest('[data-repeat-row]'));
+    });
+    updateWizard();
+  };
+
   let currentStep = Number(
     document.querySelector('#wizard-steps .is-current, #wizard-steps .active')?.dataset.step ?? 0
   );
@@ -269,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     list.append(row);
+    if (list === trainerList) syncTrainerContact(row);
     observeControls(row);
     refreshRepeatList(list);
     row.querySelector('input, select, textarea')?.focus();
@@ -298,30 +361,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   form.querySelectorAll('.repeat-list').forEach(refreshRepeatList);
+  refreshRegisteredRps();
+  trainerList?.querySelectorAll('[data-repeat-row]').forEach(syncTrainerContact);
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'tmis-resource-persons') refreshRegisteredRps();
+  });
 
-  // Selecting a registered trainer fills their organization affiliation.
+  // Selecting a resource person fills every detail available in the RP record.
   form.addEventListener('change', (event) => {
     const nameSelect = event.target.closest('select[name="trainer_name[]"]');
     if (!nameSelect) return;
-
-    const row = nameSelect.closest('[data-repeat-row]');
-    const organization = row?.querySelector('input[name="trainer_organization[]"]');
-    if (!organization) return;
-
-    organization.value = nameSelect.selectedOptions[0]?.dataset.organization || '';
+    fillTrainerRow(nameSelect.closest('[data-repeat-row]'));
     updateWizard();
   });
 
-  // Only digits are accepted in the mobile number fields (any row).
   form.addEventListener('input', (event) => {
-    if (event.target.matches('input[name="trainer_contact[]"]')) {
-      // Keep digits only, and drop a pasted leading 63 or 0 (e.g. 0917..., +63917...)
-      // so that only the 10-digit number after +63 remains.
-      let digits = event.target.value.replace(/\D/g, '');
-      if (digits.length > 10 && digits.startsWith('63')) digits = digits.slice(2);
-      else if (digits.length > 10 && digits.startsWith('0')) digits = digits.slice(1);
-      event.target.value = digits.slice(0, 10);
-    }
+    if (event.target.matches('input[name="trainer_contact[]"], input[name="trainer_email[]"]'))
+      syncTrainerContact(event.target.closest('[data-repeat-row]'));
   });
 
   /* ------------------------------------------------------------------

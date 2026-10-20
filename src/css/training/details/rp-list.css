@@ -1,0 +1,11 @@
+#rpColumns[hidden], #rpEmpty[hidden] { display: none !important; }
+#rpPaginationTop, #rpPaginationBottom { gap: .35rem; flex-wrap: wrap; }
+#rpTable td { vertical-align: middle; }
+.rp-row-actions { white-space: nowrap; }
+.rp-row-actions .btn + .btn { margin-left: .35rem; }
+.rp-row-actions .btn { min-width: 2rem; min-height: 2rem; display: inline-flex; align-items: center; justify-content: center; }
+#rpColumnFilters th { min-width: 110px; padding: .5rem; background: #f7faf7; }
+#rpColumnFilters th:first-child { min-width: 120px; }
+#rpColumnFilters input { min-width: 100px; }
+.rp-page-links { display: flex; flex-wrap: wrap; gap: .5rem; }
+.rp-page-links .btn { border-radius: 9px; }

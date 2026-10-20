@@ -1089,6 +1089,7 @@
                                 <option value="Liza Villanueva" data-organization="Quezon State University">Liza Villanueva</option>
                                 <option value="Carlo Dela Cruz" data-organization="Local Government Unit - Quezon">Carlo Dela Cruz</option>
                               </select>
+                              <input type="hidden" name="trainer_rp_id[]" value="" />
                             </div>
                             <div class="col-12 col-lg-6 mb-3">
                               <label
@@ -1111,7 +1112,7 @@
                               <label
                                 for="trainer_qualification_1"
                                 class="form-label"
-                                >Qualification/ Expertise
+                                >Qualification
                                 <span class="text-optional">(optional)</span></label
                               >
                               <input
@@ -1119,27 +1120,28 @@
                                 id="trainer_qualification_1"
                                 name="trainer_qualification[]"
                                 class="form-control"
-                                placeholder="Enter qualification/expertise"
+                                placeholder="Automatically filled when available"
                               />
+                            </div>
+                            <div class="col-12 mb-3">
+                              <label for="trainer_expertise_1" class="form-label">Expertise <span class="text-optional">(optional)</span></label>
+                              <input type="text" id="trainer_expertise_1" name="trainer_expertise[]" class="form-control" placeholder="Automatically filled when available" />
                             </div>
                             <div class="col-12 col-lg-6 mb-3">
                               <label for="trainer_contact_1" class="form-label"
                                 >Contact Number
-                                <span class="text-required">*</span></label
+                                <span class="text-optional">(phone or email required)</span></label
                               >
-                              <div class="input-group">
-                                <span class="input-group-text">+63</span>
-                                <input
-                                  type="tel"
-                                  id="trainer_contact_1"
-                                  name="trainer_contact[]"
-                                  class="form-control"
-                                  inputmode="numeric"
-                                  placeholder="9XXXXXXXXX"
-                                  pattern="[0-9]{10}"
-                                  required
-                                />
-                              </div>
+                              <input
+                                type="tel"
+                                id="trainer_contact_1"
+                                name="trainer_contact[]"
+                                class="form-control"
+                                inputmode="tel"
+                                maxlength="20"
+                                placeholder="e.g. 0917 123 4567"
+                                required
+                              />
                             </div>
                             <div class="col-12 col-lg-6 mb-3">
                               <label for="trainer_email_1" class="form-label"

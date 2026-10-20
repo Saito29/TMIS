@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Edit Resource Person | TMIS</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="../../../../src/css/training/details/rp-record.css" rel="stylesheet">
+  <script src="../../../../src/js/training/details/rp-record.js" defer></script>
+</head>
+<body data-mode="edit">
+  <main class="container py-4 py-lg-5">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4"><div><a href="../details/rp-list.html" class="text-decoration-none small"><i class="bi bi-arrow-left"></i> Resource persons</a><h1 class="h3 mt-2 mb-1">Edit Resource Person</h1><p class="text-secondary mb-0" id="recordId"></p></div><a id="viewLink" class="btn btn-outline-success" href="#"><i class="bi bi-eye me-1"></i>View record</a></div>
+    <div id="recordMissing" class="alert alert-warning" hidden>Resource person record not found. It may have been deleted.</div>
+    <form id="recordForm" class="card shadow-sm" hidden><div class="card-body">
+      <h2 class="h5 section-heading">Personal information</h2><div class="row g-3 mb-4"><div class="col-md-3"><label class="form-label" for="title">Professional title</label><input class="form-control" name="title" id="title" maxlength="40"></div><div class="col-md-3"><label class="form-label" for="first_name">First name *</label><input class="form-control" name="first_name" id="first_name" required maxlength="80"></div><div class="col-md-3"><label class="form-label" for="middle_name">Middle name</label><input class="form-control" name="middle_name" id="middle_name" maxlength="80"></div><div class="col-md-3"><label class="form-label" for="last_name">Last name *</label><input class="form-control" name="last_name" id="last_name" required maxlength="80"></div><div class="col-md-3"><label class="form-label" for="suffix">Suffix</label><input class="form-control" name="suffix" id="suffix" maxlength="20"></div></div>
+      <h2 class="h5 section-heading">Affiliation</h2><div class="row g-3 mb-4"><div class="col-md-6"><label class="form-label" for="office">Office / Designation *</label><input class="form-control" name="office" id="office" required maxlength="150"></div><div class="col-md-6"><label class="form-label" for="qualification">Qualification</label><input class="form-control" name="qualification" id="qualification" maxlength="200"></div><div class="col-md-6"><label class="form-label" for="status">Status</label><select class="form-select" name="status" id="status"><option value="Active">Active</option><option value="Inactive">Inactive</option></select></div><div class="col-12"><label class="form-label" for="expertise">Expertise</label><textarea class="form-control" name="expertise" id="expertise" rows="3" maxlength="500"></textarea></div></div>
+      <h2 class="h5 section-heading">Contact information</h2><div class="row g-3"><div class="col-md-6"><label class="form-label" for="phone">Phone number</label><input class="form-control" name="phone" id="phone" type="tel" maxlength="20"></div><div class="col-md-6"><label class="form-label" for="email">Email address</label><input class="form-control" name="email" id="email" type="email" maxlength="150"></div></div><p class="form-text">Enter a phone number or email address.</p>
+    </div><div class="card-footer bg-white d-flex flex-wrap align-items-center justify-content-between gap-2"><span id="saveStatus" role="status" aria-live="polite"></span><button class="btn btn-success" type="submit"><i class="bi bi-check2 me-1"></i>Save changes</button></div></form>
+  </main>
+</body>
+</html>

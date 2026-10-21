@@ -3577,7 +3577,7 @@
 
 .training-data-panel-body {
   display: grid;
-  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 3.2fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 18px;
   padding: 16px;
@@ -3961,7 +3961,7 @@
 
 @media (max-width: 991.98px) {
   .training-data-panel-body {
-    grid-template-columns: minmax(190px, 0.75fr) minmax(0, 2fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 12px;
     padding: 12px;
   }

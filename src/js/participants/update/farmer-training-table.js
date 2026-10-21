@@ -367,17 +367,5 @@ document.addEventListener('DOMContentLoaded', () => {
     window.XLSX.writeFile(workbook, 'farmer-training-records.xlsx');
   });
 
-  const completedRecords = records.filter((record) => record.postTest > 0);
-  const average = (key) =>
-    Math.round(
-      completedRecords.reduce((sum, record) => sum + record[key], 0) /
-        completedRecords.length
-    );
-  document.getElementById('trainingTotal').textContent = records.length;
-  document.getElementById('trainingAveragePre').textContent =
-    `${average('preTest')}%`;
-  document.getElementById('trainingAveragePost').textContent =
-    `${average('postTest')}%`;
-
   render();
 });

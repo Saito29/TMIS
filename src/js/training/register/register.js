@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'Add the trainer/ facilitator information.',
     "You're doing great! Continue filling out the details.",
     'Define who the training is for.',
-    'Almost there! Choose the pre & post-test questionnaires.',
     "You're almost done! Review and submit.",
   ];
 
@@ -290,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------
-     Repeatable rows (trainers, pre-test and post-test questionnaires)
+     Repeatable trainer rows
   ------------------------------------------------------------------ */
   let rowCounter = 100;
 
@@ -301,7 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const title = row.querySelector('.row-title');
       if (title) title.textContent = `Trainer/ Facilitator ${index + 1}`;
 
-      // The first row can never be removed; every list keeps at least one row.
+      // The first trainer row can never be removed.
       row.querySelector('[data-remove-row]')?.classList.toggle('d-none', rows.length === 1);
     });
   };
@@ -339,14 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addTrainerButton?.addEventListener('click', () => addRow(trainerList));
 
-  form.querySelectorAll('[data-add-target]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const list = document.getElementById(button.dataset.addTarget);
-      if (list) addRow(list);
-    });
-  });
-
-  // One delegated handler removes a row from whichever list contains it.
+  // Remove a trainer row while keeping at least one row.
   form.addEventListener('click', (event) => {
     const removeButton = event.target.closest('[data-remove-row]');
     if (!removeButton) return;

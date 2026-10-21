@@ -59,7 +59,7 @@
       rel="stylesheet"
       href="../../../../src/css/training/id/view-training.css"
     />
-    <link rel="stylesheet" href="../../../../src/css/training/id/view-rp.css" />
+    <link rel="stylesheet" href="../../../../src/css/training/id/view-rp.css?v=14" />
     <link rel="stylesheet" href="../../../../src/css/shared/theme.css" />
     <script src="../../../../src/js/shared/theme.js" defer></script>
     <title>DA-TMIS - View Resource Person</title>
@@ -841,7 +841,7 @@
             <div class="training-header-actions"><a class="btn training-back" href="../details/rp-list.html"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Resource Persons</a><a class="btn training-edit" id="rpEditLink" href="#"><i class="bi bi-pencil-square" aria-hidden="true"></i> Edit Resource Person</a></div>
           </header>
           <nav class="training-tabs" id="rpTabs" aria-label="Resource person sections" role="tablist">
-            <button class="training-tab active" id="rpOverviewTab" type="button" role="tab" aria-selected="true" aria-controls="rpOverviewPanel"><i class="bi bi-house" aria-hidden="true"></i>Overview</button>
+            <button class="training-tab active" id="rpOverviewTab" type="button" role="tab" aria-selected="true" aria-controls="rpOverviewPanel"><i class="bi bi-person-vcard" aria-hidden="true"></i>Personal Information</button>
             <button class="training-tab" id="rpTrainingsTab" type="button" role="tab" aria-selected="false" aria-controls="rpTrainingsPanel" tabindex="-1"><i class="bi bi-mortarboard" aria-hidden="true"></i>Trainings Facilitated</button>
             <button class="training-tab" id="rpEvaluationTab" type="button" role="tab" aria-selected="false" aria-controls="rpEvaluationPanel" tabindex="-1"><i class="bi bi-star" aria-hidden="true"></i>Resource Person Evaluation</button>
             <button class="training-tab" id="rpLogsTab" type="button" role="tab" aria-selected="false" aria-controls="rpLogsPanel" tabindex="-1"><i class="bi bi-clock-history" aria-hidden="true"></i>Activity Logs</button>
@@ -862,9 +862,28 @@
               </div>
             </div>
           </section>
-          <section id="rpTrainingsPanel" class="training-panel" role="tabpanel" aria-labelledby="rpTrainingsTab" hidden><div class="rp-placeholder"><h2>Trainings Facilitated</h2><p>Training involvement will be added in the next step.</p></div></section>
-          <section id="rpEvaluationPanel" class="training-panel" role="tabpanel" aria-labelledby="rpEvaluationTab" hidden><div class="rp-placeholder"><h2>Resource Person Evaluation</h2><p>Evaluation results and feedback will be added in the next step.</p></div></section>
-          <section id="rpLogsPanel" class="training-panel" role="tabpanel" aria-labelledby="rpLogsTab" hidden><div class="rp-placeholder"><h2>Activity Logs</h2><p>Record activity will be added in the next step.</p></div></section>
+          <section id="rpTrainingsPanel" class="training-panel" role="tabpanel" aria-labelledby="rpTrainingsTab" hidden>
+            <div class="rp-training-heading"><div><span class="rp-section-eyebrow">Training involvement</span><h2>Trainings Facilitated</h2><p id="rpTrainingDescription">Training information associated with this resource person.</p></div><span class="rp-training-count" id="rpTrainingCount"></span></div>
+            <nav class="rp-training-pagination rp-training-pagination-top" aria-label="Training pages above cards" hidden><div class="rp-training-page-size"><label for="rpTrainingPageSizeTop">Rows per page</label><select id="rpTrainingPageSizeTop" data-training-page-size><option value="8" selected>8</option><option value="16">16</option><option value="32">32</option><option value="64">64</option><option value="128">128</option><option value="500">500</option><option value="1000">1000</option><option value="all">All</option></select></div><span data-training-page-summary></span><div class="rp-training-page-actions"><button type="button" data-training-previous aria-label="Previous training page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span class="rp-training-page-numbers" data-training-page-numbers></span><button type="button" data-training-next aria-label="Next training page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button></div></nav>
+            <div class="rp-training-cards" id="rpTrainingCards"></div>
+            <nav class="rp-training-pagination" aria-label="Training pages below cards" hidden><div class="rp-training-page-size"><label for="rpTrainingPageSizeBottom">Rows per page</label><select id="rpTrainingPageSizeBottom" data-training-page-size><option value="8" selected>8</option><option value="16">16</option><option value="32">32</option><option value="64">64</option><option value="128">128</option><option value="500">500</option><option value="1000">1000</option><option value="all">All</option></select></div><span data-training-page-summary></span><div class="rp-training-page-actions"><button type="button" data-training-previous aria-label="Previous training page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span class="rp-training-page-numbers" data-training-page-numbers></span><button type="button" data-training-next aria-label="Next training page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button></div></nav>
+            <div class="rp-placeholder" id="rpTrainingEmpty" hidden><h2>No trainings recorded</h2><p>Trainings assigned to this resource person will appear here.</p></div>
+          </section>
+          <section id="rpEvaluationPanel" class="training-panel" role="tabpanel" aria-labelledby="rpEvaluationTab" hidden>
+            <div class="rp-evaluation-heading"><div><span class="rp-section-eyebrow">Training feedback</span><h2>Resource Person Evaluation</h2><p id="rpEvaluationDescription">Ratings and comments from trainings facilitated by this resource person.</p></div></div>
+            <div class="rp-evaluation-toolbar"><label for="rpEvaluationSearch" class="visually-hidden">Search evaluations</label><i class="bi bi-search" aria-hidden="true"></i><input id="rpEvaluationSearch" type="search" placeholder="Search training, location, farmer or feedback" autocomplete="off" /></div>
+            <nav class="rp-evaluation-pagination rp-evaluation-pagination-top" aria-label="Evaluation pages above table"><div class="rp-evaluation-page-size"><label for="rpEvaluationPageSizeTop">Rows per page</label><select id="rpEvaluationPageSizeTop" data-evaluation-page-size><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option><option value="100">100</option><option value="500">500</option><option value="1000">1000</option><option value="all">All</option></select></div><span data-evaluation-summary></span><div class="rp-evaluation-page-actions"><button type="button" data-evaluation-previous aria-label="Previous evaluation page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span data-evaluation-page-numbers></span><button type="button" data-evaluation-next aria-label="Next evaluation page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button></div></nav>
+            <div class="rp-evaluation-table-wrap"><table class="rp-evaluation-table"><thead><tr><th scope="col">Training title</th><th scope="col">Location</th><th scope="col">Rating</th><th scope="col"><span class="visually-hidden">Feedback details</span></th></tr></thead><tbody id="rpEvaluationRows"></tbody></table></div>
+            <nav class="rp-evaluation-pagination" aria-label="Evaluation pages below table"><div class="rp-evaluation-page-size"><label for="rpEvaluationPageSizeBottom">Rows per page</label><select id="rpEvaluationPageSizeBottom" data-evaluation-page-size><option value="10" selected>10</option><option value="20">20</option><option value="50">50</option><option value="100">100</option><option value="500">500</option><option value="1000">1000</option><option value="all">All</option></select></div><span data-evaluation-summary></span><div class="rp-evaluation-page-actions"><button type="button" data-evaluation-previous aria-label="Previous evaluation page"><i class="bi bi-chevron-left" aria-hidden="true"></i></button><span data-evaluation-page-numbers></span><button type="button" data-evaluation-next aria-label="Next evaluation page"><i class="bi bi-chevron-right" aria-hidden="true"></i></button></div></nav>
+          </section>
+          <section id="rpLogsPanel" class="training-panel" role="tabpanel" aria-labelledby="rpLogsTab" hidden>
+            <div class="rp-log-panel">
+              <header class="rp-log-header"><div class="rp-log-heading"><span class="rp-log-heading-icon" aria-hidden="true"><i class="bi bi-activity"></i></span><div><h2>Activity Logs</h2><p>Registration and profile changes recorded for this resource person.</p></div></div><div class="rp-log-search"><label class="visually-hidden" for="rpLogSearch">Search activity logs</label><i class="bi bi-search" aria-hidden="true"></i><input id="rpLogSearch" type="search" placeholder="Search activity" autocomplete="off" /></div></header>
+              <div class="rp-log-toolbar"><nav class="rp-log-filters" aria-label="Filter resource person activity"><button type="button" class="rp-log-filter is-active" data-rp-log-filter="all" aria-pressed="true">All activity <span data-rp-log-count="all">0</span></button><button type="button" class="rp-log-filter" data-rp-log-filter="registration" aria-pressed="false"><i class="bi bi-person-plus" aria-hidden="true"></i>Registration <span data-rp-log-count="registration">0</span></button><button type="button" class="rp-log-filter" data-rp-log-filter="profile" aria-pressed="false"><i class="bi bi-person-vcard" aria-hidden="true"></i>Profile changes <span data-rp-log-count="profile">0</span></button><button type="button" class="rp-log-filter" data-rp-log-filter="status" aria-pressed="false"><i class="bi bi-arrow-left-right" aria-hidden="true"></i>Status changes <span data-rp-log-count="status">0</span></button></nav><p id="rpLogResultCount" class="rp-log-result-count" aria-live="polite"></p></div>
+              <div class="rp-log-list" id="rpLogList" aria-live="polite"></div>
+              <div class="rp-log-empty" id="rpLogEmpty" hidden><i class="bi bi-search" aria-hidden="true"></i><strong>No matching activity</strong><span>Try another search or activity filter.</span></div>
+            </div>
+          </section>
         </div>
       </main>
     <!-- Offcanvas side navigation bar in mobile -->
@@ -1541,6 +1560,6 @@
     <!-- nav -->
     <script src="../../../../src/js/shared/nav.js"></script>
     <script src="../../../../src/js/shared/navigation-state.js"></script>
-    <script src="../../../../src/js/training/id/view-rp.js"></script>
+    <script src="../../../../src/js/training/id/view-rp.js?v=11"></script>
   </body>
 </html>

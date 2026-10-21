@@ -74,6 +74,7 @@
 .rp-view #rpOverviewPanel .rp-profile-identity h2 { margin: 0 0 4px; color: var(--color-text-primary); font-size: 20px; font-weight: 760; letter-spacing: -.025em; overflow-wrap: anywhere; }
 .rp-view #rpOverviewPanel .rp-profile-id { color: var(--color-text-secondary); font-size: 12px; font-weight: 600; }
 .rp-view #rpOverviewPanel .rp-status { margin-top: 1px; }
+.rp-view #rpOverviewPanel .rp-status-remark { margin: 2px 0 0; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-secondary); background: var(--color-surface); font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; }
 .rp-view #rpOverviewPanel .rp-sidebar-section { padding: 22px 0; border-top: 1px solid var(--color-border); }
 .rp-view #rpOverviewPanel .rp-sidebar-section h3 { margin: 0 0 16px; color: var(--color-text-primary); font-size: 13px; font-weight: 750; }
 .rp-view #rpOverviewPanel .rp-sidebar-item { display: flex; align-items: flex-start; gap: 10px; min-width: 0; margin: 0 0 14px; }
@@ -102,6 +103,165 @@
 .rp-view #rpOverviewPanel .rp-bullet-section ul { gap: 9px; padding-left: 19px; }
 .rp-view #rpOverviewPanel .rp-bullet-section li { padding-left: 3px; }
 [data-theme='dark'] .rp-view #rpOverviewPanel .rp-sidebar-item a { color: var(--color-primary); }
+.rp-view #rpTrainingsPanel .rp-training-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 4px 0 20px; }
+.rp-view #rpTrainingsPanel .rp-section-eyebrow { color: var(--color-primary-dark); font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.rp-view #rpTrainingsPanel .rp-training-heading h2 { margin: 4px 0 5px; color: var(--color-text-primary); font-size: 21px; font-weight: 750; }
+.rp-view #rpTrainingsPanel .rp-training-heading p { margin: 0; color: var(--color-text-secondary); font-size: 13px; }
+.rp-view #rpTrainingsPanel .rp-training-count { flex: 0 0 auto; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-text-primary); background: var(--color-surface); font-size: 12px; font-weight: 700; }
+.rp-view #rpTrainingsPanel .rp-training-cards { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
+.rp-view #rpTrainingsPanel .rp-training-card { min-width: 0; padding: 23px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: 0 5px 22px rgba(25,52,30,.045); }
+.rp-view #rpTrainingsPanel .rp-training-card-heading { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 12px; min-width: 0; padding-bottom: 18px; border-bottom: 1px solid var(--color-border); }
+.rp-view #rpTrainingsPanel .rp-training-card-heading > div { min-width: 0; }
+.rp-view #rpTrainingsPanel .rp-training-icon { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; border-radius: 12px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 20px; }
+.rp-view #rpTrainingsPanel .rp-training-card h3 { margin: 0 0 5px; color: var(--color-text-primary); font-size: 17px; font-weight: 750; overflow-wrap: anywhere; }
+.rp-view #rpTrainingsPanel .rp-training-card h3 a { color: inherit; text-decoration: none; }
+.rp-view #rpTrainingsPanel .rp-training-card h3 a:hover,.rp-view #rpTrainingsPanel .rp-training-card h3 a:focus-visible { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+.rp-view #rpTrainingsPanel .rp-training-type { color: var(--color-primary-dark); font-size: 12px; font-weight: 700; }
+.rp-view #rpTrainingsPanel .rp-training-details { display: grid; gap: 15px; padding-top: 18px; }
+.rp-view #rpTrainingsPanel .rp-training-detail { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+.rp-view #rpTrainingsPanel .rp-training-detail > i { flex: 0 0 17px; color: var(--color-primary); font-size: 15px; }
+.rp-view #rpTrainingsPanel .rp-training-detail span { display: block; margin-bottom: 5px; color: var(--color-text-secondary); font-size: 11px; font-weight: 650; }
+.rp-view #rpTrainingsPanel .rp-training-detail strong { display: block; color: var(--color-text-primary); font-size: 13px; font-weight: 650; line-height: 1.45; overflow-wrap: anywhere; }
+.rp-view #rpTrainingsPanel .rp-training-pagination { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 20px; color: var(--color-text-secondary); font-size: 12px; }
+.rp-view #rpTrainingsPanel .rp-training-pagination-top { margin: 0 0 20px; }
+.rp-view #rpTrainingsPanel .rp-training-page-size { display: flex; align-items: center; gap: 9px; }
+.rp-view #rpTrainingsPanel .rp-training-page-size label { white-space: nowrap; }
+.rp-view #rpTrainingsPanel .rp-training-page-size select { min-width: 72px; height: 34px; padding: 5px 9px; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); font: inherit; }
+.rp-view #rpTrainingsPanel .rp-training-page-size select:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpTrainingsPanel .rp-training-page-actions { display: flex; align-items: center; gap: 10px; color: var(--color-text-primary); font-weight: 650; }
+.rp-view #rpTrainingsPanel .rp-training-page-numbers { display: flex; align-items: center; gap: 5px; }
+.rp-view #rpTrainingsPanel .rp-training-page-gap { padding: 0 3px; color: var(--color-text-secondary); }
+.rp-view #rpTrainingsPanel .rp-training-page-actions button { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); }
+.rp-view #rpTrainingsPanel .rp-training-page-actions button:not(:disabled):hover { color: var(--color-primary); border-color: var(--color-primary); }
+.rp-view #rpTrainingsPanel .rp-training-page-actions button.active { color: var(--color-primary-dark); border-color: var(--color-primary); background: var(--color-primary-surface); }
+.rp-view #rpTrainingsPanel .rp-training-page-actions button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpTrainingsPanel .rp-training-page-actions button:disabled { cursor: not-allowed; opacity: .45; }
+[data-theme='dark'] .rp-view #rpTrainingsPanel .rp-section-eyebrow,[data-theme='dark'] .rp-view #rpTrainingsPanel .rp-training-type,[data-theme='dark'] .rp-view #rpTrainingsPanel .rp-training-icon { color: var(--color-primary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-heading { margin: 4px 0 20px; }
+.rp-view #rpEvaluationPanel .rp-section-eyebrow { color: var(--color-primary-dark); font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.rp-view #rpEvaluationPanel .rp-evaluation-heading h2 { margin: 4px 0 5px; color: var(--color-text-primary); font-size: 21px; font-weight: 750; }
+.rp-view #rpEvaluationPanel .rp-evaluation-heading p { margin: 0; color: var(--color-text-secondary); font-size: 13px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-toolbar { position: relative; max-width: 410px; margin-bottom: 18px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-toolbar i { position: absolute; top: 50%; left: 13px; color: var(--color-text-secondary); transform: translateY(-50%); }
+.rp-view #rpEvaluationPanel .rp-evaluation-toolbar input { width: 100%; height: 40px; padding: 8px 12px 8px 38px; border: 1px solid var(--color-border); border-radius: 10px; color: var(--color-text-primary); background: var(--color-surface); font-size: 13px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-toolbar input::placeholder { color: var(--color-text-secondary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-toolbar input:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 18px; color: var(--color-text-secondary); font-size: 12px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-pagination-top { margin: 0 0 16px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-size,.rp-view #rpEvaluationPanel .rp-evaluation-page-actions,.rp-view #rpEvaluationPanel [data-evaluation-page-numbers] { display: flex; align-items: center; gap: 7px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-size label { white-space: nowrap; }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-size select { min-width: 72px; height: 34px; padding: 5px 9px; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); font: inherit; }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-actions button { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-actions button.active { color: var(--color-primary-dark); border-color: var(--color-primary); background: var(--color-primary-surface); }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-actions button:disabled { opacity: .45; cursor: not-allowed; }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-actions button:not(:disabled):hover { border-color: var(--color-primary); color: var(--color-primary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-page-actions button:focus-visible,.rp-view #rpEvaluationPanel .rp-evaluation-page-size select:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: 0 5px 22px rgba(25,52,30,.045); }
+.rp-view #rpEvaluationPanel .rp-evaluation-table { width: 100%; min-width: 760px; border-collapse: collapse; color: var(--color-text-primary); font-size: 13px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table th { padding: 16px 18px; border-bottom: 1px solid var(--color-border); color: var(--color-text-secondary); background: var(--color-bg); font-size: 11px; font-weight: 750; text-align: left; text-transform: uppercase; letter-spacing: .04em; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table td { padding: 17px 18px; border-bottom: 1px solid var(--color-border); vertical-align: middle; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table tbody tr:last-child td { border-bottom: 0; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table .rp-evaluation-no-results { padding: 32px 18px; color: var(--color-text-secondary); text-align: center; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table th:first-child { width: 45%; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table th:nth-child(2) { width: 30%; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table th:nth-child(3) { width: 15%; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table th:last-child { width: 120px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table td a { color: var(--color-primary-dark); font-weight: 700; text-decoration: none; }
+.rp-view #rpEvaluationPanel .rp-evaluation-table td a:hover,.rp-view #rpEvaluationPanel .rp-evaluation-table td a:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-rating { display: inline-flex; padding: 6px 9px; border-radius: 8px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 12px; font-weight: 750; white-space: nowrap; }
+.rp-view #rpEvaluationPanel .rp-evaluation-toggle { padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-primary); background: var(--color-surface); font-size: 12px; font-weight: 650; white-space: nowrap; }
+.rp-view #rpEvaluationPanel .rp-evaluation-toggle:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-toggle:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-detail-row td { background: color-mix(in srgb,var(--color-primary-surface) 32%,var(--color-surface)); }
+.rp-view #rpEvaluationPanel .rp-evaluation-response-list { display: grid; gap: 15px; margin: 0; padding: 4px 0 4px 20px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-response-list li { padding-left: 3px; color: var(--color-text-primary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-response-list li::marker { color: var(--color-primary); }
+.rp-view #rpEvaluationPanel .rp-evaluation-response-list strong { color: var(--color-text-primary); font-size: 13px; }
+.rp-view #rpEvaluationPanel .rp-evaluation-response-list p { margin: 5px 0 0; color: var(--color-text-secondary); font-size: 13px; line-height: 1.5; }
+[data-theme='dark'] .rp-view #rpEvaluationPanel .rp-section-eyebrow,[data-theme='dark'] .rp-view #rpEvaluationPanel .rp-evaluation-table td a,[data-theme='dark'] .rp-view #rpEvaluationPanel .rp-evaluation-rating { color: var(--color-primary); }
+[data-theme='dark'] .rp-view #rpEvaluationPanel .rp-evaluation-page-actions button.active { color: var(--color-primary); }
+.rp-view #rpLogsPanel .rp-log-panel { overflow: hidden; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: 0 5px 22px rgba(25,52,30,.045); }
+.rp-view #rpLogsPanel .rp-log-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 22px 24px; border-bottom: 1px solid var(--color-border); }
+.rp-view #rpLogsPanel .rp-log-heading { display: flex; align-items: center; gap: 13px; }
+.rp-view #rpLogsPanel .rp-log-heading-icon { display: grid; width: 42px; height: 42px; flex: 0 0 42px; place-items: center; border-radius: 12px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 19px; }
+.rp-view #rpLogsPanel .rp-log-heading h2 { margin: 0 0 3px; color: var(--color-text-primary); font-size: 19px; font-weight: 750; }
+.rp-view #rpLogsPanel .rp-log-heading p { margin: 0; color: var(--color-text-secondary); font-size: 12px; }
+.rp-view #rpLogsPanel .rp-log-search { position: relative; width: min(100%,300px); }
+.rp-view #rpLogsPanel .rp-log-search i { position: absolute; top: 50%; left: 12px; color: var(--color-text-secondary); transform: translateY(-50%); }
+.rp-view #rpLogsPanel .rp-log-search input { width: 100%; height: 39px; padding: 8px 12px 8px 36px; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); font-size: 12px; }
+.rp-view #rpLogsPanel .rp-log-search input::placeholder { color: var(--color-text-secondary); }
+.rp-view #rpLogsPanel .rp-log-search input:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-view #rpLogsPanel .rp-log-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--color-border); }
+.rp-view #rpLogsPanel .rp-log-filters { display: flex; flex-wrap: wrap; gap: 7px; }
+.rp-view #rpLogsPanel .rp-log-filter { display: inline-flex; align-items: center; gap: 6px; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-text-secondary); background: var(--color-surface); font-size: 11px; font-weight: 650; }
+.rp-view #rpLogsPanel .rp-log-filter span { padding: 2px 5px; border-radius: 999px; background: var(--color-bg); font-size: 10px; }
+.rp-view #rpLogsPanel .rp-log-filter:hover,.rp-view #rpLogsPanel .rp-log-filter:focus-visible { border-color: var(--color-primary); color: var(--color-primary); }
+.rp-view #rpLogsPanel .rp-log-filter.is-active { border-color: var(--color-primary); color: var(--color-primary-dark); background: var(--color-primary-surface); }
+.rp-view #rpLogsPanel .rp-log-result-count { margin: 0; color: var(--color-text-secondary); font-size: 11px; white-space: nowrap; }
+.rp-view #rpLogsPanel .rp-log-list { display: grid; gap: 12px; padding: 20px 24px 24px; }
+.rp-view #rpLogsPanel .rp-log-entry { display: grid; grid-template-columns: 40px minmax(0,1fr); gap: 13px; padding: 16px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); }
+.rp-view #rpLogsPanel .rp-log-entry-icon { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 10px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 17px; }
+.rp-view #rpLogsPanel .rp-log-entry[data-category='status'] .rp-log-entry-icon { color: var(--color-info); background: color-mix(in srgb,var(--color-info) 12%,var(--color-surface)); }
+.rp-view #rpLogsPanel .rp-log-entry-content { min-width: 0; }
+.rp-view #rpLogsPanel .rp-log-entry-top { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; }
+.rp-view #rpLogsPanel .rp-log-entry-top h3 { margin: 0; color: var(--color-text-primary); font-size: 13px; font-weight: 750; }
+.rp-view #rpLogsPanel .rp-log-category,.rp-view #rpLogsPanel .rp-log-status { padding: 4px 7px; border-radius: 999px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 10px; font-weight: 700; text-transform: capitalize; }
+.rp-view #rpLogsPanel .rp-log-status { margin-left: auto; color: var(--color-text-secondary); background: var(--color-bg); }
+.rp-view #rpLogsPanel .rp-log-description { margin: 8px 0; color: var(--color-text-secondary); font-size: 12px; line-height: 1.5; }
+.rp-view #rpLogsPanel .rp-log-meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--color-text-secondary); font-size: 11px; }
+.rp-view #rpLogsPanel .rp-log-empty { display: grid; justify-items: center; gap: 5px; padding: 42px 20px; color: var(--color-text-secondary); text-align: center; }
+.rp-view #rpLogsPanel .rp-log-empty i { margin-bottom: 8px; color: var(--color-primary); font-size: 22px; }
+.rp-view #rpLogsPanel .rp-log-empty strong { color: var(--color-text-primary); font-size: 14px; }
+[data-theme='dark'] .rp-view #rpLogsPanel .rp-log-heading-icon,[data-theme='dark'] .rp-view #rpLogsPanel .rp-log-entry-icon,[data-theme='dark'] .rp-view #rpLogsPanel .rp-log-filter.is-active,[data-theme='dark'] .rp-view #rpLogsPanel .rp-log-category { color: var(--color-primary); }
+.rp-edit-page .rp-edit-form { overflow: hidden; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); box-shadow: 0 5px 22px rgba(25,52,30,.045); }
+.rp-edit-page .rp-edit-form-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 23px 26px; border-bottom: 1px solid var(--color-border); }
+.rp-edit-page .rp-edit-form-header .rp-section-eyebrow { color: var(--color-primary-dark); font-size: 10px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.rp-edit-page .rp-edit-form-header h2 { margin: 4px 0; color: var(--color-text-primary); font-size: 21px; font-weight: 750; }
+.rp-edit-page .rp-edit-form-header p { margin: 0; color: var(--color-text-secondary); font-size: 12px; }
+.rp-edit-page .rp-edit-header-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+.rp-edit-page .rp-edit-record-id { padding: 7px 10px; border-radius: 8px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 12px; font-weight: 750; }
+.rp-edit-page .rp-edit-update-status { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 999px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 11px; font-weight: 750; white-space: nowrap; }
+.rp-edit-page .rp-edit-update-status::before { width: 7px; height: 7px; border-radius: 50%; background: currentColor; content: ''; }
+.rp-edit-page .rp-edit-update-status[data-state='unsaved'] { color: #85620e; background: #fff2ce; border-color: #e6d393; }
+.rp-edit-page .rp-edit-update-status[data-state='saving'] { color: var(--color-info); background: color-mix(in srgb,var(--color-info) 12%,var(--color-surface)); }
+.rp-edit-page .rp-edit-update-status[data-state='error'] { color: #b63636; background: #ffe7e7; border-color: #e8b5b5; }
+.rp-edit-page .rp-edit-section { padding: 23px 26px; border-bottom: 1px solid var(--color-border); }
+.rp-edit-page .rp-edit-section h3 { display: flex; align-items: center; gap: 9px; margin: 0 0 18px; color: var(--color-text-primary); font-size: 15px; font-weight: 750; }
+.rp-edit-page .rp-edit-section h3 i { color: var(--color-primary); font-size: 16px; }
+.rp-edit-page .rp-edit-fields { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 17px; }
+.rp-edit-page .rp-edit-field-wide { grid-column: 1 / -1; }
+.rp-edit-page .rp-edit-fields label { display: block; margin-bottom: 7px; color: var(--color-text-primary); font-size: 12px; font-weight: 700; }
+.rp-edit-page .rp-edit-fields label span { color: var(--color-primary); }
+.rp-edit-page .rp-edit-remarks label small { color: var(--color-text-secondary); font-size: 11px; font-weight: 500; }
+.rp-edit-page .rp-edit-list-label { display: block; margin-bottom: 9px; color: var(--color-text-primary); font-size: 12px; font-weight: 700; }
+.rp-edit-page .rp-edit-bullet-list { display: grid; gap: 9px; margin: 0 0 10px; padding-left: 22px; }
+.rp-edit-page .rp-edit-bullet-list li { padding-left: 3px; color: var(--color-primary); }
+.rp-edit-page .rp-edit-bullet-list li::marker { color: var(--color-primary); font-size: 16px; }
+.rp-edit-page .rp-edit-bullet-list li { display: list-item; }
+.rp-edit-page .rp-edit-bullet-list li input { width: calc(100% - 44px); }
+.rp-edit-page .rp-edit-remove-item { display: inline-grid; width: 34px; height: 38px; margin-left: 8px; place-items: center; border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-secondary); background: var(--color-surface); vertical-align: top; }
+.rp-edit-page .rp-edit-remove-item:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.rp-edit-page .rp-edit-add-item { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-primary-dark); background: var(--color-primary-surface); font-size: 12px; font-weight: 700; }
+.rp-edit-page .rp-edit-add-item:hover { border-color: var(--color-primary); }
+.rp-edit-page .rp-edit-add-item:focus-visible,.rp-edit-page .rp-edit-remove-item:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+.rp-edit-page .rp-edit-fields input,.rp-edit-page .rp-edit-fields select,.rp-edit-page .rp-edit-fields textarea { width: 100%; min-height: 40px; padding: 9px 11px; border: 1px solid var(--color-border); border-radius: 9px; color: var(--color-text-primary); background: var(--color-surface); font-size: 13px; }
+.rp-edit-page .rp-edit-fields textarea { resize: vertical; }
+.rp-edit-page .rp-edit-fields input:focus-visible,.rp-edit-page .rp-edit-fields select:focus-visible,.rp-edit-page .rp-edit-fields textarea:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 1px; }
+.rp-edit-page .rp-edit-fields input::placeholder,.rp-edit-page .rp-edit-fields textarea::placeholder { color: var(--color-text-secondary); }
+.rp-edit-page .rp-edit-help { margin: 11px 0 0; color: var(--color-text-secondary); font-size: 11px; }
+.rp-edit-page .rp-edit-actions { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; padding: 20px 26px; color: var(--color-text-secondary); font-size: 12px; }
+.rp-edit-page .rp-edit-actions button { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 1px solid var(--color-primary); border-radius: 9px; color: #fff; background: var(--color-primary); font-size: 12px; font-weight: 750; }
+.rp-edit-page .rp-edit-actions button:hover { background: var(--color-primary-dark); }
+.rp-edit-page .rp-edit-actions button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+[data-theme='dark'] .rp-edit-page .rp-edit-form-header .rp-section-eyebrow,[data-theme='dark'] .rp-edit-page .rp-edit-record-id { color: var(--color-primary); }
+[data-theme='dark'] .rp-edit-page .rp-edit-update-status[data-state='saved'] { color: var(--color-primary); }
+[data-theme='dark'] .rp-edit-page .rp-edit-update-status[data-state='unsaved'] { color: #f0c879; background: #493a20; border-color: #846c39; }
+[data-theme='dark'] .rp-edit-page .rp-edit-update-status[data-state='error'] { color: #ffaaaa; background: #4c2525; border-color: #8c4747; }
+[data-theme='dark'] .rp-edit-page .rp-edit-add-item { color: var(--color-primary); }
+@media (max-width: 620px) { .rp-edit-page .rp-edit-form-header,.rp-edit-page .rp-edit-section,.rp-edit-page .rp-edit-actions { padding: 18px; } .rp-edit-page .rp-edit-fields { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .rp-view #rpLogsPanel .rp-log-header,.rp-view #rpLogsPanel .rp-log-toolbar { padding: 16px; } .rp-view #rpLogsPanel .rp-log-search { width: 100%; } .rp-view #rpLogsPanel .rp-log-list { padding: 16px; } }
+@media (max-width: 1150px) { .rp-view #rpTrainingsPanel .rp-training-cards { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 620px) { .rp-view #rpTrainingsPanel .rp-training-cards { grid-template-columns: 1fr; } .rp-view #rpTrainingsPanel .rp-training-card { padding: 17px; } .rp-view #rpTrainingsPanel .rp-training-pagination { flex-wrap: wrap; } }
 @media (max-width: 900px) {
   .rp-view #rpOverviewPanel .rp-profile-layout { grid-template-columns: minmax(230px, 280px) minmax(0, 1fr); }
   .rp-view #rpOverviewPanel .rp-affiliation-grid { grid-template-columns: 1fr; }

@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const titleCell = document.createElement('td');
     const titleLink = document.createElement('a');
     titleLink.className = 'training-table-title-link';
-    titleLink.href = `../../training/details/view-training.html?trainingId=${encodeURIComponent(record.id)}`;
+    titleLink.href = `../../training/id/view-training.html?trainingId=${encodeURIComponent(record.id)}`;
     titleLink.target = '_blank';
     titleLink.rel = 'noopener';
     titleLink.textContent = record.title;

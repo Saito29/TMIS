@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
     evaluationMobile: [
       'createEvaluationMobile',
       'encodeEvaluationMobile',
-      'updateEvaluationMobile',
       'detailsEvaluationMobile',
     ],
     administrationMobile: [
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
     evaluationHeaderCollapse: [
       'createEvaluationHeaderCollapse',
       'encodeEvaluationHeaderCollapse',
-      'updateEvaluationHeaderCollapse',
       'detailsEvaluationHeaderCollapse',
     ],
     administrationHeaderCollapse: [

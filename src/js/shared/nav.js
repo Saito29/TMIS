@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMainCollapses = {
     participantMobile: ['createParticipantMobile', 'updateParticipantMobile', 'detailsParticipantMobile', 'createFarmerAssociationMobile', 'detailsFarmerAssociationMobile'],
     trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile', 'createFacilitatorRpMobile', 'detailsFacilitatorRpMobile'],
-    evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'updateEvaluationMobile', 'detailsEvaluationMobile'],
+    evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'detailsEvaluationMobile'],
     administrationMobile: ['createAdministrationMobile', 'updateAdministrationMobile', 'detailsAdministrationMobile'],
   };
   const headerMainCollapses = {
     participantHeaderCollapse: ['createParticipantHeaderCollapse', 'updateParticipantHeaderCollapse', 'detailsParticipantHeaderCollapse', 'createFarmerAssociationHeaderCollapse', 'detailsFarmerAssociationHeaderCollapse'],
     trainingHeaderCollapse: ['createTrainingHeaderCollapse', 'updateTrainingHeaderCollapse', 'detailsTrainingHeaderCollapse', 'createFacilitatorRpHeaderCollapse', 'detailsFacilitatorRpHeaderCollapse'],
-    evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'updateEvaluationHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
+    evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
     administrationHeaderCollapse: ['createAdministrationHeaderCollapse', 'updateAdministrationHeaderCollapse', 'detailsAdministrationHeaderCollapse'],
   };
 

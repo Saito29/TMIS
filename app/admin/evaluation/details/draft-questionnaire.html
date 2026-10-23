@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evaluation Drafts | TMIS</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+    body { margin: 0; background: #f6f8f6; color: #173525; }
+    header { background: #174e34; color: #fff; padding: 16px max(20px, calc((100% - 1120px)/2)); }
+    header a { color: inherit; font-weight: 700; }
+    main { max-width: 1120px; margin: 32px auto; padding: 0 20px; }
+    nav { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-bottom: 24px; }
+    nav a { color: #174e34; }
+    h1 { margin: 0 0 6px; }
+    .intro { margin: 0 0 24px; color: #53665b; }
+    section { background: #fff; border: 1px solid #dbe5dc; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    section h2 { margin: 0 0 6px; font-size: 19px; }
+    section > p { color: #53665b; font-size: 14px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    th, td { padding: 14px 12px; text-align: left; border-bottom: 1px solid #e4ebe5; }
+    th { font-size: 13px; color: #53665b; }
+    td { font-size: 14px; }
+    td a { display: inline-block; border-radius: 7px; padding: 7px 13px; background: #187b3c; color: #fff; text-decoration: none; }
+    td a:hover, td a:focus-visible { background: #105d2d; }
+    .empty { padding: 32px 12px; text-align: center; color: #53665b; }
+    @media (prefers-color-scheme: dark) {
+      body { background: #0f1410; color: #f1f5f2; }
+      section { background: #171d18; border-color: #303830; }
+      nav a { color: #91d49a; }
+      .intro, th, .empty { color: #b8c2ba; }
+      th, td { border-color: #303830; }
+    }
+  </style>
+</head>
+<body>
+  <header><a href="../../dashboard/dashboardv2.html">TMIS Dashboard</a></header>
+  <main>
+    <nav aria-label="Evaluation details">
+      <a href="list-questionnaire.html">List Questionnaire</a>
+      <a href="draft-questionnaire.html" aria-current="page">Evaluation Drafts</a>
+      <a href="inactive.html">Inactive</a>
+    </nav>
+    <h1>Evaluation Drafts</h1>
+    <p class="intro">Continue questionnaires and pre-test encoding saved in this browser.</p>
+    <section aria-label="Saved draft questionnaires">
+      <h2>Draft questionnaires</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Questionnaire</th><th scope="col">Type</th><th scope="col">Office</th><th scope="col">Questions</th><th scope="col">Last saved</th><th scope="col">Action</th></tr></thead>
+          <tbody id="draftQuestionnaireRows"></tbody>
+        </table>
+      </div>
+      <p id="draftQuestionnaireStatus" role="status" aria-live="polite"></p>
+    </section>
+    <section aria-label="Saved encoding drafts">
+      <h2>Draft encoding</h2>
+      <p>Pre-test, post-test, training evaluation, and resource person evaluation results saved before completion.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Farmer</th><th scope="col">Evaluation</th><th scope="col">Questionnaire</th><th scope="col">Association</th><th scope="col">Score / ratings</th><th scope="col">Last saved</th><th scope="col">Action</th></tr></thead>
+          <tbody id="draftEncodingRows"></tbody>
+        </table>
+      </div>
+      <p id="draftEncodingStatus" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="../../../../src/js/evaluation/details/draft-questionnaire.js"></script>
+</body>
+</html>

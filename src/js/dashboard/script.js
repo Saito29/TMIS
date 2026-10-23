@@ -20,7 +20,6 @@ export function useDashboard() {
     evaluationMobile: [
       'createEvaluationMobile',
       'encodeEvaluationMobile',
-      'updateEvaluationMobile',
       'detailsEvaluationMobile',
     ],
     administrationMobile: [
@@ -47,7 +46,6 @@ export function useDashboard() {
     evaluationHeaderCollapse: [
       'createEvaluationHeaderCollapse',
       'encodeEvaluationHeaderCollapse',
-      'updateEvaluationHeaderCollapse',
       'detailsEvaluationHeaderCollapse',
     ],
     administrationHeaderCollapse: [

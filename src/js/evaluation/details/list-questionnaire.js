@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const $ = (selector) => document.querySelector(selector);
   const rows = $('#questionnaireRows');
   if (!rows) return;
+  const inactiveOnly = document.body.dataset.questionnaireStatus === 'inactive';
   const filters = ['type', 'office', 'region'].map((name) => $(`#${name}Filter`));
   const columns = [...document.querySelectorAll('[data-column-filter]')];
   const pagers = [...document.querySelectorAll('[data-questionnaire-pagination]')];
@@ -39,8 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
           ratingScale: Array.isArray(item.ratingScale) ? item.ratingScale : [], key, edit, view,
         }));
       } catch { return []; }
-    }).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
-    if (!records.length) records = [sample];
+    }).filter((item) => !inactiveOnly || item.status.toLowerCase() === 'inactive')
+      .sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt)));
+    if (!records.length && !inactiveOnly) records = [sample];
     updateOptions(filters[1], records.filter((item) => !filters[2].value || item.region === filters[2].value).map((item) => item.office), 'All offices');
     updateOptions(filters[2], records.map((item) => item.region), 'All regions');
     render();
@@ -48,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function loadTable() {
     table.setAttribute('aria-busy', 'true');
     refresh.disabled = true;
-    rows.innerHTML = '<tr class="questionnaire-loading-row"><td colspan="9"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading questionnaires...</span></td></tr>';
+    rows.innerHTML = `<tr class="questionnaire-loading-row"><td colspan="9"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span><span role="status">Loading ${inactiveOnly ? 'inactive ' : ''}questionnaires...</span></td></tr>`;
     window.setTimeout(() => {
       try { read(); }
       finally { table.setAttribute('aria-busy', 'false'); refresh.disabled = false; }
@@ -69,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
       <a class="btn btn-sm btn-outline-success" href="${item.view}?id=${encodeURIComponent(item.id)}" target="_blank" rel="noopener noreferrer" aria-label="View ${esc(item.title)} in new tab" title="View in new tab"><i class="bi bi-eye"></i></a>
       <a class="btn btn-sm btn-outline-primary" href="${item.edit}?id=${encodeURIComponent(item.id)}" target="_blank" rel="noopener noreferrer" aria-label="Edit ${esc(item.title)} in new tab" title="Edit in new tab"><i class="bi bi-pencil-square"></i></a>
       <button class="btn btn-sm btn-outline-danger" type="button" data-action="delete" data-id="${esc(item.id)}" data-type="${esc(item.type)}" aria-label="Delete ${esc(item.title)}" title="Delete"><i class="bi bi-trash"></i></button>`}</div></td>
-      <td><span class="badge ${item.status === 'Draft' ? 'text-bg-secondary' : item.sample ? 'text-bg-info' : 'text-bg-success'}">${esc(item.status)}</span></td>
-      <td class="questionnaire-id" title="${esc(item.id)}">${esc(item.id)}</td><td>${esc(item.title)}</td><td>${esc(item.type)}</td><td>${esc(item.region || '-')}</td><td>${esc(item.office || '-')}</td><td>${item.count}</td><td>${date(item.createdAt)}</td></tr>`).join('') || '<tr><td colspan="9" class="text-center py-4">No questionnaires found.</td></tr>';
+      <td><span class="badge ${['draft', 'inactive'].includes(item.status.toLowerCase()) ? 'text-bg-secondary' : item.sample ? 'text-bg-info' : 'text-bg-success'}">${esc(item.status)}</span></td>
+      <td class="questionnaire-id" title="${esc(item.id)}">${esc(item.id)}</td><td>${esc(item.title)}</td><td>${esc(item.type)}</td><td>${esc(item.region || '-')}</td><td>${esc(item.office || '-')}</td><td>${item.count}</td><td>${date(item.createdAt)}</td></tr>`).join('') || `<tr><td colspan="9" class="text-center py-4">No ${inactiveOnly ? 'inactive ' : ''}questionnaires found.</td></tr>`;
     pagers.forEach((pager) => { pager.innerHTML = `<span>${found.length ? start + 1 : 0}-${Math.min(start + shown.length, found.length)} of ${found.length}</span><div class="d-flex gap-2 align-items-center"><button class="btn btn-sm btn-outline-secondary" data-page="first" ${page === 1 ? 'disabled' : ''} aria-label="First page">&laquo;</button><button class="btn btn-sm btn-outline-secondary" data-page="previous" ${page === 1 ? 'disabled' : ''}>Previous</button><span>Page ${page} of ${pages}</span><button class="btn btn-sm btn-outline-secondary" data-page="next" ${page === pages ? 'disabled' : ''}>Next</button><button class="btn btn-sm btn-outline-secondary" data-page="last" ${page === pages ? 'disabled' : ''} aria-label="Last page">&raquo;</button></div>`; });
     sizes.forEach((select) => { select.value = pageSize === Infinity ? 'all' : String(pageSize); });
   }
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!data.length) return;
     const book = XLSX.utils.book_new(), sheet = XLSX.utils.json_to_sheet(data);
     sheet['!cols'] = [14, 38, 46, 23, 20, 38, 18, 18].map((wch) => ({ wch }));
-    XLSX.utils.book_append_sheet(book, sheet, 'Questionnaires'); XLSX.writeFile(book, 'questionnaires.xlsx');
+    XLSX.utils.book_append_sheet(book, sheet, inactiveOnly ? 'Inactive Questionnaires' : 'Questionnaires'); XLSX.writeFile(book, inactiveOnly ? 'inactive-questionnaires.xlsx' : 'questionnaires.xlsx');
   });
   rows.addEventListener('click', (event) => {
     const button = event.target.closest('[data-action]'); if (!button) return;

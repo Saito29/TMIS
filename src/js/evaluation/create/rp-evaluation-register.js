@@ -220,7 +220,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
       const records = Array.isArray(saved) ? saved : [];
       const index = records.findIndex((item) => item.id === record.id);
-      if (index < 0) records.push(record); else records[index] = record;
+      if (index < 0) records.push(record); else {
+        if (document.body.classList.contains('questionnaire-edit-page')) {
+          record.status = records[index].status || state;
+          record.statusRemarks = records[index].statusRemarks || '';
+        }
+        records[index] = record;
+      }
       localStorage.setItem(storageKey, JSON.stringify(records));
       recordId = record.id;
       if (document.body.classList.contains('questionnaire-edit-page')) {

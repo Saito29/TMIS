@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const index = editId ? records.findIndex((item) => item.id === editId) : -1;
       if (editId && index < 0) throw new Error('Questionnaire missing');
       if (index < 0) records.push(record);
-      else { record.createdAt = records[index].createdAt || record.createdAt; records[index] = record; }
+      else { record.createdAt = records[index].createdAt || record.createdAt; record.status = records[index].status || 'Active'; record.statusRemarks = records[index].statusRemarks || ''; record.updatedAt = new Date().toISOString(); records[index] = record; }
       localStorage.setItem(storageKey, JSON.stringify(records));
       if (document.body.classList.contains('questionnaire-edit-page')) {
         status.textContent = 'Post-test questionnaire updated.';

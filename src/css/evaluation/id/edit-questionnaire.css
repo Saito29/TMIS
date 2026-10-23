@@ -1,0 +1,4 @@
+.questionnaire-edit-page .edit-questionnaire-unavailable { display: grid; justify-items: center; gap: .75rem; padding: 2.5rem 1rem; color: var(--color-text-secondary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; text-align: center; }
+.questionnaire-edit-page .edit-questionnaire-unavailable i { color: var(--color-primary); font-size: 1.6rem; }
+.questionnaire-edit-page .edit-questionnaire-unavailable p { margin: 0; }
+.questionnaire-edit-page .edit-questionnaire-unavailable a { color: var(--color-primary); font-weight: 700; }

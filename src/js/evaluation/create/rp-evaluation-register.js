@@ -172,15 +172,16 @@ document.addEventListener('DOMContentLoaded', () => {
   function save(state) {
     const questionnaireName = form.elements.questionnaireName.value.trim();
     const office = form.elements.office.value;
+    const region = form.elements.region.value;
     const description = form.elements.description.value.trim();
-    if (state === 'Draft' && !questionnaireName && !office && !description && !questions.length) {
+    if (state === 'Draft' && !questionnaireName && !office && !region && !description && !questions.length) {
       message('Add a detail or question before saving a draft.', 'error');
       form.elements.questionnaireName.focus();
       return;
     }
     if (state !== 'Draft') {
-      if (!form.reportValidity() || !questionnaireName) {
-        message('Enter a questionnaire name and select an office.', 'error');
+      if (!form.reportValidity() || !questionnaireName || !region) {
+        message('Enter a questionnaire name, region, and office.', 'error');
         return;
       }
       if (!questions.length) { message('Add at least one question.', 'error'); return; }
@@ -197,15 +198,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
     }
+    let existingCreatedAt = null;
+    try {
+      const previous = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      existingCreatedAt = Array.isArray(previous) ? previous.find((item) => item.id === recordId)?.createdAt : null;
+    } catch { message('The saved questionnaires could not be read.', 'error'); return; }
     const record = {
       id: recordId || (globalThis.crypto?.randomUUID?.() || `rp-evaluation-${Date.now()}`),
       type: 'Resource Person Evaluation',
       status: state,
       questionnaireName,
       office,
+      region,
       description,
       questions: questions.map((question) => ({ text: question.text.trim(), maxRating: 5 })),
       ratingScale: ratingScale.map((item) => ({ score: item.score, label: item.label.trim(), description: item.description.trim() })),
+      createdAt: existingCreatedAt || new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };
     try {
@@ -215,13 +223,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (index < 0) records.push(record); else records[index] = record;
       localStorage.setItem(storageKey, JSON.stringify(records));
       recordId = record.id;
+      if (document.body.classList.contains('questionnaire-edit-page')) {
+        message(state === 'Draft' ? 'Draft updated.' : 'Questionnaire updated.', 'success');
+        form.querySelectorAll('button').forEach((button) => { button.disabled = true; });
+        window.setTimeout(() => { location.href = '../details/list-questionnaire.html'; }, 700);
+        return;
+      }
       if (state !== 'Draft') {
         form.elements.questionnaireName.value = '';
         form.elements.office.value = '';
+        form.elements.region.value = '';
         form.elements.description.value = '';
         questions.length = 0;
         selectedIndex = -1;
         recordId = null;
+        if (new URLSearchParams(location.search).has('id')) history.replaceState(null, '', location.pathname);
         renderQuestions();
       }
       message(state === 'Draft' ? 'Draft saved. Find it under Evaluation > Details > Draft Questionnaires.' : 'Questionnaire saved.', 'success');
@@ -234,10 +250,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (draftId) {
     try {
       const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-      const draft = Array.isArray(saved) ? saved.find((item) => item?.id === draftId && item.status === 'Draft') : null;
+      const draft = Array.isArray(saved) ? saved.find((item) => item?.id === draftId) : null;
       if (draft) {
         recordId = draft.id;
         form.elements.questionnaireName.value = draft.questionnaireName || '';
+        form.elements.region.value = draft.region || '';
+        if (draft.region) window.syncQuestionnaireOffice?.();
         form.elements.office.value = draft.office || '';
         form.elements.description.value = draft.description || '';
         if (Array.isArray(draft.questions)) {

@@ -813,6 +813,7 @@
                 <div class="rp-section-heading"><span class="rp-step">1</span><h2 id="questionnaireDetailsHeading">Resource Person Questionnaire Details</h2></div>
                 <div class="rp-details-grid">
                   <label for="questionnaireName"><span>Questionnaire Name <span class="text-danger">*</span></span><input id="questionnaireName" name="questionnaireName" class="form-control" placeholder="Enter questionnaire name" required></label>
+                  <label for="region"><span>Region <span class="text-danger">*</span></span><select id="region" name="region" class="form-select" required><option value="" selected disabled>Select a region</option><option value="NCR">NCR</option><option value="CAR">CAR</option><option value="Region I">Region I</option><option value="Region II">Region II</option><option value="Region III">Region III</option><option value="Region IV-A">Region IV-A</option><option value="Region IV-B">Region IV-B</option><option value="Region V">Region V</option><option value="Region VI">Region VI</option><option value="Region VII">Region VII</option><option value="Region VIII">Region VIII</option><option value="Region IX">Region IX</option><option value="Region X">Region X</option><option value="Region XI">Region XI</option><option value="Region XII">Region XII</option><option value="Region XIII">Region XIII</option><option value="BARMM">BARMM</option></select></label>
                   <label for="office"><span>Office <span class="text-danger">*</span></span><select id="office" name="office" class="form-select" required><option value="" selected disabled>Select an office</option><option value="DA-SAAD">DA-SAAD</option><option value="DA-AMIA">DA-AMIA</option><option value="DA-Livestock">DA-Livestock</option><option value="DA-HVCDP">DA-HVCDP</option><option value="DA-Rice">DA-Rice Program</option><option value="DA-Corn">DA-Corn Program</option><option value="DA-ATI">DA-ATI</option></select></label>
                   <label for="description" class="rp-description-field"><span>Description/Purpose <span class="text-muted">(optional)</span></span><textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe the purpose of this questionnaire"></textarea></label>
                 </div>
@@ -1493,6 +1494,7 @@
     <script src="../../../../src/js/shared/nav.js"></script>
     <script src="../../../../src/js/shared/navigation-state.js"></script>
     <script src="../../../../src/js/evaluation/create/questionnaire-toast.js"></script>
+    <script src="../../../../src/js/evaluation/create/office-region.js"></script>
     <script src="../../../../src/js/evaluation/create/rp-evaluation-register.js"></script>
   </body>
 </html>

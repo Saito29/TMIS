@@ -39,3 +39,4 @@
 [data-theme='dark'] .encode-page input[type='date']::-webkit-calendar-picker-indicator {
   filter: invert(81%) sepia(19%) saturate(618%) hue-rotate(67deg) brightness(96%);
 }
+.encode-page [hidden] { display: none !important; }

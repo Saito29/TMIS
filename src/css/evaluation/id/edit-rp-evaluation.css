@@ -48,3 +48,4 @@
 .questionnaire-status-badge::before { content: ''; width: .4rem; height: .4rem; border-radius: 50%; background: currentColor; }
 .questionnaire-status-badge[data-status='inactive'] { color: #9b3434; background: #fff0ed; border-color: #edc4bc; }
 .questionnaire-status-badge[data-status='draft'], .questionnaire-status-badge[data-status='sample'] { color: #4b5967; background: #edf1f4; border-color: #d0d9e0; }
+.questionnaire-edit-page #saveRpDraft[hidden] { display: none !important; }

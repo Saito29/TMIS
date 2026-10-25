@@ -31,9 +31,17 @@
     const state = String(record.status || 'Active');
     statusBadge.textContent = state;
     statusBadge.dataset.status = state.toLowerCase();
+    document.getElementById('saveRpDraft').hidden = state !== 'Draft';
   };
   document.querySelector('.content-header')?.insertAdjacentElement('afterend', statusBadge);
   updateStatusBadge();
+  document.addEventListener('questionnaire:record-saved', () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(config[0]) || '[]');
+      record = Array.isArray(saved) ? saved.find((item) => item?.id === id) || record : record;
+      updateStatusBadge();
+    } catch { /* Keep the last known status if storage cannot be read. */ }
+  });
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const title = record.trainingQuestionnaire || record.questionnaireName || 'Untitled questionnaire';
   const submit = form.querySelector('[type="submit"]');
@@ -329,12 +337,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const index = records.findIndex((item) => item.id === record.id);
       if (index < 0) records.push(record); else {
         if (document.body.classList.contains('questionnaire-edit-page')) {
-          record.status = records[index].status || state;
+          record.status = records[index].status === 'Draft' && state === 'Active' ? 'Active' : records[index].status || state;
           record.statusRemarks = records[index].statusRemarks || '';
         }
         records[index] = record;
       }
       localStorage.setItem(storageKey, JSON.stringify(records));
+      if (document.body.classList.contains('questionnaire-edit-page')) document.dispatchEvent(new Event('questionnaire:record-saved'));
       recordId = record.id;
       if (document.body.classList.contains('questionnaire-edit-page')) {
         message(state === 'Draft' ? 'Draft updated.' : 'Questionnaire updated.', 'success');

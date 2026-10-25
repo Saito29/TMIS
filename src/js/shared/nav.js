@@ -3,13 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMainCollapses = {
     participantMobile: ['createParticipantMobile', 'updateParticipantMobile', 'detailsParticipantMobile', 'createFarmerAssociationMobile', 'detailsFarmerAssociationMobile'],
     trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile', 'createFacilitatorRpMobile', 'detailsFacilitatorRpMobile'],
-    evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'detailsEvaluationMobile'],
+    evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'encodedResultsMobile', 'detailsEvaluationMobile'],
     administrationMobile: ['createAdministrationMobile', 'updateAdministrationMobile', 'detailsAdministrationMobile'],
   };
   const headerMainCollapses = {
     participantHeaderCollapse: ['createParticipantHeaderCollapse', 'updateParticipantHeaderCollapse', 'detailsParticipantHeaderCollapse', 'createFarmerAssociationHeaderCollapse', 'detailsFarmerAssociationHeaderCollapse'],
     trainingHeaderCollapse: ['createTrainingHeaderCollapse', 'updateTrainingHeaderCollapse', 'detailsTrainingHeaderCollapse', 'createFacilitatorRpHeaderCollapse', 'detailsFacilitatorRpHeaderCollapse'],
-    evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
+    evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'encodedResultsHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
     administrationHeaderCollapse: ['createAdministrationHeaderCollapse', 'updateAdministrationHeaderCollapse', 'detailsAdministrationHeaderCollapse'],
   };
 
@@ -98,6 +98,65 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   };
+  const addEncodedResultsNavigation = () => {
+    const script = document.querySelector('script[src$="/src/js/shared/nav.js"]');
+    if (!script) return;
+    const base = new URL('../../../app/admin/evaluation/details/', script.src);
+    const links = [
+      ['encoded-pre-test.html', 'Pre-test'],
+      ['encoded-post-test.html', 'Post-test'],
+      ['encoded-training-evaluation.html', 'Training Evaluation'],
+      ['encoded-rp-evaluation.html', 'Resource Person Evaluation'],
+    ];
+    const desktopDetails = document.getElementById('detailsEvaluationHeaderCollapse');
+    const desktopTrigger = desktopDetails?.previousElementSibling;
+    if (desktopTrigger && !document.getElementById('encodedResultsHeaderCollapse')) {
+      const trigger = document.createElement('a');
+      trigger.href = '#';
+      trigger.className = 'header-collapse-item';
+      trigger.setAttribute('role', 'button');
+      trigger.setAttribute('data-bs-toggle', 'collapse');
+      trigger.setAttribute('data-bs-target', '#encodedResultsHeaderCollapse');
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.setAttribute('aria-controls', 'encodedResultsHeaderCollapse');
+      trigger.innerHTML = '<i class="bi bi-clipboard-check"></i><span>Encoded Results</span><i class="bi bi-chevron-down ms-auto"></i>';
+      const panel = document.createElement('div');
+      panel.className = 'collapse';
+      panel.id = 'encodedResultsHeaderCollapse';
+      const menu = document.createElement('div');
+      menu.className = 'header-sub-collapse-menu';
+      links.forEach(([file, label]) => {
+        const link = document.createElement('a');
+        link.href = new URL(file, base).href;
+        link.className = 'header-sub-collapse-item';
+        link.innerHTML = '<i class="bi bi-card-checklist"></i><span></span>';
+        link.querySelector('span').textContent = label;
+        menu.append(link);
+      });
+      panel.append(menu);
+      desktopTrigger.before(trigger, panel);
+    }
+    const mobileDetails = document.getElementById('detailsEvaluationMobile')?.closest('li.mobile-list-navigation');
+    if (mobileDetails && !document.getElementById('encodedResultsMobile')) {
+      const section = document.createElement('li');
+      section.className = 'mobile-list-navigation';
+      section.innerHTML = '<a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#encodedResultsMobile" aria-controls="encodedResultsMobile" aria-expanded="false"><i class="bi bi-clipboard-check"></i><span>Encoded Results</span><i class="bi bi-chevron-down ms-auto"></i></a><ul class="collapse mobile-submenu" id="encodedResultsMobile"></ul>';
+      const menu = section.querySelector('ul');
+      links.forEach(([file, label]) => {
+        const item = document.createElement('li');
+        item.className = 'mobile-subnav-panel-navigation';
+        const link = document.createElement('a');
+        link.href = new URL(file, base).href;
+        link.className = 'nav-link';
+        link.innerHTML = '<i class="bi bi-card-checklist"></i><span></span>';
+        link.querySelector('span').textContent = label;
+        item.append(link);
+        menu.append(item);
+      });
+      mobileDetails.before(section);
+    }
+  };
+  addEncodedResultsNavigation();
   bindCollapseGroup(mobileMainCollapses);
   bindCollapseGroup(headerMainCollapses);
 

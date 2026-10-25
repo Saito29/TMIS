@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
   const notify = (message, type = 'success') => { $('encodeStatus').textContent = message; window.showQuestionnaireToast(message, type); };
   const read = key => { try { const data = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } };
+  const params = new URLSearchParams(location.search);
+  const recordMode = ['view', 'edit'].includes(params.get('mode')) ? params.get('mode') : '';
+  const existingRecord = recordMode ? read('tmis-pre-test-encoded').find(r => r.id === params.get('record') && r.status === 'complete') : null;
   const sampleFarmers = [
     ['FMR-2026-001', 'Juan Santos Dela Cruz', 'Alabat, Quezon', 'Villa Esperanza FA', '1980-01-10', 'Male'],
     ['FMR-2026-002', 'Maria Reyes Santos', 'Perez, Quezon', 'Perez Farmers Association', '1981-02-11', 'Female'],
@@ -17,9 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadFarmers = () => { const stored = read('tmis-farmers').map(r => ({ id: String(r.id || ''), name: [r.firstName, r.middleName, r.lastName, r.suffix].filter(Boolean).join(' ') || String(r.fullName || ''), location: [r.barangay, r.municipality, r.province].filter(Boolean).join(', '), association: String(r.organization || r.association || r.associate_name || ''), birthday: String(r.birthDate || r.birthday || ''), sex: String(r.sex || '') })).filter(r => r.id && r.name); return stored.length ? stored : sampleFarmers; };
   let farmers = loadFarmers();
   const questionnaires = read('tmis-pre-test-questionnaires').filter(r => r.id && r.trainingQuestionnaire);
+  if (existingRecord) {
+    const index = questionnaires.findIndex(r => r.id === existingRecord.questionnaireId);
+    const snapshot = { ...(questionnaires[index] || {}), id: existingRecord.questionnaireId, trainingQuestionnaire: existingRecord.questionnaireName, implementingOffice: existingRecord.implementingOffice, totalItems: existingRecord.totalItems };
+    if (index >= 0) questionnaires[index] = snapshot; else questionnaires.push(snapshot);
+  }
   let selectedFarmer = null;
   const draftId = new URLSearchParams(location.search).get('draft');
-  const resumedDraft = draftId ? read('tmis-pre-test-encoded').find(r => r.id === draftId && r.status === 'draft') : null;
+  const resumedDraft = existingRecord || (draftId ? read('tmis-pre-test-encoded').find(r => r.id === draftId && r.status === 'draft') : null);
   let currentPage = 1;
   const dateLabel = value => { if (!value) return '—'; const d = new Date(`${value}T00:00:00`); return Number.isNaN(d.getTime()) ? value : d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); };
   const age = birthday => { const d = new Date(`${birthday}T00:00:00`); if (Number.isNaN(d.getTime())) return '—'; const now = new Date(); return String(now.getFullYear() - d.getFullYear() - (now.getMonth() < d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() < d.getDate()) ? 1 : 0)); };
@@ -64,20 +72,23 @@ document.addEventListener('DOMContentLoaded', () => {
     $('summaryStatus').textContent = 'New entry';
   }
   function save(draft) {
+    if (recordMode === 'view') return;
+    if (recordMode && !existingRecord) return;
+    if (recordMode === 'edit') draft = false;
     const q = selectedQuestionnaire();
     if (!draft && (!selectedFarmer || !q)) { notify('Select a farmer and a questionnaire before saving.', 'error'); return; }
     if (!draft && !form.reportValidity()) { $('encodeStatus').textContent = 'Enter the date and a valid score.'; return; }
     const score = $('score').value === '' ? null : Number($('score').value);
     if (score !== null && (!Number.isInteger(score) || score < 0 || (q && score > Number(q.totalItems)))) { notify('Score must be a whole number within the questionnaire total.', 'error'); return; }
-    const record = { id: activeDraftId || crypto.randomUUID(), questionnaireId: q?.id || '', questionnaireName: q?.trainingQuestionnaire || '', implementingOffice: q?.implementingOffice || '', totalItems: q?.totalItems || null, farmerId: selectedFarmer?.id || '', farmerName: selectedFarmer?.name || '', farmerAssociation: selectedFarmer?.association || '', farmerLocation: selectedFarmer?.location || '', farmerBirthday: selectedFarmer?.birthday || '', farmerSex: selectedFarmer?.sex || '', date: $('testDate').value, commodity: $('commodity').value.trim(), score, status: draft ? 'draft' : 'complete', savedAt: new Date().toISOString() };
+    const record = { id: activeDraftId || crypto.randomUUID(), questionnaireId: q?.id || '', questionnaireName: q?.trainingQuestionnaire || '', implementingOffice: q?.implementingOffice || '', totalItems: q?.totalItems || null, farmerId: selectedFarmer?.id || '', farmerName: selectedFarmer?.name || '', farmerAssociation: selectedFarmer?.association || '', farmerLocation: selectedFarmer?.location || '', farmerBirthday: selectedFarmer?.birthday || '', farmerSex: selectedFarmer?.sex || '', date: $('testDate').value, commodity: $('commodity').value.trim(), score, status: draft ? 'draft' : 'complete', savedAt: existingRecord?.savedAt || new Date().toISOString(), updatedAt: recordMode === 'edit' ? new Date().toISOString() : undefined };
     try {
       const records = read('tmis-pre-test-encoded');
       const index = records.findIndex(item => item.id === record.id);
       if (index >= 0) records[index] = record; else records.push(record);
       localStorage.setItem('tmis-pre-test-encoded', JSON.stringify(records));
       if (draft) { activeDraftId = record.id; $('summaryStatus').textContent = 'Draft saved'; }
-      else clearEntry();
-      notify(draft ? 'Draft saved in this browser.' : 'Pre-test result saved in this browser.');
+      else if (recordMode !== 'edit') clearEntry();
+      notify(recordMode === 'edit' ? 'Pre-test result updated.' : draft ? 'Draft saved in this browser.' : 'Pre-test result saved in this browser.');
     } catch { notify('Unable to save this result. Check browser storage and try again.', 'error'); }
   }
   $('organizationFilter').addEventListener('change', () => { currentPage = 1; renderFarmers(); }); $('farmerSearch').addEventListener('input', () => { currentPage = 1; renderFarmers(); });
@@ -91,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (resumedDraft) {
     $('questionnaireSelect').value = resumedDraft.questionnaireId || '';
     updateQuestionnaire();
-    const farmer = farmers.find(r => r.id === resumedDraft.farmerId) || (resumedDraft.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null);
+    const farmer = (existingRecord?.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null) || farmers.find(r => r.id === resumedDraft.farmerId) || (resumedDraft.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null);
     if (farmer) selectFarmer(farmer);
     $('testDate').value = resumedDraft.date || '';
     $('commodity').value = resumedDraft.commodity || '';
@@ -100,4 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
     $('encodeStatus').textContent = 'Encoding draft loaded. Complete the remaining fields and save.';
   }
   renderFarmers(); updateSummary();
+  if (recordMode) {
+    const heading = document.querySelector('.encode-heading h1');
+    if (heading) heading.textContent = `${recordMode === 'view' ? 'View' : 'Edit'} pre-test result`;
+    $('saveDraft').hidden = true;
+    $('resetEncode').hidden = true;
+    if (!existingRecord) { form.querySelector('[type="submit"]').hidden = true; $('encodeStatus').textContent = 'This submitted result could not be found.'; }
+    else if (recordMode === 'view') {
+      document.querySelector('.farmer-table-card').hidden = true;
+      document.querySelector('.farmer-table-card + .farmer-table-footer').hidden = true;
+      form.querySelectorAll('input, select, textarea, button').forEach(control => { control.disabled = true; });
+      form.querySelector('[type="submit"]').hidden = true;
+      $('summaryStatus').textContent = 'Submitted';
+    } else { form.querySelector('[type="submit"]').textContent = 'Update pre-test result'; $('summaryStatus').textContent = 'Editing submitted result'; }
+  }
 });

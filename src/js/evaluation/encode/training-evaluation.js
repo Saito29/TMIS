@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
   const notify = (message, type = 'success') => { $('encodeStatus').textContent = message; window.showQuestionnaireToast(message, type); };
   const read = key => { try { const data = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } };
+  const params = new URLSearchParams(location.search);
+  const recordMode = ['view', 'edit'].includes(params.get('mode')) ? params.get('mode') : '';
+  const existingRecord = recordMode ? read('tmis-training-evaluation-encoded').find(r => r.id === params.get('record') && r.status === 'complete') : null;
   const sampleFarmers = [
     ['FMR-2026-001', 'Juan Santos Dela Cruz', 'Alabat, Quezon', 'Villa Esperanza FA', '1980-01-10', 'Male'],
     ['FMR-2026-002', 'Maria Reyes Santos', 'Perez, Quezon', 'Perez Farmers Association', '1981-02-11', 'Female'],
@@ -17,9 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadFarmers = () => { const stored = read('tmis-farmers').map(r => ({ id: String(r.id || ''), name: [r.firstName, r.middleName, r.lastName, r.suffix].filter(Boolean).join(' ') || String(r.fullName || ''), location: [r.barangay, r.municipality, r.province].filter(Boolean).join(', '), association: String(r.organization || r.association || r.associate_name || ''), birthday: String(r.birthDate || r.birthday || ''), sex: String(r.sex || '') })).filter(r => r.id && r.name); return stored.length ? stored : sampleFarmers; };
   let farmers = loadFarmers();
   const questionnaires = read('tmis-training-evaluation-questionnaires').filter(r => r.id && r.status !== 'Draft' && Array.isArray(r.questions));
+  if (existingRecord) {
+    const index = questionnaires.findIndex(r => r.id === existingRecord.questionnaireId);
+    const snapshot = { ...(questionnaires[index] || {}), id: existingRecord.questionnaireId, questionnaireName: existingRecord.questionnaireName, office: existingRecord.implementingOffice, questions: (existingRecord.ratings || []).map(item => item.question) };
+    if (index >= 0) questionnaires[index] = snapshot; else questionnaires.push(snapshot);
+  }
   let selectedFarmer = null;
   const draftId = new URLSearchParams(location.search).get('draft');
-  const resumedDraft = draftId ? read('tmis-training-evaluation-encoded').find(r => r.id === draftId && r.status === 'draft') : null;
+  const resumedDraft = existingRecord || (draftId ? read('tmis-training-evaluation-encoded').find(r => r.id === draftId && r.status === 'draft') : null);
   let currentPage = 1;
   let activeDraftId = resumedDraft?.id || null;
   let farmerRenderTimer;
@@ -104,14 +112,17 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSummary() { const q = selectedQuestionnaire(), total = q?.questions?.length || 0, rated = [...$('ratingRows').querySelectorAll('input[type="radio"]:checked')].length; $('summaryQuestionnaire').textContent = q?.questionnaireName || 'Not selected'; $('summaryFarmer').textContent = selectedFarmer?.name || 'Not selected'; $('summaryDate').textContent = $('testDate').value ? dateLabel($('testDate').value) : 'Not selected'; $('progressLabel').textContent = `${rated} of ${total} rated`; $('progressPercent').textContent = `${total ? Math.round(rated / total * 100) : 0}%`; $('progressFill').style.width = `${total ? rated / total * 100 : 0}%`; }
   function clearEntry(resetFilters = false) { form.reset(); selectedFarmer = null; activeDraftId = null; if (resetFilters) { $('organizationFilter').value = ''; $('farmerSearch').value = ''; currentPage = 1; } updateQuestionnaire(true); clearTimeout(farmerRenderTimer); renderFarmers(); $('summaryStatus').textContent = 'New entry'; }
   function save(draft) {
+    if (recordMode === 'view') return;
+    if (recordMode && !existingRecord) return;
+    if (recordMode === 'edit') draft = false;
     const q = selectedQuestionnaire();
     if (ratingsLoading) { notify('Wait for the questionnaire ratings to finish loading.', 'error'); return; }
     if (!draft && (!selectedFarmer || !q)) { notify('Select a farmer and training evaluation questionnaire before saving.', 'error'); return; }
     if (!draft && !q.questions.length) { notify('The selected questionnaire has no questions to rate.', 'error'); return; }
     if (!draft && !form.reportValidity()) return;
     const ratings = (q?.questions || []).map((question, index) => ({ question: typeof question === 'string' ? question : String(question.text || ''), rating: Number(form.querySelector(`input[name="rating_${index}"]:checked`)?.value) || null }));
-    const record = { id: activeDraftId || crypto.randomUUID(), questionnaireId: q?.id || '', questionnaireName: q?.questionnaireName || '', implementingOffice: q?.office || '', farmerId: selectedFarmer?.id || '', farmerName: selectedFarmer?.name || '', farmerAssociation: selectedFarmer?.association || '', farmerLocation: selectedFarmer?.location || '', farmerBirthday: selectedFarmer?.birthday || '', farmerSex: selectedFarmer?.sex || '', date: $('testDate').value, ratings, comments: $('comments').value.trim(), status: draft ? 'draft' : 'complete', savedAt: new Date().toISOString() };
-    try { const records = read('tmis-training-evaluation-encoded'), index = records.findIndex(item => item.id === record.id); if (index >= 0) records[index] = record; else records.push(record); localStorage.setItem('tmis-training-evaluation-encoded', JSON.stringify(records)); if (draft) { activeDraftId = record.id; $('summaryStatus').textContent = 'Draft saved'; } else clearEntry(); notify(draft ? 'Training evaluation draft saved.' : 'Training evaluation saved.'); }
+    const record = { id: activeDraftId || crypto.randomUUID(), questionnaireId: q?.id || '', questionnaireName: q?.questionnaireName || '', implementingOffice: q?.office || '', farmerId: selectedFarmer?.id || '', farmerName: selectedFarmer?.name || '', farmerAssociation: selectedFarmer?.association || '', farmerLocation: selectedFarmer?.location || '', farmerBirthday: selectedFarmer?.birthday || '', farmerSex: selectedFarmer?.sex || '', date: $('testDate').value, ratings, comments: $('comments').value.trim(), status: draft ? 'draft' : 'complete', savedAt: existingRecord?.savedAt || new Date().toISOString(), updatedAt: recordMode === 'edit' ? new Date().toISOString() : undefined };
+    try { const records = read('tmis-training-evaluation-encoded'), index = records.findIndex(item => item.id === record.id); if (index >= 0) records[index] = record; else records.push(record); localStorage.setItem('tmis-training-evaluation-encoded', JSON.stringify(records)); if (draft) { activeDraftId = record.id; $('summaryStatus').textContent = 'Draft saved'; } else if (recordMode !== 'edit') clearEntry(); notify(recordMode === 'edit' ? 'Training evaluation updated.' : draft ? 'Training evaluation draft saved.' : 'Training evaluation saved.'); }
     catch { notify('Unable to save this training evaluation. Check browser storage and try again.', 'error'); }
   }
   $('organizationFilter').addEventListener('change', () => { currentPage = 1; renderFarmers(); });
@@ -126,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
   $('resetEncode').addEventListener('click', () => { clearEntry(true); $('encodeStatus').textContent = ''; });
   if (resumedDraft) {
     $('questionnaireSelect').value = resumedDraft.questionnaireId || ''; updateQuestionnaire(true);
-    const farmer = farmers.find(item => item.id === resumedDraft.farmerId) || (resumedDraft.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null);
+    const farmer = (existingRecord?.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null) || farmers.find(item => item.id === resumedDraft.farmerId) || (resumedDraft.farmerId ? { id: resumedDraft.farmerId, name: resumedDraft.farmerName || '', association: resumedDraft.farmerAssociation || '', location: resumedDraft.farmerLocation || '', birthday: resumedDraft.farmerBirthday || '', sex: resumedDraft.farmerSex || '' } : null);
     if (farmer) selectFarmer(farmer);
     $('testDate').value = resumedDraft.date || '';
     $('comments').value = resumedDraft.comments || '';
@@ -134,4 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
     $('summaryStatus').textContent = 'Draft loaded';
   }
   queueFarmerRender(); if (!resumedDraft) renderRatings(); updateSummary();
+  if (recordMode) {
+    const heading = document.querySelector('.encode-heading h1');
+    if (heading) heading.textContent = `${recordMode === 'view' ? 'View' : 'Edit'} training evaluation result`;
+    $('saveDraft').hidden = true;
+    $('resetEncode').hidden = true;
+    if (!existingRecord) { form.querySelector('[type="submit"]').hidden = true; $('encodeStatus').textContent = 'This submitted result could not be found.'; }
+    else if (recordMode === 'view') {
+      document.querySelector('.farmer-table-card').hidden = true;
+      document.querySelector('.farmer-table-card + .farmer-table-footer').hidden = true;
+      form.querySelectorAll('input, select, textarea, button').forEach(control => { control.disabled = true; });
+      form.querySelector('[type="submit"]').hidden = true;
+      $('summaryStatus').textContent = 'Submitted';
+    } else { form.querySelector('[type="submit"]').textContent = 'Update training evaluation'; $('summaryStatus').textContent = 'Editing submitted result'; }
+  }
 });

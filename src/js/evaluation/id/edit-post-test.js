@@ -34,6 +34,13 @@
   };
   document.querySelector('.content-header')?.insertAdjacentElement('afterend', statusBadge);
   updateStatusBadge();
+  document.addEventListener('questionnaire:record-saved', () => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(config[0]) || '[]');
+      record = Array.isArray(saved) ? saved.find((item) => item?.id === id) || record : record;
+      updateStatusBadge();
+    } catch { /* Keep the last known status if storage cannot be read. */ }
+  });
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const title = record.trainingQuestionnaire || record.questionnaireName || 'Untitled questionnaire';
   const submit = form.querySelector('[type="submit"]');
@@ -156,8 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const index = editId ? records.findIndex((item) => item.id === editId) : -1;
       if (editId && index < 0) throw new Error('Questionnaire missing');
       if (index < 0) records.push(record);
-      else { record.createdAt = records[index].createdAt || record.createdAt; record.status = records[index].status || 'Active'; record.statusRemarks = records[index].statusRemarks || ''; record.updatedAt = new Date().toISOString(); records[index] = record; }
+      else { record.createdAt = records[index].createdAt || record.createdAt; record.status = records[index].status === 'Draft' ? 'Active' : records[index].status || 'Active'; record.statusRemarks = records[index].statusRemarks || ''; record.updatedAt = new Date().toISOString(); records[index] = record; }
       localStorage.setItem(storageKey, JSON.stringify(records));
+      document.dispatchEvent(new Event('questionnaire:record-saved'));
       if (document.body.classList.contains('questionnaire-edit-page')) {
         status.textContent = 'Post-test questionnaire updated.';
         window.showQuestionnaireToast(status.textContent);

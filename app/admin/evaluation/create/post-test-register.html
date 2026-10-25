@@ -58,6 +58,7 @@
     <link rel="stylesheet" href="../../../../src/css/training/register/register.css" />
     <link rel="stylesheet" href="../../../../src/css/shared/theme.css" />
     <link rel="stylesheet" href="../../../../src/css/evaluation/create/questionnaire-toast.css" />
+    <link rel="stylesheet" href="../../../../src/css/evaluation/create/test-questionnaire-draft.css" />
     <link rel="stylesheet" href="../../../../src/css/evaluation/select-icons.css" />
     <script src="../../../../src/js/shared/theme.js" defer></script>
     <title>Register Post-test Questionnaire</title>
@@ -860,7 +861,8 @@
                       <label for="description" class="form-label">Description <span class="text-optional">(optional)</span></label>
                       <textarea id="description" name="description" class="form-control" rows="4" placeholder="Add a brief description of this questionnaire"></textarea>
                     </div>
-                    <div class="col-12 d-flex align-items-center justify-content-end">
+                    <div class="col-12 d-flex align-items-center justify-content-end gap-2 flex-wrap">
+                      <button type="button" id="savePostTestDraft" class="btn btn-save-test-draft"><i class="bi bi-file-earmark" aria-hidden="true"></i> Save as Draft</button>
                       <button type="submit" class="btn btn-submit">Register Post-test</button>
                     </div>
                     <p id="postTestRegisterStatus" class="visually-hidden" role="status" aria-live="polite" hidden></p>

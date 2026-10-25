@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const normalizePath = (path) =>
-    decodeURIComponent(path).replace(/\/+$/, '').toLocaleLowerCase();
+  const normalizePath = (path) => {
+    try { return decodeURIComponent(path).replace(/\/+$/, '').toLowerCase(); }
+    catch { return path.replace(/\/+$/, '').toLowerCase(); }
+  };
   const currentPath = normalizePath(window.location.pathname);
   const navigation = document.querySelectorAll(
     '.app-header a[href], .app-mobile-menu a[href]'
@@ -9,6 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
     link.classList.remove('active-page');
     link.removeAttribute('aria-current');
   });
+
+  // Highlight ancestors without opening menus on every page load.
+  // Bootstrap controls their open state when the user clicks a section.
+  const activateParents = (link) => {
+    let parent = link.parentElement;
+    while (parent && !parent.matches('.app-header, .app-mobile-menu')) {
+      if (parent.classList.contains('collapse') && parent.id) {
+        const scope = parent.closest('.app-header, .app-mobile-menu');
+        scope?.querySelectorAll('[data-bs-target]').forEach((trigger) => {
+          if (trigger.getAttribute('data-bs-target') !== `#${parent.id}`) return;
+          trigger.classList.add('active-page');
+        });
+      }
+      parent = parent.parentElement;
+    }
+  };
 
   navigation.forEach((link) => {
     const href = link.getAttribute('href');
@@ -31,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     link.classList.add('active-page');
     link.setAttribute('aria-current', 'page');
+    activateParents(link);
 
     const desktopSection = link.closest(
       '.app-navigation-bar .navbar-nav > .nav-item'

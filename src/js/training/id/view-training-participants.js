@@ -130,10 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!button) return;
     const record = records.find(item => item.farmerId === button.dataset.viewFarmer);
     if (!record) return;
-    $('#participantDetailTitle').textContent = `${record.firstName} ${record.lastName}`;
-    $('#participantDetailList').innerHTML = columns.filter(([key]) => key !== 'actions').map(([key, label]) =>
+    const modal = document.getElementById('participantDetailModal');
+    if (!modal || typeof bootstrap === 'undefined') return;
+    document.getElementById('participantDetailTitle').textContent = `${record.firstName} ${record.middleName} ${record.lastName}`;
+    document.getElementById('participantDetailId').textContent = record.farmerId;
+    document.getElementById('participantDetailInitials').textContent = `${record.firstName[0]}${record.lastName[0]}`;
+    document.getElementById('participantDetailAssociation').textContent = record.association;
+    document.getElementById('participantDetailList').innerHTML = columns.filter(([key]) => !['actions', 'firstName', 'middleName', 'lastName', 'farmerId', 'association'].includes(key)).map(([key, label]) =>
       `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(display(record, key))}</dd></div>`).join('');
-    bootstrap.Modal.getOrCreateInstance($('#participantDetailModal')).show();
+    bootstrap.Modal.getOrCreateInstance(modal).show();
   });
   function setColumnPanel(open) {
     $('#participantColumnsPanel').hidden = !open;

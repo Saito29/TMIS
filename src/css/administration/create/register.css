@@ -1,0 +1,36 @@
+.user-register-page .first-row { margin-bottom: 1.25rem; }
+.user-register-page .content-header-wrap { width: 100%; }
+.user-register-page .btn-back-list { display: inline-flex; align-items: center; gap: .45rem; padding: .55rem .8rem; color: var(--color-primary-dark); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: .6rem; font-size: .8rem; font-weight: 700; }
+.user-register-page .btn-back-list:hover { background: var(--color-primary-surface); border-color: var(--color-primary); }
+.user-step-card, .user-form-card, .user-help-card { height: 100%; color: var(--color-text-primary); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; box-shadow: 0 .4rem 1.2rem rgb(0 0 0 / .04); }
+.user-step-card .card-body, .user-help-card .card-body { padding: 1.25rem; }
+.user-step-card .wizard-steps { margin: 1rem 0 0; }
+.user-card-kicker { color: var(--color-primary); font-size: .68rem; font-weight: 800; letter-spacing: .085em; }
+.user-form-card .card-body { padding: clamp(1.25rem, 2.3vw, 2rem); }
+.user-step[hidden], .user-form-actions [hidden], .user-form-message[hidden] { display: none !important; }
+.user-section-heading { display: flex; align-items: flex-start; gap: .85rem; margin-bottom: 1.4rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--color-border); }
+.user-section-icon, .user-help-icon { display: grid; flex: 0 0 2.7rem; place-items: center; height: 2.7rem; color: var(--color-primary-dark); background: var(--color-primary-surface); border-radius: .75rem; font-size: 1.2rem; }
+.user-section-heading h5 { margin: .2rem 0 .3rem; font-size: 1.12rem; font-weight: 750; }
+.user-section-heading p { margin: 0; color: var(--color-text-secondary); font-size: .78rem; line-height: 1.5; }
+.user-form-card .form-label { margin-bottom: .4rem; color: var(--color-text-primary); font-size: .78rem; font-weight: 700; }
+.user-form-card :is(.form-control, .form-select) { min-height: 2.65rem; color: var(--color-text-primary); background-color: var(--color-surface); border-color: var(--color-border); border-radius: .6rem; font-size: .84rem; }
+.user-form-card :is(.form-control, .form-select):focus { border-color: var(--color-primary); box-shadow: 0 0 0 .18rem var(--color-primary-surface); }
+.user-form-card .form-text { color: var(--color-text-secondary); font-size: .7rem; }
+.user-form-actions { display: flex; justify-content: space-between; gap: .75rem; margin-top: 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--color-border); }
+.user-form-actions .btn, .user-next-button { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 2.55rem; padding: .55rem 1rem; border-radius: .6rem; font-size: .8rem; font-weight: 750; }
+.user-back-button { color: var(--color-primary-dark); background: var(--color-surface); border: 1px solid var(--color-border); }
+.user-back-button:hover { color: var(--color-primary-dark); background: var(--color-primary-surface); border-color: var(--color-primary); }
+.user-next-button, .user-submit-button { margin-left: auto; color: #fff; background: #2e7d32; border: 1px solid #2e7d32; }
+.user-next-button:hover, .user-submit-button:hover { color: #fff; background: #1b5e20; border-color: #1b5e20; }
+.user-help-card h5 { margin: .9rem 0 .5rem; font-size: .95rem; font-weight: 750; }
+.user-help-card p, .user-help-card li { color: var(--color-text-secondary); font-size: .76rem; line-height: 1.55; }
+.user-help-card ul { padding-left: 1.1rem; margin-bottom: 0; }
+.user-help-card li + li { margin-top: .4rem; }
+.user-review { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem; margin: 0; }
+.user-review > div { min-width: 0; padding: .8rem; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: .65rem; }
+.user-review dt { color: var(--color-text-secondary); font-size: .67rem; font-weight: 700; text-transform: uppercase; }
+.user-review dd { margin: .25rem 0 0; overflow-wrap: anywhere; font-size: .8rem; font-weight: 650; }
+.user-review-note { display: flex; gap: .5rem; margin-top: 1rem; padding: .85rem; color: var(--color-primary-dark); background: var(--color-primary-surface); border-radius: .65rem; font-size: .75rem; line-height: 1.5; }
+.user-form-message { margin: 1rem 0 0; padding: .85rem; color: var(--color-primary-dark); background: var(--color-primary-surface); border: 1px solid var(--color-primary); border-radius: .65rem; font-size: .8rem; }
+.user-form-message[data-state='error'] { color: #a32720; background: #fff0ed; border-color: #edc4bc; }
+@media (max-width: 575.98px) { .user-review { grid-template-columns: 1fr; } .user-form-actions { flex-wrap: wrap; } .user-form-actions .btn { flex: 1; } }

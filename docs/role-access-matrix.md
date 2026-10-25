@@ -1,35 +1,79 @@
-# TMIS role access matrix
+# TMIS user roles and access plan
 
-This is the requested access policy. It describes intended permissions, not access controls already enforced by the app.
+Status: planning document only. No access restrictions are being implemented as part of this plan.
 
-| Capability | System Administrator | Data Encoder | Program Administrator | Program Head |
+## Roles and account scope
+
+Keep four roles initially. "Encoder" duplicates Data Encoder. Add an Evaluator/Reviewer only when a separate approval workflow exists; add a Training Coordinator only if training maintenance must be delegated.
+
+Every account needs a stable ID, one primary role, status (pending, active, suspended, deactivated), assigned region, office/organization, and optionally provinces and assigned trainings. Store scope as IDs. A national assignment must be explicit; a missing region never means nationwide access. Region and office are scope attributes, not extra roles.
+
+| Role | Responsibility | Default scope |
+| --- | --- | --- |
+| System Administrator | Manage accounts, roles, reference data, and all records | Nationwide, explicit |
+| Data Encoder | Maintain farmer/participant records and encode answers | Assigned office/region and training/participants |
+| Program Administrator | Create and maintain questionnaires | Assigned program/office; own drafts |
+| Program Head | Read training/participant information and generate reports | Assigned office/region, read only |
+
+Pending, suspended, and deactivated accounts cannot access protected data. A user cannot grant themselves a higher role or broader scope.
+
+## Permission matrix
+
+"Scoped" means the user's assignment includes the record. "Own draft" means the authenticated user created it. Blank means deny.
+
+| Resource/action | System Administrator | Data Encoder | Program Administrator | Program Head |
 | --- | --- | --- | --- | --- |
-| Create, assign roles to, update, deactivate, or delete users | Yes | No | No | No |
-| Create or update farmer and participant profiles | Yes | Yes | No | No |
-| Delete farmer and participant profiles | Yes | No | No | No |
-| Encode or edit pre-test and post-test answers | Yes | Yes | No | No |
-| Encode or edit training and resource person evaluations | Yes | Yes | No | No |
-| Create questionnaires | Yes | No | Yes | No |
-| Edit or delete submitted questionnaires | Yes | No | No | No |
-| View training and farmer or participant information | Yes | As needed for encoding | As needed for questionnaires | Yes |
-| Create or update training information | Yes | No | No | No |
-| Generate and export reports | Yes | No | No | Yes |
+| Users: create, approve, change role/scope, deactivate | All |  |  |  |
+| Users/audit log: view | All |  |  |  |
+| Farmer/participant and association: view | All | Scoped |  | Scoped |
+| Farmer/participant and association: create/update | All | Scoped |  |  |
+| Farmer/participant and association: delete/restore | All |  |  |  |
+| Training/resource person: view | All | Scoped, for encoding | Scoped, for questionnaire design | Scoped |
+| Training/resource person: create/update/approve/deactivate | All |  |  |  |
+| Questionnaire: view published | All | Scoped | Scoped | Scoped, read only |
+| Questionnaire: create/edit own draft | All |  | Scoped, own draft |  |
+| Questionnaire: publish/activate/deactivate/delete | All |  |  |  |
+| Pre/post-test and training/resource-person evaluation answers: create/edit own draft | All | Scoped, own draft |  |  |
+| Answers: submit own draft | All | Scoped, own draft |  |  |
+| Answers: view submitted/results | All | Scoped, for corrections | Scoped aggregates only, if needed | Scoped, read only |
+| Answers: correct/reopen/delete submitted | All |  |  |  |
+| Reports: view/generate/export | All |  |  | Scoped |
 
-Program Administrator can resume an unfinished questionnaire draft that they created; submitted questionnaire changes require System Administrator access. Data Encoder can resume their own unfinished encoding drafts. These ownership rules require authenticated user IDs and server-side checks.
+Questionnaire creation does not grant access to identifiable individual answers. Program Head remains read only even on pages that contain edit controls. Until a review workflow is specified, only System Administrator can publish questionnaires or correct submitted answers. If an Evaluator is later added, give them review/request-correction/approve permissions, without user management or raw-answer editing.
 
-## Current implementation audit
+## Access rules to include in the plan
 
-- `app/authentication/login.html` has a login form, but `src/js/auth/authentication.js` prevents submission and does not establish a session.
-- `app/admin/administration/create/register.html` saves a user record and selected role to `localStorage` as `Pending approval`. It does not create an account, authenticate the user, or grant permissions.
-- There are no role checks around admin routes, navigation, forms, or save and delete handlers. Anyone who opens a page in this static prototype can reach its controls.
-- Administration approval, user list, view, edit, inactive, and trash HTML files are empty. User approval, role updates, deactivation, and deletion are not implemented.
-- Dashboard report rows in `src/js/dashboard/scriptv2.js` are sample data. The report modal can export that data, but it is not a live report from training and participant records.
-- Many record operations use browser `localStorage`. Hiding buttons or redirecting pages in JavaScript would not secure these records because a user can change local storage or run the scripts directly.
+Access should depend on **account status, role, assigned area, record ownership, and record status**. Anything not expressly allowed in the matrix should be unavailable.
 
-## Enforcement needed before these roles govern real users
+- **Scope:** Lists, detail views, dashboard counts, searches, and reports should use the same assigned office/region. Where applicable, an encoder should also be assigned to the training or participant.
+- **Ownership:** A non-admin user can edit only their own draft. Reassignment should require an administrator.
+- **State:** Non-admin edits stop when a draft is submitted. Published, inactive, deleted, and submitted records need explicit transition permissions. A ten-second Undo option should be available only to someone allowed to restore the record.
+- **Relationships:** An answer should belong to a questionnaire, training, and participant within the user's scope.
+- **Account changes:** Only System Administrator can assign roles or broaden scope. The final active System Administrator should not be deactivated.
+- **Data fields:** Program Head reports should include only fields approved for reporting.
 
-1. Add authenticated server sessions and a persistent user store. Keep passwords and session secrets out of `localStorage`.
-2. Define named permissions for each operation, then check them on every server request. Start with a default-deny policy.
-3. Restrict role assignment, user management, record deletion, and report generation on the server. Check ownership for draft access.
-4. Use the same permission map to show relevant desktop and mobile navigation and to disable unavailable UI actions. Treat that UI as guidance; server checks remain authoritative.
-5. Replace report sample rows with authorized data queries and record who created, changed, deleted, or exported data.
+## Pages and navigation
+
+Desktop and mobile menus should follow the same permissions. Administration is for System Administrator. Participant creation/editing is for System Administrator and Data Encoder. Questionnaire creation/drafts are for System Administrator and Program Administrator. Encoding is for System Administrator and Data Encoder. Reporting is for System Administrator and Program Head.
+
+Each role should see only relevant menu items and actions. Page access, direct links, and exports should follow the same policy.
+
+## Planning decisions to finalize
+
+1. Decide whether Program Administrator can publish questionnaires or whether System Administrator approval is required.
+2. Decide whether encoded answers need independent review. Add Evaluator/Reviewer only if that person has a distinct approval task.
+3. Decide whether training creation and editing should stay with System Administrator or move to a Training Coordinator.
+4. Define exactly how office, region, province, and training assignments limit each role's records.
+5. Decide which personal data and report exports Program Head may see.
+6. Approve the final role matrix and account statuses before designing role-specific screens.
+
+## Example scenarios to review
+
+- Data Encoder can edit an assigned farmer and own answer draft, but cannot edit another encoder's draft or another region's records.
+- Program Administrator can create/resume their own questionnaire draft, but cannot change answers or user roles.
+- Program Head can view scoped training/participants and export scoped reports; every attempted write is denied.
+- System Administrator can manage accounts and records; the final active administrator cannot be deactivated.
+- Deactivated accounts have no access; a new role or office assignment changes what the user may see.
+- Lists, detail pages, dashboard counts, searches, and exports follow the same scope rules.
+- Desktop/mobile menus and direct page links follow the same permissions.
+

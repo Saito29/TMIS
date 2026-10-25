@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!type || !$('encodedTable')) return;
   const table = $('encodedTable');
   const rows = $('encodedRows');
+  const columnFields = [
+    ['farmerName', 'Farmer'], ['questionnaireName', 'Questionnaire'],
+    ['resourcePersonName', 'Resource person'], ['implementingOffice', 'Implementing office'],
+    ['date', 'Date conducted'], ['result', 'Result'], ['savedAt', 'Submitted'],
+  ];
+  const filterRow = document.createElement('tr');
+  filterRow.className = 'encoded-column-filters';
+  filterRow.innerHTML = '<th></th>' + columnFields.map(([key, label]) => `<th><label class="visually-hidden" for="encodedColumn${key}">Search ${label}</label><input id="encodedColumn${key}" class="form-control form-control-sm" type="search" data-encoded-column="${key}" placeholder="Search" aria-label="Search ${label}"></th>`).join('');
+  table.tHead.append(filterRow);
+  const columnFilters = [...filterRow.querySelectorAll('[data-encoded-column]')];
   const search = $('encodedSearch');
   const organization = $('encodedOrganization');
   const office = $('encodedOffice');
@@ -26,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let page = 1;
   let pageSize = 10;
   let readError = false;
+  let loadTimer = null;
+  let firstLoad = true;
+  const loadingStatus = document.createElement('span');
+  loadingStatus.className = 'visually-hidden';
+  loadingStatus.setAttribute('role', 'status');
+  loadingStatus.setAttribute('aria-live', 'polite');
+  table.after(loadingStatus);
 
   function result(record) {
     if (['pre-test', 'post-test'].includes(document.body.dataset.encodedType)) {
@@ -40,7 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
       (!organization.value || record.farmerAssociation === organization.value)
       && (!office.value || record.implementingOffice === office.value)
       && (!resourcePerson?.value || record.resourcePersonName === resourcePerson.value)
-      && (!needle || [record.farmerName, record.questionnaireName, record.implementingOffice, record.resourcePersonName, record.farmerAssociation, record.id].join(' ').toLowerCase().includes(needle)));
+      && (!needle || [record.farmerName, record.questionnaireName, record.implementingOffice, record.resourcePersonName, record.farmerAssociation, record.id].join(' ').toLowerCase().includes(needle))
+      && columnFilters.every((input) => {
+        const query = input.value.trim().toLowerCase();
+        if (!query) return true;
+        const key = input.dataset.encodedColumn;
+        const value = key === 'result' ? result(record) : key === 'date' ? date(record.date) : key === 'savedAt' ? submitted(record.savedAt) : record[key];
+        return String(value ?? '').toLowerCase().includes(query);
+      }));
   }
   function updateOptions(select, values, label) {
     const previous = select.value;
@@ -69,11 +93,20 @@ document.addEventListener('DOMContentLoaded', () => {
     exportButton.disabled = found.length === 0;
   }
   function load() {
+    if (loadTimer) window.clearTimeout(loadTimer);
     refresh.disabled = true;
+    refresh.classList.add('is-loading');
+    refresh.setAttribute('aria-label', 'Refreshing encoded results');
     exportButton.disabled = true;
     table.setAttribute('aria-busy', 'true');
-    rows.innerHTML = '<tr><td colspan="8" class="encoded-empty"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading results...</td></tr>';
-    window.setTimeout(() => {
+    table.classList.add('is-loading');
+    loadingStatus.textContent = 'Loading encoded results';
+    rows.innerHTML = '<tr class="encoded-loading-label"><td colspan="8"><span class="spinner-border spinner-border-sm" aria-hidden="true"></span> Loading encoded results...</td></tr>'
+      + Array.from({ length: 4 }, () => '<tr class="encoded-loading-row" aria-hidden="true">' + Array.from({ length: 8 }, () => '<td><span class="encoded-loading-bar"></span></td>').join('') + '</tr>').join('');
+    const delay = firstLoad ? 850 : 300;
+    firstLoad = false;
+    loadTimer = window.setTimeout(() => {
+      loadTimer = null;
       readError = false;
       try {
         const saved = JSON.parse(localStorage.getItem(type.key) || '[]');
@@ -83,8 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
       refreshOptions();
       render();
       table.setAttribute('aria-busy', 'false');
+      table.classList.remove('is-loading');
       refresh.disabled = false;
-    }, 180);
+      refresh.classList.remove('is-loading');
+      refresh.setAttribute('aria-label', 'Refresh encoded results');
+      loadingStatus.textContent = readError ? 'Encoded results could not be loaded' : 'Encoded results loaded';
+    }, delay);
   }
   function metadata(record) {
     const fields = [
@@ -114,8 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   search.addEventListener('input', () => { page = 1; render(); });
+  columnFilters.forEach((input) => input.addEventListener('input', () => { page = 1; render(); }));
   [organization, office, resourcePerson].filter(Boolean).forEach((select) => select.addEventListener('change', () => { page = 1; render(); }));
-  $('clearEncodedFilters').addEventListener('click', () => { organization.value = ''; office.value = ''; if (resourcePerson) resourcePerson.value = ''; search.value = ''; page = 1; render(); });
+  $('clearEncodedFilters').addEventListener('click', () => { organization.value = ''; office.value = ''; if (resourcePerson) resourcePerson.value = ''; search.value = ''; columnFilters.forEach((input) => { input.value = ''; }); page = 1; render(); });
   refresh.addEventListener('click', load);
   exportButton.addEventListener('click', () => {
     const found = matching();
@@ -172,4 +210,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (record) showAnswers(record);
   });
   load();
+  window.addEventListener('pageshow', (event) => { if (event.persisted) load(); });
 });

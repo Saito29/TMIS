@@ -5,12 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile', 'createFacilitatorRpMobile', 'detailsFacilitatorRpMobile'],
     evaluationMobile: ['createEvaluationMobile', 'encodeEvaluationMobile', 'encodedResultsMobile', 'detailsEvaluationMobile'],
     administrationMobile: ['createAdministrationMobile', 'updateAdministrationMobile', 'detailsAdministrationMobile'],
+    toolsMobile: [],
   };
   const headerMainCollapses = {
     participantHeaderCollapse: ['createParticipantHeaderCollapse', 'updateParticipantHeaderCollapse', 'detailsParticipantHeaderCollapse', 'createFarmerAssociationHeaderCollapse', 'detailsFarmerAssociationHeaderCollapse'],
     trainingHeaderCollapse: ['createTrainingHeaderCollapse', 'updateTrainingHeaderCollapse', 'detailsTrainingHeaderCollapse', 'createFacilitatorRpHeaderCollapse', 'detailsFacilitatorRpHeaderCollapse'],
     evaluationHeaderCollapse: ['createEvaluationHeaderCollapse', 'encodeEvaluationHeaderCollapse', 'encodedResultsHeaderCollapse', 'detailsEvaluationHeaderCollapse'],
     administrationHeaderCollapse: ['createAdministrationHeaderCollapse', 'updateAdministrationHeaderCollapse', 'detailsAdministrationHeaderCollapse'],
+    toolsHeaderCollapse: [],
   };
 
   const notificationDetailModal = document.getElementById('notificationDetailModal');
@@ -156,7 +158,29 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileDetails.before(section);
     }
   };
+  const addToolsNavigation = () => {
+    const script = document.querySelector('script[src$="/src/js/shared/nav.js"]');
+    if (!script) return;
+    const reportUrl = new URL('../../../app/admin/dashboard/dashboardv2.html#summary-report', script.src).href;
+    const desktopAdministration = document.getElementById('administrationHeaderCollapse')?.closest('.nav-item');
+    if (desktopAdministration && !document.getElementById('toolsHeaderCollapse')) {
+      const section = document.createElement('li');
+      section.className = 'nav-item';
+      section.innerHTML = '<a href="#" class="nav-link" role="button" data-bs-toggle="collapse" data-bs-target="#toolsHeaderCollapse" aria-expanded="false" aria-controls="toolsHeaderCollapse"><i class="bi bi-tools"></i><span class="text-icon">Tools</span><i class="bi bi-chevron-down ms-2"></i></a><div class="collapse header-collapse" id="toolsHeaderCollapse"><div class="header-collapse-menu"><a class="header-collapse-item" href=""><i class="bi bi-file-earmark-bar-graph"></i><span>Summary Report</span></a></div></div>';
+      section.querySelector('.header-collapse-item').href = reportUrl;
+      desktopAdministration.before(section);
+    }
+    const mobileAdministration = document.getElementById('administrationMobile')?.closest('li.mobile-list-navigation');
+    if (mobileAdministration && !document.getElementById('toolsMobile')) {
+      const section = document.createElement('li');
+      section.className = 'mobile-list-navigation';
+      section.innerHTML = '<a href="#" class="nav-link" data-bs-toggle="collapse" data-bs-target="#toolsMobile" aria-controls="toolsMobile" aria-expanded="false"><i class="bi bi-tools"></i><span>Tools</span><i class="bi bi-chevron-down ms-auto"></i></a><ul class="collapse mobile-subnav" id="toolsMobile"><li class="mobile-list-navigation"><a class="nav-link" href=""><i class="bi bi-file-earmark-bar-graph"></i><span>Summary Report</span></a></li></ul>';
+      section.querySelector('#toolsMobile a').href = reportUrl;
+      mobileAdministration.before(section);
+    }
+  };
   addEncodedResultsNavigation();
+  addToolsNavigation();
   bindCollapseGroup(mobileMainCollapses);
   bindCollapseGroup(headerMainCollapses);
 

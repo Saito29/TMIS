@@ -67,7 +67,9 @@
     <link rel="stylesheet" href="../../../src/css/dashboard/app.css" />
     <link rel="stylesheet" href="../../../src/css/shared/theme.css" />
     <script src="../../../src/js/shared/theme.js" defer></script>
-    <title>Document</title>
+    <title>Dashboard | TMIS</title>
+    <link rel="stylesheet" href="../../../src/css/shared/table-loading.css" />
+    <script src="../../../src/js/shared/table-loading.js" defer></script>
   </head>
   <body class="layout-fixed">
     <div class="app-wrapper">
@@ -795,11 +797,12 @@
 
       <!-- Main Body page  -->
       <main class="app-main">
+        <!-- Dashboard data handoff: replace the sample welcome, date, totals, and training text below with escaped server values. Keep chart IDs and data-report-key values in sync with scriptv2.js. -->
         <!-- Bootstrap container and grid keep dashboard cards fluid on every viewport. -->
         <div class="app-main-body container-fluid px-3 px-md-4">
           <!-- first row -->
           <!-- Responsive grid: cards stack on phones, then use the dashboard split from lg screens. -->
-          <div class="row first-row g-4">
+          <div class="row first-row g-4" id="summary-report">
             <!-- App left main content first row -->
             <div class="col-12 col-lg-4">
               <div class="app-left-main-content-body h-100">
@@ -1284,7 +1287,7 @@
           <!-- Beneficiary card grows from full width to a compact dashboard column. -->
           <div class="row fourth-row g-4">
             <!-- Total Gender per youth, adult, senior -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
@@ -1320,7 +1323,7 @@
               </div>
             </div>
             <!-- Total Gender per male and female -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
@@ -1353,7 +1356,7 @@
               </div>
             </div>
             <!-- Total PWD, 4ps, IP -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"

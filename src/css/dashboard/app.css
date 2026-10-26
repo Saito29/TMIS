@@ -1,5 +1,7 @@
 /* ============================================================
   DASHBOARD MAIN CONTENT LAYOUT
+  Developer handoff: adjust spacing and type scale here; shared color tokens
+  belong in ../shared/theme.css for both light and dark modes.
   ============================================================ */
 .app-main .app-main-body {
   width: 100%;
@@ -2381,4 +2383,71 @@
     padding-bottom: 3px;
   }
 
+}
+
+/* Dashboard readability and fluid card layout. Keep overrides after the older
+   component rules so Bootstrap and historical fixed sizes cannot win. */
+.app-main .app-main-body {
+  max-width: 1800px;
+  margin-inline: auto;
+  padding-block: 16px 32px;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.app-main .app-main-body :is(.first-row, .second-row, .third-row, .fourth-row, .fifth-row) {
+  margin-block: 0 24px;
+}
+
+.app-main .app-main-body .card {
+  height: 100%;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.app-main .app-main-body .card-header {
+  min-width: 0;
+}
+
+.app-main .app-main-body .card-header-title,
+.app-main .app-main-body .card-title-group {
+  min-width: 0;
+}
+
+.app-main .app-main-body .card-app-right-main-content .card-header .card-header-wrapper .card-header-title .card-header-text {
+  width: auto;
+  overflow-wrap: anywhere;
+}
+
+.app-main .app-main-body .card-beneficiary .card-header .card-title-gender {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.app-main .app-main-body .card-beneficiary .card-beneficiary-description {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--color-text-secondary);
+}
+
+.app-main .app-main-body .card-beneficiary .card-chart-beneficiary {
+  width: 100%;
+  min-width: 0;
+}
+
+.app-main .app-main-body :is(button, a):focus-visible {
+  outline: 3px solid var(--color-info);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767.98px) {
+  .app-main .app-main-body {
+    padding-block: 12px 24px;
+  }
+
+  .app-main .app-main-body :is(.first-row, .second-row, .third-row, .fourth-row, .fifth-row) {
+    margin-bottom: 16px;
+  }
 }

@@ -1,3 +1,6 @@
+// Dashboard data handoff: replace sample report rows and chart series with API
+// responses together, so card totals, charts, and exported report rows agree.
+// Keep the DOM chart IDs and data-report-key values defined in dashboardv2.html.
 document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   // MOBILE NAVIGATION CONFIGURATION

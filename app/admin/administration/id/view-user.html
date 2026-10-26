@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DA-TMIS - View User</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../../../src/css/shared/theme.css">
+  <link rel="stylesheet" href="../../../../src/css/administration/id/user.css">
+  <script src="../../../../src/js/shared/theme.js" defer></script>
+  <script src="../../../../src/js/administration/id/user.js" defer></script>
+</head>
+<body data-mode="view">
+  <!-- Developer: This view screen loads the user ID from the query string. Form fields and save behavior are shared in src/js/administration/id/user.js; connect that module to the user API. -->
+  <main class="container py-4 py-lg-5">
+    <a class="back-link" href="../details/all-status.html"><i class="bi bi-arrow-left"></i> All user statuses</a>
+    <header class="page-heading"><div><span class="eyebrow">ADMINISTRATION / USER MANAGEMENT</span><h1>View user</h1><p id="pageIntro">Loading user informationÃ¢â‚¬Â¦</p></div><span class="status-badge" id="recordStatus"></span></header>
+    <div id="userError" class="alert alert-danger" role="alert" hidden></div>
+    <div id="userSuccess" class="alert alert-success" role="status" hidden></div>
+    <form id="userForm" class="user-card" hidden>
+      <div class="card-intro"><span class="avatar" id="userAvatar"></span><div><strong id="userName"></strong><small id="userId"></small></div></div>
+      <section><h2><i class="bi bi-person-vcard"></i> Personal information</h2><div class="field-grid">
+        <label>First name<input class="form-control" name="firstName" required maxlength="80"></label>
+        <label>Middle name<input class="form-control" name="middleName" maxlength="80"></label>
+        <label>Last name<input class="form-control" name="lastName" required maxlength="80"></label>
+        <label>Suffix<select class="form-select" name="suffix"><option value="">None</option><option>Jr.</option><option>Sr.</option><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></label>
+        <label>Date of birth<input class="form-control" name="dateOfBirth" type="date"></label>
+        <label>Work email<input class="form-control" name="email" type="email" required maxlength="160"></label>
+        <label>Mobile number<input class="form-control" name="phone" type="tel" maxlength="20"></label>
+      </div></section>
+      <section><h2><i class="bi bi-shield-lock"></i> Access and office</h2><div class="field-grid">
+        <label>User role<select class="form-select" name="role" required><option>System Administrator</option><option>Data Encoder</option><option>Program Administrator</option><option>Program Head</option></select></label>
+        <label>Region<select class="form-select" name="region" required><option value="">Select region</option><option>NCR</option><option>CAR</option><option>Region I</option><option>Region II</option><option>Region III</option><option>Region IV-A</option><option>Region IV-B</option><option>Region V</option><option>Region VI</option><option>Region VII</option><option>Region VIII</option><option>Region IX</option><option>Region X</option><option>Region XI</option><option>Region XII</option><option>Region XIII</option><option>BARMM</option></select></label>
+        <label>Office / organization<select class="form-select" name="office" required></select></label>
+        <label>Position<input class="form-control" name="position" maxlength="100"></label>
+      </div></section>
+      <section><h2><i class="bi bi-clock-history"></i> Registration</h2><div class="field-grid">
+        <label>Status<select class="form-select" name="status"><option value="Pending approval">For Review</option><option value="Approved &amp; Accepted">Approved &amp; Accepted</option><option value="Rejected">Rejected</option><option value="Inactive">Inactive</option></select></label>
+        <label>Date registered<input class="form-control" id="createdAt" readonly></label>
+        <label>Last updated<input class="form-control" id="updatedAt" readonly></label>
+      </div></section>
+      <div class="form-actions"><a class="btn btn-outline-secondary" href="../details/all-status.html">Back to list</a><button class="btn btn-success" id="saveUser" type="submit"><i class="bi bi-check2-circle"></i> Save changes</button></div>
+    </form>
+  </main>
+</body>
+</html>

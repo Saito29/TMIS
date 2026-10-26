@@ -17,6 +17,27 @@ Every account needs a stable ID, one primary role, status (pending, active, susp
 
 Pending, suspended, and deactivated accounts cannot access protected data. A user cannot grant themselves a higher role or broader scope.
 
+## System access by role
+
+This overview summarizes the planned access for each role. Actual access enforcement is not implemented by this document. All scoped access requires an explicit office, region, program, training, or participant assignment as applicable.
+
+| System area | System Administrator | Data Encoder | Program Administrator | Program Head |
+| --- | --- | --- | --- | --- |
+| Dashboard | View system-wide summaries | View assigned encoding and participant summaries | View assigned questionnaire summaries | View assigned program and reporting summaries |
+| User accounts and administration | Register, review, approve/reject, edit, assign roles/scope, deactivate, delete/restore, and export user records | No access | No access | No access |
+| Farmers/participants and farmer associations | View, create, edit, delete/restore, and manage status | View, create, and update assigned records | No access | View assigned records only |
+| Trainings and facilitator/resource-person records | View, create, edit, approve, and deactivate | View assigned records needed for encoding | View assigned records needed for questionnaire design | View assigned records only |
+| Questionnaires: creation and drafts | Create, view, edit, and manage all drafts | No access | Create, view, and edit own drafts in the assigned program/office | No access to drafts |
+| Published questionnaires | View, publish, activate/deactivate, and delete | View assigned published questionnaires for encoding | View assigned published questionnaires | View assigned published questionnaires only |
+| Pre-test and post-test encoding | Create, view, edit, submit, correct/reopen, and delete answers | Create, edit, and submit own drafts for assigned trainings/participants; view assigned submitted answers for corrections | No access to identifiable individual answers | View assigned submitted results only |
+| Training and resource-person evaluation encoding | Create, view, edit, submit, correct/reopen, and delete answers | Create, edit, and submit own drafts for assigned trainings/participants; view assigned submitted answers for corrections | No access to identifiable individual answers | View assigned submitted results only |
+| Submitted answer changes | Correct, reopen, and delete submitted answers | Request administrator correction; cannot change submitted answers | Cannot change submitted answers | Cannot change submitted answers |
+| Evaluation summaries | View all results and aggregates | View assigned submitted results needed for corrections | View scoped aggregates only if explicitly authorized; pending final decision | View assigned results only |
+| Reports and Excel exports | Generate and export all authorized system reports | No report/export permission by default | No report/export permission by default | Generate and export assigned reports using approved reporting fields |
+| Audit logs, reference data, and permission settings | View audit logs and manage reference data and permissions | No access | No access | No access |
+
+Dashboard summaries follow the same scope and underlying resource permissions as the detailed records. A dashboard does not grant additional record or export permissions. Pending, suspended, and deactivated accounts cannot use protected system areas regardless of role.
+
 ## Permission matrix
 
 "Scoped" means the user's assignment includes the record. "Own draft" means the authenticated user created it. Blank means deny.

@@ -1,4 +1,0 @@
-<?php 
-    // Database connection configuration
-    
-?>

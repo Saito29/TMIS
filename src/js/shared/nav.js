@@ -1,5 +1,21 @@
 /* Shared header and mobile navigation behavior. */
 document.addEventListener('DOMContentLoaded', () => {
+  // Resolve account navigation from this script, independent of page depth.
+  const profileScript = [...document.scripts].find((script) => /\/src\/js\/shared\/nav\.js(?:[?#]|$)/.test(script.src));
+  if (profileScript) {
+    const accountPages = { Profile: 'profile.html', Logs: 'logs.html' };
+    document.querySelectorAll('.app-profile a, .app-mobile-menu a').forEach((link) => {
+      const file = accountPages[link.textContent.trim()];
+      if (!file) return;
+      const profileUrl = new URL(`../../../app/admin/users/${file}`, profileScript.src);
+      link.href = profileUrl.href;
+      if (window.location.pathname === profileUrl.pathname) {
+        link.setAttribute('aria-current', 'page');
+        link.classList.add('active-page');
+      }
+    });
+  }
+
   const mobileMainCollapses = {
     participantMobile: ['createParticipantMobile', 'updateParticipantMobile', 'detailsParticipantMobile', 'createFarmerAssociationMobile', 'detailsFarmerAssociationMobile'],
     trainingMobile: ['createTrainingMobile', 'updateTrainingMobile', 'detailsTrainingMobile', 'createFacilitatorRpMobile', 'detailsFacilitatorRpMobile'],
@@ -14,6 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
     administrationHeaderCollapse: ['createAdministrationHeaderCollapse', 'updateAdministrationHeaderCollapse', 'detailsAdministrationHeaderCollapse'],
     toolsHeaderCollapse: [],
   };
+
+  document.querySelectorAll('.notification-view-all').forEach(control => {
+    if (!profileScript) return;
+    const href = new URL('../../../app/admin/notification/details/all-notification.html', profileScript.src).href;
+    if (control.tagName === 'A') control.href = href;
+    else control.addEventListener('click', () => window.location.assign(href));
+  });
 
   const notificationDetailModal = document.getElementById('notificationDetailModal');
   const updateUnreadNotificationCount = () => {

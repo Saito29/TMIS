@@ -1,2 +1,10 @@
 
 settings.json
+
+# Local authentication database and encryption key (never publish).
+backend/.data/
+.env
+.env.local
+.npm-cache/
+
+node_modules/

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const currentSection = () => {
     const path = normalizePath(window.location.pathname);
-    const route = path.match(/\/app\/admin\/(participants|training|evaluation|administration)\//);
+    const route = path.match(/\/app\/admin\/(participants|training|evaluation|administration|users)\//);
     if (route) return route[1];
     if (/\/app\/admin\/dashboard\//.test(path)) {
       return window.location.hash.toLowerCase() === '#summary-report' ? 'tools' : 'dashboard';
@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const sectionForLink = (link) => {
+    if (['Profile', 'Logs'].includes(link.textContent.trim())) return { key: 'users', trigger: null };
     const section = link.closest(
       '.app-navigation-bar .navbar-nav > .nav-item, .app-mobile-menu .mobile-nav > .mobile-list-navigation'
     );
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (
         target.origin !== window.location.origin ||
         normalizePath(target.pathname) !== currentPath ||
-        target.hash.toLowerCase() !== currentHash
+        (routeSection !== 'users' && target.hash.toLowerCase() !== currentHash)
       ) return;
 
       link.classList.add('active-page');

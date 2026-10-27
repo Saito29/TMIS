@@ -54,12 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const update = Object.fromEntries(Object.entries(Object.fromEntries(new FormData(form))).map(([key, value]) => [key, value.trim()]));
     const previous = latest[index];
     const changed = Object.keys(update).filter(key => update[key] !== String(previous[key] || ''));
+    let activityActorId = null;
+    try { activityActorId = window.TMIS_SESSION?.userId || sessionStorage.getItem('tmis-current-user-id'); } catch { /* No connected actor. */ }
     const profileFields = changed.filter(key => key !== 'status');
     const fieldLabels = { title: 'professional title', first_name: 'first name', middle_name: 'middle name', last_name: 'last name', suffix: 'suffix', office: 'office', qualification: 'qualification', expertise: 'expertise', phone: 'phone number', email: 'email address' };
     const activityLogs = Array.isArray(previous.activityLogs) ? [...previous.activityLogs] : [];
     const timestamp = new Date().toISOString();
-    if (profileFields.length) activityLogs.push({ category: 'profile', title: 'Profile information updated', description: `Updated ${profileFields.map(key => fieldLabels[key] || key).join(', ')}.`, actor: 'System user', date: timestamp, status: 'Updated', reference: previous.id, icon: 'bi-person-vcard' });
-    if (changed.includes('status')) activityLogs.push({ category: 'status', title: 'Resource person status changed', description: `Status changed from ${previous.status || 'Active'} to ${update.status}.`, actor: 'System user', date: timestamp, status: update.status, reference: previous.id, icon: 'bi-arrow-left-right' });
+    if (profileFields.length) activityLogs.push({ category: 'profile', title: 'Profile information updated', description: `Updated ${profileFields.map(key => fieldLabels[key] || key).join(', ')}.`, actor: 'System user', actorId: activityActorId, date: timestamp, status: 'Updated', reference: previous.id, icon: 'bi-person-vcard' });
+    if (changed.includes('status')) activityLogs.push({ category: 'status', title: 'Resource person status changed', description: `Status changed from ${previous.status || 'Active'} to ${update.status}.`, actor: 'System user', actorId: activityActorId, date: timestamp, status: update.status, reference: previous.id, icon: 'bi-arrow-left-right' });
     latest[index] = { ...previous, ...update, activityLogs };
     try { localStorage.setItem('tmis-resource-persons', JSON.stringify(latest)); byId('saveStatus').textContent = 'Changes saved.'; }
     catch { byId('saveStatus').textContent = 'Could not save changes. Please try again.'; }

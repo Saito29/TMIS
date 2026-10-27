@@ -64,6 +64,10 @@
     <title>DA-TMIS - Incomplete Trainings</title>
     <link rel="stylesheet" href="../../../../src/css/shared/table-loading.css" />
     <script src="../../../../src/js/shared/table-loading.js" defer></script>
+    <!-- Backend integration disabled for now. Uncomment when ready.
+<script type="module" src="../../../../src/js/shared/auth-client.js"></script>
+-->
+      <script type="module" src="../../../../src/js/shared/activity-log.js"></script>
   </head>
   <body class="layout-fixed">
     <div class="app-wrapper">
@@ -762,23 +766,18 @@
                   <hr class="dropdown-divider" />
                 </li>
                 <li>
-                  <a href="#" class="dropdown-item">
+                  <a href="../../users/profile.html" class="dropdown-item">
                     <i class="bi bi-person-fill-gear"></i>
                     <span>Profile</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="dropdown-item">
+                  <a href="../../users/logs.html" class="dropdown-item">
                     <i class="bi bi-substack"></i>
                     <span>Logs</span>
                   </a>
                 </li>
-                <li>
-                  <a href="#" class="dropdown-item">
-                    <i class="bi bi-gear-wide"></i>
-                    <span>Settings</span>
-                  </a>
-                </li>
+                
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
@@ -1832,23 +1831,18 @@
             </ul>
           </li>
           <li class="mobile-list-navigation">
-            <a href="#my-profile" class="nav-link">
+            <a href="../../users/profile.html" class="nav-link">
               <i class="bi bi-person-circle"></i>
               <span>Profile</span>
             </a>
           </li>
           <li class="mobile-list-navigation">
-            <a href="#my-logs" class="nav-link">
+            <a href="../../users/logs.html" class="nav-link">
               <i class="bi bi-journal-text"></i>
               <span>Logs</span>
             </a>
           </li>
-          <li class="mobile-list-navigation">
-            <a href="#settings" class="nav-link">
-              <i class="bi bi-gear"></i>
-              <span>Settings</span>
-            </a>
-          </li>
+          
           <li class="mobile-list-navigation">
             <a href="#signout" class="nav-link sign-out-item">
               <i class="bi bi-box-arrow-right"></i>

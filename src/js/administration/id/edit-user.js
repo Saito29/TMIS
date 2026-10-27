@@ -112,7 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!['System Administrator', 'Data Encoder', 'Program Administrator', 'Program Head'].includes(updates.role)
         || !['Approved & Accepted', 'Inactive'].includes(updates.status)) { feedback('Select a valid role and account status.', 'warning'); return; }
       if (users.some((item) => item?.id !== id && String(item?.email || '').toLowerCase() === updates.email)) { feedback('This work email is already registered to another user.', 'warning'); form.elements.email.focus(); return; }
-      Object.assign(user, updates, { updatedAt: new Date().toISOString() });
+      const changed = Object.keys(updates).filter(field => String(user[field] || '') !== updates[field]);
+      const timestamp = new Date().toISOString();
+      const activityLogs = Array.isArray(user.activityLogs) ? [...user.activityLogs] : [];
+      let actorId = null;
+      try { actorId = window.TMIS_SESSION?.userId || sessionStorage.getItem('tmis-current-user-id'); } catch { /* Actor remains unspecified. */ }
+      const actorUser = users.find(item => item?.id === actorId);
+      const actor = actorUser ? [actorUser.firstName, actorUser.middleName, actorUser.lastName, actorUser.suffix].filter(Boolean).join(' ') : 'System user';
+      const base = { actor, actorId, date: timestamp, reference: user.id };
+      const profileChanges = changed.filter(field => field !== 'status' && field !== 'remarks');
+      if (profileChanges.length) activityLogs.push({ ...base, category: 'profile', title: 'User profile updated', description: `Updated ${profileChanges.map(field => ({ firstName: 'first name', middleName: 'middle name', lastName: 'last name', dateOfBirth: 'date of birth', suffix: 'extension' }[field] || field)).join(', ')}.`, status: 'Updated' });
+      if (changed.includes('status') || changed.includes('remarks')) activityLogs.push({ ...base, category: 'status', title: changed.includes('status') ? 'Account status updated' : 'Inactive remarks updated', description: changed.includes('status') ? `Account status changed from ${user.status || 'Not specified'} to ${updates.status}.` : 'The optional inactive account remarks were updated.', status: updates.status });
+      Object.assign(user, updates, { updatedAt: timestamp, activityLogs });
       localStorage.setItem(key, JSON.stringify(users));
       load(); feedback('User registration updated successfully.');
       $('updateUserHint').textContent = 'Changes saved. The last updated date has been refreshed.';

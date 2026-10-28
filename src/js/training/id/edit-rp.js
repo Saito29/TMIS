@@ -113,12 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const fieldLabels = { first_name: 'first name', middle_name: 'middle name', last_name: 'last name', suffix: 'suffix', title: 'professional title', office: 'office', qualification: 'qualification', expertise: 'expertise', phone: 'phone number', email: 'email address' };
     const logs = Array.isArray(previous.activityLogs) ? [...previous.activityLogs] : [];
     const date = new Date().toISOString();
+    let activityActorId = null;
+    try { activityActorId = window.TMIS_SESSION?.userId || sessionStorage.getItem('tmis-current-user-id'); } catch { /* No connected actor. */ }
     const profileFields = changed.filter(key => key !== 'status' && key !== 'status_remarks');
-    if (profileFields.length) logs.push({ category: 'profile', title: 'Profile information updated', description: `Updated ${profileFields.map(key => fieldLabels[key] || key).join(', ')}.`, actor: 'System user', date, status: 'Updated', reference: id, icon: 'bi-person-vcard' });
+    if (profileFields.length) logs.push({ category: 'profile', title: 'Profile information updated', description: `Updated ${profileFields.map(key => fieldLabels[key] || key).join(', ')}.`, actor: 'System user', actorId: activityActorId, date, status: 'Updated', reference: id, icon: 'bi-person-vcard' });
     if (changed.includes('status') || changed.includes('status_remarks')) {
       const statusChanged = changed.includes('status');
       const description = statusChanged ? `Status changed from ${previous.status || 'Active'} to ${update.status}.` : 'Inactive status remarks updated.';
-      logs.push({ category: 'status', title: statusChanged ? 'Resource person status changed' : 'Inactive remarks updated', description: update.status === 'Inactive' && update.status_remarks ? `${description} Remarks: ${update.status_remarks}` : description, actor: 'System user', date, status: update.status, reference: id, icon: 'bi-arrow-left-right' });
+      logs.push({ category: 'status', title: statusChanged ? 'Resource person status changed' : 'Inactive remarks updated', description: update.status === 'Inactive' && update.status_remarks ? `${description} Remarks: ${update.status_remarks}` : description, actor: 'System user', actorId: activityActorId, date, status: update.status, reference: id, icon: 'bi-arrow-left-right' });
     }
     records[index] = { ...previous, ...update, activityLogs: logs };
     try { localStorage.setItem('tmis-resource-persons', JSON.stringify(records)); savedValues = { ...update }; setStatus('saved', 'Up to date'); saveMessage.textContent = 'Changes saved. Activity Logs will update when this page is reloaded.'; }

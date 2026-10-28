@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../../../src/js/page-loading.js"></script>
+    <script src="../../../src/js/shared/page-loading.js"></script>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -66,14 +66,17 @@
     <link rel="stylesheet" href="../../../src/css/shared/main-body.css" />
     <link rel="stylesheet" href="../../../src/css/dashboard/app.css" />
     <link rel="stylesheet" href="../../../src/css/shared/theme.css" />
-    <script src="../../../src/js/theme.js" defer></script>
-    <title>TMIS Dashboard</title>
+    <script src="../../../src/js/shared/theme.js" defer></script>
+    <title>Dashboard | TMIS</title>
     <link rel="stylesheet" href="../../../src/css/shared/table-loading.css" />
     <script src="../../../src/js/shared/table-loading.js" defer></script>
+    <!-- Backend integration disabled for now. Uncomment when ready.
+<script type="module" src="../../../src/js/shared/auth-client.js"></script>
+-->
+      <script type="module" src="../../../src/js/shared/activity-log.js"></script>
   </head>
   <body class="layout-fixed">
-    <div id="root"></div>
-    <div class="app-wrapper" hidden>
+    <div class="app-wrapper">
       <nav class="app-header navbar navbar-expand">
         <div
           class="app-header-main d-flex justify-content-between align-items-center"
@@ -96,7 +99,7 @@
             <div
               class="app-logo d-none d-sm-flex align-items-center justify-content-start"
             >
-              <a href="dashboard.html" class="text-decoration-none">
+              <a href="dashboardv2.html" class="text-decoration-none">
                 <img
                   src="../../../assets/logo/DA Logo/DA logo_120519.png"
                   alt="App_logo"
@@ -119,7 +122,7 @@
           >
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a href="dashboard.html" class="nav-link active-page">
+                <a href="dashboardv2.html" class="nav-link active-page">
                   <i class="bi bi-columns-gap"></i>
                   <span class="text-icon-active">Dashboard</span>
                 </a>
@@ -764,23 +767,18 @@
                   <hr class="dropdown-divider" />
                 </li>
                 <li>
-                  <a href="#" class="dropdown-item">
+                  <a href="../users/profile.html" class="dropdown-item">
                     <i class="bi bi-person-fill-gear"></i>
                     <span>Profile</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" class="dropdown-item">
+                  <a href="../users/logs.html" class="dropdown-item">
                     <i class="bi bi-substack"></i>
                     <span>Logs</span>
                   </a>
                 </li>
-                <li>
-                  <a href="#" class="dropdown-item">
-                    <i class="bi bi-gear-wide"></i>
-                    <span>Settings</span>
-                  </a>
-                </li>
+                
                 <li>
                   <hr class="dropdown-divider" />
                 </li>
@@ -798,11 +796,12 @@
 
       <!-- Main Body page  -->
       <main class="app-main">
+        <!-- Dashboard data handoff: replace the sample welcome, date, totals, and training text below with escaped server values. Keep chart IDs and data-report-key values in sync with scriptv2.js. -->
         <!-- Bootstrap container and grid keep dashboard cards fluid on every viewport. -->
         <div class="app-main-body container-fluid px-3 px-md-4">
           <!-- first row -->
           <!-- Responsive grid: cards stack on phones, then use the dashboard split from lg screens. -->
-          <div class="row first-row g-4">
+          <div class="row first-row g-4" id="summary-report">
             <!-- App left main content first row -->
             <div class="col-12 col-lg-4">
               <div class="app-left-main-content-body h-100">
@@ -1287,7 +1286,7 @@
           <!-- Beneficiary card grows from full width to a compact dashboard column. -->
           <div class="row fourth-row g-4">
             <!-- Total Gender per youth, adult, senior -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
@@ -1323,7 +1322,7 @@
               </div>
             </div>
             <!-- Total Gender per male and female -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
@@ -1356,7 +1355,7 @@
               </div>
             </div>
             <!-- Total PWD, 4ps, IP -->
-            <div class="col-12 col-md-4 col-lg-4">
+            <div class="col-12 col-md-6 col-xl-4">
               <div class="card card-beneficiary">
                 <div
                   class="card-header d-flex align-items-start position-relative p-3 pe-5 pb-2 lh-sm bg-transparent border-0"
@@ -1447,7 +1446,7 @@
                       <!-- card training, date, and location -->
                       <div class="card-training-wrapper">
                         <div class="card-training-title">
-                          <a href="#" class="card-text-title nav-link">
+                          <a href="../training/id/view-training.html" class="card-text-title nav-link">
                             Retooling on Basic Bookkeeping, RecordKeeping, and
                             Crafting Resolution
                           </a>
@@ -1484,7 +1483,7 @@
                       <!-- card training, date, and location -->
                       <div class="card-training-wrapper">
                         <div class="card-training-title">
-                          <a href="#" class="card-text-title nav-link">
+                          <a href="../training/id/view-training.html" class="card-text-title nav-link">
                             Retooling on Basic Bookkeeping, RecordKeeping, and
                             Crafting Resolution
                           </a>
@@ -1521,7 +1520,7 @@
                       <!-- card training, date, and location -->
                       <div class="card-training-wrapper">
                         <div class="card-training-title">
-                          <a href="#" class="card-text-title nav-link">
+                          <a href="../training/id/view-training.html" class="card-text-title nav-link">
                             Retooling on Basic Bookkeeping, RecordKeeping, and
                             Crafting Resolution
                           </a>
@@ -1558,7 +1557,7 @@
                       <!-- card training, date, and location -->
                       <div class="card-training-wrapper">
                         <div class="card-training-title">
-                          <a href="#" class="card-text-title nav-link">
+                          <a href="../training/id/view-training.html" class="card-text-title nav-link">
                             Retooling on Basic Bookkeeping, RecordKeeping, and
                             Crafting Resolution
                           </a>
@@ -1587,7 +1586,7 @@
                     </div>
                     <!-- View all button  -->
                     <div class="card-button-view-all">
-                      <a href="#" class="btn btn-view-all nav-link"
+                      <a href="../training/details/all-status.html" class="btn btn-view-all nav-link"
                         >View all trainings
                         <i class="bi bi-arrow-right-short"></i
                       ></a>
@@ -1888,7 +1887,7 @@
         <!-- User list navigation bar -->
         <ul class="mobile-nav">
           <li class="mobile-list-navigation">
-            <a href="dashboard.html" class="nav-link">
+            <a href="dashboardv2.html" class="nav-link">
               <i class="bi bi-columns-gap"></i>
               <span>Dashboard</span>
             </a>
@@ -1910,7 +1909,7 @@
               <li class="mobile-subnav-section-label">Individual</li>
               <li class="mobile-list-navigation">
                 <a
-                  href="../participants/create/register.html"
+                  href="#"
                   class="nav-link"
                   data-bs-toggle="collapse"
                   data-bs-target="#createParticipantMobile"
@@ -2383,23 +2382,18 @@
             </ul>
           </li>
           <li class="mobile-list-navigation">
-            <a href="#my-profile" class="nav-link">
+            <a href="../users/profile.html" class="nav-link">
               <i class="bi bi-person-circle"></i>
               <span>Profile</span>
             </a>
           </li>
           <li class="mobile-list-navigation">
-            <a href="#my-logs" class="nav-link">
+            <a href="../users/logs.html" class="nav-link">
               <i class="bi bi-journal-text"></i>
               <span>Logs</span>
             </a>
           </li>
-          <li class="mobile-list-navigation">
-            <a href="#settings" class="nav-link">
-              <i class="bi bi-gear"></i>
-              <span>Settings</span>
-            </a>
-          </li>
+          
           <li class="mobile-list-navigation">
             <a href="#signout" class="nav-link sign-out-item">
               <i class="bi bi-box-arrow-right"></i>
@@ -2560,7 +2554,7 @@
 
     <script src="../../../src/js/shared/nav.js"></script>
     <script src="../../../src/js/shared/navigation-state.js"></script>
-    <script type="module" src="./dashboard.jsx"></script>
+    <script src="../../../src/js/dashboard/scriptv2.js"></script>
     <script src="../../../src/js/dashboard/training-highlight-carousel.js"></script>
   </body>
 </html>

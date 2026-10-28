@@ -753,17 +753,12 @@ export default function Dashboard() {
                         </a>
                       </li>
                       <li>
-                        <a href="#" className="dropdown-item">
+                        <a href="../users/logs.html" className="dropdown-item">
                           <i className="bi bi-substack"></i>
                           <span>Logs</span>
                         </a>
                       </li>
-                      <li>
-                        <a href="#" className="dropdown-item">
-                          <i className="bi bi-gear-wide"></i>
-                          <span>Settings</span>
-                        </a>
-                      </li>
+                      
                       <li>
                         <hr className="dropdown-divider" />
                       </li>
@@ -2422,17 +2417,12 @@ export default function Dashboard() {
                   </a>
                 </li>
                 <li className="mobile-list-navigation">
-                  <a href="#my-logs" className="nav-link">
+                  <a href="../users/logs.html" className="nav-link">
                     <i className="bi bi-journal-text"></i>
                     <span>Logs</span>
                   </a>
                 </li>
-                <li className="mobile-list-navigation">
-                  <a href="#settings" className="nav-link">
-                    <i className="bi bi-gear"></i>
-                    <span>Settings</span>
-                  </a>
-                </li>
+                
                 <li className="mobile-list-navigation">
                   <a href="#signout" className="nav-link sign-out-item">
                     <i className="bi bi-box-arrow-right"></i>

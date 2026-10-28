@@ -1,3 +1,4 @@
+import { showToast } from '../toast.js';
 import { renderMessage } from '../message-editor.js';
 ﻿import { buildNotifications, previewNotifications, safeNotificationLink } from './notification-data.js';
 function init() {
@@ -15,7 +16,7 @@ function init() {
   const itemState=item=>({...item,...state[item.id]});
   const read=item=>!!itemState(item).readAt;
   const archived=item=>!!itemState(item).archivedAt;
-  function feedback(message,error=false){$('inboxFeedback').hidden=!message;$('inboxFeedback').textContent=message;$('inboxFeedback').dataset.type=error?'error':'info';}
+  function feedback(message,error=false){$('inboxFeedback').hidden=true;$('inboxFeedback').textContent=message;showToast(message,error?'error':'success');}
   function save(changes){
     const next={...state};for(const [id,change] of changes)next[id]={...(state[id]||{}),...change};
     try{if(preview)previewState=next;else if(user)localStorage.setItem(stateKey(),JSON.stringify(next));else throw new Error();state=next;return true;}

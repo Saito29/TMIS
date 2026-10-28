@@ -14,11 +14,8 @@
   "dependencies": {
     "apexcharts": "^7.1.0",
     "qrcode": "^1.5.4",
-<<<<<<< HEAD
-=======
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
->>>>>>> a3201f8bf9768ac7f740c6c367a1c4f08ef403f7
     "vite": "^6.3.5"
   },
   "devDependencies": {

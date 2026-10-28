@@ -91,3 +91,55 @@
 .compose-editor-toolbar button:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 1px; }
 .compose-editor-toolbar + #notificationMessage { border-top-left-radius: 0; border-top-right-radius: 0; }
 #notificationPreviewMessage :is(ul,ol) { margin: .4rem 0; padding-left: 1.4rem; white-space: normal; }
+.compose-recipient-tools { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-bottom:1rem; }
+.compose-recipient-filters { display:grid; grid-template-columns:minmax(0,2fr) repeat(3,minmax(0,1fr)); gap:.75rem; padding:1rem; border:1px solid var(--color-border); border-radius:.75rem; background:var(--color-bg); }
+.compose-recipient-filters > div { min-width:0; }
+.compose-recipient-table-wrap { margin-top:1rem; max-height:28rem; overflow:auto; border:1px solid var(--color-border); border-radius:.75rem; }
+.compose-recipient-table { width:100%; min-width:1050px; border-collapse:separate; border-spacing:0; font-size:.75rem; color:var(--color-text-primary); }
+.compose-recipient-table th,.compose-recipient-table td { padding:.85rem; text-align:left; border-bottom:1px solid var(--color-border); overflow-wrap:anywhere; }
+.compose-recipient-table th { position:sticky; top:0; z-index:1; background:var(--color-bg); font-size:.7rem; white-space:nowrap; }
+.compose-recipient-table td { background:var(--color-surface); }
+.compose-recipient-table tr.is-selected td,.compose-recipient-table tr:hover td { background:var(--color-primary-surface); }
+.compose-recipient-table :is(th,td):first-child { position:sticky; left:0; width:5rem; text-align:center; border-right:1px solid var(--color-border); }
+.compose-recipient-table th:first-child { z-index:3; }
+.compose-card-body .compose-select-column { display:flex; flex-direction:column; align-items:center; gap:.35rem; margin:0; }
+.compose-recipient-table input[type=checkbox] { width:1rem; height:1rem; accent-color:var(--color-primary); cursor:pointer; }
+.compose-recipient-pagination { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; padding:1rem 0; font-size:.73rem; }
+.compose-recipient-pagination label,.compose-recipient-pagination nav { display:flex; align-items:center; gap:.6rem; margin:0; }
+.compose-recipient-pagination select { width:auto; }
+.compose-layout > form { min-width:0; }
+.profile-mail-compose .compose-layout { grid-template-columns:minmax(0,1.65fr) minmax(17rem,1fr); }
+.profile-mail-compose .compose-layout > form { display:contents; }
+.profile-mail-compose #notificationComposeForm > .compose-card:first-child { grid-column:1; grid-row:1; margin:0; }
+.profile-mail-compose #notificationComposeForm > .compose-card:nth-child(2) { grid-column:1 / -1; grid-row:2; margin:0; }
+.profile-mail-compose .compose-preview { grid-column:2; grid-row:1; position:static; align-self:start; min-width:0; }
+.profile-mail-compose .compose-form-footer { grid-column:1 / -1; grid-row:3; }
+.profile-mail-compose .compose-audience { grid-template-columns:repeat(3,minmax(0,1fr)); }
+@media(max-width:991.98px) { .compose-recipient-filters { grid-template-columns:repeat(3,minmax(0,1fr)); } .compose-recipient-filters > div:first-child { grid-column:1 / -1; } .profile-mail-compose .compose-layout { grid-template-columns:minmax(0,1fr); } .profile-mail-compose .compose-preview { grid-column:1; grid-row:2; } .profile-mail-compose #notificationComposeForm > .compose-card:nth-child(2) { grid-row:3; } .profile-mail-compose .compose-form-footer { grid-row:4; } }
+@media(max-width:575.98px) { .compose-recipient-filters,.profile-mail-compose .compose-audience { grid-template-columns:1fr; } .compose-recipient-pagination nav { width:100%; justify-content:space-between; } }
+/* Recipient filters and selection feedback. */
+.compose-filter-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.75rem; margin:1rem 0 .85rem; }
+.compose-filter-heading h3 { margin:0; font-size:.9rem; font-weight:650; }
+.compose-filter-heading p { margin:.25rem 0 0; font-size:.72rem; color:var(--color-text-secondary); }
+.compose-recipient-filters { padding:1.1rem; gap:1rem; }
+.compose-recipient-filters :is(input,select) { width:100%; min-height:2.75rem; }
+.compose-sample-tools { color:var(--color-text-secondary); font-size:.72rem; margin-bottom:.75rem; }
+.compose-sample-tools summary { width:fit-content; cursor:pointer; }
+.compose-recipient-tools { margin-top:.75rem; padding:.85rem; border:1px dashed var(--color-border); border-radius:.65rem; }
+.compose-selection-toolbar { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+#recipientSelectedCount { padding:.3rem .65rem; border-radius:2rem; color:var(--color-primary-dark); background:var(--color-primary-surface); font-size:.72rem; font-weight:650; }
+.compose-selection-toolbar .btn,.compose-filter-heading .btn { min-height:2.15rem; font-size:.72rem; }
+.compose-page .btn:disabled { opacity:.45; cursor:default; }
+.compose-recipient-table th { height:3.5rem; letter-spacing:.025em; color:var(--color-text-secondary); }
+.compose-recipient-table td { line-height:1.6; }
+.compose-recipient-table tbody tr:nth-child(even):not(.is-selected) td { background:var(--color-bg); }
+.compose-recipient-table tbody tr:hover td { background:var(--color-primary-surface); }
+.compose-recipient-table tr:focus-within { box-shadow:inset 0 0 0 2px var(--color-primary); }
+.compose-recipient-table td:nth-child(2) { font:.68rem ui-monospace,monospace; min-width:9rem; }
+.compose-recipient-table td:nth-child(4) { font-weight:600; min-width:10rem; }
+.compose-recipient-table td:nth-child(6) { min-width:13rem; }
+.compose-status-badge { display:inline-block; padding:.2rem .55rem; border-radius:2rem; background:var(--color-primary-surface); color:var(--color-primary-dark); font-size:.65rem; white-space:nowrap; }
+.compose-recipient-table-wrap { border-bottom-left-radius:0; border-bottom-right-radius:0; scrollbar-width:thin; }
+.compose-recipient-pagination { padding:1rem; border:1px solid var(--color-border); border-top:0; border-radius:0 0 .75rem .75rem; background:var(--color-bg); }
+#recipientPageNumber { min-width:5rem; text-align:center; font-variant-numeric:tabular-nums; }
+#notificationRecipientsEmpty { padding:1.5rem; text-align:center; background:var(--color-bg); border-radius:.65rem; }

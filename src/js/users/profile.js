@@ -144,6 +144,76 @@ document.addEventListener('DOMContentLoaded', () => {
     events = [...collectLogs(user), ...securityEvents].sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     renderLogs();
   }
+  const editableFields = ['firstName', 'middleName', 'lastName', 'suffix', 'dateOfBirth', 'email', 'phone'];
+  const editForm = $('editMyProfileForm');
+  let editingUserId = null;
+  function closeProfileEditor() {
+    editForm.hidden = true;
+    $('myPersonalDetails').hidden = false;
+    $('editMyProfile').hidden = false;
+    editingUserId = null;
+  }
+  $('editMyProfile').addEventListener('click', () => {
+    if (!displayedUser?.id) {
+      $('editMyProfileStatus').textContent = 'Connect your account to edit your information.';
+      return;
+    }
+    editingUserId = displayedUser.id;
+    editableFields.forEach(field => { $('editProfile-' + field).value = String(displayedUser[field] || ''); });
+    $('editMyProfileStatus').textContent = '';
+    editForm.hidden = false;
+    $('myPersonalDetails').hidden = true;
+    $('editMyProfile').hidden = true;
+    $('editProfile-firstName').focus();
+  });
+  $('cancelEditMyProfile').addEventListener('click', () => {
+    closeProfileEditor();
+    $('editMyProfileStatus').textContent = 'Changes cancelled.';
+    $('editMyProfile').focus();
+  });
+  editForm.addEventListener('submit', event => {
+    event.preventDefault();
+    if (!editForm.reportValidity()) return;
+    if (!editingUserId || displayedUser?.id !== editingUserId) {
+      $('editMyProfileStatus').textContent = 'Your account changed. Refresh and try again.';
+      return;
+    }
+    const changes = Object.fromEntries(editableFields.map(field => [field, $('editProfile-' + field).value.trim()]));
+    if (!changes.firstName || !changes.lastName || !changes.email) {
+      $('editMyProfileStatus').textContent = 'Enter your first name, last name, and work email.';
+      return;
+    }
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Manila', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    if (changes.dateOfBirth && changes.dateOfBirth > today) {
+      $('editMyProfileStatus').textContent = 'Date of birth cannot be in the future.';
+      return;
+    }
+    try {
+      const users = JSON.parse(localStorage.getItem('tmis-users') || '[]');
+      if (!Array.isArray(users)) throw new Error('Invalid records');
+      const index = users.findIndex(user => user?.id === editingUserId);
+      if (index < 0) throw new Error('Missing record');
+      if (users.some((user, i) => i !== index && String(user?.email || '').trim().toLowerCase() === changes.email.toLowerCase())) {
+        $('editMyProfileStatus').textContent = 'This email is already used by another account.';
+        return;
+      }
+      const current = users[index], now = new Date().toISOString();
+      const changed = editableFields.filter(field => String(current[field] || '') !== changes[field]);
+      if (!changed.length) { closeProfileEditor(); $('editMyProfileStatus').textContent = 'No changes to save.'; return; }
+      const updated = { ...current, ...changes, updatedAt: now, activityLogs: [...(Array.isArray(current.activityLogs) ? current.activityLogs : []), {
+        category: 'profile', title: 'User profile updated', description: 'Updated personal information: ' + changed.join(', ') + '.',
+        date: now, actor: [changes.firstName, changes.lastName].join(' '), actorId: current.id, reference: current.id
+      }] };
+      users[index] = updated;
+      localStorage.setItem('tmis-users', JSON.stringify(users));
+      if (window.TMIS_SESSION?.user?.id === updated.id) window.TMIS_SESSION.user = updated;
+      closeProfileEditor(); load();
+      $('editMyProfileStatus').textContent = 'Profile information saved in this browser.';
+      $('editMyProfile').focus();
+    } catch {
+      $('editMyProfileStatus').textContent = 'Your information could not be saved. Check browser storage and try again.';
+    }
+  });
   const passwordForm = $('passwordChangeForm');
   const passwordRules = [
     ['length', 'At least 8 characters', value => Array.from(value).length >= 8],

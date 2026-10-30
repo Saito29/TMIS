@@ -64,7 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
       body.setAttribute('role', 'region');
       body.setAttribute('aria-label', 'Full notification content');
     }
+    let previewOpening = false;
+    notificationDetailModal.addEventListener('show.bs.modal', () => { previewOpening = true; });
     notificationDetailModal.addEventListener('shown.bs.modal', () => {
+      previewOpening = false;
       if (body) body.scrollTop = 0;
     });
     // Reuse the page's modal styling while keeping the preview compact.
@@ -109,7 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
         bootstrap.Modal.getOrCreateInstance(fullModal).show();
         openingFullModal = false;
       }, { once: true });
-      bootstrap.Modal.getOrCreateInstance(notificationDetailModal).hide();
+      const closePreview = () => bootstrap.Modal.getOrCreateInstance(notificationDetailModal).hide();
+      if (previewOpening) {
+        notificationDetailModal.addEventListener('shown.bs.modal', closePreview, { once: true });
+      } else {
+        closePreview();
+      }
     });
     window.addEventListener('tmis:notification-preview', ({ detail }) => {
       notificationFullContent = String(detail.message || '');

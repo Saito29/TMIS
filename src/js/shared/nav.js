@@ -53,6 +53,73 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const notificationDetailModal = document.getElementById('notificationDetailModal');
+  if (profileScript) import(new URL('../notification/header.js', profileScript.src).href);
+  let notificationFullContent = '';
+  let notificationMetadata = '';
+  if (notificationDetailModal) {
+    notificationDetailModal.tabIndex = -1;
+    const body = notificationDetailModal.querySelector('.modal-body');
+    if (body) {
+      body.tabIndex = 0;
+      body.setAttribute('role', 'region');
+      body.setAttribute('aria-label', 'Full notification content');
+    }
+    notificationDetailModal.addEventListener('shown.bs.modal', () => {
+      if (body) body.scrollTop = 0;
+    });
+    // Reuse the page's modal styling while keeping the preview compact.
+    const fullModal = notificationDetailModal.cloneNode(true);
+    fullModal.id = 'notificationFullModal';
+    fullModal.querySelectorAll('[id]').forEach((element) => {
+      element.id = element.id.replace('notificationDetail', 'notificationFull');
+    });
+    fullModal.setAttribute('aria-labelledby', 'notificationFullModalLabel');
+    fullModal.querySelector('.modal-dialog').classList.add('notification-full-dialog');
+    fullModal.querySelector('#notificationFullAction')?.remove();
+    document.body.append(fullModal);
+    const metadata = document.createElement('p');
+    metadata.className = 'notification-detail-meta';
+    fullModal.querySelector('.modal-body').prepend(metadata);
+    const fullBody = fullModal.querySelector('.modal-body');
+    fullModal.addEventListener('show.bs.modal', () => document.body.classList.add('notification-modal-open'));
+    fullModal.addEventListener('shown.bs.modal', () => { fullBody.scrollTop = 0; fullBody.focus(); });
+    fullModal.addEventListener('hidden.bs.modal', () => {
+      document.body.classList.remove('notification-modal-open');
+      document.querySelector('.notification-btn')?.focus();
+    });
+    let openingFullModal = false;
+    document.getElementById('notificationDetailAction')?.addEventListener('click', () => {
+      if (openingFullModal || typeof bootstrap === 'undefined') return;
+      openingFullModal = true;
+      ['Type', 'Time', 'ModalLabel'].forEach((suffix) => {
+        fullModal.querySelector('#notificationFull' + suffix).textContent =
+          document.getElementById('notificationDetail' + suffix).textContent;
+      });
+      fullModal.querySelector('#notificationFullDescription').textContent = notificationFullContent ||
+        document.getElementById('notificationDetailDescription').textContent;
+      metadata.textContent = notificationMetadata;
+      if (profileScript) {
+        const content = notificationFullContent;
+        import(new URL('../notification/message-editor.js', profileScript.src).href).then(({ renderMessage }) => {
+          renderMessage(fullModal.querySelector('#notificationFullDescription'), content);
+        });
+      }
+      // Finish closing the preview before opening the full view: one backdrop and focus trap.
+      notificationDetailModal.addEventListener('hidden.bs.modal', () => {
+        bootstrap.Modal.getOrCreateInstance(fullModal).show();
+        openingFullModal = false;
+      }, { once: true });
+      bootstrap.Modal.getOrCreateInstance(notificationDetailModal).hide();
+    });
+    window.addEventListener('tmis:notification-preview', ({ detail }) => {
+      notificationFullContent = String(detail.message || '');
+      notificationMetadata = [detail.priority === 'high' ? 'Important' : '', detail.reference ? `Reference: ${detail.reference}` : ''].filter(Boolean).join(' · ');
+      for (const [suffix, value] of Object.entries({ Type: detail.type || 'Notification', Time: detail.time || '', ModalLabel: detail.title || 'Notification', Description: detail.summary || notificationFullContent.slice(0,240), Action: 'View full details' })) {
+        document.getElementById('notificationDetail' + suffix).textContent = value;
+      }
+      if (typeof bootstrap !== 'undefined') bootstrap.Modal.getOrCreateInstance(notificationDetailModal).show();
+    });
+  }
   const updateUnreadNotificationCount = () => {
     const unreadCount = document.querySelectorAll('.notification-menu-item.is-unread').length;
     const notificationCount = document.querySelector('.notification-count');
@@ -67,6 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.notification-menu-item').forEach((item) => {
     item.addEventListener('click', () => {
       const { notificationType, notificationTime, notificationTitle, notificationDescription, notificationAction } = item.dataset;
+      notificationFullContent = item.dataset.notificationContent || notificationDescription || '';
+      notificationMetadata = '';
       const detailFields = {
         notificationDetailType: notificationType,
         notificationDetailTime: notificationTime,

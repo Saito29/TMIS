@@ -11,11 +11,11 @@ function init(){
  const name=user=>[user.firstName,user.middleName,user.lastName,user.suffix].filter(Boolean).join(' ')||'Unnamed user';
  const readUsers=()=>{const data=JSON.parse(localStorage.getItem('tmis-users')||'[]');if(!Array.isArray(data))throw new Error('User-table data could not be read.');return data;};
  function feedback(message,type='success'){if(type===true)type='error';$('composeFeedback').textContent=message;$('composeFeedback').hidden=true;$('composeFeedback').dataset.type=type;showToast(message,type);}
- function data(){return {title:$('notificationTitle').value.trim(),message:$('notificationMessage').value.trim(),type:$('notificationType').value,priority:$('notificationPriority').value,reference:$('notificationReference').value.trim(),relatedPage:$('notificationRelatedPage').value,audience:form.querySelector('input[name="notificationAudience"]:checked')?.value||'users',role:$('notificationRole').value,recipientIds:[...selected]};}
+ function data(){return {summary:$('notificationSummary').value.trim(),title:$('notificationTitle').value.trim(),message:$('notificationMessage').value.trim(),type:$('notificationType').value,priority:$('notificationPriority').value,reference:$('notificationReference').value.trim(),relatedPage:$('notificationRelatedPage').value,audience:form.querySelector('input[name="notificationAudience"]:checked')?.value||'users',role:$('notificationRole').value,recipientIds:[...selected]};}
  function preview(){
   const item=data(),recipients=resolveRecipients(item,users),target=RELATED_PAGES[item.relatedPage]||RELATED_PAGES[''];
-  $('notificationTitleCount').textContent=`${$('notificationTitle').value.length} / 100`;$('notificationMessageCount').textContent=`${$('notificationMessage').value.length} / 1,000`;
-  $('notificationPreviewTitle').textContent=item.title||'Your notification title';renderMessage($('notificationPreviewMessage'),item.message||'Your message will appear here as you type.');
+  $('notificationTitleCount').textContent=`${$('notificationTitle').value.length} / 100`;$('notificationMessageCount').textContent=`${$('notificationMessage').value.length} / 10,000`;
+  $('notificationPreviewTitle').textContent=item.title||'Your notification title';renderMessage($('notificationPreviewMessage'),item.summary||item.message.slice(0,240)||'Your summary will appear here as you type.');
   $('notificationPreviewType').textContent=NOTIFICATION_TYPES[item.type]||'System';$('notificationPreviewPriority').hidden=item.priority!=='high';
   $('notificationPreviewIcon').className=`bi ${{system:'bi-bell',account:'bi-person-check',training:'bi-journal-text',participants:'bi-people',evaluation:'bi-clipboard-check'}[item.type]||'bi-bell'}`;
   $('notificationPreviewReference').hidden=!item.reference;$('notificationPreviewReference').textContent=item.reference;
@@ -23,6 +23,7 @@ function init(){
   $('notificationPreviewRecipients').textContent=`${recipients.length} ${recipients.length===1?'user':'users'}`;
   $('notificationAudienceSummary').textContent=recipients.length?`${recipients.length} active ${recipients.length===1?'recipient':'recipients'} selected${item.audience==='role'?` for ${item.role}`:''}.`:'No active recipients selected.';
  }
+ $('previewNotificationModal').addEventListener('click',()=>{const item=data();window.dispatchEvent(new CustomEvent('tmis:notification-preview',{detail:{title:item.title||'Notification preview',summary:item.summary||item.message.slice(0,240),message:item.message,type:NOTIFICATION_TYPES[item.type],time:'Draft preview',reference:item.reference,priority:item.priority}}));});
  function dirty(){ $('notificationDraftStatus').textContent='Unsaved changes';preview(); }
  function fillFilter(id,values,label){
   const field=$(id),previous=field.value;field.replaceChildren(new Option(label,''),...Array.from(new Set(values.filter(Boolean))).sort().map(value=>new Option(value,value)));if([...field.options].some(option=>option.value===previous))field.value=previous;
@@ -60,7 +61,7 @@ function init(){
     const raw=localStorage.getItem(draftKey(actor)),draft=raw?JSON.parse(raw):null;
     if(draft?.actorId===actor.id && draft.data){
      const item=draft.data;draftId=draft.id||null;
-     $('notificationTitle').value=String(item.title||'').slice(0,100);$('notificationMessage').value=String(item.message||'').slice(0,1000);
+     $('notificationTitle').value=String(item.title||'').slice(0,100);$('notificationMessage').value=String(item.message||'').slice(0,10000);$('notificationSummary').value=String(item.summary||'').slice(0,240);
      $('notificationType').value=Object.hasOwn(NOTIFICATION_TYPES,item.type)?item.type:'system';$('notificationPriority').value=item.priority==='high'?'high':'normal';
      $('notificationReference').value=String(item.reference||'').slice(0,80);$('notificationRelatedPage').value=Object.hasOwn(RELATED_PAGES,item.relatedPage)?item.relatedPage:'';
      const radio=form.querySelector(`input[name="notificationAudience"][value="${['users','role','all'].includes(item.audience)?item.audience:'users'}"]`);radio.checked=true;
@@ -127,6 +128,7 @@ function init(){
    if(JSON.stringify(items.map(item=>item.recipientId).sort())!==JSON.stringify([...pending.recipientIds].sort()))throw new Error('The active recipient list changed. Review your selection and confirm again.');
    const existing=JSON.parse(localStorage.getItem('tmis-notifications')||'[]');if(!Array.isArray(existing))throw new Error('The notification inbox data could not be read.');
    localStorage.setItem('tmis-notifications',JSON.stringify([...existing,...items]));
+   window.dispatchEvent(new Event('tmis:notifications-updated'));
    // The inbox write has completed; draft cleanup must not misreport a successful create.
    let draftCleared=true;try{localStorage.removeItem(draftKey(actor));}catch{draftCleared=false;}
    const batchId=items[0].batchId;reset(false);$('notificationDraftStatus').textContent='Notification created locally';

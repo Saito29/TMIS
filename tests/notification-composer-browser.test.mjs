@@ -65,7 +65,7 @@ test('browser composer: live preview, drafts, recipient selection, local create 
  await page.locator('#notificationRecipientList input[value="ME"]').check();assert.equal(await page.textContent('#notificationPreviewTitle'),'Important training schedule');assert.equal(await page.textContent('#notificationPreviewRecipients'),'1 user');
  await page.click('#saveNotificationDraft');
  await page.goto(`${origin}/app/admin/notification/details/all-notification.html`);await page.getByRole('link',{name:'Create notification',exact:true}).click();await page.waitForURL('**/users/profile.html#mail');
- assert.equal(await page.locator('.self-tabs [role=tab]').count(),4);assert.equal(await page.getAttribute('#mail-tab','aria-selected'),'true');await page.locator('#notificationTitle').waitFor({state:'visible'});
+ assert.equal(await page.locator('#mail-tab').count(),1);assert.equal(await page.getAttribute('#mail-tab','aria-selected'),'true');await page.locator('#notificationTitle').waitFor({state:'visible'});
  await page.reload();await page.waitForFunction(()=>document.querySelector('#notificationTitle').value==='Important training schedule');assert.equal(await page.locator('#notificationRecipientList input[value="ME"]').isChecked(),true);
  await page.locator('#notificationMessage').selectText();
  await page.getByRole('button',{name:'Bold',exact:true}).click();
@@ -75,6 +75,9 @@ test('browser composer: live preview, drafts, recipient selection, local create 
  await page.getByRole('button',{name:'Redo',exact:true}).click();
  await page.click('#saveNotificationDraft');await page.reload();
  await page.waitForFunction(()=>document.querySelector('#notificationPreviewMessage strong'));
+ await page.fill('#notificationSummary','Schedule changed: review the full details.');
+ await page.click('#saveNotificationDraft');await page.reload();await page.waitForFunction(()=>document.querySelector('#notificationSummary').value==='Schedule changed: review the full details.');
+ assert.equal(await page.textContent('#notificationPreviewMessage'),'Schedule changed: review the full details.');
  await page.click('#createNotification');await page.locator('#confirmNotificationDialog').waitFor({state:'visible'});await page.locator('#confirmNotificationDialog').getByRole('button',{name:'Keep editing',exact:true}).click();assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('tmis-notifications')||'[]').length),0);
  await page.click('#createNotification');await page.click('#confirmNotificationCreate');await page.waitForFunction(()=>JSON.parse(localStorage.getItem('tmis-notifications')||'[]').length===1);assert.equal(await page.evaluate(()=>localStorage.getItem('tmis-notification-draft:ME')),null);
  assert.match(await page.textContent('#composeFeedback'),/No email or push was sent/);

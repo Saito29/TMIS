@@ -526,6 +526,19 @@ body::-webkit-scrollbar-thumb:hover,
 .notification-detail-dialog {
   max-width: 460px;
 }
+.notification-full-dialog {
+  max-width: 960px;
+  width: calc(100% - 32px);
+  margin: 24px auto;
+}
+.notification-full-dialog.modal-dialog-scrollable {
+  height: calc(100dvh - 48px);
+  min-height: 0;
+}
+@media (max-width: 575.98px) {
+  .notification-full-dialog { width: calc(100% - 16px); margin: 8px auto; }
+  .notification-full-dialog.modal-dialog-scrollable { height: calc(100dvh - 16px); }
+}
 .notification-detail-modal {
   overflow: hidden;
   border: 1px solid #e0e0e0;
@@ -537,7 +550,7 @@ body::-webkit-scrollbar-thumb:hover,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px auto;
+  padding: 20px 24px;
   border: 0;
   background-color: #fff;
 }
@@ -550,9 +563,14 @@ body::-webkit-scrollbar-thumb:hover,
   font-size: 19px;
 }
 .notification-detail-body {
-  padding: 18px 20px 8px;
+  padding: 24px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-wrap: anywhere;
 }
 .notification-detail-meta {
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
   color: #607088;
@@ -571,8 +589,10 @@ body::-webkit-scrollbar-thumb:hover,
 .notification-detail-body p {
   margin: 0;
   color: #607088;
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 15px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 .notification-detail-footer {
   justify-content: flex-end;

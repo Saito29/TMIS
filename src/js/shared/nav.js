@@ -3,6 +3,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Resolve account navigation from this script, independent of page depth.
   const profileScript = [...document.scripts].find((script) => /\/src\/js\/shared\/nav\.js(?:[?#]|$)/.test(script.src));
   if (profileScript) {
+    const loginUrl = new URL('../../../app/authentication/login.html', profileScript.src);
+    document.querySelectorAll('.sign-out-item').forEach((link) => {
+      link.href = loginUrl.href;
+    });
+    document.addEventListener('click', (event) => {
+      const link = event.target.closest('.sign-out-item');
+      if (!link || event.defaultPrevented) return;
+      // The auth client owns server logout when a real session is active.
+      if (window.TmisAuth?.getSession()?.authenticated) return;
+      event.preventDefault();
+      window.TMIS_SESSION = null;
+      try { sessionStorage.removeItem('tmis-current-user-id'); } catch { /* Storage may be disabled. */ }
+      window.location.assign(loginUrl.href);
+    });
     const accountPages = { Profile: 'profile.html', Logs: 'logs.html' };
     document.querySelectorAll('.app-profile a, .app-mobile-menu a').forEach((link) => {
       const file = accountPages[link.textContent.trim()];
@@ -184,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const addToolsNavigation = () => {
     const script = document.querySelector('script[src$="/src/js/shared/nav.js"]');
     if (!script) return;
-    const reportUrl = new URL('../../../app/admin/dashboard/dashboardv2.html#summary-report', script.src).href;
+    const reportUrl = new URL('../../../app/admin/dashboard/dashboard.html#summary-report', script.src).href;
     const desktopAdministration = document.getElementById('administrationHeaderCollapse')?.closest('.nav-item');
     if (desktopAdministration && !document.getElementById('toolsHeaderCollapse')) {
       const section = document.createElement('li');

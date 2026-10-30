@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
 import ApexCharts from 'apexcharts';
 
-export function useDashboard() {
-  useEffect(() => {
+export function initializeDashboard() {
   // ============================================================
   // MOBILE NAVIGATION CONFIGURATION
   // ============================================================
@@ -681,7 +679,7 @@ export function useDashboard() {
     return rows.join('');
   }
 
-  // Chart mount element from dashboardv2.html.
+  // Chart mount element from dashboard.html.
   const totalTrainingChart = document.querySelector('#totalTrainingChart');
 
   if (totalTrainingChart && typeof ApexCharts !== 'undefined') {
@@ -1478,5 +1476,10 @@ export function useDashboard() {
     (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
   );
 
-  }, []);
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeDashboard, { once: true });
+} else {
+  initializeDashboard();
 }

@@ -1,6 +1,6 @@
 // Dashboard data handoff: replace sample report rows and chart series with API
 // responses together, so card totals, charts, and exported report rows agree.
-// Keep the DOM chart IDs and data-report-key values defined in dashboardv2.html.
+// Keep the DOM chart IDs and data-report-key values defined in dashboard.html.
 document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   // MOBILE NAVIGATION CONFIGURATION
@@ -680,7 +680,7 @@ document.addEventListener('DOMContentLoaded', function () {
     return rows.join('');
   }
 
-  // Chart mount element from dashboardv2.html.
+  // Chart mount element from dashboard.html.
   const totalTrainingChart = document.querySelector('#totalTrainingChart');
 
   if (totalTrainingChart && typeof ApexCharts !== 'undefined') {

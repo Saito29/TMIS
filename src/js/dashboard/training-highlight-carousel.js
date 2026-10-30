@@ -1,6 +1,6 @@
 // Dashboard highlight handoff: replace the IndexedDB/default slide content with
 // sanitized API data when highlights are stored on the server. Update image paths
-// and fallback text here; the carousel markup and layout live in dashboardv2.html.
+// and fallback text here; the carousel markup and layout live in dashboard.html.
 (() => {
   if (!window.indexedDB) return;
 

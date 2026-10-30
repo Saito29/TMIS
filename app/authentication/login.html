@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en">
+<!-- Standalone UI backup. Forms demonstrate client-side behavior only; no accounts are authenticated, emails sent, or passwords changed. Verification demo code: 123456. -->
   <head>
-    <link rel="stylesheet" href="../../src/css/users/auth-security.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#123e32" />
     <script src="../../src/js/shared/page-loading.js"></script>
     <link rel="stylesheet" href="../../src/css/shared/page-loading.css" />
     <link
@@ -32,127 +33,57 @@
       href="../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
       type="image/x-icon"
     />
-    <title>TMIS Login</title>
-  <link rel="stylesheet" href="../../src/css/shared/toast.css">
+    <link rel="stylesheet" href="../../src/css/shared/toast.css">
     <script src="../../src/js/shared/toast.js" defer></script>
+    <title>Sign in | TMIS</title>
   </head>
   <body>
-    <main class="container-fluid authenticator-container">
-      <div class="row">
-        <section class="col authenticator-left">
-          <div class="authenticator-left-content-logo">
-            <img
-              src="../../assets/logo/DA SAAD LOGO FULL - WHITE TEXT.png"
-              alt="DA-SAAD Logo"
-              class="authenticator-left-logo"
-            />
-            <span class="authenticator-system-name">TMIS</span>
-          </div>
-          <div class="authenticator-left-content-tagline">
-            <h1 class="authenticator-tagline">
-              Building Competence Through Smarter Training Management.
-            </h1>
-          </div>
-          <div class="authenticator-left-content-DA">
-            <span class="authenticator-left-content-DA-name">
-              Department of Agriculture 4A - SAAD
-            </span>
-          </div>
-        </section>
-
-        <section class="col authenticator-right card">
-          <div class="card-body">
-            <header class="authenticator-right-card-form card-title">
-              <h2 class="authenticator-right-card-header">Welcome Back!</h2>
-              <p class="authenticator-right-card-header2">
-                Sign in to continue to your account
-              </p>
-            </header>
-            <div class="authenticator-right-card-form-box">
-              <p id="signInMessage" class="auth-service-message" role="status" aria-live="polite"></p>
-<form id="initialAccountSetup" class="auth-service-form" hidden><h3>Create your local sign-in</h3><p>This one-time setup creates the first System Administrator sign-in on this local server.</p><label for="setupProfileImport">Existing TMIS profile (optional JSON transfer)</label><input id="setupProfileImport" class="form-control" type="file" accept=".json,application/json"><label for="setupFirstName">First name</label><input id="setupFirstName" class="form-control" required maxlength="80" autocomplete="given-name"><label for="setupLastName">Last name</label><input id="setupLastName" class="form-control" required maxlength="80" autocomplete="family-name"><label for="setupEmail">Registered work email</label><input id="setupEmail" class="form-control" type="email" required maxlength="160" autocomplete="email"><label for="setupPassword">Password</label><input id="setupPassword" class="form-control" type="password" required minlength="8" maxlength="128" autocomplete="new-password"><p>Use at least 8 characters, uppercase and lowercase letters, a number, and a special character.</p><label for="setupConfirm">Confirm password</label><input id="setupConfirm" class="form-control" type="password" required minlength="8" maxlength="128" autocomplete="new-password"><button class="btn btn-success" type="submit">Create sign-in account</button></form>
-<form id="signInVerification" class="auth-service-form" hidden><h3>Verify your sign-in</h3><label for="signInCode">Authenticator or recovery code</label><input id="signInCode" class="form-control" required autocomplete="one-time-code" maxlength="40"><button class="btn btn-success" type="submit">Verify and sign in</button><button id="restartSignIn" class="btn btn-outline-secondary" type="button">Back to sign in</button></form>
-<form
-                action="#"
-                id="authenticator_form"
-                class="row gx-2 gy-3"
-                autocomplete="on"
-                enctype="multipart/form-data"
-              >
-                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
-                  <label for="email-input" class="form-label text-form-label">
-                    Email Address
-                  </label>
-                  <div class="input-group form-group">
-                    <span class="input-group-text">
-                      <i class="bi bi-envelope-at-fill" aria-hidden="true"></i>
-                    </span>
-                    <input
-                      type="email"
-                      name="email_address"
-                      id="email-input"
-                      class="form-control text-form"
-                      placeholder="your@emailaddress"
-                      autocomplete="email"
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="col-sm-6 col-md-12 col-lg-12 mb-2">
-                  <label
-                    for="password_input"
-                    class="form-label text-form-label"
-                  >
-                    Password
-                  </label>
-                  <div class="input-group form-group">
-                    <span class="input-group-text">
-                      <i class="bi bi-lock-fill" aria-hidden="true"></i>
-                    </span>
-                    <input
-                      type="password"
-                      name="password_auth"
-                      id="password_input"
-                      class="form-control text-form"
-                      placeholder="Enter your password"
-                      autocomplete="current-password"
-                      required
-                    />
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      id="toggle-password"
-                      data-password-target="password_input"
-                      aria-label="Show password"
-                    >
-                      <i class="bi bi-eye-fill" aria-hidden="true"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="col-12 mb-2">
-                  <input
-                    type="submit"
-                    value="Login"
-                    class="btn btn-outline-success form-control form-submit"
-                  />
-                </div>
-              </form>
+    <main class="authenticator-container">
+      <aside class="authenticator-left" aria-label="About TMIS">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">T</span><div><strong>TMIS</strong><span>TRAINING MANAGEMENT</span></div></div>
+        <div class="brand-story">
+          <span class="eyebrow">TRAINING MANAGEMENT INFORMATION SYSTEM</span>
+          <h1>Growing skills.<br />Building a<br /><em>stronger tomorrow.</em></h1>
+          <p>A shared space to plan training, track progress, and support your team's development.</p>
+          <div class="brand-features"><span>Plan with purpose</span><span>Track your impact</span></div>
+        </div>
+        <footer class="brand-footer">Built for learning and development <span>Training Management Information System</span></footer>
+        <div class="field-lines" aria-hidden="true"></div>
+      </aside>
+      <section class="authenticator-right" aria-labelledby="auth-title">
+        <div class="mobile-brand"><span class="brand-mark" aria-hidden="true">T</span><strong>TMIS <small>TRAINING MANAGEMENT</small></strong></div>
+        <div class="auth-content">
+          <span class="recovery-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 5v2"/></svg></span>
+          <span class="section-label">YOUR WORKSPACE, CONNECTED</span>
+          <header>
+            <h2 id="auth-title">Welcome back.</h2>
+            <p>Enter your account details to continue to email verification.</p>
+          </header>
+          <p id="signInMessage" class="auth-service-message" role="status" aria-live="polite"></p>
+          <p class="preview-note">Demo only: accounts, emails, and password changes are simulated.</p>
+<form action="#" id="authenticator_form" autocomplete="on" data-verification-url="two_factor.html">
+            <div class="form-field">
+              <label for="email-input">Email address</label>
+              <input type="email" name="email_address" id="email-input" placeholder="you@example.com" autocomplete="username" spellcheck="false" autocapitalize="none" required />
             </div>
-            <div class="authenticator-right-card-form-others">
-              <a
-                href="forget_password.html"
-                class="authenticator-right-card-form-forgetpassword"
-              >
-                Forgot Password?
-              </a>
+            <div class="form-field">
+              <div class="label-row"><label for="password_input">Password</label><a href="forget_password.html">Forgot password?</a></div>
+              <div class="password-field">
+                <input type="password" name="password_auth" id="password_input" placeholder="Enter your password" autocomplete="current-password" required />
+                <button type="button" class="password-toggle" id="toggle-password" data-password-target="password_input" aria-label="Show password" aria-pressed="false">Show</button>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
+            <button type="submit" class="form-submit">Continue <span aria-hidden="true">→</span></button>
+          </form>
+          <div class="account-help"><span class="help-icon" aria-hidden="true">?</span><p>Need access to TMIS?<br /><span>Contact your system administrator for assistance.</span></p></div>
+        </div>
+        <footer class="auth-footer">TMIS <span>Training Management Information System</span></footer>
+      </section>
     </main>
     <script src="../../src/js/auth/authentication.js"></script>
-    <!-- Backend integration disabled for now. Uncomment when ready.
-<script type="module" src="../../src/js/auth/sign-in.js"></script>
--->
   </body>
 </html>
+
+
+
+

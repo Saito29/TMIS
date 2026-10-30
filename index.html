@@ -69,12 +69,13 @@
               </p>
             </header>
             <div class="authenticator-right-card-form-box">
-              <p id="signInMessage" class="auth-service-message" role="status" aria-live="polite"></p>
+              <p class="preview-note">Demo only: use verification code 123456. No authenticated session is created.</p>
+<p id="signInMessage" class="auth-service-message" role="status" aria-live="polite"></p>
 <form id="initialAccountSetup" class="auth-service-form" hidden><h3>Create your local sign-in</h3><p>This one-time setup creates the first System Administrator sign-in on this local server.</p><label for="setupProfileImport">Existing TMIS profile (optional JSON transfer)</label><input id="setupProfileImport" class="form-control" type="file" accept=".json,application/json"><label for="setupFirstName">First name</label><input id="setupFirstName" class="form-control" required maxlength="80" autocomplete="given-name"><label for="setupLastName">Last name</label><input id="setupLastName" class="form-control" required maxlength="80" autocomplete="family-name"><label for="setupEmail">Registered work email</label><input id="setupEmail" class="form-control" type="email" required maxlength="160" autocomplete="email"><label for="setupPassword">Password</label><input id="setupPassword" class="form-control" type="password" required minlength="8" maxlength="128" autocomplete="new-password"><p>Use at least 8 characters, uppercase and lowercase letters, a number, and a special character.</p><label for="setupConfirm">Confirm password</label><input id="setupConfirm" class="form-control" type="password" required minlength="8" maxlength="128" autocomplete="new-password"><button class="btn btn-success" type="submit">Create sign-in account</button></form>
 <form id="signInVerification" class="auth-service-form" hidden><h3>Verify your sign-in</h3><label for="signInCode">Authenticator or recovery code</label><input id="signInCode" class="form-control" required autocomplete="one-time-code" maxlength="40"><button class="btn btn-success" type="submit">Verify and sign in</button><button id="restartSignIn" class="btn btn-outline-secondary" type="button">Back to sign in</button></form>
 <form
                 action="#"
-                id="authenticator_form"
+                id="authenticator_form" data-verification-url="app/authentication/two_factor.html"
                 class="row gx-2 gy-3"
                 autocomplete="on"
                 enctype="multipart/form-data"

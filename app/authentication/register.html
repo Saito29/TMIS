@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../../src/js/page-loading.js"></script>
+    <script src="../../src/js/shared/page-loading.js"></script>
     <link rel="stylesheet" href="../../src/css/shared/page-loading.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
@@ -31,9 +31,9 @@
       href="../../assets/logo/Child Logo DA-SAAD/with DA [White Text].png"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="../../src/css/shared/toast.css">
+      <script src="../../src/js/shared/toast.js" defer></script>
     <title>Create Account | TMIS</title>
-  <link rel="stylesheet" href="../../src/css/shared/toast.css">
-    <script src="../../src/js/shared/toast.js" defer></script>
   </head>
   <body>
     <main class="container-fluid authenticator-container">
@@ -66,9 +66,10 @@
               <p class="authenticator-right-card-header2">Create an account</p>
             </header>
             <div class="authenticator-right-card-form-box">
-              <form
+              <p class="preview-note">Demo only: accounts, emails, and password changes are simulated.</p>
+<form
                 action="#"
-                id="authenticator_form"
+                id="registration-form"
                 class="row gx-3 gy-3"
                 autocomplete="on"
               >

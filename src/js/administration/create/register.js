@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   dateInput.max = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   let step = 0;
 
-  const fields = ['firstName', 'middleName', 'lastName', 'suffix', 'dateOfBirth', 'email', 'phone', 'role', 'office', 'region', 'position'];
+  const fields = ['firstName', 'middleName', 'lastName', 'suffix', 'dateOfBirth', 'sex', 'email', 'phone', 'role', 'office', 'region', 'position'];
   // Backend handoff: load allowed roles and offices from server policy; validate
   // them again on submit. A selected role in this browser must never grant access.
   const allowedRoles = new Set(['System Administrator', 'Data Encoder', 'Program Administrator', 'Program Head']);
@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const labels = [
       ['Full name', [value('firstName'), value('middleName'), value('lastName'), value('suffix')].filter(Boolean).join(' ')],
       ['Date of birth', value('dateOfBirth') || '—'],
+      ['Sex', value('sex')],
       ['Work email', value('email')], ['Mobile number', value('phone') || '—'],
       ['User role', value('role')], ['Region', value('region')],
       ['Office / organization', value('office')], ['Position', value('position') || '—'],
@@ -145,6 +146,12 @@ document.addEventListener('DOMContentLoaded', () => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (step !== steps.length - 1) return;
+    if (!['Male', 'Female'].includes(value('sex'))) {
+      step = 0;
+      render();
+      showFieldError(form.elements.sex, 'Select Male or Female.');
+      return;
+    }
     if (!allowedRoles.has(value('role'))) {
       step = 1;
       render();

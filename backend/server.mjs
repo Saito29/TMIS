@@ -10,7 +10,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const hour = 3600000;
 class ApiError extends Error { constructor(status, message, code) { super(message); this.status = status; this.code = code; } }
 const fail = (status, message, code) => { throw new ApiError(status, message, code); };
-export function createApp({ dataDir = resolve(root, 'backend/.data'), origin = 'http://127.0.0.1:3001', basePath = '/TMIS', now = () => Date.now() } = {}) {
+export function createApp({ dataDir = resolve(root, 'backend/.data'), origin = 'http://127.0.0.1:3001', basePath = '/TMIS', maintenance = false, now = () => Date.now() } = {}) {
   const publicUrl = new URL(origin); basePath = basePath.replace(/\/$/, '');
   mkdirSync(dataDir, { recursive: true, mode: 0o700 });
   const keyPath = resolve(dataDir, 'auth.key');
@@ -198,6 +198,18 @@ export function createApp({ dataDir = resolve(root, 'backend/.data'), origin = '
     fail(404, 'Endpoint not found.');
   }
   const types = { '.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.svg':'image/svg+xml','.woff':'font/woff','.woff2':'font/woff2','.ico':'image/x-icon' };
+  // Read once: error responses do not depend on the database or external assets.
+  const errorPages = Object.fromEntries(['404', '500', 'maintenance'].map(name => [name, readFileSync(resolve(root, `app/errors/${name}.html`), 'utf8')]));
+  function errorPage(req, res, status) {
+    const name = status === 503 ? 'maintenance' : String(status);
+    const safeBase = basePath.replace(/[&<>"']/g, character => `&#${character.charCodeAt(0)};`);
+    const html = errorPages[name]
+      .replace('/*TMIS_BASE*/ null', JSON.stringify(basePath).replace(/</g, '\\u003c'))
+      .replaceAll('../authentication/login.html', `${safeBase}/app/authentication/login.html`);
+    if (status === 503) res.setHeader('Retry-After', '300');
+    res.writeHead(status, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(req.method === 'HEAD' ? undefined : html);
+  }
   const server = http.createServer(async (req, res) => {
     res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Content-Type-Options', 'nosniff'); res.setHeader('X-Frame-Options', 'DENY'); res.setHeader('Referrer-Policy', 'same-origin');
     try {
@@ -205,6 +217,10 @@ export function createApp({ dataDir = resolve(root, 'backend/.data'), origin = '
       const url = new URL(req.url, publicUrl);
       if (!(url.pathname === basePath || url.pathname.startsWith(`${basePath}/`))) fail(404, 'Page not found.');
       const path = decodeURIComponent(url.pathname.slice(basePath.length) || '/');
+      if (maintenance) {
+        if (path.startsWith('/api/')) { res.setHeader('Retry-After', '300'); return json(res, { error: 'TMIS is temporarily unavailable for maintenance.', code: 'MAINTENANCE' }, 503); }
+        return errorPage(req, res, 503);
+      }
       if (path.startsWith('/api/auth/')) return await api(req, res, path.slice('/api/auth'.length));
       if (!['GET','HEAD'].includes(req.method)) fail(405, 'Method not allowed.');
       if (path.startsWith('/app/admin/')) {
@@ -216,7 +232,12 @@ export function createApp({ dataDir = resolve(root, 'backend/.data'), origin = '
       const file = resolve(root, relative);
       if (!file.startsWith(root + sep) || !existsSync(file) || !statSync(file).isFile()) fail(404, 'Page not found.');
       res.writeHead(200, { 'Content-Type': types[extname(file)] || 'application/octet-stream' }); res.end(req.method === 'HEAD' ? undefined : readFileSync(file));
-    } catch (error) { json(res, { error: error.status ? error.message : 'The request could not be completed.', code: error.code || null }, error.status || 500); }
+    } catch (error) {
+      const status = error.status || 500;
+      const apiRequest = new URL(req.url, publicUrl).pathname.startsWith(`${basePath}/api/`);
+      if (!apiRequest && ['GET', 'HEAD'].includes(req.method) && [404, 500].includes(status)) return errorPage(req, res, status);
+      json(res, { error: error.status ? error.message : 'The request could not be completed.', code: error.code || null }, status);
+    }
   });
   server.on('listening', () => { if (publicUrl.port === '0') publicUrl.port = String(server.address().port); });
   server.requestTimeout = 15000; server.headersTimeout = 10000;
@@ -229,7 +250,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   } else {
   const port = Number(process.env.TMIS_PORT || 3001), host = process.env.TMIS_HOST || '127.0.0.1';
   const origin = process.env.TMIS_ORIGIN || `http://${host}:${port}`;
-  const server = createApp({ origin, basePath: process.env.TMIS_BASE_PATH || '/TMIS', ...(process.env.TMIS_DATA_DIR ? { dataDir: resolve(process.env.TMIS_DATA_DIR) } : {}) });
+  const server = createApp({ origin, basePath: process.env.TMIS_BASE_PATH || '/TMIS', maintenance: process.env.TMIS_MAINTENANCE === 'true', ...(process.env.TMIS_DATA_DIR ? { dataDir: resolve(process.env.TMIS_DATA_DIR) } : {}) });
   server.listen(port, host, () => console.log(`TMIS authentication server: ${origin}${process.env.TMIS_BASE_PATH || '/TMIS'}/app/authentication/login.html`));
 }
 }
